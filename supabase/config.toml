@@ -1,1 +1,4 @@
 project_id = "ikabzlrajzshwumoemfu"
+
+[functions.process-checkout]
+verify_jwt = false

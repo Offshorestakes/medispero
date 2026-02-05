@@ -90,49 +90,47 @@ const CheckoutPage = () => {
     setIsLoading(true);
 
     try {
-      // Create order
-      const shippingAddress = {
-        fullName: formData.fullName,
-        address: formData.address,
-        city: formData.city,
-        state: formData.state,
-        zipCode: formData.zipCode,
-        phone: formData.phone,
-      };
+      // Call the server-side checkout edge function for validation and processing
+      const { data, error } = await supabase.functions.invoke('process-checkout', {
+        body: {
+          formData,
+          items: items.map(item => ({
+            product_id: item.product_id,
+            product_name: item.product_name,
+            product_image: item.product_image,
+            price: item.price,
+            quantity: item.quantity,
+          })),
+          subtotal,
+          shipping,
+          tax,
+          total,
+        },
+      });
 
-      const { data: order, error: orderError } = await supabase
-        .from("orders")
-        .insert({
-          user_id: user.id,
-          subtotal: subtotal,
-          shipping: shipping,
-          tax: tax,
-          total: total,
-          shipping_address: shippingAddress,
-          billing_address: shippingAddress,
-        })
-        .select()
-        .single();
+      if (error) {
+        console.error("Checkout error:", error);
+        toast({
+          title: "Checkout failed",
+          description: "There was an error processing your order. Please try again.",
+          variant: "destructive",
+        });
+        return;
+      }
 
-      if (orderError) throw orderError;
+      if (!data?.success) {
+        const errorMessage = data?.details 
+          ? data.details.map((d: { field: string; message: string }) => d.message).join(', ')
+          : data?.error || "There was an error processing your order.";
+        toast({
+          title: "Checkout failed",
+          description: errorMessage,
+          variant: "destructive",
+        });
+        return;
+      }
 
-      // Create order items
-      const orderItems = items.map((item) => ({
-        order_id: order.id,
-        product_id: item.product_id,
-        product_name: item.product_name,
-        product_image: item.product_image,
-        price: item.price,
-        quantity: item.quantity,
-      }));
-
-      const { error: itemsError } = await supabase
-        .from("order_items")
-        .insert(orderItems);
-
-      if (itemsError) throw itemsError;
-
-      // Clear cart
+      // Clear cart after successful order
       await clearCart();
 
       toast({
