@@ -1,6 +1,67 @@
 // Medi Spero - CBD/Hemp Product Catalog
 // Legal, Farm Bill compliant products only
 
+// Import product images
+import cbdOilImage from "@/assets/products/cbd-oil-tincture.jpg";
+import cbdGummiesImage from "@/assets/products/cbd-gummies.jpg";
+import cbdTopicalImage from "@/assets/products/cbd-topical-cream.jpg";
+import thcVapeImage from "@/assets/products/thc-vape-cartridge.jpg";
+import cbdCapsulesImage from "@/assets/products/cbd-capsules.jpg";
+import cbdRollOnImage from "@/assets/products/cbd-roll-on.jpg";
+import thcGummiesImage from "@/assets/products/thc-gummies.jpg";
+import cbdSleepImage from "@/assets/products/cbd-sleep-tincture.jpg";
+import hhcFlowerImage from "@/assets/products/hhc-flower.jpg";
+import cbdMassageOilImage from "@/assets/products/cbd-massage-oil.jpg";
+import cbdPetTreatsImage from "@/assets/products/cbd-pet-treats.jpg";
+import cbdBathBombsImage from "@/assets/products/cbd-bath-bombs.jpg";
+
+// Helper function to get images based on category
+const getProductImages = (category: string, subcategory?: string): string[] => {
+  switch (category) {
+    case "cbd-oils":
+      return [cbdOilImage, cbdSleepImage, cbdMassageOilImage, cbdOilImage, cbdSleepImage];
+    case "cbd-gummies":
+      return [cbdGummiesImage, thcGummiesImage, cbdGummiesImage, thcGummiesImage, cbdGummiesImage];
+    case "cbd-topicals":
+      if (subcategory?.includes("roll") || subcategory?.includes("gel")) {
+        return [cbdRollOnImage, cbdTopicalImage, cbdMassageOilImage, cbdRollOnImage, cbdTopicalImage];
+      }
+      if (subcategory?.includes("massage") || subcategory?.includes("oil")) {
+        return [cbdMassageOilImage, cbdTopicalImage, cbdRollOnImage, cbdMassageOilImage, cbdTopicalImage];
+      }
+      return [cbdTopicalImage, cbdRollOnImage, cbdMassageOilImage, cbdTopicalImage, cbdRollOnImage];
+    case "cbd-capsules":
+      return [cbdCapsulesImage, cbdCapsulesImage, cbdOilImage, cbdCapsulesImage, cbdCapsulesImage];
+    case "sleep-wellness":
+      return [cbdSleepImage, cbdBathBombsImage, cbdGummiesImage, cbdSleepImage, cbdBathBombsImage];
+    case "pet-cbd":
+      return [cbdPetTreatsImage, cbdPetTreatsImage, cbdOilImage, cbdPetTreatsImage, cbdPetTreatsImage];
+    case "cbd-skincare":
+      return [cbdBathBombsImage, cbdTopicalImage, cbdMassageOilImage, cbdBathBombsImage, cbdTopicalImage];
+    case "bundles":
+      return [cbdOilImage, cbdGummiesImage, cbdTopicalImage, cbdCapsulesImage, cbdSleepImage];
+    case "thc":
+      return [thcVapeImage, thcGummiesImage, hhcFlowerImage, thcVapeImage, thcGummiesImage];
+    default:
+      return [cbdOilImage, cbdGummiesImage, cbdTopicalImage, cbdCapsulesImage, cbdSleepImage];
+  }
+};
+
+// Category images mapping
+const getCategoryImage = (categoryId: string): string => {
+  switch (categoryId) {
+    case "cbd-oils": return cbdOilImage;
+    case "cbd-gummies": return cbdGummiesImage;
+    case "cbd-topicals": return cbdTopicalImage;
+    case "cbd-capsules": return cbdCapsulesImage;
+    case "sleep-wellness": return cbdSleepImage;
+    case "pet-cbd": return cbdPetTreatsImage;
+    case "cbd-skincare": return cbdBathBombsImage;
+    case "bundles": return cbdOilImage;
+    default: return cbdOilImage;
+  }
+};
+
 export interface Product {
   id: string;
   name: string;
@@ -49,7 +110,7 @@ export const categories: Category[] = [
     name: "CBD Oils & Tinctures",
     slug: "cbd-oils",
     description: "Premium full-spectrum and broad-spectrum CBD oils for daily wellness support",
-    image: "/placeholder.svg",
+    image: getCategoryImage("cbd-oils"),
     productCount: 85
   },
   {
@@ -57,7 +118,7 @@ export const categories: Category[] = [
     name: "CBD Gummies",
     slug: "cbd-gummies",
     description: "Delicious, easy-to-dose CBD gummies for stress relief and relaxation",
-    image: "/placeholder.svg",
+    image: getCategoryImage("cbd-gummies"),
     productCount: 65
   },
   {
@@ -65,7 +126,7 @@ export const categories: Category[] = [
     name: "CBD Topicals",
     slug: "cbd-topicals",
     description: "Soothing CBD creams, balms, and lotions for targeted relief",
-    image: "/placeholder.svg",
+    image: getCategoryImage("cbd-topicals"),
     productCount: 70
   },
   {
@@ -73,7 +134,7 @@ export const categories: Category[] = [
     name: "CBD Capsules",
     slug: "cbd-capsules",
     description: "Convenient, precisely-dosed CBD softgels and capsules",
-    image: "/placeholder.svg",
+    image: getCategoryImage("cbd-capsules"),
     productCount: 55
   },
   {
@@ -81,7 +142,7 @@ export const categories: Category[] = [
     name: "Sleep & Relaxation",
     slug: "sleep-wellness",
     description: "CBD products formulated specifically for better sleep and calm",
-    image: "/placeholder.svg",
+    image: getCategoryImage("sleep-wellness"),
     productCount: 60
   },
   {
@@ -89,7 +150,7 @@ export const categories: Category[] = [
     name: "Pet CBD",
     slug: "pet-cbd",
     description: "Safe, veterinarian-formulated CBD products for your furry friends",
-    image: "/placeholder.svg",
+    image: getCategoryImage("pet-cbd"),
     productCount: 40
   },
   {
@@ -97,7 +158,7 @@ export const categories: Category[] = [
     name: "CBD Skincare",
     slug: "cbd-skincare",
     description: "Luxurious CBD-infused skincare for radiant, healthy skin",
-    image: "/placeholder.svg",
+    image: getCategoryImage("cbd-skincare"),
     productCount: 50
   },
   {
@@ -105,7 +166,7 @@ export const categories: Category[] = [
     name: "Value Bundles",
     slug: "bundles",
     description: "Save more with our curated CBD wellness bundles",
-    image: "/placeholder.svg",
+    image: getCategoryImage("bundles"),
     productCount: 25
   }
 ];
@@ -137,7 +198,7 @@ const generateProducts = (): Product[] => {
           reviewCount: Math.floor(Math.random() * 500) + 50,
           description: `Experience the therapeutic benefits of our premium ${type} CBD Oil. Crafted from organically grown hemp in the USA, this ${strength} tincture delivers consistent, high-quality CBD in every drop. ${flavor} flavor for a pleasant experience. Third-party lab tested for purity and potency. Perfect for daily wellness support, stress management, and natural relief.`,
           shortDescription: `Premium ${type} CBD Oil with ${strength} CBD in refreshing ${flavor} flavor`,
-          images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
+          images: getProductImages("cbd-oils", type.toLowerCase().replace(' ', '-')),
           sku: `MS-OIL-${type.substring(0,2).toUpperCase()}-${strength}-${flavor.substring(0,3).toUpperCase()}-${productId}`,
           gtin: `0850${String(productId).padStart(9, '0')}`,
           brand: "Medi Spero",
@@ -182,7 +243,7 @@ const generateProducts = (): Product[] => {
           reviewCount: Math.floor(Math.random() * 800) + 100,
           description: `Our delicious ${type} CBD Gummies are the perfect way to incorporate CBD into your daily routine. Each gummy contains ${strength} of premium broad-spectrum CBD, carefully formulated for ${type.toLowerCase()} support. Made with natural fruit flavors and colors, these gummies are as tasty as they are effective. Lab-tested for quality assurance.`,
           shortDescription: `Tasty ${type} CBD Gummies with ${strength} CBD per gummy`,
-          images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
+          images: getProductImages("cbd-gummies", type.toLowerCase()),
           sku: `MS-GUM-${type.substring(0,3).toUpperCase()}-${strength}-${count.split(' ')[0]}-${productId}`,
           gtin: `0850${String(productId).padStart(9, '0')}`,
           brand: "Medi Spero",
@@ -233,7 +294,7 @@ const generateProducts = (): Product[] => {
           reviewCount: Math.floor(Math.random() * 400) + 40,
           description: `Our premium CBD ${type} provides targeted relief exactly where you need it. Infused with ${strength} of full-spectrum CBD and botanical ingredients, this topical absorbs quickly to deliver soothing comfort. Perfect for post-workout recovery, everyday aches, and overall skin wellness.`,
           shortDescription: `Soothing CBD ${type} with ${strength} for targeted relief`,
-          images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
+          images: getProductImages("cbd-topicals", type.toLowerCase().replace(' ', '-')),
           sku: `MS-TOP-${type.substring(0,3).toUpperCase()}-${strength}-${size.replace(' ', '')}-${productId}`,
           gtin: `0850${String(productId).padStart(9, '0')}`,
           brand: "Medi Spero",
@@ -277,7 +338,7 @@ const generateProducts = (): Product[] => {
           reviewCount: Math.floor(Math.random() * 350) + 50,
           description: `Convenient and precisely-dosed, our ${formula} CBD Capsules deliver ${strength} of premium CBD per softgel. Perfect for those who prefer a no-fuss approach to CBD supplementation. Each capsule is formulated for ${formula.toLowerCase()} and manufactured in a GMP-certified facility.`,
           shortDescription: `Easy-to-take ${formula} CBD Capsules with ${strength} CBD each`,
-          images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
+          images: getProductImages("cbd-capsules", formula.toLowerCase().replace(' ', '-')),
           sku: `MS-CAP-${formula.substring(0,3).toUpperCase()}-${strength}-${count.split(' ')[0]}-${productId}`,
           gtin: `0850${String(productId).padStart(9, '0')}`,
           brand: "Medi Spero",
@@ -328,7 +389,7 @@ const generateProducts = (): Product[] => {
         reviewCount: Math.floor(Math.random() * 600) + 80,
         description: `Fall asleep faster and stay asleep longer with our ${product.name}. This premium formula combines ${strength} for optimal sleep support. Non-habit forming and made with natural ingredients. Wake up feeling refreshed and ready to take on the day.`,
         shortDescription: `Premium ${product.name} with ${strength} for better sleep`,
-        images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
+        images: getProductImages("sleep-wellness", product.type),
         sku: `MS-SLP-${product.type.substring(0,3).toUpperCase()}-${productId}`,
         gtin: `0850${String(productId).padStart(9, '0')}`,
         brand: "Medi Spero",
@@ -373,7 +434,7 @@ const generateProducts = (): Product[] => {
           reviewCount: Math.floor(Math.random() * 300) + 60,
           description: `Give your ${pet.toLowerCase()} the gift of wellness with our veterinarian-formulated CBD ${product}. Specially designed for ${size.toLowerCase()} ${pet.toLowerCase()}s, this ${strength} formula supports calm behavior, joint health, and overall wellness. Made with pet-safe ingredients and no THC.`,
           shortDescription: `Vet-formulated CBD ${product} for ${size.toLowerCase()} ${pet.toLowerCase()}s`,
-          images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
+          images: getProductImages("pet-cbd", pet.toLowerCase()),
           sku: `MS-PET-${pet.substring(0,1)}-${product.substring(0,3).toUpperCase()}-${productId}`,
           gtin: `0850${String(productId).padStart(9, '0')}`,
           brand: "Medi Spero",
@@ -424,7 +485,7 @@ const generateProducts = (): Product[] => {
       reviewCount: Math.floor(Math.random() * 250) + 40,
       description: `Reveal your most radiant skin with our luxurious CBD ${product.name}. Infused with ${product.strength} of premium CBD and powerful botanical extracts, this formula targets fine lines, uneven skin tone, and dryness. Dermatologist tested and suitable for all skin types.`,
       shortDescription: `Luxurious CBD ${product.name} with ${product.strength} for radiant skin`,
-      images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
+      images: getProductImages("cbd-skincare"),
       sku: `MS-SKN-${product.name.substring(0,3).toUpperCase()}-${productId}`,
       gtin: `0850${String(productId).padStart(9, '0')}`,
       brand: "Medi Spero",
@@ -470,7 +531,7 @@ const generateProducts = (): Product[] => {
       reviewCount: Math.floor(Math.random() * 200) + 100,
       description: `Save big with our ${bundle.name}! This carefully curated collection includes: ${bundle.items}. Perfect for those looking to experience multiple Medi Spero products at a discounted price. All products are third-party tested and made in the USA.`,
       shortDescription: `Value bundle: ${bundle.items}`,
-      images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
+      images: getProductImages("bundles"),
       sku: `MS-BND-${productId}`,
       gtin: `0850${String(productId).padStart(9, '0')}`,
       brand: "Medi Spero",
