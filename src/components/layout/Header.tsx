@@ -1,20 +1,30 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Menu, X, Search, ShoppingCart, User, ChevronDown } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Menu, X, Search, ShoppingCart, User, ChevronDown, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { categories } from "@/data/products";
+import { useAuth } from "@/contexts/AuthContext";
+import { useCart } from "@/contexts/CartContext";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const { user, signOut } = useAuth();
+  const { totalItems, setIsOpen } = useCart();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [cartCount] = useState(0);
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/");
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-border">
@@ -125,16 +135,44 @@ const Header = () => {
             </div>
 
             {/* Account */}
-            <Button variant="ghost" size="icon" aria-label="Account">
-              <User className="h-5 w-5" />
-            </Button>
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" aria-label="Account">
+                    <User className="h-5 w-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <div className="px-2 py-1.5">
+                    <p className="text-sm font-medium truncate max-w-[200px]">{user.email}</p>
+                  </div>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleSignOut} className="text-destructive cursor-pointer">
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button variant="ghost" size="icon" aria-label="Account" asChild>
+                <Link to="/auth">
+                  <User className="h-5 w-5" />
+                </Link>
+              </Button>
+            )}
 
             {/* Cart */}
-            <Button variant="ghost" size="icon" className="relative" aria-label="Cart">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="relative" 
+              aria-label="Cart"
+              onClick={() => setIsOpen(true)}
+            >
               <ShoppingCart className="h-5 w-5" />
-              {cartCount > 0 && (
+              {totalItems > 0 && (
                 <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-secondary text-secondary-foreground text-xs flex items-center justify-center font-medium">
-                  {cartCount}
+                  {totalItems > 99 ? "99+" : totalItems}
                 </span>
               )}
             </Button>
@@ -170,6 +208,11 @@ const Header = () => {
               <Link to="/contact" className="py-2 font-medium" onClick={() => setIsMenuOpen(false)}>
                 Contact
               </Link>
+              {!user && (
+                <Link to="/auth" className="py-2 font-medium text-primary" onClick={() => setIsMenuOpen(false)}>
+                  Sign In / Register
+                </Link>
+              )}
             </div>
           </nav>
         )}
