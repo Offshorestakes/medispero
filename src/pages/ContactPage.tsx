@@ -5,14 +5,14 @@ import WhatsAppButton from "@/components/layout/WhatsAppButton";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Clock, MessageCircle } from "lucide-react";
+import { Mail, MapPin, Clock, MessageCircle } from "lucide-react";
 
 const ContactPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>Contact Us | Medi Spero CBD Support</title>
-        <meta name="description" content="Contact Medi Spero for questions about CBD products, orders, or wholesale inquiries. Email info@medispero.com or call +1 (334) 746-9312." />
+        <meta name="description" content="Contact Medi Spero for questions about CBD products, orders, or wholesale inquiries. Email info@medispero.com or WhatsApp +1 (334) 746-9312." />
       </Helmet>
       <Header />
       <main className="flex-1">
@@ -97,20 +97,6 @@ const ContactPage = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4 p-4 bg-muted/50 rounded-xl">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                      <Phone className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold mb-1">Phone</h3>
-                      <a href="tel:+13347469312" className="text-primary hover:underline">
-                        +1 (334) 746-9312
-                      </a>
-                      <p className="text-sm text-muted-foreground mt-1">
-                        Mon-Fri 9am-6pm EST
-                      </p>
-                    </div>
-                  </div>
 
                   <div className="flex items-start gap-4 p-4 bg-muted/50 rounded-xl">
                     <div className="w-12 h-12 rounded-full bg-[#25D366]/10 flex items-center justify-center shrink-0">
