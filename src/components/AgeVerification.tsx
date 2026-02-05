@@ -75,6 +75,9 @@ const AgeVerification = () => {
           <p className="text-sm text-muted-foreground">
             You must be 21 years of age or older to enter this website. By entering, you agree to our Terms of Service and Privacy Policy.
           </p>
+          <p className="text-xs text-muted-foreground/70 mt-2 italic">
+            Note: This is an advisory age gate. Purchases require account verification.
+          </p>
         </div>
 
         {/* Buttons */}
