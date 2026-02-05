@@ -33,7 +33,6 @@ const Index = () => {
     foundingDate: "2020",
     slogan: "Premium Hemp Wellness for Mind, Mood & Body",
     email: "info@medispero.com",
-    telephone: "+1-334-746-9312",
     address: {
       "@type": "PostalAddress",
       addressCountry: "US",
@@ -41,16 +40,16 @@ const Index = () => {
     contactPoint: [
       {
         "@type": "ContactPoint",
-        telephone: "+1-334-746-9312",
-        contactType: "customer service",
-        availableLanguage: ["English"],
-        areaServed: "US",
-      },
-      {
-        "@type": "ContactPoint",
         email: "info@medispero.com",
         contactType: "customer support",
         availableLanguage: ["English"],
+      },
+      {
+        "@type": "ContactPoint",
+        url: "https://wa.me/13347469312",
+        contactType: "WhatsApp",
+        availableLanguage: ["English"],
+        areaServed: "US",
       },
     ],
     sameAs: [
@@ -77,7 +76,6 @@ const Index = () => {
     logo: "https://medispero.com/logo.png",
     image: "https://medispero.com/logo.png",
     description: "Premium pharmaceutical-grade CBD and hemp wellness products. Specializing in lab-tested cannabinoid formulations for mental wellness, focus, anxiety relief, and holistic health.",
-    telephone: "+1-334-746-9312",
     email: "info@medispero.com",
     priceRange: "$$$",
     currenciesAccepted: "USD",
