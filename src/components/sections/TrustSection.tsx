@@ -23,8 +23,8 @@ const trustSignals = [
   },
   {
     icon: Truck,
-    title: "Free Shipping Over $75",
-    description: "Fast, discreet shipping on all orders. Free standard shipping when you spend $75 or more."
+    title: "Free Shipping Over $250",
+    description: "Fast, discreet shipping on all orders. Free standard shipping when you spend $250 or more."
   },
   {
     icon: HeartHandshake,

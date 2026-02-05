@@ -33,12 +33,12 @@ const ShippingPolicyPage = () => {
                   </div>
                   <div>
                     <h3 className="font-bold text-lg">Standard Shipping</h3>
-                    <p className="text-secondary font-semibold">FREE on orders $75+</p>
+                    <p className="text-secondary font-semibold">FREE on orders $250+</p>
                   </div>
                 </div>
                 <ul className="space-y-2 text-muted-foreground">
                   <li>• Delivery: 5-7 business days</li>
-                  <li>• Orders under $75: $5.99 flat rate</li>
+                  <li>• Orders under $250: $14.99 flat rate</li>
                   <li>• USPS First Class or Priority Mail</li>
                   <li>• Full tracking provided</li>
                 </ul>
