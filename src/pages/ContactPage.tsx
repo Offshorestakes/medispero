@@ -1,0 +1,168 @@
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import WhatsAppButton from "@/components/layout/WhatsAppButton";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Mail, Phone, MapPin, Clock, MessageCircle } from "lucide-react";
+
+const ContactPage = () => {
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      <main className="flex-1">
+        {/* Hero */}
+        <section className="py-16 bg-gradient-to-r from-primary/5 to-secondary/5">
+          <div className="container-wide text-center">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">Contact Us</h1>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Have questions about our CBD products? Our friendly team is here to help. 
+              Reach out and we'll respond as soon as we can.
+            </p>
+          </div>
+        </section>
+
+        {/* Contact Content */}
+        <section className="section-padding">
+          <div className="container-wide">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              {/* Contact Form */}
+              <div className="bg-card border border-border rounded-2xl p-8">
+                <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
+                <form className="space-y-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium mb-2">First Name *</label>
+                      <Input placeholder="John" required />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Last Name *</label>
+                      <Input placeholder="Doe" required />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Email Address *</label>
+                    <Input type="email" placeholder="john@example.com" required />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Phone Number</label>
+                    <Input type="tel" placeholder="+1 (555) 000-0000" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Subject *</label>
+                    <Input placeholder="How can we help?" required />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Message *</label>
+                    <Textarea 
+                      placeholder="Tell us more about your inquiry..." 
+                      rows={5}
+                      required 
+                    />
+                  </div>
+                  <Button type="submit" className="w-full btn-secondary text-lg py-6">
+                    Send Message
+                  </Button>
+                </form>
+              </div>
+
+              {/* Contact Info */}
+              <div className="space-y-8">
+                <div>
+                  <h2 className="text-2xl font-bold mb-6">Get in Touch</h2>
+                  <p className="text-muted-foreground mb-8">
+                    Whether you have questions about our products, need help with an order, 
+                    or want to learn more about CBD, we're here to help.
+                  </p>
+                </div>
+
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4 p-4 bg-muted/50 rounded-xl">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                      <Mail className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold mb-1">Email</h3>
+                      <a href="mailto:info@medispero.com" className="text-primary hover:underline">
+                        info@medispero.com
+                      </a>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        We'll respond within 24 hours
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 p-4 bg-muted/50 rounded-xl">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                      <Phone className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold mb-1">Phone</h3>
+                      <a href="tel:+13347469312" className="text-primary hover:underline">
+                        +1 (334) 746-9312
+                      </a>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        Mon-Fri 9am-6pm EST
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 p-4 bg-muted/50 rounded-xl">
+                    <div className="w-12 h-12 rounded-full bg-[#25D366]/10 flex items-center justify-center shrink-0">
+                      <MessageCircle className="h-6 w-6 text-[#25D366]" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold mb-1">WhatsApp</h3>
+                      <a 
+                        href="https://wa.me/13347469312" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-[#25D366] hover:underline"
+                      >
+                        +1 (334) 746-9312
+                      </a>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        Fastest response time
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 p-4 bg-muted/50 rounded-xl">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                      <MapPin className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold mb-1">Address</h3>
+                      <p className="text-muted-foreground">
+                        Medi Spero LLC<br />
+                        United States
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 p-4 bg-muted/50 rounded-xl">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                      <Clock className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold mb-1">Business Hours</h3>
+                      <p className="text-muted-foreground">
+                        Monday - Friday: 9:00 AM - 6:00 PM EST<br />
+                        Saturday: 10:00 AM - 4:00 PM EST<br />
+                        Sunday: Closed
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+      <WhatsAppButton />
+    </div>
+  );
+};
+
+export default ContactPage;
