@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Play, Shield, Truck, Award, Leaf } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import heroVideo from "@/assets/hero-video.mp4";
 
 const HeroSection = () => {
   return (
@@ -14,9 +15,8 @@ const HeroSection = () => {
           loop
           playsInline
           className="w-full h-full object-cover"
-          poster="/placeholder.svg"
         >
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-lab-scientist-examining-a-sample-under-the-microscope-42655-large.mp4" type="video/mp4" />
+          <source src={heroVideo} type="video/mp4" />
         </video>
       </div>
 
