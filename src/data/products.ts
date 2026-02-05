@@ -42,6 +42,7 @@ const imagePoolsByCategory: Record<string, string[]> = {
   "anti-anxiety": [delta8CalmGummiesImage, cbdCalmTeaImage, delta8AnxietyVapeImage, cbdStressSprayImage, cbdMoodSoftgelsImage],
   "mood-support": [delta9MoodTinctureImage, cbdMoodSoftgelsImage, delta10ChocolateImage, delta8CalmGummiesImage, cbdStressSprayImage],
   "pharma-capsules": [pharmaCapsules1Image, pharmaCapsules2Image, pharmaCapsules3Image],
+  "adhd-focus": [cbdMoodSoftgelsImage, pharmaCapsules1Image, pharmaCapsules2Image, cbdCapsulesImage, delta10ChocolateImage],
 };
 
 // Helper function to get images based on category with rotation for variety
@@ -70,6 +71,7 @@ const getCategoryImage = (categoryId: string): string => {
     case "anti-anxiety": return delta8CalmGummiesImage;
     case "mood-support": return delta9MoodTinctureImage;
     case "pharma-capsules": return pharmaCapsules1Image;
+    case "adhd-focus": return cbdMoodSoftgelsImage;
     default: return cbdOilImage;
   }
 };
@@ -124,6 +126,14 @@ export const categories: Category[] = [
     description: "Medical-grade pharmaceutical CBD and THC capsules, precision-dosed for therapeutic applications",
     image: getCategoryImage("pharma-capsules"),
     productCount: 35
+  },
+  {
+    id: "adhd-focus",
+    name: "ADHD & Focus Support",
+    slug: "adhd-focus",
+    description: "Specialized CBD and cannabinoid formulas designed to support focus, attention, and cognitive clarity for ADHD management",
+    image: getCategoryImage("adhd-focus"),
+    productCount: 40
   },
   {
     id: "anti-anxiety",
@@ -376,6 +386,60 @@ const generateProducts = (): Product[] => {
         vegan: product.type !== "chocolate",
         madeInUSA: true,
         tags: ["delta-9", "mood-support", "premium", "depression-support", "emotional-balance", product.type]
+      });
+      productId++;
+    });
+  });
+
+  // ADHD & FOCUS SUPPORT ($175-$599)
+  const adhdProducts = [
+    { name: "Focus Enhancement CBD Capsules", type: "capsules", strength: "5000mg CBD + 2500mg CBG", price: 389, desc: "Precision-formulated for sustained focus and attention support" },
+    { name: "Delta-8 THC Clarity Gummies", type: "gummies", strength: "1500mg Delta-8", price: 279, desc: "Microdosed Delta-8 for calm focus without overstimulation" },
+    { name: "CBD + L-Theanine Focus Tincture", type: "tincture", strength: "4000mg + 1500mg", price: 349, desc: "Synergistic blend for enhanced concentration and mental clarity" },
+    { name: "CBG Focus Amplifier Softgels", type: "softgels", strength: "3000mg CBG", price: 429, desc: "Pure CBG isolate for targeted cognitive enhancement" },
+    { name: "Delta-10 THC Energy & Focus Vape", type: "vape", strength: "2500mg", price: 299, desc: "Uplifting Delta-10 for productive, focused energy" },
+    { name: "ADHD Support Complex Capsules", type: "capsules", strength: "Multi-Cannabinoid 7500mg", price: 499, desc: "Comprehensive formula with CBD, CBG, and adaptogenic herbs for ADHD management" },
+    { name: "CBD + Ginkgo Biloba Focus Blend", type: "capsules", strength: "4000mg + 1000mg", price: 369, desc: "Traditional nootropic enhanced with premium CBD" },
+    { name: "Microdose Focus Sublingual Strips", type: "strips", strength: "1000mg", price: 199, desc: "Convenient, precise dosing for on-the-go focus support" },
+    { name: "CBD + Lion's Mane Cognitive Support", type: "capsules", strength: "5000mg + 2000mg", price: 459, desc: "Mushroom-enhanced formula for neural health and focus" },
+    { name: "Delta-8 + CBD Study Aid Tincture", type: "tincture", strength: "2000mg + 4000mg", price: 399, desc: "Balanced formula for extended study sessions and mental endurance" },
+  ];
+
+  adhdProducts.forEach((product) => {
+    const variants = ["Standard", "Professional", "Clinical"];
+    variants.forEach((variant, vIndex) => {
+      const priceMultiplier = vIndex === 2 ? 1.6 : vIndex === 1 ? 1.3 : 1;
+      const price = Math.round(product.price * priceMultiplier);
+      
+      products.push({
+        id: `adhd-${productId}`,
+        name: `Medi Spero ${product.name} - ${variant} Strength`,
+        slug: `${product.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${variant.toLowerCase()}`,
+        category: "adhd-focus",
+        subcategory: product.type,
+        price: price,
+        originalPrice: Math.round(price * 1.2),
+        rating: 4.7 + Math.random() * 0.3,
+        reviewCount: Math.floor(Math.random() * 300) + 80,
+        description: `${product.desc} This premium ADHD support formula is designed for individuals seeking natural alternatives to traditional ADHD medications. Farm Bill compliant and manufactured in cGMP-certified facilities. Consult your healthcare provider before use, especially if taking other medications.`,
+        shortDescription: `Premium ${product.name} for natural ADHD and focus support`,
+        images: getProductImages("adhd-focus", productId),
+        sku: `MS-ADHD-${productId.toString().padStart(4, '0')}`,
+        gtin: `0850${String(productId).padStart(9, '0')}`,
+        brand: "Medi Spero",
+        inStock: true,
+        stockQuantity: Math.floor(Math.random() * 45) + 15,
+        strength: product.strength,
+        size: variant,
+        ingredients: ["Premium Hemp Extract", "CBG Isolate", "L-Theanine", "Lion's Mane Extract", "Ginkgo Biloba", "Bacopa Monnieri", "Natural Terpenes"],
+        benefits: ["Enhanced Focus & Attention", "Cognitive Clarity", "Non-Stimulant Formula", "Natural ADHD Support", "Third-Party Lab Tested"],
+        usage: "Take as directed. Start with the lowest dose and adjust based on individual response. Best taken in the morning or early afternoon. Consult healthcare provider before use.",
+        thirdPartyTested: true,
+        organic: false,
+        glutenFree: true,
+        vegan: true,
+        madeInUSA: true,
+        tags: ["adhd", "focus", "cognitive", "concentration", "attention", product.type]
       });
       productId++;
     });

@@ -31,14 +31,14 @@ const HeroSection = () => {
 
           {/* Headline */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight animate-fade-up" style={{ animationDelay: "0.1s" }}>
-            Premium CBD for
-            <span className="block text-secondary">Natural Wellness</span>
+            Premium Hemp Wellness for
+            <span className="block text-secondary">Mind, Mood & Body</span>
           </h1>
 
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-white/80 mb-8 leading-relaxed animate-fade-up" style={{ animationDelay: "0.2s" }}>
-            Experience the healing power of nature with Medi Spero's pharmaceutical-grade CBD products. 
-            Organically grown, rigorously tested, and crafted for your wellbeing.
+            Discover pharmaceutical-grade CBD, Delta-8, Delta-9 THC, and specialty formulas for ADHD, anxiety, 
+            depression, and sleep. Lab-tested, Farm Bill compliant, and crafted by Medi Spero for your complete wellbeing.
           </p>
 
           {/* CTA Buttons */}
