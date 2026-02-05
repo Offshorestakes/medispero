@@ -3,12 +3,17 @@ import { ArrowRight, Clock, User } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
+// Import blog images
+import doctorCbdImage from "@/assets/blog/doctor-cbd-consultation.jpg";
+import pharmacistHempImage from "@/assets/blog/pharmacist-hemp-lab.jpg";
+import peacefulSleepImage from "@/assets/blog/peaceful-sleep.jpg";
+
 const blogPosts = [
   {
     id: 1,
     title: "CBD vs. THC: Understanding the Key Differences",
     excerpt: "Learn about the distinct properties of CBD and THC, their effects on the body, and why CBD is legal while THC remains controlled.",
-    image: "/placeholder.svg",
+    image: doctorCbdImage,
     category: "Education",
     author: "Dr. Sarah Johnson",
     date: "January 15, 2025",
@@ -18,7 +23,7 @@ const blogPosts = [
     id: 2,
     title: "How to Choose the Right CBD Dosage for You",
     excerpt: "Finding the perfect CBD dosage depends on several factors. This comprehensive guide will help you start your CBD journey safely.",
-    image: "/placeholder.svg",
+    image: pharmacistHempImage,
     category: "Guides",
     author: "Michael Chen, PharmD",
     date: "January 10, 2025",
@@ -28,7 +33,7 @@ const blogPosts = [
     id: 3,
     title: "The Complete Guide to CBD for Better Sleep",
     excerpt: "Struggling with sleep? Discover how CBD can help regulate your sleep cycle and promote more restful nights naturally.",
-    image: "/placeholder.svg",
+    image: peacefulSleepImage,
     category: "Wellness",
     author: "Dr. Emily Rodriguez",
     date: "January 5, 2025",
