@@ -13,6 +13,7 @@ import {
 import { categories } from "@/data/products";
 import { useAuth } from "@/contexts/AuthContext";
 import { useCart } from "@/contexts/CartContext";
+import logoImage from "@/assets/logo.png";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -54,13 +55,15 @@ const Header = () => {
           </button>
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-              <span className="text-white font-bold text-lg">M</span>
-            </div>
+          <Link to="/" className="flex items-center gap-3">
+            <img 
+              src={logoImage} 
+              alt="Medi Spero" 
+              className="w-12 h-12 rounded-lg object-contain bg-black p-1"
+            />
             <div className="hidden sm:block">
-              <h1 className="text-xl font-bold text-foreground">Medi Spero</h1>
-              <p className="text-xs text-muted-foreground -mt-1">Premium CBD Wellness</p>
+              <h1 className="text-xl font-bold text-foreground tracking-wide">Medi Spero</h1>
+              <p className="text-xs text-muted-foreground -mt-1">Premium Wellness</p>
             </div>
           </Link>
 
