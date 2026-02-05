@@ -44,6 +44,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
         
+        {/* Brand Overlay */}
+        <div className="absolute bottom-3 left-3 right-3">
+          <div className="bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1.5 inline-block shadow-sm">
+            <span className="text-xs font-bold text-primary tracking-wide">MEDI SPERO</span>
+          </div>
+        </div>
+        
         {/* Badges */}
         <div className="absolute top-3 left-3 flex flex-col gap-2">
           {discount > 0 && (
