@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
@@ -9,6 +10,10 @@ import { Mail, Phone, MapPin, Clock, MessageCircle } from "lucide-react";
 const ContactPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>Contact Us | Medi Spero CBD Support</title>
+        <meta name="description" content="Contact Medi Spero for questions about CBD products, orders, or wholesale inquiries. Email info@medispero.com or call +1 (334) 746-9312." />
+      </Helmet>
       <Header />
       <main className="flex-1">
         {/* Hero */}

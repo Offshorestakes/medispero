@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
@@ -123,6 +124,10 @@ const FAQPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>FAQ | CBD & Hemp Product Questions | Medi Spero</title>
+        <meta name="description" content="Find answers to common questions about CBD, THC products, dosing, shipping, returns, and more. Expert guidance from Medi Spero's wellness team." />
+      </Helmet>
       <Header />
       
       <main className="flex-grow">
