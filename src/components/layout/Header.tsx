@@ -31,8 +31,8 @@ const Header = () => {
       {/* Top bar */}
       <div className="bg-primary text-primary-foreground py-2">
         <div className="container-wide flex items-center justify-between text-sm">
-          <p className="hidden sm:block">🌿 Free shipping on orders over $75 | Lab-tested CBD products</p>
-          <p className="sm:hidden text-center w-full">Free shipping over $75 🌿</p>
+          <p className="hidden sm:block">🌿 Free shipping on orders over $250 | Lab-tested CBD products</p>
+          <p className="sm:hidden text-center w-full">Free shipping over $250 🌿</p>
           <div className="hidden sm:flex items-center gap-4">
             <a href="mailto:info@medispero.com" className="hover:underline">info@medispero.com</a>
             <span>|</span>
