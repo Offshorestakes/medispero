@@ -14,18 +14,29 @@ import hhcFlowerImage from "@/assets/products/hhc-flower.jpg";
 import cbdMassageOilImage from "@/assets/products/cbd-massage-oil.jpg";
 import cbdPetTreatsImage from "@/assets/products/cbd-pet-treats.jpg";
 import cbdBathBombsImage from "@/assets/products/cbd-bath-bombs.jpg";
+// New product images
+import delta8CalmGummiesImage from "@/assets/products/delta8-calm-gummies.jpg";
+import delta9MoodTinctureImage from "@/assets/products/delta9-mood-tincture.jpg";
+import cbdMoodSoftgelsImage from "@/assets/products/cbd-mood-softgels.jpg";
+import delta8AnxietyVapeImage from "@/assets/products/delta8-anxiety-vape.jpg";
+import cbdStressSprayImage from "@/assets/products/cbd-stress-spray.jpg";
+import thcHempFlowerImage from "@/assets/products/thc-hemp-flower.jpg";
+import cbdCalmTeaImage from "@/assets/products/cbd-calm-tea.jpg";
+import delta10ChocolateImage from "@/assets/products/delta10-chocolate.jpg";
 
 // Image pools for each category to provide variety
 const imagePoolsByCategory: Record<string, string[]> = {
-  "cbd-oils": [cbdOilImage, cbdSleepImage, cbdMassageOilImage],
-  "cbd-gummies": [cbdGummiesImage, thcGummiesImage],
+  "cbd-oils": [cbdOilImage, cbdSleepImage, cbdMassageOilImage, delta9MoodTinctureImage],
+  "cbd-gummies": [cbdGummiesImage, thcGummiesImage, delta8CalmGummiesImage],
   "cbd-topicals": [cbdTopicalImage, cbdRollOnImage, cbdMassageOilImage],
-  "cbd-capsules": [cbdCapsulesImage],
-  "sleep-wellness": [cbdSleepImage, cbdBathBombsImage, cbdGummiesImage],
+  "cbd-capsules": [cbdCapsulesImage, cbdMoodSoftgelsImage],
+  "sleep-wellness": [cbdSleepImage, cbdBathBombsImage, cbdCalmTeaImage, delta8CalmGummiesImage],
   "pet-cbd": [cbdPetTreatsImage],
   "cbd-skincare": [cbdBathBombsImage, cbdTopicalImage, cbdMassageOilImage],
   "bundles": [cbdOilImage, cbdGummiesImage, cbdTopicalImage, cbdCapsulesImage, cbdSleepImage],
-  "thc": [thcVapeImage, thcGummiesImage, hhcFlowerImage],
+  "thc": [thcVapeImage, thcGummiesImage, hhcFlowerImage, thcHempFlowerImage, delta10ChocolateImage],
+  "anti-anxiety": [delta8CalmGummiesImage, cbdCalmTeaImage, delta8AnxietyVapeImage, cbdStressSprayImage, cbdMoodSoftgelsImage],
+  "mood-support": [delta9MoodTinctureImage, cbdMoodSoftgelsImage, delta10ChocolateImage, delta8CalmGummiesImage, cbdStressSprayImage],
 };
 
 // Helper function to get images based on category with rotation for variety
@@ -53,6 +64,8 @@ const getCategoryImage = (categoryId: string): string => {
     case "pet-cbd": return cbdPetTreatsImage;
     case "cbd-skincare": return cbdBathBombsImage;
     case "bundles": return cbdOilImage;
+    case "anti-anxiety": return delta8CalmGummiesImage;
+    case "mood-support": return delta9MoodTinctureImage;
     default: return cbdOilImage;
   }
 };
@@ -163,6 +176,22 @@ export const categories: Category[] = [
     description: "Save more with our curated CBD wellness bundles",
     image: getCategoryImage("bundles"),
     productCount: 25
+  },
+  {
+    id: "anti-anxiety",
+    name: "Anti-Anxiety & Calm",
+    slug: "anti-anxiety",
+    description: "Delta-8 THC and CBD products formulated to reduce anxiety and promote calm naturally",
+    image: getCategoryImage("anti-anxiety"),
+    productCount: 45
+  },
+  {
+    id: "mood-support",
+    name: "Mood & Depression Support",
+    slug: "mood-support",
+    description: "Hemp-derived Delta-9 and CBD products to support positive mood and emotional balance",
+    image: getCategoryImage("mood-support"),
+    productCount: 40
   }
 ];
 
@@ -546,7 +575,142 @@ const generateProducts = (): Product[] => {
     });
     productId++;
   });
+
+  // Anti-Anxiety & Calm Products (Delta-8 THC focused)
+  const anxietyProducts = [
+    { name: "Delta-8 Calm Gummies", type: "gummies", strengths: ["10mg", "25mg", "50mg"], counts: ["30 count", "60 count"] },
+    { name: "Delta-8 Anxiety Relief Vape", type: "vape", strengths: ["500mg", "1000mg", "1500mg"] },
+    { name: "CBD + Delta-8 Calm Tincture", type: "tincture", strengths: ["500mg + 250mg", "1000mg + 500mg", "1500mg + 750mg"] },
+    { name: "Delta-8 Stress Relief Softgels", type: "softgels", strengths: ["10mg", "25mg", "50mg"], counts: ["30 count", "60 count", "90 count"] },
+    { name: "CBD Calm Tea Blend", type: "tea", strengths: ["150mg per bag", "300mg per bag"] },
+    { name: "Delta-8 Anti-Anxiety Spray", type: "spray", strengths: ["250mg", "500mg", "750mg"] },
+  ];
   
+  anxietyProducts.forEach(product => {
+    const strengths = product.strengths;
+    const counts = product.counts || ["1 unit"];
+    
+    strengths.forEach(strength => {
+      counts.forEach(count => {
+        const basePrice = product.type === "vape" ? 39.99 : 
+                         product.type === "gummies" ? 34.99 :
+                         product.type === "tincture" ? 49.99 :
+                         product.type === "softgels" ? 44.99 :
+                         product.type === "tea" ? 24.99 : 29.99;
+        const priceMultiplier = strength.includes("1500") || strength.includes("50mg") ? 1.8 : 
+                               strength.includes("1000") || strength.includes("25mg") ? 1.4 : 1;
+        const countMultiplier = count.includes("90") ? 1.6 : count.includes("60") ? 1.3 : 1;
+        const price = basePrice * priceMultiplier * countMultiplier;
+        
+        products.push({
+          id: `anxiety-${productId}`,
+          name: `Medi Spero ${product.name} - ${strength}${count !== "1 unit" ? ` (${count})` : ""}`,
+          slug: `${product.name.toLowerCase().replace(/ /g, '-')}-${strength.toLowerCase().replace(/ /g, '-')}${count !== "1 unit" ? `-${count.replace(' ', '-')}` : ""}`,
+          category: "anti-anxiety",
+          subcategory: product.type,
+          price: Math.round(price * 100) / 100,
+          originalPrice: Math.round(price * 1.25 * 100) / 100,
+          rating: 4.6 + Math.random() * 0.4,
+          reviewCount: Math.floor(Math.random() * 450) + 80,
+          description: `Experience natural anxiety relief with our ${product.name}. Formulated with premium Delta-8 THC and CBD, this ${product.type} is designed to help you find calm in stressful moments without the intense effects of traditional THC. Farm Bill compliant with less than 0.3% Delta-9 THC. Third-party tested for purity and potency.`,
+          shortDescription: `Premium ${product.name} with ${strength} for natural anxiety relief`,
+          images: getProductImages("anti-anxiety", productId),
+          sku: `MS-ANX-${product.type.substring(0,3).toUpperCase()}-${productId}`,
+          gtin: `0850${String(productId).padStart(9, '0')}`,
+          brand: "Medi Spero",
+          inStock: true,
+          stockQuantity: Math.floor(Math.random() * 70) + 20,
+          strength: strength,
+          size: count !== "1 unit" ? count : product.type === "vape" ? "1ml cartridge" : product.type === "tincture" ? "30ml" : product.type === "spray" ? "30ml" : "1 oz",
+          servings: count.includes("count") ? parseInt(count) : 30,
+          ingredients: product.type === "gummies" ? ["Delta-8 THC Distillate", "CBD Isolate", "Organic Cane Sugar", "Natural Flavors", "L-Theanine", "Ashwagandha"] :
+                      product.type === "tincture" ? ["Delta-8 THC Distillate", "Full Spectrum CBD", "MCT Oil", "Natural Lavender Extract"] :
+                      product.type === "tea" ? ["CBD Hemp Flower", "Chamomile", "Passionflower", "Lavender", "Lemon Balm", "Valerian Root"] :
+                      ["Delta-8 THC Extract", "CBD Isolate", "Natural Terpenes", "MCT Oil"],
+          benefits: ["Reduces Anxiety Naturally", "Promotes Calm & Relaxation", "Non-Intoxicating Effects", "Fast-Acting Relief", "No Prescription Required"],
+          usage: product.type === "gummies" ? "Take 1 gummy as needed for anxiety relief. Start low and go slow." :
+                product.type === "vape" ? "Inhale 1-3 puffs as needed. Effects felt within minutes." :
+                product.type === "tea" ? "Steep 1 tea bag in hot water for 5-7 minutes. Enjoy 1-2 cups daily." :
+                "Use as directed. Start with lowest dose and adjust as needed.",
+          thirdPartyTested: true,
+          organic: product.type === "tea",
+          glutenFree: true,
+          vegan: true,
+          madeInUSA: true,
+          tags: ["delta-8", "anti-anxiety", "calm", "stress relief", "thc", product.type]
+        });
+        productId++;
+      });
+    });
+  });
+
+  // Mood & Depression Support Products (Delta-9 THC focused)
+  const moodProducts = [
+    { name: "Delta-9 Mood Uplift Gummies", type: "gummies", strengths: ["5mg", "10mg", "25mg"], counts: ["20 count", "40 count", "60 count"] },
+    { name: "Delta-9 Mood Tincture", type: "tincture", strengths: ["150mg", "300mg", "600mg"] },
+    { name: "CBD + Delta-9 Bliss Chocolates", type: "chocolate", strengths: ["5mg D9 + 10mg CBD", "10mg D9 + 20mg CBD"], counts: ["10 pack", "20 pack"] },
+    { name: "Delta-10 Energy & Mood Vape", type: "vape", strengths: ["500mg", "1000mg"] },
+    { name: "Full Spectrum Mood Softgels", type: "softgels", strengths: ["25mg", "50mg", "100mg"], counts: ["30 count", "60 count"] },
+    { name: "Delta-9 Mood Support Spray", type: "spray", strengths: ["100mg", "200mg", "400mg"] },
+  ];
+  
+  moodProducts.forEach(product => {
+    const strengths = product.strengths;
+    const counts = product.counts || ["1 unit"];
+    
+    strengths.forEach(strength => {
+      counts.forEach(count => {
+        const basePrice = product.type === "chocolate" ? 29.99 : 
+                         product.type === "gummies" ? 39.99 :
+                         product.type === "tincture" ? 54.99 :
+                         product.type === "vape" ? 44.99 :
+                         product.type === "softgels" ? 49.99 : 34.99;
+        const priceMultiplier = strength.includes("600") || strength.includes("100mg") || strength.includes("25mg D9") ? 1.9 : 
+                               strength.includes("300") || strength.includes("50mg") || strength.includes("10mg D9") ? 1.5 : 1;
+        const countMultiplier = count.includes("60") || count.includes("20 pack") ? 1.5 : count.includes("40") ? 1.25 : 1;
+        const price = basePrice * priceMultiplier * countMultiplier;
+        
+        products.push({
+          id: `mood-${productId}`,
+          name: `Medi Spero ${product.name} - ${strength}${count !== "1 unit" ? ` (${count})` : ""}`,
+          slug: `${product.name.toLowerCase().replace(/ /g, '-')}-${strength.toLowerCase().replace(/ /g, '-').replace('+', '-plus-')}${count !== "1 unit" ? `-${count.replace(' ', '-')}` : ""}`,
+          category: "mood-support",
+          subcategory: product.type,
+          price: Math.round(price * 100) / 100,
+          originalPrice: Math.round(price * 1.3 * 100) / 100,
+          rating: 4.7 + Math.random() * 0.3,
+          reviewCount: Math.floor(Math.random() * 500) + 100,
+          description: `Support a positive mood naturally with our ${product.name}. This Farm Bill compliant formula contains hemp-derived Delta-9 THC (under 0.3% by dry weight) combined with synergistic cannabinoids for a balanced, uplifting experience. Perfect for those seeking natural mood support without a prescription. Lab-tested for safety and potency.`,
+          shortDescription: `Hemp-derived ${product.name} with ${strength} for natural mood elevation`,
+          images: getProductImages("mood-support", productId),
+          sku: `MS-MOD-${product.type.substring(0,3).toUpperCase()}-${productId}`,
+          gtin: `0850${String(productId).padStart(9, '0')}`,
+          brand: "Medi Spero",
+          inStock: true,
+          stockQuantity: Math.floor(Math.random() * 60) + 15,
+          strength: strength,
+          size: count !== "1 unit" ? count : product.type === "vape" ? "1ml cartridge" : product.type === "tincture" ? "30ml" : product.type === "spray" ? "30ml" : "1 unit",
+          servings: count.includes("count") || count.includes("pack") ? parseInt(count) : 30,
+          ingredients: product.type === "gummies" ? ["Hemp-Derived Delta-9 THC", "Full Spectrum CBD", "Vitamin D3", "B-Complex Vitamins", "Natural Fruit Flavors"] :
+                      product.type === "chocolate" ? ["Hemp-Derived Delta-9 THC", "CBD Isolate", "Premium Dark Chocolate", "Organic Cacao", "Natural Vanilla"] :
+                      product.type === "tincture" ? ["Hemp-Derived Delta-9 THC", "Full Spectrum Hemp Extract", "MCT Oil", "Natural Citrus Extract"] :
+                      ["Delta-9 THC Extract", "CBD", "CBG", "Natural Terpenes", "MCT Oil"],
+          benefits: ["Elevates Mood Naturally", "Promotes Positive Outlook", "Reduces Low Mood", "Supports Emotional Balance", "Farm Bill Compliant"],
+          usage: product.type === "gummies" || product.type === "chocolate" ? "Take 1 serving as needed. Effects typically felt within 30-60 minutes. Start low and go slow." :
+                product.type === "vape" ? "Inhale 1-2 puffs as needed. Effects felt within minutes. Do not exceed 10 puffs daily." :
+                "Use as directed on packaging. Start with smallest dose and adjust based on your response.",
+          thirdPartyTested: true,
+          organic: product.type === "chocolate",
+          glutenFree: true,
+          vegan: product.type !== "chocolate",
+          madeInUSA: true,
+          tags: ["delta-9", "mood support", "depression", "emotional wellness", "hemp-derived", product.type]
+        });
+        productId++;
+      });
+    });
+  });
+
   return products;
 };
 
