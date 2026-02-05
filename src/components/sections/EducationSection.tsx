@@ -1,4 +1,5 @@
 import { Brain, Heart, Moon, Dumbbell, Smile, Shield } from "lucide-react";
+import { useState } from "react";
 
 // Import education images
 import scientistLabImage from "@/assets/education/scientist-lab.jpg";
@@ -38,7 +39,34 @@ const benefits = [
   }
 ];
 
+const educationImages = [
+  {
+    src: scientistLabImage,
+    alt: "Pharmaceutical scientist examining CBD products in laboratory",
+    title: "Pharmaceutical-Grade Quality",
+    description: "Our products are manufactured in FDA-registered, cGMP-certified facilities with rigorous quality control."
+  },
+  {
+    src: doctorConsultationImage,
+    alt: "Doctor consulting with patient about CBD wellness",
+    title: "Physician-Informed Formulas",
+    description: "Developed in consultation with healthcare professionals for optimal therapeutic benefit."
+  },
+  {
+    src: brainEndocannabinoidImage,
+    alt: "Visualization of the endocannabinoid system in the brain",
+    title: "Endocannabinoid System Support",
+    description: "CBD interacts with ECS receptors to promote balance and homeostasis throughout your body."
+  }
+];
+
 const EducationSection = () => {
+  const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({});
+
+  const handleImageLoad = (index: number) => {
+    setLoadedImages(prev => ({ ...prev, [index]: true }));
+  };
+
   return (
     <section className="section-padding bg-brand-navy text-white">
       <div className="container-wide">
@@ -57,44 +85,27 @@ const EducationSection = () => {
 
         {/* Featured Images Section */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
-          <div className="relative group overflow-hidden rounded-2xl">
-            <img 
-              src={scientistLabImage} 
-              alt="Pharmaceutical scientist examining CBD products in laboratory" 
-              className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-6">
-              <h3 className="text-lg font-semibold text-white mb-1">Pharmaceutical-Grade Quality</h3>
-              <p className="text-white/70 text-sm">Our products are manufactured in FDA-registered, cGMP-certified facilities with rigorous quality control.</p>
+          {educationImages.map((image, index) => (
+            <div key={index} className="relative group overflow-hidden rounded-2xl">
+              {/* Placeholder skeleton */}
+              {!loadedImages[index] && (
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/10 animate-pulse h-64" />
+              )}
+              <img 
+                src={image.src} 
+                alt={image.alt}
+                loading="lazy"
+                decoding="async"
+                onLoad={() => handleImageLoad(index)}
+                className={`w-full h-64 object-cover transition-all duration-500 group-hover:scale-105 ${loadedImages[index] ? 'opacity-100' : 'opacity-0'}`}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <h3 className="text-lg font-semibold text-white mb-1">{image.title}</h3>
+                <p className="text-white/70 text-sm">{image.description}</p>
+              </div>
             </div>
-          </div>
-
-          <div className="relative group overflow-hidden rounded-2xl">
-            <img 
-              src={doctorConsultationImage} 
-              alt="Doctor consulting with patient about CBD wellness" 
-              className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-6">
-              <h3 className="text-lg font-semibold text-white mb-1">Physician-Informed Formulas</h3>
-              <p className="text-white/70 text-sm">Developed in consultation with healthcare professionals for optimal therapeutic benefit.</p>
-            </div>
-          </div>
-
-          <div className="relative group overflow-hidden rounded-2xl">
-            <img 
-              src={brainEndocannabinoidImage} 
-              alt="Visualization of the endocannabinoid system in the brain" 
-              className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-6">
-              <h3 className="text-lg font-semibold text-white mb-1">Endocannabinoid System Support</h3>
-              <p className="text-white/70 text-sm">CBD interacts with ECS receptors to promote balance and homeostasis throughout your body.</p>
-            </div>
-          </div>
+          ))}
         </div>
 
         {/* Benefits Grid */}
