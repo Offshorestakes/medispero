@@ -10,7 +10,7 @@ const CartDrawer = () => {
   const { items, isLoading, isOpen, setIsOpen, updateQuantity, removeItem, subtotal, totalItems } = useCart();
   const { user } = useAuth();
 
-  const shipping = subtotal >= 75 ? 0 : 9.99;
+  const shipping = subtotal >= 250 ? 0 : 14.99;
   const total = subtotal + shipping;
 
   return (
@@ -123,7 +123,7 @@ const CartDrawer = () => {
                 </div>
                 {shipping > 0 && (
                   <p className="text-xs text-muted-foreground">
-                    Add ${(75 - subtotal).toFixed(2)} more for free shipping
+                    Add ${(250 - subtotal).toFixed(2)} more for free shipping
                   </p>
                 )}
               </div>

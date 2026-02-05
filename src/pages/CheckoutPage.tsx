@@ -39,7 +39,7 @@ const CheckoutPage = () => {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const shipping = subtotal >= 75 ? 0 : 9.99;
+  const shipping = subtotal >= 250 ? 0 : 14.99;
   const tax = subtotal * 0.08;
   const total = subtotal + shipping + tax;
 
@@ -311,7 +311,7 @@ const CheckoutPage = () => {
                 <div className="grid grid-cols-3 gap-4">
                   <div className="flex flex-col items-center text-center p-4 bg-muted/30 rounded-xl">
                     <Truck className="h-6 w-6 text-secondary mb-2" />
-                    <span className="text-xs font-medium">Free Shipping 75+</span>
+                    <span className="text-xs font-medium">Free Shipping $250+</span>
                   </div>
                   <div className="flex flex-col items-center text-center p-4 bg-muted/30 rounded-xl">
                     <Shield className="h-6 w-6 text-secondary mb-2" />

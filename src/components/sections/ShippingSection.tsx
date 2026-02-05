@@ -24,7 +24,7 @@ const ShippingSection = () => {
               <Package className="h-7 w-7 text-primary" />
             </div>
             <h3 className="font-semibold mb-2">Free Standard Shipping</h3>
-            <p className="text-sm text-muted-foreground">On orders over $75</p>
+            <p className="text-sm text-muted-foreground">On orders over $250</p>
             <p className="text-xs text-muted-foreground mt-1">5-7 business days</p>
           </div>
 

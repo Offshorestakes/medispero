@@ -83,7 +83,7 @@ const HeroSection = () => {
               </div>
               <div>
                 <p className="text-white font-semibold">Free Shipping</p>
-                <p className="text-white/60 text-sm">Orders $75+</p>
+                <p className="text-white/60 text-sm">Orders $250+</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
