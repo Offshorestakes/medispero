@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
@@ -239,48 +240,137 @@ const ProductPage = () => {
   const coaBatchNumber = `MS-${product.sku.replace('MS-', '')}-${new Date().getFullYear()}`;
   const coaDate = new Date(Date.now() - Math.random() * 90 * 24 * 60 * 60 * 1000).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
-  // Structured data for product
+  // Product Schema (JSON-LD) for Google Shopping visibility
   const productSchema = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: product.name,
     description: product.description,
-    image: product.images,
+    image: product.images.map(img => `https://medispero.com${img}`),
     sku: product.sku,
-    gtin: product.gtin,
+    mpn: product.sku,
     brand: {
       "@type": "Brand",
       name: product.brand,
     },
+    category: product.category.replace("-", " ").replace(/\b\w/g, (l) => l.toUpperCase()),
     offers: {
       "@type": "Offer",
       url: `https://medispero.com/product/${product.slug}`,
       priceCurrency: "USD",
-      price: product.price,
+      price: product.price.toFixed(2),
+      priceValidUntil: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
       availability: product.inStock
         ? "https://schema.org/InStock"
         : "https://schema.org/OutOfStock",
+      itemCondition: "https://schema.org/NewCondition",
       seller: {
         "@type": "Organization",
         name: "Medi Spero",
+        url: "https://medispero.com",
+      },
+      shippingDetails: {
+        "@type": "OfferShippingDetails",
+        shippingRate: {
+          "@type": "MonetaryAmount",
+          value: "0",
+          currency: "USD",
+        },
+        shippingDestination: {
+          "@type": "DefinedRegion",
+          addressCountry: "US",
+        },
+        deliveryTime: {
+          "@type": "ShippingDeliveryTime",
+          handlingTime: {
+            "@type": "QuantitativeValue",
+            minValue: 1,
+            maxValue: 2,
+            unitCode: "DAY",
+          },
+          transitTime: {
+            "@type": "QuantitativeValue",
+            minValue: 2,
+            maxValue: 5,
+            unitCode: "DAY",
+          },
+        },
+      },
+      hasMerchantReturnPolicy: {
+        "@type": "MerchantReturnPolicy",
+        applicableCountry: "US",
+        returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+        merchantReturnDays: 30,
+        returnMethod: "https://schema.org/ReturnByMail",
+        returnFees: "https://schema.org/FreeReturn",
       },
     },
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: product.rating.toFixed(1),
+      bestRating: "5",
+      worstRating: "1",
       reviewCount: product.reviewCount,
     },
   };
 
+  // BreadcrumbList Schema for navigation
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://medispero.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Products",
+        item: "https://medispero.com/products",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: product.category.replace("-", " ").replace(/\b\w/g, (l) => l.toUpperCase()),
+        item: `https://medispero.com/category/${product.category}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: product.name,
+        item: `https://medispero.com/product/${product.slug}`,
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>{product.name} | ${product.price.toFixed(2)} | Medi Spero</title>
+        <meta name="description" content={`${product.shortDescription} Free shipping on orders over $250. Lab-tested, pharmaceutical-grade ${product.category.replace("-", " ")} from Medi Spero.`} />
+        <meta property="og:title" content={`${product.name} | Medi Spero`} />
+        <meta property="og:description" content={product.shortDescription} />
+        <meta property="og:image" content={product.images[0]} />
+        <meta property="og:type" content="product" />
+        <meta property="og:url" content={`https://medispero.com/product/${product.slug}`} />
+        <meta property="product:price:amount" content={product.price.toFixed(2)} />
+        <meta property="product:price:currency" content="USD" />
+        <meta property="product:availability" content={product.inStock ? "in stock" : "out of stock"} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${product.name} | Medi Spero`} />
+        <meta name="twitter:description" content={product.shortDescription} />
+        <link rel="canonical" href={`https://medispero.com/product/${product.slug}`} />
+        <script type="application/ld+json">
+          {JSON.stringify(productSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
+        </script>
+      </Helmet>
       <Header />
-      
-      {/* Inject structured data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
-      />
 
       <main className="flex-1">
         {/* Breadcrumb */}
