@@ -1,3 +1,16 @@
+# Robots.txt for Medi Spero
+# https://medispero.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://medispero.com/sitemap.xml
+
+# Crawl-delay (be respectful to server)
+Crawl-delay: 1
+
+# Allow all crawlers
 User-agent: Googlebot
 Allow: /
 
@@ -10,5 +23,32 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
+# AI Crawlers
+User-agent: GPTBot
 Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Cohere-AI
+Allow: /
+
+# Disallow admin/private paths
+Disallow: /account
+Disallow: /checkout
+Disallow: /auth

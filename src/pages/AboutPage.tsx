@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
@@ -6,6 +7,10 @@ import { Award, Users, Leaf, Heart, Shield, Target } from "lucide-react";
 const AboutPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>About Medi Spero | Premium CBD & Hemp Wellness Company</title>
+        <meta name="description" content="Learn about Medi Spero's mission to provide pharmaceutical-grade CBD and hemp wellness products. Family-owned, lab-tested, made in USA with organic hemp." />
+      </Helmet>
       <Header />
       <main className="flex-1">
         {/* Hero */}

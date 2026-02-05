@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
@@ -52,6 +53,10 @@ const ProductsPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>Shop CBD & THC Products | Pharmaceutical-Grade Hemp Wellness | Medi Spero</title>
+        <meta name="description" content="Browse 600+ pharmaceutical-grade CBD and hemp-derived THC products. Anti-anxiety, mood support, ADHD focus, and wellness solutions. Lab-tested, free shipping $250+." />
+      </Helmet>
       <Header />
       <main className="flex-1">
         {/* Breadcrumb */}

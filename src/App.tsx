@@ -21,6 +21,12 @@ import CheckoutPage from "./pages/CheckoutPage";
 import BlogPage from "./pages/BlogPage";
 import BlogPostPage from "./pages/BlogPostPage";
 import AccountDashboard from "./pages/AccountDashboard";
+import LabResultsPage from "./pages/LabResultsPage";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import TermsPage from "./pages/TermsPage";
+import AccessibilityPage from "./pages/AccessibilityPage";
+import WholesalePage from "./pages/WholesalePage";
+import TrackOrderPage from "./pages/TrackOrderPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -50,6 +56,12 @@ const App = () => (
                 <Route path="/auth" element={<AuthPage />} />
                 <Route path="/checkout" element={<CheckoutPage />} />
                 <Route path="/account" element={<AccountDashboard />} />
+                <Route path="/lab-results" element={<LabResultsPage />} />
+                <Route path="/privacy" element={<PrivacyPolicyPage />} />
+                <Route path="/terms" element={<TermsPage />} />
+                <Route path="/accessibility" element={<AccessibilityPage />} />
+                <Route path="/wholesale" element={<WholesalePage />} />
+                <Route path="/track-order" element={<TrackOrderPage />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
