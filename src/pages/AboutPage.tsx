@@ -1,0 +1,161 @@
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import WhatsAppButton from "@/components/layout/WhatsAppButton";
+import { Award, Users, Leaf, Heart, Shield, Target } from "lucide-react";
+
+const AboutPage = () => {
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      <main className="flex-1">
+        {/* Hero */}
+        <section className="py-20 bg-gradient-to-br from-primary/10 to-secondary/10">
+          <div className="container-wide">
+            <div className="max-w-3xl mx-auto text-center">
+              <span className="text-secondary font-semibold text-sm uppercase tracking-wider">
+                Our Story
+              </span>
+              <h1 className="text-4xl md:text-5xl font-bold mt-2 mb-6">
+                About Medi Spero
+              </h1>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Founded with a mission to bring premium, transparent CBD wellness products to everyone. 
+                We believe in the power of nature to support health and wellbeing.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Mission */}
+        <section className="section-padding">
+          <div className="container-wide">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
+                <p className="text-muted-foreground mb-4 leading-relaxed">
+                  At Medi Spero, our name means "Medical Hope" – and that's exactly what we aim to provide. 
+                  We're dedicated to delivering the highest quality CBD products that help people live 
+                  healthier, more balanced lives.
+                </p>
+                <p className="text-muted-foreground mb-4 leading-relaxed">
+                  Every product we create is backed by science, tested by third-party laboratories, 
+                  and made with care in the United States. We source our hemp from organic farms 
+                  that share our commitment to purity and sustainability.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  We believe transparency is key. That's why we make our lab results available for 
+                  every batch, so you know exactly what you're putting in your body.
+                </p>
+              </div>
+              <div className="bg-muted rounded-2xl aspect-video flex items-center justify-center">
+                <img src="/placeholder.svg" alt="Our mission" className="w-full h-full object-cover rounded-2xl" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Values */}
+        <section className="section-padding bg-muted/30">
+          <div className="container-wide">
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <h2 className="text-3xl font-bold mb-4">Our Core Values</h2>
+              <p className="text-muted-foreground">
+                These principles guide everything we do at Medi Spero.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="bg-card p-8 rounded-2xl border border-border text-center">
+                <div className="w-16 h-16 mx-auto rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                  <Award className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Quality First</h3>
+                <p className="text-muted-foreground">
+                  We never compromise on quality. Every product undergoes rigorous testing to ensure purity, potency, and safety.
+                </p>
+              </div>
+
+              <div className="bg-card p-8 rounded-2xl border border-border text-center">
+                <div className="w-16 h-16 mx-auto rounded-full bg-secondary/10 flex items-center justify-center mb-4">
+                  <Shield className="h-8 w-8 text-secondary" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Transparency</h3>
+                <p className="text-muted-foreground">
+                  We believe you deserve to know what's in your products. Full lab reports are available for every batch.
+                </p>
+              </div>
+
+              <div className="bg-card p-8 rounded-2xl border border-border text-center">
+                <div className="w-16 h-16 mx-auto rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                  <Leaf className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Sustainability</h3>
+                <p className="text-muted-foreground">
+                  From organic farming practices to eco-friendly packaging, we're committed to protecting our planet.
+                </p>
+              </div>
+
+              <div className="bg-card p-8 rounded-2xl border border-border text-center">
+                <div className="w-16 h-16 mx-auto rounded-full bg-secondary/10 flex items-center justify-center mb-4">
+                  <Heart className="h-8 w-8 text-secondary" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Customer Care</h3>
+                <p className="text-muted-foreground">
+                  Your satisfaction is our priority. Our dedicated team is always here to help with any questions or concerns.
+                </p>
+              </div>
+
+              <div className="bg-card p-8 rounded-2xl border border-border text-center">
+                <div className="w-16 h-16 mx-auto rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                  <Target className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Innovation</h3>
+                <p className="text-muted-foreground">
+                  We continuously research and develop new formulations to bring you the most effective CBD products.
+                </p>
+              </div>
+
+              <div className="bg-card p-8 rounded-2xl border border-border text-center">
+                <div className="w-16 h-16 mx-auto rounded-full bg-secondary/10 flex items-center justify-center mb-4">
+                  <Users className="h-8 w-8 text-secondary" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Community</h3>
+                <p className="text-muted-foreground">
+                  We're building a community of wellness advocates who believe in the power of natural alternatives.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Stats */}
+        <section className="py-16 bg-brand-navy text-white">
+          <div className="container-wide">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+              <div>
+                <div className="text-4xl md:text-5xl font-bold text-secondary mb-2">500+</div>
+                <div className="text-white/70">Products</div>
+              </div>
+              <div>
+                <div className="text-4xl md:text-5xl font-bold text-secondary mb-2">50K+</div>
+                <div className="text-white/70">Happy Customers</div>
+              </div>
+              <div>
+                <div className="text-4xl md:text-5xl font-bold text-secondary mb-2">4.9</div>
+                <div className="text-white/70">Average Rating</div>
+              </div>
+              <div>
+                <div className="text-4xl md:text-5xl font-bold text-secondary mb-2">100%</div>
+                <div className="text-white/70">Lab Tested</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+      <WhatsAppButton />
+    </div>
+  );
+};
+
+export default AboutPage;
