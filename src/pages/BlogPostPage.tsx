@@ -35,32 +35,82 @@ const BlogPostPage = () => {
 
   const relatedPosts = getRelatedPosts(post);
 
-  // Structured data for blog post
+  // Calculate word count for schema
+  const wordCount = post.content.split(/\s+/).length;
+
+  // Article Schema (NewsArticle for Google News/Discover visibility)
   const articleSchema = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "NewsArticle",
     "headline": post.title,
+    "alternativeHeadline": post.excerpt,
     "description": post.excerpt,
-    "image": post.image,
+    "image": {
+      "@type": "ImageObject",
+      "url": `https://medispero.com${post.image}`,
+      "width": 1200,
+      "height": 630,
+    },
     "datePublished": post.date,
     "dateModified": post.date,
+    "wordCount": wordCount,
+    "articleSection": post.category,
+    "keywords": post.tags.join(", "),
     "author": {
       "@type": "Person",
       "name": post.author,
-      "jobTitle": post.authorTitle
+      "jobTitle": post.authorTitle,
+      "url": "https://medispero.com/about",
     },
     "publisher": {
       "@type": "Organization",
       "name": "Medi Spero",
+      "url": "https://medispero.com",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://medispero.com/logo.png"
-      }
+        "url": "https://medispero.com/logo.png",
+        "width": 512,
+        "height": 512,
+      },
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://medispero.com/blog/${post.slug}`
-    }
+      "@id": `https://medispero.com/blog/${post.slug}`,
+    },
+    "isAccessibleForFree": true,
+    "inLanguage": "en-US",
+  };
+
+  // BreadcrumbList Schema for blog navigation
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://medispero.com",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://medispero.com/blog",
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": post.category,
+        "item": `https://medispero.com/blog?category=${encodeURIComponent(post.category)}`,
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": post.title,
+        "item": `https://medispero.com/blog/${post.slug}`,
+      },
+    ],
   };
 
   const handleShare = async () => {
@@ -100,6 +150,7 @@ const BlogPostPage = () => {
         <meta name="twitter:image" content={post.image} />
         
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       </Helmet>
 
       <Header />
