@@ -19,6 +19,7 @@ import ReturnsPolicyPage from "./pages/ReturnsPolicyPage";
 import AuthPage from "./pages/AuthPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import BlogPage from "./pages/BlogPage";
+import BlogPostPage from "./pages/BlogPostPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -42,6 +43,7 @@ const App = () => (
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/faq" element={<FAQPage />} />
                 <Route path="/blog" element={<BlogPage />} />
+                <Route path="/blog/:slug" element={<BlogPostPage />} />
                 <Route path="/shipping" element={<ShippingPolicyPage />} />
                 <Route path="/returns" element={<ReturnsPolicyPage />} />
                 <Route path="/auth" element={<AuthPage />} />
