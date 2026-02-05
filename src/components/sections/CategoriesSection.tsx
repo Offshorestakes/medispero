@@ -3,6 +3,9 @@ import { ArrowRight } from "lucide-react";
 import { categories } from "@/data/products";
 
 const categoryImages: Record<string, string> = {
+  "pharma-capsules": "💊",
+  "anti-anxiety": "🧘",
+  "mood-support": "😊",
   "cbd-oils": "🧴",
   "cbd-gummies": "🍬",
   "cbd-topicals": "🧴",

@@ -1,5 +1,5 @@
-// Medi Spero - CBD/Hemp Product Catalog
-// Legal, Farm Bill compliant products only
+// Medi Spero - Premium Pharmaceutical CBD/Hemp Product Catalog
+// Legal, Farm Bill compliant products only - Premium Pricing ($150-$950)
 
 // Import product images
 import cbdOilImage from "@/assets/products/cbd-oil-tincture.jpg";
@@ -14,7 +14,7 @@ import hhcFlowerImage from "@/assets/products/hhc-flower.jpg";
 import cbdMassageOilImage from "@/assets/products/cbd-massage-oil.jpg";
 import cbdPetTreatsImage from "@/assets/products/cbd-pet-treats.jpg";
 import cbdBathBombsImage from "@/assets/products/cbd-bath-bombs.jpg";
-// New product images
+// Anti-Anxiety & Mood product images
 import delta8CalmGummiesImage from "@/assets/products/delta8-calm-gummies.jpg";
 import delta9MoodTinctureImage from "@/assets/products/delta9-mood-tincture.jpg";
 import cbdMoodSoftgelsImage from "@/assets/products/cbd-mood-softgels.jpg";
@@ -23,6 +23,10 @@ import cbdStressSprayImage from "@/assets/products/cbd-stress-spray.jpg";
 import thcHempFlowerImage from "@/assets/products/thc-hemp-flower.jpg";
 import cbdCalmTeaImage from "@/assets/products/cbd-calm-tea.jpg";
 import delta10ChocolateImage from "@/assets/products/delta10-chocolate.jpg";
+// Pharmaceutical Capsules images
+import pharmaCapsules1Image from "@/assets/products/pharma-capsules-1.jpg";
+import pharmaCapsules2Image from "@/assets/products/pharma-capsules-2.jpg";
+import pharmaCapsules3Image from "@/assets/products/pharma-capsules-3.jpg";
 
 // Image pools for each category to provide variety
 const imagePoolsByCategory: Record<string, string[]> = {
@@ -37,15 +41,14 @@ const imagePoolsByCategory: Record<string, string[]> = {
   "thc": [thcVapeImage, thcGummiesImage, hhcFlowerImage, thcHempFlowerImage, delta10ChocolateImage],
   "anti-anxiety": [delta8CalmGummiesImage, cbdCalmTeaImage, delta8AnxietyVapeImage, cbdStressSprayImage, cbdMoodSoftgelsImage],
   "mood-support": [delta9MoodTinctureImage, cbdMoodSoftgelsImage, delta10ChocolateImage, delta8CalmGummiesImage, cbdStressSprayImage],
+  "pharma-capsules": [pharmaCapsules1Image, pharmaCapsules2Image, pharmaCapsules3Image],
 };
 
 // Helper function to get images based on category with rotation for variety
 const getProductImages = (category: string, productIndex: number): string[] => {
   const pool = imagePoolsByCategory[category] || [cbdOilImage, cbdGummiesImage, cbdTopicalImage];
-  // Rotate primary image based on product index for visual variety
   const primaryIndex = productIndex % pool.length;
   const primaryImage = pool[primaryIndex];
-  // Create gallery with rotated order
   const gallery = [primaryImage];
   for (let i = 1; i < pool.length; i++) {
     gallery.push(pool[(primaryIndex + i) % pool.length]);
@@ -66,6 +69,7 @@ const getCategoryImage = (categoryId: string): string => {
     case "bundles": return cbdOilImage;
     case "anti-anxiety": return delta8CalmGummiesImage;
     case "mood-support": return delta9MoodTinctureImage;
+    case "pharma-capsules": return pharmaCapsules1Image;
     default: return cbdOilImage;
   }
 };
@@ -114,74 +118,18 @@ export interface Category {
 
 export const categories: Category[] = [
   {
-    id: "cbd-oils",
-    name: "CBD Oils & Tinctures",
-    slug: "cbd-oils",
-    description: "Premium full-spectrum and broad-spectrum CBD oils for daily wellness support",
-    image: getCategoryImage("cbd-oils"),
-    productCount: 85
-  },
-  {
-    id: "cbd-gummies",
-    name: "CBD Gummies",
-    slug: "cbd-gummies",
-    description: "Delicious, easy-to-dose CBD gummies for stress relief and relaxation",
-    image: getCategoryImage("cbd-gummies"),
-    productCount: 65
-  },
-  {
-    id: "cbd-topicals",
-    name: "CBD Topicals",
-    slug: "cbd-topicals",
-    description: "Soothing CBD creams, balms, and lotions for targeted relief",
-    image: getCategoryImage("cbd-topicals"),
-    productCount: 70
-  },
-  {
-    id: "cbd-capsules",
-    name: "CBD Capsules",
-    slug: "cbd-capsules",
-    description: "Convenient, precisely-dosed CBD softgels and capsules",
-    image: getCategoryImage("cbd-capsules"),
-    productCount: 55
-  },
-  {
-    id: "sleep-wellness",
-    name: "Sleep & Relaxation",
-    slug: "sleep-wellness",
-    description: "CBD products formulated specifically for better sleep and calm",
-    image: getCategoryImage("sleep-wellness"),
-    productCount: 60
-  },
-  {
-    id: "pet-cbd",
-    name: "Pet CBD",
-    slug: "pet-cbd",
-    description: "Safe, veterinarian-formulated CBD products for your furry friends",
-    image: getCategoryImage("pet-cbd"),
-    productCount: 40
-  },
-  {
-    id: "cbd-skincare",
-    name: "CBD Skincare",
-    slug: "cbd-skincare",
-    description: "Luxurious CBD-infused skincare for radiant, healthy skin",
-    image: getCategoryImage("cbd-skincare"),
-    productCount: 50
-  },
-  {
-    id: "bundles",
-    name: "Value Bundles",
-    slug: "bundles",
-    description: "Save more with our curated CBD wellness bundles",
-    image: getCategoryImage("bundles"),
-    productCount: 25
+    id: "pharma-capsules",
+    name: "Pharmaceutical Capsules",
+    slug: "pharma-capsules",
+    description: "Medical-grade pharmaceutical CBD and THC capsules, precision-dosed for therapeutic applications",
+    image: getCategoryImage("pharma-capsules"),
+    productCount: 35
   },
   {
     id: "anti-anxiety",
     name: "Anti-Anxiety & Calm",
     slug: "anti-anxiety",
-    description: "Delta-8 THC and CBD products formulated to reduce anxiety and promote calm naturally",
+    description: "Premium Delta-8 THC and CBD products formulated to reduce anxiety and promote calm naturally",
     image: getCategoryImage("anti-anxiety"),
     productCount: 45
   },
@@ -189,526 +137,645 @@ export const categories: Category[] = [
     id: "mood-support",
     name: "Mood & Depression Support",
     slug: "mood-support",
-    description: "Hemp-derived Delta-9 and CBD products to support positive mood and emotional balance",
+    description: "High-potency hemp-derived Delta-9 and CBD products to support positive mood and emotional balance",
     image: getCategoryImage("mood-support"),
     productCount: 40
+  },
+  {
+    id: "cbd-oils",
+    name: "CBD Oils & Tinctures",
+    slug: "cbd-oils",
+    description: "Premium full-spectrum and broad-spectrum CBD oils for daily wellness support",
+    image: getCategoryImage("cbd-oils"),
+    productCount: 65
+  },
+  {
+    id: "cbd-gummies",
+    name: "CBD Gummies",
+    slug: "cbd-gummies",
+    description: "Delicious, easy-to-dose CBD gummies for stress relief and relaxation",
+    image: getCategoryImage("cbd-gummies"),
+    productCount: 50
+  },
+  {
+    id: "cbd-topicals",
+    name: "CBD Topicals",
+    slug: "cbd-topicals",
+    description: "Soothing CBD creams, balms, and lotions for targeted relief",
+    image: getCategoryImage("cbd-topicals"),
+    productCount: 45
+  },
+  {
+    id: "cbd-capsules",
+    name: "CBD Capsules",
+    slug: "cbd-capsules",
+    description: "Convenient, precisely-dosed CBD softgels and capsules",
+    image: getCategoryImage("cbd-capsules"),
+    productCount: 40
+  },
+  {
+    id: "sleep-wellness",
+    name: "Sleep & Relaxation",
+    slug: "sleep-wellness",
+    description: "CBD products formulated specifically for better sleep and calm",
+    image: getCategoryImage("sleep-wellness"),
+    productCount: 35
+  },
+  {
+    id: "pet-cbd",
+    name: "Pet CBD",
+    slug: "pet-cbd",
+    description: "Safe, veterinarian-formulated CBD products for your furry friends",
+    image: getCategoryImage("pet-cbd"),
+    productCount: 25
+  },
+  {
+    id: "cbd-skincare",
+    name: "CBD Skincare",
+    slug: "cbd-skincare",
+    description: "Luxurious CBD-infused skincare for radiant, healthy skin",
+    image: getCategoryImage("cbd-skincare"),
+    productCount: 30
+  },
+  {
+    id: "bundles",
+    name: "Value Bundles",
+    slug: "bundles",
+    description: "Save more with our curated premium CBD wellness bundles",
+    image: getCategoryImage("bundles"),
+    productCount: 15
   }
 ];
 
-// Generate products programmatically for scalability
+// Generate premium-priced products programmatically
 const generateProducts = (): Product[] => {
   const products: Product[] = [];
-  
-  // CBD Oils
-  const oilStrengths = ["300mg", "500mg", "750mg", "1000mg", "1500mg", "2000mg", "3000mg", "5000mg"];
-  const oilFlavors = ["Natural", "Mint", "Citrus", "Berry", "Vanilla", "Unflavored"];
-  const oilTypes = ["Full Spectrum", "Broad Spectrum", "CBD Isolate"];
-  
   let productId = 1;
-  
-  oilTypes.forEach(type => {
-    oilStrengths.forEach(strength => {
-      oilFlavors.forEach(flavor => {
-        const price = parseInt(strength) * 0.05 + 19.99;
-        products.push({
-          id: `oil-${productId}`,
-          name: `Medi Spero ${type} CBD Oil - ${strength} ${flavor}`,
-          slug: `${type.toLowerCase().replace(' ', '-')}-cbd-oil-${strength.toLowerCase()}-${flavor.toLowerCase()}`,
-          category: "cbd-oils",
-          subcategory: type.toLowerCase().replace(' ', '-'),
-          price: Math.round(price * 100) / 100,
-          originalPrice: Math.round(price * 1.2 * 100) / 100,
-          rating: 4.5 + Math.random() * 0.5,
-          reviewCount: Math.floor(Math.random() * 500) + 50,
-          description: `Experience the therapeutic benefits of our premium ${type} CBD Oil. Crafted from organically grown hemp in the USA, this ${strength} tincture delivers consistent, high-quality CBD in every drop. ${flavor} flavor for a pleasant experience. Third-party lab tested for purity and potency. Perfect for daily wellness support, stress management, and natural relief.`,
-          shortDescription: `Premium ${type} CBD Oil with ${strength} CBD in refreshing ${flavor} flavor`,
-          images: getProductImages("cbd-oils", productId),
-          sku: `MS-OIL-${type.substring(0,2).toUpperCase()}-${strength}-${flavor.substring(0,3).toUpperCase()}-${productId}`,
-          gtin: `0850${String(productId).padStart(9, '0')}`,
-          brand: "Medi Spero",
-          inStock: true,
-          stockQuantity: Math.floor(Math.random() * 100) + 20,
-          strength: strength,
-          size: "30ml (1 fl oz)",
-          servings: 30,
-          ingredients: ["Organic Hemp Extract", "MCT Oil (Coconut)", flavor !== "Unflavored" ? `Natural ${flavor} Flavoring` : ""].filter(Boolean),
-          benefits: ["Promotes Relaxation", "Supports Healthy Sleep", "Reduces Everyday Stress", "Supports Overall Wellness"],
-          usage: "Take 1 dropper (1ml) under tongue, hold for 60 seconds, then swallow. Use 1-2 times daily or as needed.",
-          thirdPartyTested: true,
-          organic: true,
-          glutenFree: true,
-          vegan: true,
-          madeInUSA: true,
-          tags: ["cbd oil", "tincture", type.toLowerCase(), flavor.toLowerCase(), "wellness"]
-        });
-        productId++;
-      });
-    });
-  });
-  
-  // CBD Gummies
-  const gummyStrengths = ["10mg", "25mg", "50mg"];
-  const gummyCounts = ["30 count", "60 count", "90 count"];
-  const gummyTypes = ["Sleep", "Calm", "Energy", "Focus", "Recovery", "Immunity", "Original"];
-  
-  gummyTypes.forEach(type => {
-    gummyStrengths.forEach(strength => {
-      gummyCounts.forEach(count => {
-        const basePrice = parseInt(count) * parseInt(strength) * 0.03 + 14.99;
-        products.push({
-          id: `gummy-${productId}`,
-          name: `Medi Spero ${type} CBD Gummies - ${strength} per gummy (${count})`,
-          slug: `${type.toLowerCase()}-cbd-gummies-${strength.toLowerCase()}-${count.replace(' ', '-').toLowerCase()}`,
-          category: "cbd-gummies",
-          subcategory: type.toLowerCase(),
-          price: Math.round(basePrice * 100) / 100,
-          originalPrice: Math.round(basePrice * 1.25 * 100) / 100,
-          rating: 4.6 + Math.random() * 0.4,
-          reviewCount: Math.floor(Math.random() * 800) + 100,
-          description: `Our delicious ${type} CBD Gummies are the perfect way to incorporate CBD into your daily routine. Each gummy contains ${strength} of premium broad-spectrum CBD, carefully formulated for ${type.toLowerCase()} support. Made with natural fruit flavors and colors, these gummies are as tasty as they are effective. Lab-tested for quality assurance.`,
-          shortDescription: `Tasty ${type} CBD Gummies with ${strength} CBD per gummy`,
-          images: getProductImages("cbd-gummies", productId),
-          sku: `MS-GUM-${type.substring(0,3).toUpperCase()}-${strength}-${count.split(' ')[0]}-${productId}`,
-          gtin: `0850${String(productId).padStart(9, '0')}`,
-          brand: "Medi Spero",
-          inStock: true,
-          stockQuantity: Math.floor(Math.random() * 150) + 30,
-          strength: strength,
-          size: count,
-          servings: parseInt(count),
-          ingredients: ["Broad Spectrum Hemp Extract", "Organic Cane Sugar", "Tapioca Syrup", "Pectin", "Natural Flavors", "Citric Acid"],
-          benefits: type === "Sleep" ? ["Promotes Restful Sleep", "Calming Formula", "Non-Habit Forming", "Wake Up Refreshed"] :
-                   type === "Calm" ? ["Reduces Stress", "Promotes Relaxation", "Eases Tension", "Daily Calm Support"] :
-                   type === "Energy" ? ["Natural Energy Boost", "Mental Clarity", "No Jitters", "Sustained Focus"] :
-                   type === "Focus" ? ["Enhanced Concentration", "Mental Clarity", "Productivity Support", "Clear Thinking"] :
-                   type === "Recovery" ? ["Muscle Recovery", "Joint Support", "Post-Workout Relief", "Athletic Performance"] :
-                   type === "Immunity" ? ["Immune Support", "Antioxidant Rich", "Daily Defense", "Overall Wellness"] :
-                   ["Daily Wellness", "Natural Relief", "Stress Support", "Quality CBD"],
-          usage: "Take 1-2 gummies daily. For best results, use consistently as part of your daily wellness routine.",
-          thirdPartyTested: true,
-          organic: false,
-          glutenFree: true,
-          vegan: true,
-          madeInUSA: true,
-          tags: ["cbd gummies", type.toLowerCase(), "edibles", "wellness"]
-        });
-        productId++;
-      });
-    });
-  });
-  
-  // CBD Topicals
-  const topicalTypes = ["Relief Cream", "Muscle Balm", "Roll-On Gel", "Body Lotion", "Massage Oil", "Cooling Cream", "Warming Salve"];
-  const topicalSizes = ["1 oz", "2 oz", "4 oz"];
-  const topicalStrengths = ["250mg", "500mg", "1000mg", "1500mg", "3000mg"];
-  
-  topicalTypes.forEach(type => {
-    topicalStrengths.forEach(strength => {
-      topicalSizes.forEach(size => {
-        const basePrice = parseInt(strength) * 0.04 + parseInt(size) * 8 + 9.99;
-        products.push({
-          id: `topical-${productId}`,
-          name: `Medi Spero CBD ${type} - ${strength} (${size})`,
-          slug: `cbd-${type.toLowerCase().replace(' ', '-')}-${strength.toLowerCase()}-${size.replace(' ', '')}`,
-          category: "cbd-topicals",
-          subcategory: type.toLowerCase().replace(' ', '-'),
-          price: Math.round(basePrice * 100) / 100,
-          originalPrice: Math.round(basePrice * 1.2 * 100) / 100,
-          rating: 4.4 + Math.random() * 0.5,
-          reviewCount: Math.floor(Math.random() * 400) + 40,
-          description: `Our premium CBD ${type} provides targeted relief exactly where you need it. Infused with ${strength} of full-spectrum CBD and botanical ingredients, this topical absorbs quickly to deliver soothing comfort. Perfect for post-workout recovery, everyday aches, and overall skin wellness.`,
-          shortDescription: `Soothing CBD ${type} with ${strength} for targeted relief`,
-          images: getProductImages("cbd-topicals", productId),
-          sku: `MS-TOP-${type.substring(0,3).toUpperCase()}-${strength}-${size.replace(' ', '')}-${productId}`,
-          gtin: `0850${String(productId).padStart(9, '0')}`,
-          brand: "Medi Spero",
-          inStock: true,
-          stockQuantity: Math.floor(Math.random() * 80) + 15,
-          strength: strength,
-          size: size,
-          ingredients: ["Full Spectrum Hemp Extract", "Aloe Vera", "Shea Butter", "Coconut Oil", "Menthol", "Arnica", "Vitamin E"],
-          benefits: ["Targeted Relief", "Fast Absorption", "Long-Lasting Comfort", "Moisturizes Skin"],
-          usage: "Apply generously to affected area and massage until fully absorbed. Use as needed throughout the day.",
-          thirdPartyTested: true,
-          organic: true,
-          glutenFree: true,
-          vegan: true,
-          madeInUSA: true,
-          tags: ["cbd topical", type.toLowerCase(), "relief", "skincare"]
-        });
-        productId++;
-      });
-    });
-  });
-  
-  // CBD Capsules
-  const capsuleStrengths = ["10mg", "25mg", "50mg", "100mg"];
-  const capsuleCounts = ["30 count", "60 count", "90 count", "120 count"];
-  const capsuleFormulas = ["Daily Wellness", "Sleep Support", "Stress Relief", "Anti-Inflammatory", "Energy Plus"];
-  
-  capsuleFormulas.forEach(formula => {
-    capsuleStrengths.forEach(strength => {
-      capsuleCounts.forEach(count => {
-        const basePrice = parseInt(count) * parseInt(strength) * 0.025 + 19.99;
-        products.push({
-          id: `capsule-${productId}`,
-          name: `Medi Spero ${formula} CBD Capsules - ${strength} (${count})`,
-          slug: `${formula.toLowerCase().replace(' ', '-')}-cbd-capsules-${strength.toLowerCase()}-${count.replace(' ', '-')}`,
-          category: "cbd-capsules",
-          subcategory: formula.toLowerCase().replace(' ', '-'),
-          price: Math.round(basePrice * 100) / 100,
-          originalPrice: Math.round(basePrice * 1.15 * 100) / 100,
-          rating: 4.5 + Math.random() * 0.5,
-          reviewCount: Math.floor(Math.random() * 350) + 50,
-          description: `Convenient and precisely-dosed, our ${formula} CBD Capsules deliver ${strength} of premium CBD per softgel. Perfect for those who prefer a no-fuss approach to CBD supplementation. Each capsule is formulated for ${formula.toLowerCase()} and manufactured in a GMP-certified facility.`,
-          shortDescription: `Easy-to-take ${formula} CBD Capsules with ${strength} CBD each`,
-          images: getProductImages("cbd-capsules", productId),
-          sku: `MS-CAP-${formula.substring(0,3).toUpperCase()}-${strength}-${count.split(' ')[0]}-${productId}`,
-          gtin: `0850${String(productId).padStart(9, '0')}`,
-          brand: "Medi Spero",
-          inStock: true,
-          stockQuantity: Math.floor(Math.random() * 100) + 25,
-          strength: strength,
-          size: count,
-          servings: parseInt(count),
-          ingredients: ["Full Spectrum Hemp Extract", "MCT Oil", "Gelatin Capsule", "Sunflower Lecithin"],
-          benefits: formula === "Sleep Support" ? ["Promotes Restful Sleep", "Calming Effect", "Wake Up Refreshed", "Natural Formula"] :
-                   formula === "Stress Relief" ? ["Reduces Anxiety", "Promotes Calm", "Mental Clarity", "Stress Management"] :
-                   formula === "Anti-Inflammatory" ? ["Joint Support", "Muscle Recovery", "Reduces Inflammation", "Mobility Support"] :
-                   formula === "Energy Plus" ? ["Natural Energy", "Mental Focus", "No Crash", "Sustained Vitality"] :
-                   ["Daily Wellness", "Overall Health", "Immune Support", "Balance"],
-          usage: "Take 1-2 capsules daily with water, preferably with food. Consistent use recommended for best results.",
-          thirdPartyTested: true,
-          organic: true,
-          glutenFree: true,
-          vegan: false,
-          madeInUSA: true,
-          tags: ["cbd capsules", formula.toLowerCase(), "softgels", "convenient"]
-        });
-        productId++;
-      });
-    });
-  });
-  
-  // Sleep & Relaxation Products
-  const sleepProducts = [
-    { name: "Sleep Tincture with CBN", type: "tincture", strengths: ["500mg CBD + 150mg CBN", "1000mg CBD + 300mg CBN", "1500mg CBD + 500mg CBN"] },
-    { name: "Nighttime Gummies with Melatonin", type: "gummies", strengths: ["25mg CBD + 5mg Melatonin", "50mg CBD + 10mg Melatonin"] },
-    { name: "Calming Bath Bombs", type: "bath", strengths: ["100mg CBD", "200mg CBD"] },
-    { name: "Lavender Sleep Spray", type: "spray", strengths: ["300mg CBD", "600mg CBD"] },
+
+  // PHARMACEUTICAL CAPSULES ($380-$700)
+  const pharmaFormulas = [
+    { name: "Clinical Grade CBD-A + CBD Complex", strength: "5000mg", price: 549, desc: "Pharmaceutical-grade acidic cannabinoid complex for maximum bioavailability" },
+    { name: "Delta-9 THC + CBD Therapeutic Capsules", strength: "3000mg + 3000mg", price: 679, desc: "Balanced 1:1 ratio for comprehensive symptom management" },
+    { name: "Full Spectrum Nano-Enhanced Softgels", strength: "10000mg", price: 699, desc: "Nano-emulsified for 4x faster absorption than standard capsules" },
+    { name: "Delta-8 THC Medical Grade Capsules", strength: "5000mg", price: 589, desc: "Pharmaceutical purity Delta-8 for anxiety and stress management" },
+    { name: "CBD + CBN + CBG Entourage Complex", strength: "7500mg Total", price: 649, desc: "Triple cannabinoid formula for enhanced therapeutic effects" },
+    { name: "High-Potency CBD Isolate Capsules", strength: "15000mg", price: 699, desc: "99.9% pure CBD isolate in precision-dosed pharmaceutical capsules" },
+    { name: "Delta-9 Mood Stabilizer Capsules", strength: "2500mg", price: 529, desc: "Targeted Delta-9 formulation for mood regulation and emotional balance" },
+    { name: "CBD + Curcumin Anti-Inflammatory", strength: "6000mg CBD + 2000mg Curcumin", price: 619, desc: "Synergistic anti-inflammatory formula with enhanced bioavailability" },
+    { name: "Clinical Sleep Complex Capsules", strength: "5000mg CBD + 1500mg CBN", price: 599, desc: "Pharmaceutical sleep formula with optimized cannabinoid ratios" },
+    { name: "Neurological Support Capsules", strength: "8000mg", price: 679, desc: "Targeted support for cognitive function and neural health" },
+    { name: "Delta-8 + CBD Anxiety Relief", strength: "4000mg + 4000mg", price: 629, desc: "Dual cannabinoid formula for comprehensive anxiety management" },
+    { name: "Medical Grade Recovery Capsules", strength: "10000mg", price: 649, desc: "High-potency formula for post-surgical and athletic recovery" },
+    { name: "Endocannabinoid System Optimizer", strength: "7500mg Multi-Cannabinoid", price: 689, desc: "Complete ECS support with full-spectrum cannabinoid profile" },
+    { name: "Premium Pharmaceutical CBD-V Blend", strength: "3000mg CBD-V + 5000mg CBD", price: 699, desc: "Rare CBD-V cannabinoid blend for specialized therapeutic needs" },
+    { name: "Delta-9 + Delta-8 Synergy Capsules", strength: "2500mg + 2500mg", price: 569, desc: "Dual-THC formula for balanced psychoactive and therapeutic effects" },
   ];
-  
-  sleepProducts.forEach(product => {
-    product.strengths.forEach(strength => {
-      const basePrice = 34.99 + Math.random() * 40;
+
+  pharmaFormulas.forEach((formula, index) => {
+    const sizes = ["60 count", "90 count", "120 count"];
+    sizes.forEach((size, sizeIndex) => {
+      const countMultiplier = size.includes("120") ? 1.4 : size.includes("90") ? 1.2 : 1;
+      const price = Math.round(formula.price * countMultiplier);
+      const originalPrice = Math.round(price * 1.15);
+      
       products.push({
-        id: `sleep-${productId}`,
-        name: `Medi Spero ${product.name} - ${strength}`,
-        slug: `${product.name.toLowerCase().replace(/ /g, '-')}-${strength.split(' ')[0].toLowerCase()}`,
-        category: "sleep-wellness",
-        subcategory: product.type,
-        price: Math.round(basePrice * 100) / 100,
-        originalPrice: Math.round(basePrice * 1.2 * 100) / 100,
-        rating: 4.7 + Math.random() * 0.3,
-        reviewCount: Math.floor(Math.random() * 600) + 80,
-        description: `Fall asleep faster and stay asleep longer with our ${product.name}. This premium formula combines ${strength} for optimal sleep support. Non-habit forming and made with natural ingredients. Wake up feeling refreshed and ready to take on the day.`,
-        shortDescription: `Premium ${product.name} with ${strength} for better sleep`,
-        images: getProductImages("sleep-wellness", productId),
-        sku: `MS-SLP-${product.type.substring(0,3).toUpperCase()}-${productId}`,
+        id: `pharma-${productId}`,
+        name: `Medi Spero ${formula.name} - ${formula.strength} (${size})`,
+        slug: `pharmaceutical-${formula.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${size.replace(' ', '-')}`,
+        category: "pharma-capsules",
+        subcategory: "medical-grade",
+        price: price,
+        originalPrice: originalPrice,
+        rating: 4.8 + Math.random() * 0.2,
+        reviewCount: Math.floor(Math.random() * 200) + 150,
+        description: `${formula.desc} Our pharmaceutical-grade capsules are manufactured in FDA-registered, cGMP-certified facilities with rigorous quality control. Each batch undergoes comprehensive third-party testing for potency, purity, and safety. Recommended for individuals seeking professional-grade cannabinoid therapy.`,
+        shortDescription: `Medical-grade ${formula.name} with ${formula.strength} pharmaceutical purity`,
+        images: getProductImages("pharma-capsules", productId),
+        sku: `MS-PHR-${productId.toString().padStart(4, '0')}`,
         gtin: `0850${String(productId).padStart(9, '0')}`,
         brand: "Medi Spero",
         inStock: true,
-        stockQuantity: Math.floor(Math.random() * 60) + 15,
-        strength: strength,
-        size: product.type === "gummies" ? "30 count" : product.type === "bath" ? "6 pack" : "30ml",
-        ingredients: ["Hemp Extract", "CBN", "Lavender Extract", "Chamomile", "Melatonin", "MCT Oil"],
-        benefits: ["Promotes Deep Sleep", "Reduces Sleep Onset Time", "Non-Habit Forming", "Wake Refreshed"],
-        usage: "Use 30 minutes before bedtime for optimal results.",
+        stockQuantity: Math.floor(Math.random() * 30) + 10,
+        strength: formula.strength,
+        size: size,
+        servings: parseInt(size),
+        ingredients: ["Pharmaceutical Grade Hemp Extract", "Nano-Emulsified MCT Oil", "Hydroxypropyl Methylcellulose Capsule", "Sunflower Lecithin", "Mixed Tocopherols"],
+        benefits: ["Pharmaceutical-Grade Purity", "cGMP Certified Manufacturing", "Third-Party Lab Verified", "Maximum Bioavailability", "Consistent Dosing"],
+        usage: "Take 1-2 capsules daily with food or as directed by your healthcare provider. Consult physician before use.",
         thirdPartyTested: true,
         organic: true,
         glutenFree: true,
         vegan: true,
         madeInUSA: true,
-        tags: ["sleep", "cbn", "melatonin", "relaxation", "nighttime"]
+        tags: ["pharmaceutical", "medical-grade", "premium", "high-potency", "capsules"]
       });
       productId++;
     });
   });
-  
-  // Pet CBD Products
-  const petTypes = ["Dog", "Cat"];
-  const petSizes = ["Small (Under 25 lbs)", "Medium (25-50 lbs)", "Large (Over 50 lbs)"];
-  const petProducts = ["Oil Tincture", "Treats", "Calming Chews"];
-  
-  petTypes.forEach(pet => {
-    petProducts.forEach(product => {
-      const sizes = pet === "Cat" ? ["Small"] : petSizes;
-      sizes.forEach(size => {
-        const basePrice = 24.99 + Math.random() * 30;
-        const strength = size.includes("Large") ? "600mg" : size.includes("Medium") ? "300mg" : "150mg";
-        products.push({
-          id: `pet-${productId}`,
-          name: `Medi Spero ${pet} CBD ${product} - ${size}`,
-          slug: `${pet.toLowerCase()}-cbd-${product.toLowerCase().replace(' ', '-')}-${size.split(' ')[0].toLowerCase()}`,
-          category: "pet-cbd",
-          subcategory: pet.toLowerCase(),
-          price: Math.round(basePrice * 100) / 100,
-          originalPrice: Math.round(basePrice * 1.15 * 100) / 100,
-          rating: 4.8 + Math.random() * 0.2,
-          reviewCount: Math.floor(Math.random() * 300) + 60,
-          description: `Give your ${pet.toLowerCase()} the gift of wellness with our veterinarian-formulated CBD ${product}. Specially designed for ${size.toLowerCase()} ${pet.toLowerCase()}s, this ${strength} formula supports calm behavior, joint health, and overall wellness. Made with pet-safe ingredients and no THC.`,
-          shortDescription: `Vet-formulated CBD ${product} for ${size.toLowerCase()} ${pet.toLowerCase()}s`,
-          images: getProductImages("pet-cbd", productId),
-          sku: `MS-PET-${pet.substring(0,1)}-${product.substring(0,3).toUpperCase()}-${productId}`,
-          gtin: `0850${String(productId).padStart(9, '0')}`,
-          brand: "Medi Spero",
-          inStock: true,
-          stockQuantity: Math.floor(Math.random() * 50) + 20,
-          strength: strength,
-          size: product === "Treats" ? "30 count" : product === "Chews" ? "30 count" : "30ml",
-          ingredients: ["Broad Spectrum Hemp Extract (0% THC)", "Salmon Oil", "Natural Bacon Flavor", "Coconut Oil"],
-          benefits: ["Promotes Calm Behavior", "Supports Joint Health", "Reduces Separation Anxiety", "Improves Mobility"],
-          usage: "Administer directly or mix with food. See dosing chart based on pet weight.",
-          thirdPartyTested: true,
-          organic: true,
-          glutenFree: true,
-          vegan: false,
-          madeInUSA: true,
-          tags: ["pet cbd", pet.toLowerCase(), "pet wellness", "veterinarian formulated"]
-        });
-        productId++;
+
+  // ANTI-ANXIETY & CALM PRODUCTS ($150-$550)
+  const anxietyProducts = [
+    { name: "Delta-8 THC Professional Calm Gummies", type: "gummies", strength: "1500mg", price: 249, desc: "Clinical-strength Delta-8 gummies for profound anxiety relief" },
+    { name: "Delta-8 THC Medical Vaporizer Kit", type: "vape", strength: "3000mg", price: 389, desc: "Complete medical-grade vaporizer system with premium distillate" },
+    { name: "CBD + Delta-8 Anxiolytic Tincture", type: "tincture", strength: "5000mg + 2500mg", price: 449, desc: "Dual-action formula for comprehensive anxiety management" },
+    { name: "Delta-8 THC Extended Release Softgels", type: "softgels", strength: "3000mg", price: 329, desc: "Time-release technology for all-day calm" },
+    { name: "Premium CBD Calm Tea Collection", type: "tea", strength: "2000mg", price: 189, desc: "Luxury organic tea blend with therapeutic CBD levels" },
+    { name: "Delta-8 Sublingual Anti-Anxiety Spray", type: "spray", strength: "2500mg", price: 279, desc: "Fast-acting sublingual spray for acute anxiety episodes" },
+    { name: "Delta-8 + CBN Nighttime Calm", type: "tincture", strength: "4000mg + 1500mg", price: 419, desc: "Evening formula for anxiety-related sleep issues" },
+    { name: "CBD + L-Theanine Calm Complex", type: "capsules", strength: "5000mg CBD + 1000mg L-Theanine", price: 369, desc: "Synergistic calm formula with amino acid support" },
+    { name: "Delta-8 THC Premium Flower Collection", type: "flower", strength: "28g High-Potency", price: 489, desc: "Premium Delta-8 infused hemp flower for traditional consumption" },
+    { name: "CBD + Ashwagandha Stress Relief", type: "capsules", strength: "4000mg + 1500mg", price: 339, desc: "Adaptogenic blend for chronic stress management" },
+  ];
+
+  anxietyProducts.forEach((product) => {
+    const variants = product.type === "flower" ? ["14g", "28g"] : ["Standard", "Professional", "Clinical"];
+    variants.forEach((variant, vIndex) => {
+      const priceMultiplier = vIndex === 2 ? 1.8 : vIndex === 1 ? 1.4 : 1;
+      const price = Math.round(product.price * priceMultiplier);
+      
+      products.push({
+        id: `anxiety-${productId}`,
+        name: `Medi Spero ${product.name} - ${variant} Strength`,
+        slug: `${product.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${variant.toLowerCase()}`,
+        category: "anti-anxiety",
+        subcategory: product.type,
+        price: price,
+        originalPrice: Math.round(price * 1.2),
+        rating: 4.7 + Math.random() * 0.3,
+        reviewCount: Math.floor(Math.random() * 350) + 100,
+        description: `${product.desc} This premium formulation is designed for those seeking serious anxiety relief without prescription medications. Farm Bill compliant with less than 0.3% Delta-9 THC. Manufactured in our state-of-the-art facilities with pharmaceutical-grade standards.`,
+        shortDescription: `Premium ${product.name} for professional-grade anxiety relief`,
+        images: getProductImages("anti-anxiety", productId),
+        sku: `MS-ANX-${productId.toString().padStart(4, '0')}`,
+        gtin: `0850${String(productId).padStart(9, '0')}`,
+        brand: "Medi Spero",
+        inStock: true,
+        stockQuantity: Math.floor(Math.random() * 50) + 15,
+        strength: product.strength,
+        size: variant,
+        ingredients: ["Premium Delta-8 THC Distillate", "Full Spectrum CBD Extract", "Organic MCT Oil", "Natural Terpenes", "L-Theanine", "Ashwagandha Extract"],
+        benefits: ["Clinically-Formulated Anxiety Relief", "Non-Prescription Alternative", "Fast-Acting Formula", "Third-Party Lab Tested", "No Prescription Required"],
+        usage: "Use as directed. Start with lowest dose and adjust based on individual response. Consult healthcare provider if taking other medications.",
+        thirdPartyTested: true,
+        organic: product.type === "tea" || product.type === "flower",
+        glutenFree: true,
+        vegan: true,
+        madeInUSA: true,
+        tags: ["delta-8", "anti-anxiety", "premium", "calm", "stress-relief", product.type]
       });
+      productId++;
     });
   });
-  
-  // CBD Skincare
-  const skincareProducts = [
-    { name: "Anti-Aging Face Serum", size: "1 oz", strength: "500mg" },
-    { name: "Hydrating Face Cream", size: "2 oz", strength: "750mg" },
-    { name: "Eye Repair Cream", size: "0.5 oz", strength: "250mg" },
-    { name: "Lip Balm", size: "0.15 oz", strength: "50mg" },
-    { name: "Face Mask Set", size: "5 pack", strength: "100mg each" },
-    { name: "Body Butter", size: "8 oz", strength: "1000mg" },
-    { name: "Facial Cleanser", size: "4 oz", strength: "300mg" },
-    { name: "Toner", size: "4 oz", strength: "200mg" },
-    { name: "Night Repair Cream", size: "2 oz", strength: "1000mg" },
-    { name: "Vitamin C + CBD Serum", size: "1 oz", strength: "500mg" },
+
+  // MOOD & DEPRESSION SUPPORT ($180-$650)
+  const moodProducts = [
+    { name: "Delta-9 THC Mood Elevation Gummies", type: "gummies", strength: "750mg D9", price: 279, desc: "Precise-dose Delta-9 gummies for mood enhancement and emotional balance" },
+    { name: "Delta-9 THC Professional Tincture", type: "tincture", strength: "1500mg", price: 389, desc: "High-potency Delta-9 tincture for comprehensive mood support" },
+    { name: "CBD + Delta-9 Euphoria Chocolates", type: "chocolate", strength: "500mg D9 + 1000mg CBD", price: 329, desc: "Luxury Belgian chocolate with premium cannabinoid infusion" },
+    { name: "Delta-10 THC Energy & Mood Cartridge", type: "vape", strength: "2000mg", price: 299, desc: "Uplifting Delta-10 formulation for energy and positive mood" },
+    { name: "Full Spectrum Mood Support Capsules", type: "capsules", strength: "5000mg", price: 419, desc: "Complete cannabinoid profile for holistic mood regulation" },
+    { name: "Delta-9 + CBD Microdose Tablets", type: "tablets", strength: "150mg D9 + 750mg CBD", price: 259, desc: "Precision microdosing for subtle mood enhancement" },
+    { name: "Delta-9 THC + St. John's Wort Blend", type: "capsules", strength: "750mg D9 + 1500mg SJW", price: 449, desc: "Traditional botanical synergy with modern cannabinoid science" },
+    { name: "CBD + 5-HTP Serotonin Support", type: "capsules", strength: "3000mg CBD + 500mg 5-HTP", price: 379, desc: "Targeted serotonin pathway support with CBD" },
+    { name: "Delta-9 Sublingual Mood Strips", type: "strips", strength: "500mg", price: 219, desc: "Discreet, fast-dissolving strips for on-the-go mood support" },
+    { name: "Premium Mood Enhancement Bundle", type: "bundle", strength: "Multi-Product", price: 649, desc: "Complete mood support system with multiple delivery methods" },
   ];
-  
-  skincareProducts.forEach(product => {
-    const basePrice = 19.99 + Math.random() * 50;
+
+  moodProducts.forEach((product) => {
+    const variants = ["30-Day Supply", "60-Day Supply", "90-Day Supply"];
+    variants.forEach((variant, vIndex) => {
+      const priceMultiplier = vIndex === 2 ? 2.2 : vIndex === 1 ? 1.5 : 1;
+      const price = Math.round(product.price * priceMultiplier);
+      
+      products.push({
+        id: `mood-${productId}`,
+        name: `Medi Spero ${product.name} - ${variant}`,
+        slug: `${product.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${variant.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+        category: "mood-support",
+        subcategory: product.type,
+        price: price,
+        originalPrice: Math.round(price * 1.25),
+        rating: 4.8 + Math.random() * 0.2,
+        reviewCount: Math.floor(Math.random() * 400) + 120,
+        description: `${product.desc} This Farm Bill compliant formula contains hemp-derived Delta-9 THC (under 0.3% by dry weight) for legal, effective mood support. Developed in consultation with mental health professionals for optimal therapeutic benefit.`,
+        shortDescription: `Premium ${product.name} for natural mood elevation and emotional balance`,
+        images: getProductImages("mood-support", productId),
+        sku: `MS-MOD-${productId.toString().padStart(4, '0')}`,
+        gtin: `0850${String(productId).padStart(9, '0')}`,
+        brand: "Medi Spero",
+        inStock: true,
+        stockQuantity: Math.floor(Math.random() * 40) + 10,
+        strength: product.strength,
+        size: variant,
+        ingredients: ["Hemp-Derived Delta-9 THC", "Full Spectrum CBD", "Organic Botanicals", "Natural Terpenes", "Adaptogenic Herbs"],
+        benefits: ["Natural Mood Enhancement", "Emotional Balance Support", "Non-Prescription Formula", "Holistic Approach", "Third-Party Verified"],
+        usage: "Take as directed on package. Individual response varies. Start with lower dose and adjust as needed. Not a replacement for professional mental health care.",
+        thirdPartyTested: true,
+        organic: product.type === "chocolate",
+        glutenFree: true,
+        vegan: product.type !== "chocolate",
+        madeInUSA: true,
+        tags: ["delta-9", "mood-support", "premium", "depression-support", "emotional-balance", product.type]
+      });
+      productId++;
+    });
+  });
+
+  // CBD OILS & TINCTURES ($175-$750)
+  const oilProducts = [
+    { name: "Ultra-Premium Full Spectrum CBD Oil", strength: "10000mg", price: 429, type: "Full Spectrum" },
+    { name: "Clinical Strength Broad Spectrum Oil", strength: "7500mg", price: 369, type: "Broad Spectrum" },
+    { name: "Pure CBD Isolate Premium Tincture", strength: "15000mg", price: 549, type: "Isolate" },
+    { name: "CBD + CBG Wellness Oil", strength: "5000mg + 2500mg", price: 399, type: "Full Spectrum" },
+    { name: "Nano-Enhanced Rapid Absorption Oil", strength: "5000mg", price: 449, type: "Nano CBD" },
+    { name: "Maximum Potency Full Spectrum", strength: "20000mg", price: 749, type: "Full Spectrum" },
+    { name: "CBN + CBD Night Oil", strength: "3000mg + 1500mg", price: 379, type: "Specialty" },
+    { name: "Organic Hemp Flower Extract", strength: "8000mg", price: 419, type: "Full Spectrum" },
+  ];
+
+  oilProducts.forEach((product) => {
+    const flavors = ["Natural", "Mint", "Citrus"];
+    flavors.forEach((flavor) => {
+      products.push({
+        id: `oil-${productId}`,
+        name: `Medi Spero ${product.name} - ${product.strength} ${flavor}`,
+        slug: `${product.type.toLowerCase().replace(' ', '-')}-oil-${product.strength.toLowerCase()}-${flavor.toLowerCase()}`,
+        category: "cbd-oils",
+        subcategory: product.type.toLowerCase().replace(' ', '-'),
+        price: product.price,
+        originalPrice: Math.round(product.price * 1.2),
+        rating: 4.7 + Math.random() * 0.3,
+        reviewCount: Math.floor(Math.random() * 500) + 100,
+        description: `Experience the pinnacle of CBD quality with our ${product.name}. This ${product.strength} premium tincture is crafted from organically grown Colorado hemp using supercritical CO2 extraction. Each batch is third-party tested for potency, purity, and safety. ${product.type} formula with ${flavor} flavor for an exceptional daily wellness experience.`,
+        shortDescription: `Ultra-premium ${product.type} CBD Oil with ${product.strength} in ${flavor} flavor`,
+        images: getProductImages("cbd-oils", productId),
+        sku: `MS-OIL-${productId.toString().padStart(4, '0')}`,
+        gtin: `0850${String(productId).padStart(9, '0')}`,
+        brand: "Medi Spero",
+        inStock: true,
+        stockQuantity: Math.floor(Math.random() * 60) + 20,
+        strength: product.strength,
+        size: "60ml (2 fl oz)",
+        servings: 60,
+        ingredients: ["Organic Hemp Extract", "Organic MCT Oil", flavor !== "Natural" ? `Natural ${flavor} Flavoring` : ""].filter(Boolean),
+        benefits: ["Pharmaceutical-Grade Quality", "Maximum Bioavailability", "Organic Ingredients", "Third-Party Tested"],
+        usage: "Take 1 dropper (1ml) under tongue, hold for 60-90 seconds, then swallow. Use 1-2 times daily or as directed.",
+        thirdPartyTested: true,
+        organic: true,
+        glutenFree: true,
+        vegan: true,
+        madeInUSA: true,
+        tags: ["cbd oil", "premium", "tincture", product.type.toLowerCase(), flavor.toLowerCase()]
+      });
+      productId++;
+    });
+  });
+
+  // CBD GUMMIES ($150-$450)
+  const gummyProducts = [
+    { name: "Professional Strength Sleep Gummies", type: "Sleep", strength: "100mg CBD + 25mg CBN per gummy", price: 349, count: "30 count" },
+    { name: "Clinical Calm CBD Gummies", type: "Calm", strength: "75mg per gummy", price: 299, count: "30 count" },
+    { name: "High-Potency Recovery Gummies", type: "Recovery", strength: "100mg per gummy", price: 379, count: "30 count" },
+    { name: "Focus & Clarity Premium Gummies", type: "Focus", strength: "50mg CBD + 25mg CBG per gummy", price: 329, count: "30 count" },
+    { name: "Immune Support CBD Gummies", type: "Immunity", strength: "75mg per gummy", price: 289, count: "30 count" },
+    { name: "Daily Wellness Premium Gummies", type: "Wellness", strength: "100mg per gummy", price: 349, count: "30 count" },
+  ];
+
+  gummyProducts.forEach((product) => {
+    const sizes = ["30 count", "60 count", "90 count"];
+    sizes.forEach((size, sIndex) => {
+      const priceMultiplier = sIndex === 2 ? 2.4 : sIndex === 1 ? 1.7 : 1;
+      const price = Math.round(product.price * priceMultiplier);
+      
+      products.push({
+        id: `gummy-${productId}`,
+        name: `Medi Spero ${product.name} (${size})`,
+        slug: `${product.type.toLowerCase()}-premium-gummies-${size.replace(' ', '-')}`,
+        category: "cbd-gummies",
+        subcategory: product.type.toLowerCase(),
+        price: price,
+        originalPrice: Math.round(price * 1.2),
+        rating: 4.8 + Math.random() * 0.2,
+        reviewCount: Math.floor(Math.random() * 600) + 150,
+        description: `Our ${product.name} represent the pinnacle of edible CBD. Each gummy contains ${product.strength} of pharmaceutical-grade cannabinoids for maximum effectiveness. Made with organic fruit purees and natural flavors. Vegan, gluten-free, and delicious.`,
+        shortDescription: `Premium ${product.type} CBD Gummies with ${product.strength}`,
+        images: getProductImages("cbd-gummies", productId),
+        sku: `MS-GUM-${productId.toString().padStart(4, '0')}`,
+        gtin: `0850${String(productId).padStart(9, '0')}`,
+        brand: "Medi Spero",
+        inStock: true,
+        stockQuantity: Math.floor(Math.random() * 80) + 25,
+        strength: product.strength,
+        size: size,
+        servings: parseInt(size),
+        ingredients: ["Broad Spectrum Hemp Extract", "Organic Cane Sugar", "Organic Fruit Puree", "Pectin", "Natural Flavors", "Citric Acid"],
+        benefits: product.type === "Sleep" ? ["Deep, Restful Sleep", "Non-Habit Forming", "Wake Refreshed", "Natural Formula"] :
+                 product.type === "Calm" ? ["Anxiety Relief", "Stress Reduction", "Mental Clarity", "Daily Calm"] :
+                 product.type === "Recovery" ? ["Athletic Recovery", "Muscle Relief", "Joint Support", "Performance"] :
+                 product.type === "Focus" ? ["Enhanced Focus", "Mental Clarity", "Productivity", "Concentration"] :
+                 product.type === "Immunity" ? ["Immune Support", "Antioxidant Rich", "Daily Defense", "Wellness"] :
+                 ["Daily Wellness", "Balance", "Energy", "Vitality"],
+        usage: "Take 1-2 gummies daily or as needed. Best taken consistently for optimal results.",
+        thirdPartyTested: true,
+        organic: false,
+        glutenFree: true,
+        vegan: true,
+        madeInUSA: true,
+        tags: ["cbd gummies", "premium", product.type.toLowerCase(), "edibles"]
+      });
+      productId++;
+    });
+  });
+
+  // CBD TOPICALS ($175-$450)
+  const topicalProducts = [
+    { name: "Medical Grade Relief Cream", strength: "5000mg", price: 299, type: "cream" },
+    { name: "Professional Muscle Recovery Balm", strength: "4000mg", price: 279, type: "balm" },
+    { name: "Clinical Cooling Roll-On Gel", strength: "3000mg", price: 229, type: "roll-on" },
+    { name: "Premium Sports Recovery Lotion", strength: "5000mg", price: 319, type: "lotion" },
+    { name: "Therapeutic Massage Oil", strength: "6000mg", price: 349, type: "oil" },
+    { name: "Intensive Warming Salve", strength: "4500mg", price: 289, type: "salve" },
+  ];
+
+  topicalProducts.forEach((product) => {
+    const sizes = ["2 oz", "4 oz", "8 oz"];
+    sizes.forEach((size, sIndex) => {
+      const priceMultiplier = sIndex === 2 ? 2.2 : sIndex === 1 ? 1.5 : 1;
+      const price = Math.round(product.price * priceMultiplier);
+      
+      products.push({
+        id: `topical-${productId}`,
+        name: `Medi Spero ${product.name} - ${product.strength} (${size})`,
+        slug: `premium-${product.type}-${product.strength.toLowerCase()}-${size.replace(' ', '')}`,
+        category: "cbd-topicals",
+        subcategory: product.type,
+        price: price,
+        originalPrice: Math.round(price * 1.15),
+        rating: 4.6 + Math.random() * 0.4,
+        reviewCount: Math.floor(Math.random() * 300) + 80,
+        description: `Our ${product.name} delivers ${product.strength} of full-spectrum CBD directly to affected areas. Enhanced with premium botanicals and essential oils for maximum therapeutic benefit. Fast-absorbing, non-greasy formula perfect for targeted relief.`,
+        shortDescription: `Professional-grade ${product.name} with ${product.strength} CBD`,
+        images: getProductImages("cbd-topicals", productId),
+        sku: `MS-TOP-${productId.toString().padStart(4, '0')}`,
+        gtin: `0850${String(productId).padStart(9, '0')}`,
+        brand: "Medi Spero",
+        inStock: true,
+        stockQuantity: Math.floor(Math.random() * 50) + 15,
+        strength: product.strength,
+        size: size,
+        ingredients: ["Full Spectrum Hemp Extract", "Organic Aloe Vera", "Shea Butter", "Arnica", "Menthol", "Eucalyptus", "Vitamin E"],
+        benefits: ["Deep Penetrating Relief", "Fast Absorption", "Long-Lasting Effects", "Pharmaceutical Grade"],
+        usage: "Apply generously to affected areas and massage until absorbed. Reapply as needed throughout the day.",
+        thirdPartyTested: true,
+        organic: true,
+        glutenFree: true,
+        vegan: true,
+        madeInUSA: true,
+        tags: ["cbd topical", "premium", product.type, "relief", "pain-management"]
+      });
+      productId++;
+    });
+  });
+
+  // CBD CAPSULES (Standard line, not pharma) ($150-$400)
+  const capsuleProducts = [
+    { name: "Daily Wellness CBD Softgels", formula: "Daily Wellness", strength: "75mg per capsule", price: 229 },
+    { name: "Professional Sleep Support Capsules", formula: "Sleep Support", strength: "100mg + CBN per capsule", price: 279 },
+    { name: "Athletic Recovery Capsules", formula: "Recovery", strength: "100mg per capsule", price: 259 },
+    { name: "Focus & Clarity Capsules", formula: "Focus", strength: "75mg + CBG per capsule", price: 269 },
+    { name: "Anti-Inflammatory Support Capsules", formula: "Anti-Inflammatory", strength: "100mg per capsule", price: 289 },
+  ];
+
+  capsuleProducts.forEach((product) => {
+    const counts = ["60 count", "90 count", "120 count"];
+    counts.forEach((count, cIndex) => {
+      const priceMultiplier = cIndex === 2 ? 1.8 : cIndex === 1 ? 1.4 : 1;
+      const price = Math.round(product.price * priceMultiplier);
+      
+      products.push({
+        id: `capsule-${productId}`,
+        name: `Medi Spero ${product.name} (${count})`,
+        slug: `${product.formula.toLowerCase().replace(' ', '-')}-capsules-${count.replace(' ', '-')}`,
+        category: "cbd-capsules",
+        subcategory: product.formula.toLowerCase().replace(' ', '-'),
+        price: price,
+        originalPrice: Math.round(price * 1.15),
+        rating: 4.7 + Math.random() * 0.3,
+        reviewCount: Math.floor(Math.random() * 250) + 80,
+        description: `Our ${product.name} provide ${product.strength} in an easy-to-swallow softgel format. Perfect for those who prefer precise, consistent dosing without the taste of oils. Manufactured in GMP-certified facilities.`,
+        shortDescription: `Premium ${product.formula} CBD Capsules with ${product.strength}`,
+        images: getProductImages("cbd-capsules", productId),
+        sku: `MS-CAP-${productId.toString().padStart(4, '0')}`,
+        gtin: `0850${String(productId).padStart(9, '0')}`,
+        brand: "Medi Spero",
+        inStock: true,
+        stockQuantity: Math.floor(Math.random() * 70) + 20,
+        strength: product.strength,
+        size: count,
+        servings: parseInt(count),
+        ingredients: ["Full Spectrum Hemp Extract", "MCT Oil", "Softgel Capsule", "Sunflower Lecithin"],
+        benefits: product.formula === "Sleep Support" ? ["Restful Sleep", "Non-Habit Forming", "Wake Refreshed", "Calming"] :
+                 product.formula === "Recovery" ? ["Muscle Recovery", "Joint Support", "Athletic Performance", "Anti-Inflammatory"] :
+                 product.formula === "Focus" ? ["Mental Clarity", "Concentration", "Productivity", "Cognitive Support"] :
+                 ["Daily Wellness", "Balance", "Immune Support", "Overall Health"],
+        usage: "Take 1-2 capsules daily with food for best absorption. Use consistently for optimal results.",
+        thirdPartyTested: true,
+        organic: true,
+        glutenFree: true,
+        vegan: false,
+        madeInUSA: true,
+        tags: ["cbd capsules", "premium", product.formula.toLowerCase(), "softgels"]
+      });
+      productId++;
+    });
+  });
+
+  // SLEEP & RELAXATION ($175-$450)
+  const sleepProducts = [
+    { name: "Maximum Strength Sleep Tincture", strength: "5000mg CBD + 1500mg CBN", price: 399 },
+    { name: "Premium Nighttime Gummies", strength: "100mg CBD + 30mg CBN + 10mg Melatonin per gummy", price: 349 },
+    { name: "Luxury CBD Bath Bomb Collection", strength: "500mg per bomb", price: 189 },
+    { name: "Lavender Dream Sleep Spray", strength: "3000mg CBD", price: 279 },
+    { name: "Deep Sleep Capsules", strength: "75mg CBD + 25mg CBN per capsule", price: 319 },
+  ];
+
+  sleepProducts.forEach((product) => {
+    const variants = ["Standard", "Professional", "Clinical"];
+    variants.forEach((variant, vIndex) => {
+      const priceMultiplier = vIndex === 2 ? 1.6 : vIndex === 1 ? 1.3 : 1;
+      const price = Math.round(product.price * priceMultiplier);
+      
+      products.push({
+        id: `sleep-${productId}`,
+        name: `Medi Spero ${product.name} - ${variant}`,
+        slug: `${product.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${variant.toLowerCase()}`,
+        category: "sleep-wellness",
+        subcategory: "sleep",
+        price: price,
+        originalPrice: Math.round(price * 1.2),
+        rating: 4.8 + Math.random() * 0.2,
+        reviewCount: Math.floor(Math.random() * 400) + 100,
+        description: `Experience the deepest, most restorative sleep with our ${product.name}. This premium formula combines ${product.strength} for optimal sleep support. Non-habit forming and crafted with natural ingredients.`,
+        shortDescription: `Premium ${product.name} with ${product.strength} for exceptional sleep`,
+        images: getProductImages("sleep-wellness", productId),
+        sku: `MS-SLP-${productId.toString().padStart(4, '0')}`,
+        gtin: `0850${String(productId).padStart(9, '0')}`,
+        brand: "Medi Spero",
+        inStock: true,
+        stockQuantity: Math.floor(Math.random() * 45) + 15,
+        strength: product.strength,
+        size: variant,
+        ingredients: ["Hemp Extract", "CBN", "Lavender Extract", "Chamomile", "Passionflower", "MCT Oil"],
+        benefits: ["Deep, Restorative Sleep", "Fall Asleep Faster", "Wake Refreshed", "Non-Habit Forming"],
+        usage: "Use 30-60 minutes before bedtime. Do not drive or operate machinery after use.",
+        thirdPartyTested: true,
+        organic: true,
+        glutenFree: true,
+        vegan: true,
+        madeInUSA: true,
+        tags: ["sleep", "cbn", "premium", "relaxation", "nighttime"]
+      });
+      productId++;
+    });
+  });
+
+  // PET CBD ($150-$350)
+  const petProducts = [
+    { name: "Professional Grade Dog CBD Oil", pet: "Dog", strength: "3000mg", price: 249 },
+    { name: "Calming Dog Treats Premium", pet: "Dog", strength: "50mg per treat", price: 199 },
+    { name: "Dog Joint Support Formula", pet: "Dog", strength: "2500mg + Glucosamine", price: 279 },
+    { name: "Premium Cat CBD Oil", pet: "Cat", strength: "1500mg", price: 189 },
+    { name: "Calming Cat Treats", pet: "Cat", strength: "25mg per treat", price: 169 },
+  ];
+
+  petProducts.forEach((product) => {
+    const sizes = ["Standard", "Large", "Family"];
+    sizes.forEach((size, sIndex) => {
+      const priceMultiplier = sIndex === 2 ? 1.8 : sIndex === 1 ? 1.4 : 1;
+      const price = Math.round(product.price * priceMultiplier);
+      
+      products.push({
+        id: `pet-${productId}`,
+        name: `Medi Spero ${product.name} - ${size} Size`,
+        slug: `${product.pet.toLowerCase()}-${product.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${size.toLowerCase()}`,
+        category: "pet-cbd",
+        subcategory: product.pet.toLowerCase(),
+        price: price,
+        originalPrice: Math.round(price * 1.15),
+        rating: 4.9,
+        reviewCount: Math.floor(Math.random() * 200) + 80,
+        description: `Veterinarian-formulated premium CBD for your beloved ${product.pet.toLowerCase()}. Our ${product.name} contains ${product.strength} of THC-free broad-spectrum CBD, specifically designed for pet safety and wellness.`,
+        shortDescription: `Vet-formulated ${product.name} with ${product.strength} for ${product.pet.toLowerCase()}s`,
+        images: getProductImages("pet-cbd", productId),
+        sku: `MS-PET-${productId.toString().padStart(4, '0')}`,
+        gtin: `0850${String(productId).padStart(9, '0')}`,
+        brand: "Medi Spero",
+        inStock: true,
+        stockQuantity: Math.floor(Math.random() * 40) + 15,
+        strength: product.strength,
+        size: size,
+        ingredients: ["Broad Spectrum Hemp Extract (0% THC)", "Salmon Oil", "Natural Flavoring", "MCT Oil"],
+        benefits: ["Calming Effect", "Joint Support", "Anxiety Relief", "Overall Wellness"],
+        usage: "Administer based on pet weight. See dosing chart on package. Consult veterinarian before use.",
+        thirdPartyTested: true,
+        organic: true,
+        glutenFree: true,
+        vegan: false,
+        madeInUSA: true,
+        tags: ["pet cbd", product.pet.toLowerCase(), "premium", "veterinarian-formulated"]
+      });
+      productId++;
+    });
+  });
+
+  // CBD SKINCARE ($175-$450)
+  const skincareProducts = [
+    { name: "Luxury Anti-Aging Face Serum", strength: "2500mg", price: 349 },
+    { name: "Premium Hydrating Face Cream", strength: "3000mg", price: 299 },
+    { name: "Professional Eye Repair Complex", strength: "1500mg", price: 279 },
+    { name: "CBD + Retinol Night Cream", strength: "3000mg + Retinol", price: 389 },
+    { name: "Vitamin C + CBD Brightening Serum", strength: "2000mg + Vitamin C", price: 329 },
+    { name: "Luxury Body Butter", strength: "5000mg", price: 259 },
+  ];
+
+  skincareProducts.forEach((product) => {
     products.push({
       id: `skincare-${productId}`,
-      name: `Medi Spero CBD ${product.name} - ${product.strength}`,
-      slug: `cbd-${product.name.toLowerCase().replace(/ /g, '-')}`,
+      name: `Medi Spero ${product.name} - ${product.strength}`,
+      slug: `premium-${product.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
       category: "cbd-skincare",
       subcategory: "face-care",
-      price: Math.round(basePrice * 100) / 100,
-      originalPrice: Math.round(basePrice * 1.25 * 100) / 100,
-      rating: 4.6 + Math.random() * 0.4,
-      reviewCount: Math.floor(Math.random() * 250) + 40,
-      description: `Reveal your most radiant skin with our luxurious CBD ${product.name}. Infused with ${product.strength} of premium CBD and powerful botanical extracts, this formula targets fine lines, uneven skin tone, and dryness. Dermatologist tested and suitable for all skin types.`,
-      shortDescription: `Luxurious CBD ${product.name} with ${product.strength} for radiant skin`,
+      price: product.price,
+      originalPrice: Math.round(product.price * 1.25),
+      rating: 4.7 + Math.random() * 0.3,
+      reviewCount: Math.floor(Math.random() * 200) + 60,
+      description: `Transform your skincare routine with our ${product.name}. This luxurious formula combines ${product.strength} of premium CBD with advanced botanical extracts for visible, lasting results. Dermatologist tested and suitable for all skin types.`,
+      shortDescription: `Luxury ${product.name} with ${product.strength} for radiant, youthful skin`,
       images: getProductImages("cbd-skincare", productId),
-      sku: `MS-SKN-${product.name.substring(0,3).toUpperCase()}-${productId}`,
+      sku: `MS-SKN-${productId.toString().padStart(4, '0')}`,
       gtin: `0850${String(productId).padStart(9, '0')}`,
       brand: "Medi Spero",
       inStock: true,
-      stockQuantity: Math.floor(Math.random() * 60) + 15,
+      stockQuantity: Math.floor(Math.random() * 35) + 10,
       strength: product.strength,
-      size: product.size,
-      ingredients: ["Hemp Extract", "Hyaluronic Acid", "Vitamin E", "Jojoba Oil", "Aloe Vera", "Green Tea Extract"],
-      benefits: ["Reduces Fine Lines", "Deep Hydration", "Evens Skin Tone", "Antioxidant Protection"],
-      usage: "Apply to clean skin morning and/or night. Gently massage until absorbed.",
+      size: "2 oz",
+      ingredients: ["Hemp Extract", "Hyaluronic Acid", "Vitamin E", "Jojoba Oil", "Retinol", "Vitamin C", "Aloe Vera"],
+      benefits: ["Reduces Fine Lines", "Deep Hydration", "Brightens Skin", "Anti-Aging"],
+      usage: "Apply to clean skin morning and/or night. Gently massage until absorbed. Use sunscreen during the day.",
       thirdPartyTested: true,
       organic: true,
       glutenFree: true,
       vegan: true,
       madeInUSA: true,
-      tags: ["cbd skincare", "anti-aging", "face care", "luxury"]
+      tags: ["cbd skincare", "luxury", "anti-aging", "premium", "face-care"]
     });
     productId++;
   });
-  
-  // Value Bundles
+
+  // VALUE BUNDLES ($450-$950)
   const bundles = [
-    { name: "Starter Wellness Bundle", items: "500mg Oil + 25mg Gummies (30ct)", price: 79.99 },
-    { name: "Complete Relaxation Bundle", items: "1000mg Oil + Sleep Gummies + Bath Bombs", price: 129.99 },
-    { name: "Pain Relief Bundle", items: "1500mg Oil + 1000mg Cream + Capsules", price: 159.99 },
-    { name: "Sleep Essentials Bundle", items: "CBN Sleep Oil + Nighttime Gummies + Lavender Spray", price: 119.99 },
-    { name: "Pet Parent Bundle", items: "Dog Oil + Cat Oil + Pet Treats", price: 89.99 },
-    { name: "Skincare Essentials Bundle", items: "Face Serum + Eye Cream + Lip Balm", price: 99.99 },
-    { name: "Ultimate Wellness Bundle", items: "3000mg Oil + Gummies + Capsules + Cream", price: 249.99 },
-    { name: "Daily Calm Bundle", items: "Calm Gummies + Stress Relief Capsules + Roll-On", price: 109.99 },
+    { name: "Complete Wellness System", items: "10000mg Oil + 100mg Gummies (60ct) + 5000mg Cream", price: 749 },
+    { name: "Ultimate Sleep & Relaxation Kit", items: "Sleep Tincture + CBN Gummies + Bath Bombs + Spray", price: 649 },
+    { name: "Professional Pain Relief Bundle", items: "15000mg Oil + Medical Cream + Recovery Capsules", price: 849 },
+    { name: "Anxiety & Mood Support System", items: "Delta-8 Tincture + Calm Gummies + Stress Capsules", price: 699 },
+    { name: "Premium Pet Parent Collection", items: "Dog Oil (3000mg) + Cat Oil + Treats + Joint Support", price: 549 },
+    { name: "Luxury Skincare Complete Set", items: "Serum + Eye Cream + Night Cream + Body Butter", price: 799 },
+    { name: "Ultimate Wellness Bundle", items: "Full Product Range - 10+ Premium Items", price: 949 },
+    { name: "Pharmaceutical Grade Starter", items: "Pharma Capsules + Tincture + Topical", price: 899 },
   ];
-  
-  bundles.forEach(bundle => {
+
+  bundles.forEach((bundle) => {
     products.push({
       id: `bundle-${productId}`,
       name: `Medi Spero ${bundle.name}`,
-      slug: `${bundle.name.toLowerCase().replace(/ /g, '-')}`,
+      slug: `premium-${bundle.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
       category: "bundles",
       subcategory: "value-bundles",
       price: bundle.price,
-      originalPrice: Math.round(bundle.price * 1.35 * 100) / 100,
+      originalPrice: Math.round(bundle.price * 1.4),
       rating: 4.9,
-      reviewCount: Math.floor(Math.random() * 200) + 100,
-      description: `Save big with our ${bundle.name}! This carefully curated collection includes: ${bundle.items}. Perfect for those looking to experience multiple Medi Spero products at a discounted price. All products are third-party tested and made in the USA.`,
-      shortDescription: `Value bundle: ${bundle.items}`,
+      reviewCount: Math.floor(Math.random() * 150) + 100,
+      description: `Our most comprehensive wellness package. The ${bundle.name} includes: ${bundle.items}. Save over 30% compared to individual purchases. Perfect for serious wellness enthusiasts or as an extraordinary gift.`,
+      shortDescription: `Premium bundle: ${bundle.items}`,
       images: getProductImages("bundles", productId),
-      sku: `MS-BND-${productId}`,
+      sku: `MS-BND-${productId.toString().padStart(4, '0')}`,
       gtin: `0850${String(productId).padStart(9, '0')}`,
       brand: "Medi Spero",
       inStock: true,
-      stockQuantity: Math.floor(Math.random() * 30) + 10,
+      stockQuantity: Math.floor(Math.random() * 20) + 5,
       strength: "Varies",
-      size: "Bundle",
+      size: "Complete Bundle",
       ingredients: ["See individual products"],
-      benefits: ["Save 25-35%", "Try Multiple Products", "Complete Wellness Solution", "Free Shipping"],
-      usage: "See individual product instructions.",
+      benefits: ["Save 30-40%", "Complete Solution", "Premium Quality", "Free Priority Shipping"],
+      usage: "See individual product instructions for each item in the bundle.",
       thirdPartyTested: true,
       organic: true,
       glutenFree: true,
       vegan: true,
       madeInUSA: true,
-      tags: ["bundle", "value", "savings", "gift"]
+      tags: ["bundle", "premium", "value", "gift", "complete-system"]
     });
     productId++;
-  });
-
-  // Anti-Anxiety & Calm Products (Delta-8 THC focused)
-  const anxietyProducts = [
-    { name: "Delta-8 Calm Gummies", type: "gummies", strengths: ["10mg", "25mg", "50mg"], counts: ["30 count", "60 count"] },
-    { name: "Delta-8 Anxiety Relief Vape", type: "vape", strengths: ["500mg", "1000mg", "1500mg"] },
-    { name: "CBD + Delta-8 Calm Tincture", type: "tincture", strengths: ["500mg + 250mg", "1000mg + 500mg", "1500mg + 750mg"] },
-    { name: "Delta-8 Stress Relief Softgels", type: "softgels", strengths: ["10mg", "25mg", "50mg"], counts: ["30 count", "60 count", "90 count"] },
-    { name: "CBD Calm Tea Blend", type: "tea", strengths: ["150mg per bag", "300mg per bag"] },
-    { name: "Delta-8 Anti-Anxiety Spray", type: "spray", strengths: ["250mg", "500mg", "750mg"] },
-  ];
-  
-  anxietyProducts.forEach(product => {
-    const strengths = product.strengths;
-    const counts = product.counts || ["1 unit"];
-    
-    strengths.forEach(strength => {
-      counts.forEach(count => {
-        const basePrice = product.type === "vape" ? 39.99 : 
-                         product.type === "gummies" ? 34.99 :
-                         product.type === "tincture" ? 49.99 :
-                         product.type === "softgels" ? 44.99 :
-                         product.type === "tea" ? 24.99 : 29.99;
-        const priceMultiplier = strength.includes("1500") || strength.includes("50mg") ? 1.8 : 
-                               strength.includes("1000") || strength.includes("25mg") ? 1.4 : 1;
-        const countMultiplier = count.includes("90") ? 1.6 : count.includes("60") ? 1.3 : 1;
-        const price = basePrice * priceMultiplier * countMultiplier;
-        
-        products.push({
-          id: `anxiety-${productId}`,
-          name: `Medi Spero ${product.name} - ${strength}${count !== "1 unit" ? ` (${count})` : ""}`,
-          slug: `${product.name.toLowerCase().replace(/ /g, '-')}-${strength.toLowerCase().replace(/ /g, '-')}${count !== "1 unit" ? `-${count.replace(' ', '-')}` : ""}`,
-          category: "anti-anxiety",
-          subcategory: product.type,
-          price: Math.round(price * 100) / 100,
-          originalPrice: Math.round(price * 1.25 * 100) / 100,
-          rating: 4.6 + Math.random() * 0.4,
-          reviewCount: Math.floor(Math.random() * 450) + 80,
-          description: `Experience natural anxiety relief with our ${product.name}. Formulated with premium Delta-8 THC and CBD, this ${product.type} is designed to help you find calm in stressful moments without the intense effects of traditional THC. Farm Bill compliant with less than 0.3% Delta-9 THC. Third-party tested for purity and potency.`,
-          shortDescription: `Premium ${product.name} with ${strength} for natural anxiety relief`,
-          images: getProductImages("anti-anxiety", productId),
-          sku: `MS-ANX-${product.type.substring(0,3).toUpperCase()}-${productId}`,
-          gtin: `0850${String(productId).padStart(9, '0')}`,
-          brand: "Medi Spero",
-          inStock: true,
-          stockQuantity: Math.floor(Math.random() * 70) + 20,
-          strength: strength,
-          size: count !== "1 unit" ? count : product.type === "vape" ? "1ml cartridge" : product.type === "tincture" ? "30ml" : product.type === "spray" ? "30ml" : "1 oz",
-          servings: count.includes("count") ? parseInt(count) : 30,
-          ingredients: product.type === "gummies" ? ["Delta-8 THC Distillate", "CBD Isolate", "Organic Cane Sugar", "Natural Flavors", "L-Theanine", "Ashwagandha"] :
-                      product.type === "tincture" ? ["Delta-8 THC Distillate", "Full Spectrum CBD", "MCT Oil", "Natural Lavender Extract"] :
-                      product.type === "tea" ? ["CBD Hemp Flower", "Chamomile", "Passionflower", "Lavender", "Lemon Balm", "Valerian Root"] :
-                      ["Delta-8 THC Extract", "CBD Isolate", "Natural Terpenes", "MCT Oil"],
-          benefits: ["Reduces Anxiety Naturally", "Promotes Calm & Relaxation", "Non-Intoxicating Effects", "Fast-Acting Relief", "No Prescription Required"],
-          usage: product.type === "gummies" ? "Take 1 gummy as needed for anxiety relief. Start low and go slow." :
-                product.type === "vape" ? "Inhale 1-3 puffs as needed. Effects felt within minutes." :
-                product.type === "tea" ? "Steep 1 tea bag in hot water for 5-7 minutes. Enjoy 1-2 cups daily." :
-                "Use as directed. Start with lowest dose and adjust as needed.",
-          thirdPartyTested: true,
-          organic: product.type === "tea",
-          glutenFree: true,
-          vegan: true,
-          madeInUSA: true,
-          tags: ["delta-8", "anti-anxiety", "calm", "stress relief", "thc", product.type]
-        });
-        productId++;
-      });
-    });
-  });
-
-  // Mood & Depression Support Products (Delta-9 THC focused)
-  const moodProducts = [
-    { name: "Delta-9 Mood Uplift Gummies", type: "gummies", strengths: ["5mg", "10mg", "25mg"], counts: ["20 count", "40 count", "60 count"] },
-    { name: "Delta-9 Mood Tincture", type: "tincture", strengths: ["150mg", "300mg", "600mg"] },
-    { name: "CBD + Delta-9 Bliss Chocolates", type: "chocolate", strengths: ["5mg D9 + 10mg CBD", "10mg D9 + 20mg CBD"], counts: ["10 pack", "20 pack"] },
-    { name: "Delta-10 Energy & Mood Vape", type: "vape", strengths: ["500mg", "1000mg"] },
-    { name: "Full Spectrum Mood Softgels", type: "softgels", strengths: ["25mg", "50mg", "100mg"], counts: ["30 count", "60 count"] },
-    { name: "Delta-9 Mood Support Spray", type: "spray", strengths: ["100mg", "200mg", "400mg"] },
-  ];
-  
-  moodProducts.forEach(product => {
-    const strengths = product.strengths;
-    const counts = product.counts || ["1 unit"];
-    
-    strengths.forEach(strength => {
-      counts.forEach(count => {
-        const basePrice = product.type === "chocolate" ? 29.99 : 
-                         product.type === "gummies" ? 39.99 :
-                         product.type === "tincture" ? 54.99 :
-                         product.type === "vape" ? 44.99 :
-                         product.type === "softgels" ? 49.99 : 34.99;
-        const priceMultiplier = strength.includes("600") || strength.includes("100mg") || strength.includes("25mg D9") ? 1.9 : 
-                               strength.includes("300") || strength.includes("50mg") || strength.includes("10mg D9") ? 1.5 : 1;
-        const countMultiplier = count.includes("60") || count.includes("20 pack") ? 1.5 : count.includes("40") ? 1.25 : 1;
-        const price = basePrice * priceMultiplier * countMultiplier;
-        
-        products.push({
-          id: `mood-${productId}`,
-          name: `Medi Spero ${product.name} - ${strength}${count !== "1 unit" ? ` (${count})` : ""}`,
-          slug: `${product.name.toLowerCase().replace(/ /g, '-')}-${strength.toLowerCase().replace(/ /g, '-').replace('+', '-plus-')}${count !== "1 unit" ? `-${count.replace(' ', '-')}` : ""}`,
-          category: "mood-support",
-          subcategory: product.type,
-          price: Math.round(price * 100) / 100,
-          originalPrice: Math.round(price * 1.3 * 100) / 100,
-          rating: 4.7 + Math.random() * 0.3,
-          reviewCount: Math.floor(Math.random() * 500) + 100,
-          description: `Support a positive mood naturally with our ${product.name}. This Farm Bill compliant formula contains hemp-derived Delta-9 THC (under 0.3% by dry weight) combined with synergistic cannabinoids for a balanced, uplifting experience. Perfect for those seeking natural mood support without a prescription. Lab-tested for safety and potency.`,
-          shortDescription: `Hemp-derived ${product.name} with ${strength} for natural mood elevation`,
-          images: getProductImages("mood-support", productId),
-          sku: `MS-MOD-${product.type.substring(0,3).toUpperCase()}-${productId}`,
-          gtin: `0850${String(productId).padStart(9, '0')}`,
-          brand: "Medi Spero",
-          inStock: true,
-          stockQuantity: Math.floor(Math.random() * 60) + 15,
-          strength: strength,
-          size: count !== "1 unit" ? count : product.type === "vape" ? "1ml cartridge" : product.type === "tincture" ? "30ml" : product.type === "spray" ? "30ml" : "1 unit",
-          servings: count.includes("count") || count.includes("pack") ? parseInt(count) : 30,
-          ingredients: product.type === "gummies" ? ["Hemp-Derived Delta-9 THC", "Full Spectrum CBD", "Vitamin D3", "B-Complex Vitamins", "Natural Fruit Flavors"] :
-                      product.type === "chocolate" ? ["Hemp-Derived Delta-9 THC", "CBD Isolate", "Premium Dark Chocolate", "Organic Cacao", "Natural Vanilla"] :
-                      product.type === "tincture" ? ["Hemp-Derived Delta-9 THC", "Full Spectrum Hemp Extract", "MCT Oil", "Natural Citrus Extract"] :
-                      ["Delta-9 THC Extract", "CBD", "CBG", "Natural Terpenes", "MCT Oil"],
-          benefits: ["Elevates Mood Naturally", "Promotes Positive Outlook", "Reduces Low Mood", "Supports Emotional Balance", "Farm Bill Compliant"],
-          usage: product.type === "gummies" || product.type === "chocolate" ? "Take 1 serving as needed. Effects typically felt within 30-60 minutes. Start low and go slow." :
-                product.type === "vape" ? "Inhale 1-2 puffs as needed. Effects felt within minutes. Do not exceed 10 puffs daily." :
-                "Use as directed on packaging. Start with smallest dose and adjust based on your response.",
-          thirdPartyTested: true,
-          organic: product.type === "chocolate",
-          glutenFree: true,
-          vegan: product.type !== "chocolate",
-          madeInUSA: true,
-          tags: ["delta-9", "mood support", "depression", "emotional wellness", "hemp-derived", product.type]
-        });
-        productId++;
-      });
-    });
   });
 
   return products;
@@ -716,30 +783,19 @@ const generateProducts = (): Product[] => {
 
 export const products = generateProducts();
 
-// Helper functions
-export const getProductsByCategory = (categorySlug: string): Product[] => {
-  return products.filter(p => p.category === categorySlug);
-};
-
 export const getProductBySlug = (slug: string): Product | undefined => {
   return products.find(p => p.slug === slug);
 };
 
-export const getFeaturedProducts = (count: number = 8): Product[] => {
-  return products
-    .filter(p => p.rating >= 4.7)
-    .sort((a, b) => b.reviewCount - a.reviewCount)
-    .slice(0, count);
+export const getProductsByCategory = (category: string): Product[] => {
+  return products.filter(p => p.category === category);
 };
 
-export const getBestSellers = (count: number = 8): Product[] => {
-  return products
-    .sort((a, b) => b.reviewCount - a.reviewCount)
-    .slice(0, count);
-};
-
-export const getNewArrivals = (count: number = 8): Product[] => {
-  return products.slice(-count).reverse();
+export const getFeaturedProducts = (limit: number = 8): Product[] => {
+  // Return products with highest ratings
+  return [...products]
+    .sort((a, b) => b.rating - a.rating)
+    .slice(0, limit);
 };
 
 export const searchProducts = (query: string): Product[] => {
@@ -747,8 +803,6 @@ export const searchProducts = (query: string): Product[] => {
   return products.filter(p => 
     p.name.toLowerCase().includes(lowerQuery) ||
     p.description.toLowerCase().includes(lowerQuery) ||
-    p.tags.some(tag => tag.includes(lowerQuery))
+    p.tags.some(tag => tag.toLowerCase().includes(lowerQuery))
   );
 };
-
-console.log(`Total products generated: ${products.length}`);
