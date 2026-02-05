@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import logoImage from "@/assets/logo.png";
 
 const Footer = () => {
   return (
@@ -33,13 +34,15 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Company Info */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                <span className="text-white font-bold text-lg">M</span>
-              </div>
+            <div className="flex items-center gap-3 mb-4">
+              <img 
+                src={logoImage} 
+                alt="Medi Spero" 
+                className="w-12 h-12 object-contain"
+              />
               <div>
-                <h4 className="font-bold">Medi Spero</h4>
-                <p className="text-xs text-white/60">Premium CBD Wellness</p>
+                <h4 className="font-bold text-lg">Medi Spero</h4>
+                <p className="text-xs text-white/60">Premium Wellness</p>
               </div>
             </div>
             <p className="text-white/70 text-sm mb-4">
