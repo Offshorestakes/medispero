@@ -122,11 +122,29 @@ const FAQPage = () => {
     }
   ];
 
+  // Generate FAQ Schema structured data for Google rich snippets
+  const allFaqs = faqCategories.flatMap(category => category.faqs);
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": allFaqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>FAQ | CBD & Hemp Product Questions | Medi Spero</title>
         <meta name="description" content="Find answers to common questions about CBD, THC products, dosing, shipping, returns, and more. Expert guidance from Medi Spero's wellness team." />
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
       </Helmet>
       <Header />
       
