@@ -7,6 +7,7 @@ import { getProductBySlug, getFeaturedProducts } from "@/data/products";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import ProductCard from "@/components/ProductCard";
+import { useCart } from "@/contexts/CartContext";
 import {
   ChevronRight,
   Star,
@@ -27,8 +28,22 @@ const ProductPage = () => {
   const product = slug ? getProductBySlug(slug) : undefined;
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
+  const { addItem, setIsOpen } = useCart();
 
   const relatedProducts = getFeaturedProducts(4);
+
+  const handleAddToCart = async () => {
+    if (!product) return;
+    await addItem({
+      product_id: product.id,
+      product_name: product.name,
+      product_image: product.images[0],
+      price: product.price,
+      quantity: quantity,
+    });
+    setQuantity(1);
+    setIsOpen(true);
+  };
 
   if (!product) {
     return (
@@ -284,7 +299,10 @@ const ProductPage = () => {
                       <Plus className="h-5 w-5" />
                     </button>
                   </div>
-                  <Button className="flex-1 btn-secondary text-lg py-6 gap-2">
+                  <Button 
+                    className="flex-1 btn-secondary text-lg py-6 gap-2"
+                    onClick={handleAddToCart}
+                  >
                     <ShoppingCart className="h-5 w-5" />
                     Add to Cart - ${(product.price * quantity).toFixed(2)}
                   </Button>

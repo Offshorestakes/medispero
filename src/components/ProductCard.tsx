@@ -3,6 +3,7 @@ import { Star, ShoppingCart, Plus, Minus } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useCart } from "@/contexts/CartContext";
 import type { Product } from "@/data/products";
 
 interface ProductCardProps {
@@ -12,6 +13,7 @@ interface ProductCardProps {
 const ProductCard = ({ product }: ProductCardProps) => {
   const [quantity, setQuantity] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
+  const { addItem, setIsOpen } = useCart();
 
   const discount = product.originalPrice 
     ? Math.round((1 - product.price / product.originalPrice) * 100) 
@@ -28,6 +30,31 @@ const ProductCard = ({ product }: ProductCardProps) => {
         }`}
       />
     ));
+  };
+
+  const handleAddToCart = async (e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
+    await addItem({
+      product_id: product.id,
+      product_name: product.name,
+      product_image: product.images[0],
+      price: product.price,
+      quantity: quantity,
+    });
+    setQuantity(1);
+    setIsOpen(true);
+  };
+
+  const handleQuickAdd = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    await addItem({
+      product_id: product.id,
+      product_name: product.name,
+      product_image: product.images[0],
+      price: product.price,
+      quantity: 1,
+    });
+    setIsOpen(true);
   };
 
   return (
@@ -69,10 +96,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <div className={`absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
           <Button 
             className="btn-secondary gap-2"
-            onClick={(e) => {
-              e.preventDefault();
-              // Add to cart logic
-            }}
+            onClick={handleQuickAdd}
           >
             <ShoppingCart className="h-4 w-4" />
             Quick Add
@@ -133,7 +157,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
               <Plus className="h-4 w-4" />
             </button>
           </div>
-          <Button className="flex-1 btn-primary gap-2">
+          <Button className="flex-1 btn-primary gap-2" onClick={handleAddToCart}>
             <ShoppingCart className="h-4 w-4" />
             Add
           </Button>
