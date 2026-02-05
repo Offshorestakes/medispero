@@ -1,8 +1,17 @@
 // Medi Spero - Premium Pharmaceutical CBD/Hemp Product Catalog
 // Legal, Farm Bill compliant products only - Premium Pricing ($150-$950)
 
-// Import product images
-import cbdOilImage from "@/assets/products/cbd-oil-tincture.jpg";
+// Import product images - CBD Oils (SEO-optimized authentic product images)
+import cbdOilPharmaGrade from "@/assets/products/cbd-oil-pharmaceutical-grade-1000ml.jpg";
+import cbdOilFullSpectrum from "@/assets/products/cbd-oil-full-spectrum-extract.jpg";
+import cbdOilHempTincture from "@/assets/products/cbd-oil-hemp-tincture-premium.jpg";
+import cbdOilGoldenExtract from "@/assets/products/cbd-oil-golden-extract.jpg";
+import cbdOilLabCollection from "@/assets/products/cbd-oil-lab-grade-collection.jpg";
+import cbdOilScientific from "@/assets/products/cbd-oil-scientific-laboratory.jpg";
+import cbdOilPureConcentrate from "@/assets/products/cbd-oil-pure-concentrate.jpg";
+import cbdOilTherapeutic from "@/assets/products/cbd-oil-therapeutic-grade.jpg";
+import cbdOilHighPotency from "@/assets/products/cbd-oil-high-potency-extract.jpg";
+// Legacy product images (for other categories)
 import cbdGummiesImage from "@/assets/products/cbd-gummies.jpg";
 import cbdTopicalImage from "@/assets/products/cbd-topical-cream.jpg";
 import thcVapeImage from "@/assets/products/thc-vape-cartridge.jpg";
@@ -30,14 +39,14 @@ import pharmaCapsules3Image from "@/assets/products/pharma-capsules-3.jpg";
 
 // Image pools for each category to provide variety
 const imagePoolsByCategory: Record<string, string[]> = {
-  "cbd-oils": [cbdOilImage, cbdSleepImage, cbdMassageOilImage, delta9MoodTinctureImage],
+  "cbd-oils": [cbdOilPharmaGrade, cbdOilFullSpectrum, cbdOilHempTincture, cbdOilGoldenExtract, cbdOilLabCollection, cbdOilScientific, cbdOilPureConcentrate, cbdOilTherapeutic, cbdOilHighPotency],
   "cbd-gummies": [cbdGummiesImage, thcGummiesImage, delta8CalmGummiesImage],
   "cbd-topicals": [cbdTopicalImage, cbdRollOnImage, cbdMassageOilImage],
   "cbd-capsules": [cbdCapsulesImage, cbdMoodSoftgelsImage],
   "sleep-wellness": [cbdSleepImage, cbdBathBombsImage, cbdCalmTeaImage, delta8CalmGummiesImage],
   "pet-cbd": [cbdPetTreatsImage],
   "cbd-skincare": [cbdBathBombsImage, cbdTopicalImage, cbdMassageOilImage],
-  "bundles": [cbdOilImage, cbdGummiesImage, cbdTopicalImage, cbdCapsulesImage, cbdSleepImage],
+  "bundles": [cbdOilPharmaGrade, cbdGummiesImage, cbdTopicalImage, cbdCapsulesImage, cbdSleepImage],
   "thc": [thcVapeImage, thcGummiesImage, hhcFlowerImage, thcHempFlowerImage, delta10ChocolateImage],
   "anti-anxiety": [delta8CalmGummiesImage, cbdCalmTeaImage, delta8AnxietyVapeImage, cbdStressSprayImage, cbdMoodSoftgelsImage],
   "mood-support": [delta9MoodTinctureImage, cbdMoodSoftgelsImage, delta10ChocolateImage, delta8CalmGummiesImage, cbdStressSprayImage],
@@ -47,7 +56,7 @@ const imagePoolsByCategory: Record<string, string[]> = {
 
 // Helper function to get images based on category with rotation for variety
 const getProductImages = (category: string, productIndex: number): string[] => {
-  const pool = imagePoolsByCategory[category] || [cbdOilImage, cbdGummiesImage, cbdTopicalImage];
+  const pool = imagePoolsByCategory[category] || [cbdOilPharmaGrade, cbdGummiesImage, cbdTopicalImage];
   const primaryIndex = productIndex % pool.length;
   const primaryImage = pool[primaryIndex];
   const gallery = [primaryImage];
@@ -60,19 +69,19 @@ const getProductImages = (category: string, productIndex: number): string[] => {
 // Category images mapping
 const getCategoryImage = (categoryId: string): string => {
   switch (categoryId) {
-    case "cbd-oils": return cbdOilImage;
+    case "cbd-oils": return cbdOilPharmaGrade;
     case "cbd-gummies": return cbdGummiesImage;
     case "cbd-topicals": return cbdTopicalImage;
     case "cbd-capsules": return cbdCapsulesImage;
     case "sleep-wellness": return cbdSleepImage;
     case "pet-cbd": return cbdPetTreatsImage;
     case "cbd-skincare": return cbdBathBombsImage;
-    case "bundles": return cbdOilImage;
+    case "bundles": return cbdOilFullSpectrum;
     case "anti-anxiety": return delta8CalmGummiesImage;
     case "mood-support": return delta9MoodTinctureImage;
     case "pharma-capsules": return pharmaCapsules1Image;
     case "adhd-focus": return cbdMoodSoftgelsImage;
-    default: return cbdOilImage;
+    default: return cbdOilPharmaGrade;
   }
 };
 
