@@ -1,23 +1,83 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
 import { ArrowRight, Play, Shield, Truck, Award, Leaf } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroVideo from "@/assets/hero-video.mp4";
 
 const HeroSection = () => {
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    
+    // Check if on mobile (viewport width < 768px)
+    const isMobile = window.innerWidth < 768;
+    
+    // On mobile, delay video loading; on desktop, load immediately
+    if (prefersReducedMotion) {
+      // Don't load video if user prefers reduced motion
+      setShouldLoadVideo(false);
+    } else if (isMobile) {
+      // Delay video loading on mobile for faster LCP
+      const timer = setTimeout(() => {
+        setShouldLoadVideo(true);
+      }, 2000);
+      return () => clearTimeout(timer);
+    } else {
+      // Load immediately on desktop
+      setShouldLoadVideo(true);
+    }
+  }, []);
+
+  // Pause video when not in viewport for performance
+  useEffect(() => {
+    if (!videoRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          videoRef.current?.play();
+        } else {
+          videoRef.current?.pause();
+        }
+      },
+      { threshold: 0.25 }
+    );
+
+    observer.observe(videoRef.current);
+    return () => observer.disconnect();
+  }, [shouldLoadVideo]);
+
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-      {/* Video Background */}
+      {/* Video Background with Poster Fallback */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/95 via-brand-navy/80 to-brand-navy/60 z-10" />
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover"
-        >
-          <source src={heroVideo} type="video/mp4" />
-        </video>
+        
+        {/* Static gradient fallback (shown before video loads) */}
+        <div 
+          className={`absolute inset-0 bg-gradient-to-br from-brand-navy via-primary/80 to-secondary/40 transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-0' : 'opacity-100'}`}
+          aria-hidden="true"
+        />
+        
+        {/* Video (conditionally rendered for performance) */}
+        {shouldLoadVideo && (
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            onLoadedData={() => setIsVideoLoaded(true)}
+            className={`w-full h-full object-cover transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
+          >
+            <source src={heroVideo} type="video/mp4" />
+          </video>
+        )}
       </div>
 
       {/* Content */}

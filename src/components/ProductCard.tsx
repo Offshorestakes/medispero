@@ -8,11 +8,13 @@ import type { Product } from "@/data/products";
 
 interface ProductCardProps {
   product: Product;
+  priority?: boolean;
 }
 
-const ProductCard = ({ product }: ProductCardProps) => {
+const ProductCard = ({ product, priority = false }: ProductCardProps) => {
   const [quantity, setQuantity] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const { addItem, setIsOpen } = useCart();
 
   const discount = product.originalPrice 
@@ -65,10 +67,18 @@ const ProductCard = ({ product }: ProductCardProps) => {
     >
       {/* Image Container */}
       <Link to={`/product/${product.slug}`} className="block relative aspect-square bg-muted overflow-hidden">
+        {/* Placeholder skeleton */}
+        {!imageLoaded && (
+          <div className="absolute inset-0 bg-gradient-to-br from-muted to-muted-foreground/10 animate-pulse" />
+        )}
+        
         <img
           src={product.images[0]}
           alt={product.name}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          loading={priority ? "eager" : "lazy"}
+          decoding="async"
+          onLoad={() => setImageLoaded(true)}
+          className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-110 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
         />
         
         {/* Brand Overlay */}

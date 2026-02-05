@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Clock, User } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
 const blogPosts = [
@@ -36,6 +37,12 @@ const blogPosts = [
 ];
 
 const BlogSection = () => {
+  const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({});
+
+  const handleImageLoad = (id: number) => {
+    setLoadedImages(prev => ({ ...prev, [id]: true }));
+  };
+
   return (
     <section className="section-padding bg-muted/30">
       <div className="container-wide">
@@ -69,11 +76,18 @@ const BlogSection = () => {
               className="bg-card border border-border rounded-2xl overflow-hidden group card-hover"
             >
               {/* Image */}
-              <div className="aspect-video bg-muted overflow-hidden">
+              <div className="aspect-video bg-muted overflow-hidden relative">
+                {/* Placeholder skeleton */}
+                {!loadedImages[post.id] && (
+                  <div className="absolute inset-0 bg-gradient-to-br from-muted to-muted-foreground/10 animate-pulse" />
+                )}
                 <img
                   src={post.image}
                   alt={post.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                  decoding="async"
+                  onLoad={() => handleImageLoad(post.id)}
+                  className={`w-full h-full object-cover group-hover:scale-105 transition-all duration-500 ${loadedImages[post.id] ? 'opacity-100' : 'opacity-0'}`}
                 />
               </div>
 
