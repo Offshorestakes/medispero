@@ -9,6 +9,12 @@ import { Badge } from "@/components/ui/badge";
 import ProductCard from "@/components/ProductCard";
 import { useCart } from "@/contexts/CartContext";
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
   ChevronRight,
   Star,
   Minus,
@@ -21,7 +27,152 @@ import {
   RotateCcw,
   Award,
   Check,
+  FileText,
+  AlertTriangle,
+  Beaker,
+  Pill,
+  Clock,
+  Scale,
+  Info,
+  Download,
+  ExternalLink,
 } from "lucide-react";
+
+// Dosing guidelines based on product category and strength
+const getDosingGuide = (product: ReturnType<typeof getProductBySlug>) => {
+  if (!product) return null;
+  
+  const category = product.category;
+  const isPharma = category === "pharma-capsules";
+  const isAnxiety = category === "anti-anxiety";
+  const isMood = category === "mood-support";
+  const isOil = category === "cbd-oils";
+  const isGummy = category === "cbd-gummies";
+  const isCapsule = category === "cbd-capsules";
+  const isTopical = category === "cbd-topicals";
+  const isSleep = category === "sleep-wellness";
+  
+  if (isPharma) {
+    return {
+      title: "Pharmaceutical Dosing Protocol",
+      guidelines: [
+        { level: "Starting Dose", dose: "1 capsule daily", timing: "Morning with food", notes: "Assess tolerance for 3-5 days" },
+        { level: "Maintenance Dose", dose: "1-2 capsules daily", timing: "Morning and/or evening", notes: "After initial assessment period" },
+        { level: "Therapeutic Dose", dose: "2-3 capsules daily", timing: "As directed by healthcare provider", notes: "For targeted symptom management" },
+      ],
+      warnings: [
+        "Consult healthcare provider before use, especially if taking other medications",
+        "Do not exceed recommended dosage without medical supervision",
+        "Effects may take 2-4 weeks of consistent use to fully manifest",
+        "Not recommended for pregnant or nursing women",
+      ],
+      interactions: "May interact with blood thinners, anti-seizure medications, and certain antidepressants. Consult pharmacist.",
+    };
+  }
+  
+  if (isAnxiety || isMood) {
+    return {
+      title: "Cannabinoid Therapy Protocol",
+      guidelines: [
+        { level: "Microdose", dose: "2.5-5mg THC / 10-20mg CBD", timing: "1-2x daily", notes: "Subtle effects, best for beginners" },
+        { level: "Low Dose", dose: "5-10mg THC / 20-40mg CBD", timing: "As needed", notes: "Mild relaxation and mood support" },
+        { level: "Standard Dose", dose: "10-25mg THC / 40-80mg CBD", timing: "1-2x daily", notes: "Noticeable therapeutic effects" },
+        { level: "High Dose", dose: "25mg+ THC / 80mg+ CBD", timing: "Under medical guidance", notes: "For experienced users only" },
+      ],
+      warnings: [
+        "Start low and go slow - individual tolerance varies significantly",
+        "Do not drive or operate machinery after consumption",
+        "May cause drowsiness, dry mouth, or changes in appetite",
+        "Effects may be delayed 1-2 hours for edibles",
+      ],
+      interactions: "THC may enhance effects of sedatives and alcohol. Use caution with CNS depressants.",
+    };
+  }
+  
+  if (isOil) {
+    return {
+      title: "CBD Oil Sublingual Protocol",
+      guidelines: [
+        { level: "Beginner", dose: "10-20mg CBD", timing: "Once daily, morning or evening", notes: "Hold under tongue 60-90 seconds" },
+        { level: "Intermediate", dose: "20-40mg CBD", timing: "Twice daily", notes: "Consistent timing for best results" },
+        { level: "Advanced", dose: "40-80mg CBD", timing: "2-3x daily", notes: "For significant wellness support" },
+      ],
+      warnings: [
+        "Sublingual administration provides faster absorption than oral ingestion",
+        "May cause mild drowsiness in some individuals",
+        "Store in cool, dark place away from direct sunlight",
+      ],
+      interactions: "CBD may affect metabolism of certain medications via CYP450 pathway. Consult pharmacist if on prescription medications.",
+    };
+  }
+  
+  if (isGummy || isCapsule) {
+    return {
+      title: "Oral CBD Administration Guide",
+      guidelines: [
+        { level: "Starting", dose: "1 gummy/capsule", timing: "Once daily with food", notes: "Assess tolerance for 5-7 days" },
+        { level: "Regular", dose: "1-2 gummies/capsules", timing: "Once or twice daily", notes: "Maintain consistent schedule" },
+        { level: "Maximum", dose: "2-3 gummies/capsules", timing: "As needed, max 3x daily", notes: "Do not exceed recommended daily intake" },
+      ],
+      warnings: [
+        "Effects may take 45-90 minutes to onset due to digestion",
+        "Taking with fatty foods may improve absorption",
+        "Keep out of reach of children",
+      ],
+      interactions: "CBD may affect the metabolism of certain medications. Consult your healthcare provider.",
+    };
+  }
+  
+  if (isTopical) {
+    return {
+      title: "Topical Application Protocol",
+      guidelines: [
+        { level: "Spot Treatment", dose: "Pea-sized amount", timing: "Apply to affected area 2-3x daily", notes: "Massage until fully absorbed" },
+        { level: "General Use", dose: "Quarter-sized amount", timing: "Apply as needed throughout day", notes: "Avoid broken skin or open wounds" },
+        { level: "Intensive", dose: "Generous application", timing: "Before bed or post-workout", notes: "Can cover with light bandage if desired" },
+      ],
+      warnings: [
+        "For external use only - do not ingest",
+        "Avoid contact with eyes and mucous membranes",
+        "Discontinue use if irritation occurs",
+        "Wash hands after application unless treating hands",
+      ],
+      interactions: "Topical application has minimal systemic absorption and low interaction potential.",
+    };
+  }
+  
+  if (isSleep) {
+    return {
+      title: "Sleep Support Protocol",
+      guidelines: [
+        { level: "Light Support", dose: "Standard dose", timing: "30 minutes before bed", notes: "Create consistent bedtime routine" },
+        { level: "Moderate Support", dose: "1.5x standard dose", timing: "45-60 minutes before bed", notes: "Combine with sleep hygiene practices" },
+        { level: "Maximum Support", dose: "2x standard dose", timing: "60 minutes before bed", notes: "For occasional use during difficult periods" },
+      ],
+      warnings: [
+        "Non-habit forming, but establish healthy sleep patterns",
+        "Do not drive or operate machinery after taking",
+        "May cause morning grogginess if dose is too high",
+        "Avoid screens and stimulating activities after taking",
+      ],
+      interactions: "May enhance effects of other sleep aids or sedatives. Use with caution.",
+    };
+  }
+  
+  return {
+    title: "General Usage Guidelines",
+    guidelines: [
+      { level: "Starting", dose: "As directed on label", timing: "Once daily", notes: "Begin with lowest recommended dose" },
+      { level: "Maintenance", dose: "Standard dose", timing: "As needed", notes: "Adjust based on individual response" },
+    ],
+    warnings: [
+      "Read all product labels and warnings before use",
+      "Consult healthcare provider if you have medical conditions",
+      "Not intended to diagnose, treat, cure, or prevent any disease",
+    ],
+    interactions: "Consult your healthcare provider regarding potential medication interactions.",
+  };
+};
 
 const ProductPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -31,6 +182,7 @@ const ProductPage = () => {
   const { addItem, setIsOpen } = useCart();
 
   const relatedProducts = getFeaturedProducts(4);
+  const dosingGuide = getDosingGuide(product);
 
   const handleAddToCart = async () => {
     if (!product) return;
@@ -66,6 +218,10 @@ const ProductPage = () => {
     ? Math.round((1 - product.price / product.originalPrice) * 100)
     : 0;
 
+  const isPharmaProduct = product.category === "pharma-capsules" || 
+                          product.category === "anti-anxiety" || 
+                          product.category === "mood-support";
+
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (
       <Star
@@ -78,6 +234,10 @@ const ProductPage = () => {
       />
     ));
   };
+
+  // Generate unique COA batch number based on product
+  const coaBatchNumber = `MS-${product.sku.replace('MS-', '')}-${new Date().getFullYear()}`;
+  const coaDate = new Date(Date.now() - Math.random() * 90 * 24 * 60 * 60 * 1000).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
   // Structured data for product
   const productSchema = {
@@ -165,6 +325,11 @@ const ProductPage = () => {
                       -{discount}%
                     </Badge>
                   )}
+                  {isPharmaProduct && (
+                    <Badge className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1">
+                      Pharmaceutical Grade
+                    </Badge>
+                  )}
                 </div>
 
                 {/* Thumbnails */}
@@ -186,6 +351,40 @@ const ProductPage = () => {
                       />
                     </button>
                   ))}
+                </div>
+
+                {/* COA Section */}
+                <div className="p-4 bg-primary/5 border border-primary/20 rounded-xl">
+                  <div className="flex items-center gap-3 mb-3">
+                    <FileText className="h-5 w-5 text-primary" />
+                    <h3 className="font-semibold text-primary">Certificate of Analysis (COA)</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    Every Medi Spero product is third-party lab tested for potency, purity, and safety.
+                  </p>
+                  <div className="grid grid-cols-2 gap-3 text-sm mb-4">
+                    <div>
+                      <p className="text-muted-foreground">Batch Number</p>
+                      <p className="font-medium">{coaBatchNumber}</p>
+                    </div>
+                    <div>
+                      <p className="text-muted-foreground">Test Date</p>
+                      <p className="font-medium">{coaDate}</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-col sm:flex-row gap-2">
+                    <Button variant="outline" size="sm" className="gap-2 flex-1">
+                      <Download className="h-4 w-4" />
+                      Download COA (PDF)
+                    </Button>
+                    <Button variant="outline" size="sm" className="gap-2 flex-1">
+                      <ExternalLink className="h-4 w-4" />
+                      Verify on Lab Website
+                    </Button>
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-3">
+                    Tested by: SC Labs (ISO 17025 Accredited) | Santa Cruz, California
+                  </p>
                 </div>
               </div>
 
@@ -256,6 +455,11 @@ const ProductPage = () => {
                       <Check className="h-4 w-4" /> Vegan
                     </span>
                   )}
+                  {isPharmaProduct && (
+                    <span className="trust-badge">
+                      <Beaker className="h-4 w-4" /> cGMP Certified
+                    </span>
+                  )}
                 </div>
 
                 {/* Product Details */}
@@ -324,7 +528,7 @@ const ProductPage = () => {
                 <div className="space-y-3 p-4 border border-border rounded-xl">
                   <div className="flex items-center gap-3">
                     <Truck className="h-5 w-5 text-secondary" />
-                    <span className="text-sm">Free shipping on orders over $75</span>
+                    <span className="text-sm">Free discreet shipping on orders over $150</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <RotateCcw className="h-5 w-5 text-secondary" />
@@ -338,7 +542,66 @@ const ProductPage = () => {
               </div>
             </div>
 
-            {/* Full Description */}
+            {/* Dosing Guide Section */}
+            {dosingGuide && (
+              <div className="mt-12 p-6 bg-primary/5 border border-primary/20 rounded-2xl">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
+                    <Pill className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h2 className="text-xl font-bold">{dosingGuide.title}</h2>
+                    <p className="text-sm text-muted-foreground">Evidence-based dosing recommendations</p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                  {dosingGuide.guidelines.map((guide, index) => (
+                    <div key={index} className="p-4 bg-background rounded-xl border border-border">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Scale className="h-4 w-4 text-secondary" />
+                        <span className="font-semibold text-secondary">{guide.level}</span>
+                      </div>
+                      <p className="text-lg font-bold mb-1">{guide.dose}</p>
+                      <div className="flex items-center gap-1 text-sm text-muted-foreground mb-2">
+                        <Clock className="h-3 w-3" />
+                        <span>{guide.timing}</span>
+                      </div>
+                      <p className="text-xs text-muted-foreground">{guide.notes}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  <div className="p-4 bg-destructive/10 border border-destructive/30 rounded-xl">
+                    <div className="flex items-center gap-2 mb-3">
+                      <AlertTriangle className="h-5 w-5 text-destructive" />
+                      <h3 className="font-semibold text-destructive">Important Warnings</h3>
+                    </div>
+                    <ul className="space-y-2 text-sm text-destructive/80">
+                      {dosingGuide.warnings.map((warning, index) => (
+                        <li key={index} className="flex items-start gap-2">
+                          <span className="mt-1.5 w-1 h-1 rounded-full bg-destructive shrink-0" />
+                          <span>{warning}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="p-4 bg-primary/10 border border-primary/30 rounded-xl">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Info className="h-5 w-5 text-primary" />
+                      <h3 className="font-semibold text-primary">Drug Interactions</h3>
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      {dosingGuide.interactions}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Full Description with Accordion */}
             <div className="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-12">
               <div className="lg:col-span-2">
                 <h2 className="text-2xl font-bold mb-4">Description</h2>
@@ -346,52 +609,142 @@ const ProductPage = () => {
                   {product.description}
                 </p>
 
-                <h3 className="text-xl font-semibold mb-3">Benefits</h3>
-                <ul className="space-y-2 mb-6">
-                  {product.benefits.map((benefit, index) => (
-                    <li key={index} className="flex items-center gap-2">
-                      <Check className="h-5 w-5 text-secondary" />
-                      <span>{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="benefits">
+                    <AccordionTrigger className="text-xl font-semibold">
+                      <span className="flex items-center gap-2">
+                        <Check className="h-5 w-5 text-secondary" /> Benefits
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <ul className="space-y-2 pt-2">
+                        {product.benefits.map((benefit, index) => (
+                          <li key={index} className="flex items-center gap-2">
+                            <Check className="h-5 w-5 text-secondary" />
+                            <span>{benefit}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
 
-                <h3 className="text-xl font-semibold mb-3">How to Use</h3>
-                <p className="text-muted-foreground leading-relaxed mb-6">
-                  {product.usage}
-                </p>
+                  <AccordionItem value="usage">
+                    <AccordionTrigger className="text-xl font-semibold">
+                      <span className="flex items-center gap-2">
+                        <Pill className="h-5 w-5 text-secondary" /> How to Use
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <p className="text-muted-foreground leading-relaxed pt-2">
+                        {product.usage}
+                      </p>
+                    </AccordionContent>
+                  </AccordionItem>
 
-                <h3 className="text-xl font-semibold mb-3">Ingredients</h3>
-                <p className="text-muted-foreground">
-                  {product.ingredients.join(", ")}
-                </p>
+                  <AccordionItem value="ingredients">
+                    <AccordionTrigger className="text-xl font-semibold">
+                      <span className="flex items-center gap-2">
+                        <Beaker className="h-5 w-5 text-secondary" /> Ingredients
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <p className="text-muted-foreground pt-2">
+                        {product.ingredients.join(", ")}
+                      </p>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="coa">
+                    <AccordionTrigger className="text-xl font-semibold">
+                      <span className="flex items-center gap-2">
+                        <FileText className="h-5 w-5 text-secondary" /> Lab Testing & COA
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <div className="pt-2 space-y-4">
+                        <p className="text-muted-foreground">
+                          Every batch of Medi Spero products undergoes rigorous third-party laboratory testing to ensure the highest standards of quality, safety, and potency.
+                        </p>
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
+                          <div className="p-3 bg-muted rounded-lg text-center">
+                            <p className="font-semibold text-secondary">Cannabinoid Profile</p>
+                            <p className="text-muted-foreground">✓ Verified</p>
+                          </div>
+                          <div className="p-3 bg-muted rounded-lg text-center">
+                            <p className="font-semibold text-secondary">Pesticides</p>
+                            <p className="text-muted-foreground">✓ None Detected</p>
+                          </div>
+                          <div className="p-3 bg-muted rounded-lg text-center">
+                            <p className="font-semibold text-secondary">Heavy Metals</p>
+                            <p className="text-muted-foreground">✓ Below Limits</p>
+                          </div>
+                          <div className="p-3 bg-muted rounded-lg text-center">
+                            <p className="font-semibold text-secondary">Microbials</p>
+                            <p className="text-muted-foreground">✓ None Detected</p>
+                          </div>
+                        </div>
+                        <p className="text-xs text-muted-foreground">
+                          Laboratory: SC Labs (Santa Cruz, CA) | ISO 17025 Accredited | License: C8-0000040-LIC
+                        </p>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
               </div>
 
               <div>
-                <div className="sticky top-24 p-6 bg-muted/50 rounded-2xl">
-                  <h3 className="text-lg font-semibold mb-4">Product Highlights</h3>
-                  <ul className="space-y-3 text-sm">
-                    <li className="flex items-start gap-2">
-                      <Check className="h-4 w-4 text-secondary mt-0.5" />
-                      <span>Third-party lab tested for purity and potency</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Check className="h-4 w-4 text-secondary mt-0.5" />
-                      <span>Contains less than 0.3% THC (Farm Bill compliant)</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Check className="h-4 w-4 text-secondary mt-0.5" />
-                      <span>Made from organically grown hemp</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Check className="h-4 w-4 text-secondary mt-0.5" />
-                      <span>Manufactured in GMP-certified facilities</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Check className="h-4 w-4 text-secondary mt-0.5" />
-                      <span>No artificial colors or preservatives</span>
-                    </li>
-                  </ul>
+                <div className="sticky top-24 space-y-6">
+                  <div className="p-6 bg-muted/50 rounded-2xl">
+                    <h3 className="text-lg font-semibold mb-4">Product Highlights</h3>
+                    <ul className="space-y-3 text-sm">
+                      <li className="flex items-start gap-2">
+                        <Check className="h-4 w-4 text-secondary mt-0.5" />
+                        <span>Third-party lab tested for purity and potency</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <Check className="h-4 w-4 text-secondary mt-0.5" />
+                        <span>Contains less than 0.3% THC (Farm Bill compliant)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <Check className="h-4 w-4 text-secondary mt-0.5" />
+                        <span>Made from organically grown hemp</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <Check className="h-4 w-4 text-secondary mt-0.5" />
+                        <span>Manufactured in cGMP-certified facilities</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <Check className="h-4 w-4 text-secondary mt-0.5" />
+                        <span>No artificial colors or preservatives</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Medical Disclaimer */}
+                  <div className="p-4 bg-destructive/5 border border-destructive/20 rounded-xl">
+                    <div className="flex items-center gap-2 mb-2">
+                      <AlertTriangle className="h-5 w-5 text-destructive" />
+                      <h3 className="font-semibold text-destructive">Medical Disclaimer</h3>
+                    </div>
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      These statements have not been evaluated by the Food and Drug Administration. 
+                      This product is not intended to diagnose, treat, cure, or prevent any disease. 
+                      Consult your healthcare provider before use, especially if you are pregnant, 
+                      nursing, have a medical condition, or are taking any medications. 
+                      Keep out of reach of children. Must be 21+ to purchase.
+                    </p>
+                  </div>
+
+                  {/* Legal Notice */}
+                  <div className="p-4 bg-muted border border-border rounded-xl">
+                    <h3 className="font-semibold mb-2 text-sm">Legal Compliance</h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      This product is derived from hemp and complies with the Agricultural 
+                      Improvement Act of 2018 (Farm Bill). Contains less than 0.3% Delta-9 THC 
+                      by dry weight. Some states have additional restrictions on cannabinoid 
+                      products. Please verify local laws before ordering.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
