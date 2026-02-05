@@ -59,7 +59,7 @@ const Header = () => {
             <img 
               src={logoImage} 
               alt="Medi Spero" 
-              className="w-12 h-12 rounded-lg object-contain bg-black p-1"
+              className="w-12 h-12 object-contain"
             />
             <div className="hidden sm:block">
               <h1 className="text-xl font-bold text-foreground tracking-wide">Medi Spero</h1>
