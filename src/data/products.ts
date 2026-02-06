@@ -32,10 +32,8 @@ import cbdStressSprayImage from "@/assets/products/cbd-stress-spray.jpg";
 import thcHempFlowerImage from "@/assets/products/thc-hemp-flower.jpg";
 import cbdCalmTeaImage from "@/assets/products/cbd-calm-tea.jpg";
 import delta10ChocolateImage from "@/assets/products/delta10-chocolate.jpg";
-// Pharmaceutical Capsules images
-import pharmaCapsules1Image from "@/assets/products/pharma-capsules-1.jpg";
-import pharmaCapsules2Image from "@/assets/products/pharma-capsules-2.jpg";
-import pharmaCapsules3Image from "@/assets/products/pharma-capsules-3.jpg";
+// Pharmaceutical Capsules images (SEO-optimized: pharmaceutical-grade-cbd-capsule)
+import pharmaCapsulesImage from "@/assets/products/pharmaceutical-grade-cbd-capsule.jpg";
 
 // Image pools for each category to provide variety
 const imagePoolsByCategory: Record<string, string[]> = {
@@ -50,8 +48,8 @@ const imagePoolsByCategory: Record<string, string[]> = {
   "thc": [thcVapeImage, thcGummiesImage, hhcFlowerImage, thcHempFlowerImage, delta10ChocolateImage],
   "anti-anxiety": [delta8CalmGummiesImage, cbdCalmTeaImage, delta8AnxietyVapeImage, cbdStressSprayImage, cbdMoodSoftgelsImage],
   "mood-support": [delta9MoodTinctureImage, cbdMoodSoftgelsImage, delta10ChocolateImage, delta8CalmGummiesImage, cbdStressSprayImage],
-  "pharma-capsules": [pharmaCapsules1Image, pharmaCapsules2Image, pharmaCapsules3Image],
-  "adhd-focus": [cbdMoodSoftgelsImage, pharmaCapsules1Image, pharmaCapsules2Image, cbdCapsulesImage, delta10ChocolateImage],
+  "pharma-capsules": [pharmaCapsulesImage],
+  "adhd-focus": [cbdMoodSoftgelsImage, pharmaCapsulesImage, cbdCapsulesImage, delta10ChocolateImage],
 };
 
 // Helper function to get images based on category with rotation for variety
@@ -79,7 +77,7 @@ const getCategoryImage = (categoryId: string): string => {
     case "bundles": return cbdOilFullSpectrum;
     case "anti-anxiety": return delta8CalmGummiesImage;
     case "mood-support": return delta9MoodTinctureImage;
-    case "pharma-capsules": return pharmaCapsules1Image;
+    case "pharma-capsules": return pharmaCapsulesImage;
     case "adhd-focus": return cbdMoodSoftgelsImage;
     default: return cbdOilPharmaGrade;
   }
