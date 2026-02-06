@@ -32,8 +32,9 @@ import cbdStressSprayImage from "@/assets/products/cbd-stress-spray.jpg";
 import thcHempFlowerImage from "@/assets/products/thc-hemp-flower.jpg";
 import cbdCalmTeaImage from "@/assets/products/cbd-calm-tea.jpg";
 import delta10ChocolateImage from "@/assets/products/delta10-chocolate.jpg";
-// Pharmaceutical Capsules images (SEO-optimized: pharmaceutical-grade-cbd-capsule)
+// Pharmaceutical Capsules images (SEO-optimized)
 import pharmaCapsulesImage from "@/assets/products/pharmaceutical-grade-cbd-capsule.jpg";
+import adhdFocusCapsulesImage from "@/assets/products/adhd-focus-capsules.png";
 
 // Image pools for each category to provide variety
 const imagePoolsByCategory: Record<string, string[]> = {
@@ -48,8 +49,8 @@ const imagePoolsByCategory: Record<string, string[]> = {
   "thc": [thcVapeImage, thcGummiesImage, hhcFlowerImage, thcHempFlowerImage, delta10ChocolateImage],
   "anti-anxiety": [delta8CalmGummiesImage, cbdCalmTeaImage, delta8AnxietyVapeImage, cbdStressSprayImage, cbdMoodSoftgelsImage],
   "mood-support": [delta9MoodTinctureImage, cbdMoodSoftgelsImage, delta10ChocolateImage, delta8CalmGummiesImage, cbdStressSprayImage],
-  "pharma-capsules": [pharmaCapsulesImage],
-  "adhd-focus": [cbdMoodSoftgelsImage, pharmaCapsulesImage, cbdCapsulesImage, delta10ChocolateImage],
+  "pharma-capsules": [pharmaCapsulesImage, adhdFocusCapsulesImage],
+  "adhd-focus": [adhdFocusCapsulesImage, pharmaCapsulesImage, cbdMoodSoftgelsImage, cbdCapsulesImage],
 };
 
 // Helper function to get images based on category with rotation for variety
