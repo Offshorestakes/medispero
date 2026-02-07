@@ -8,9 +8,6 @@ import CategoriesSection from "@/components/sections/CategoriesSection";
 import FeaturedProducts from "@/components/sections/FeaturedProducts";
 import TrustSection from "@/components/sections/TrustSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
-import EducationSection from "@/components/sections/EducationSection";
-import BlogSection from "@/components/sections/BlogSection";
-import ShippingSection from "@/components/sections/ShippingSection";
 import NewsletterSection from "@/components/sections/NewsletterSection";
 import logoImage from "@/assets/logo.png";
 
@@ -228,10 +225,6 @@ const Index = () => {
           <CategoriesSection />
           <FeaturedProducts />
           <TrustSection />
-          <EducationSection />
-          <TestimonialsSection />
-          <BlogSection />
-          <ShippingSection />
           <NewsletterSection />
         </main>
         <Footer />
