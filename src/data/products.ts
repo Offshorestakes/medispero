@@ -1,5 +1,5 @@
 // Medi Spero - Premium Pharmaceutical CBD/Hemp Product Catalog
-// Legal, Farm Bill compliant products only - Premium Pricing ($150-$950)
+// Legal, Farm Bill compliant products only - Premium Pricing ($150-$750, CBD Oils keep original pricing)
 
 // Import product images - CBD Oils (SEO-optimized authentic product images)
 import cbdOilPharmaGrade from "@/assets/products/cbd-oil-pharmaceutical-grade-1000ml.jpg";
@@ -230,31 +230,31 @@ const generateProducts = (): Product[] => {
   const products: Product[] = [];
   let productId = 1;
 
-  // PHARMACEUTICAL CAPSULES ($380-$700)
+  // PHARMACEUTICAL CAPSULES ($150-$750)
   const pharmaFormulas = [
-    { name: "Clinical Grade CBD-A + CBD Complex", strength: "5000mg", price: 549, desc: "Pharmaceutical-grade acidic cannabinoid complex for maximum bioavailability" },
-    { name: "Delta-9 THC + CBD Therapeutic Capsules", strength: "3000mg + 3000mg", price: 679, desc: "Balanced 1:1 ratio for comprehensive symptom management" },
-    { name: "Full Spectrum Nano-Enhanced Softgels", strength: "10000mg", price: 699, desc: "Nano-emulsified for 4x faster absorption than standard capsules" },
-    { name: "Delta-8 THC Medical Grade Capsules", strength: "5000mg", price: 589, desc: "Pharmaceutical purity Delta-8 for anxiety and stress management" },
-    { name: "CBD + CBN + CBG Entourage Complex", strength: "7500mg Total", price: 649, desc: "Triple cannabinoid formula for enhanced therapeutic effects" },
-    { name: "High-Potency CBD Isolate Capsules", strength: "15000mg", price: 699, desc: "99.9% pure CBD isolate in precision-dosed pharmaceutical capsules" },
-    { name: "Delta-9 Mood Stabilizer Capsules", strength: "2500mg", price: 529, desc: "Targeted Delta-9 formulation for mood regulation and emotional balance" },
-    { name: "CBD + Curcumin Anti-Inflammatory", strength: "6000mg CBD + 2000mg Curcumin", price: 619, desc: "Synergistic anti-inflammatory formula with enhanced bioavailability" },
-    { name: "Clinical Sleep Complex Capsules", strength: "5000mg CBD + 1500mg CBN", price: 599, desc: "Pharmaceutical sleep formula with optimized cannabinoid ratios" },
-    { name: "Neurological Support Capsules", strength: "8000mg", price: 679, desc: "Targeted support for cognitive function and neural health" },
-    { name: "Delta-8 + CBD Anxiety Relief", strength: "4000mg + 4000mg", price: 629, desc: "Dual cannabinoid formula for comprehensive anxiety management" },
-    { name: "Medical Grade Recovery Capsules", strength: "10000mg", price: 649, desc: "High-potency formula for post-surgical and athletic recovery" },
-    { name: "Endocannabinoid System Optimizer", strength: "7500mg Multi-Cannabinoid", price: 689, desc: "Complete ECS support with full-spectrum cannabinoid profile" },
-    { name: "Premium Pharmaceutical CBD-V Blend", strength: "3000mg CBD-V + 5000mg CBD", price: 699, desc: "Rare CBD-V cannabinoid blend for specialized therapeutic needs" },
-    { name: "Delta-9 + Delta-8 Synergy Capsules", strength: "2500mg + 2500mg", price: 569, desc: "Dual-THC formula for balanced psychoactive and therapeutic effects" },
+    { name: "Clinical Grade CBD-A + CBD Complex", strength: "5000mg", price: 349, desc: "Pharmaceutical-grade acidic cannabinoid complex for maximum bioavailability" },
+    { name: "Delta-9 THC + CBD Therapeutic Capsules", strength: "3000mg + 3000mg", price: 479, desc: "Balanced 1:1 ratio for comprehensive symptom management" },
+    { name: "Full Spectrum Nano-Enhanced Softgels", strength: "10000mg", price: 499, desc: "Nano-emulsified for 4x faster absorption than standard capsules" },
+    { name: "Delta-8 THC Medical Grade Capsules", strength: "5000mg", price: 389, desc: "Pharmaceutical purity Delta-8 for anxiety and stress management" },
+    { name: "CBD + CBN + CBG Entourage Complex", strength: "7500mg Total", price: 449, desc: "Triple cannabinoid formula for enhanced therapeutic effects" },
+    { name: "High-Potency CBD Isolate Capsules", strength: "15000mg", price: 499, desc: "99.9% pure CBD isolate in precision-dosed pharmaceutical capsules" },
+    { name: "Delta-9 Mood Stabilizer Capsules", strength: "2500mg", price: 329, desc: "Targeted Delta-9 formulation for mood regulation and emotional balance" },
+    { name: "CBD + Curcumin Anti-Inflammatory", strength: "6000mg CBD + 2000mg Curcumin", price: 419, desc: "Synergistic anti-inflammatory formula with enhanced bioavailability" },
+    { name: "Clinical Sleep Complex Capsules", strength: "5000mg CBD + 1500mg CBN", price: 399, desc: "Pharmaceutical sleep formula with optimized cannabinoid ratios" },
+    { name: "Neurological Support Capsules", strength: "8000mg", price: 479, desc: "Targeted support for cognitive function and neural health" },
+    { name: "Delta-8 + CBD Anxiety Relief", strength: "4000mg + 4000mg", price: 429, desc: "Dual cannabinoid formula for comprehensive anxiety management" },
+    { name: "Medical Grade Recovery Capsules", strength: "10000mg", price: 449, desc: "High-potency formula for post-surgical and athletic recovery" },
+    { name: "Endocannabinoid System Optimizer", strength: "7500mg Multi-Cannabinoid", price: 489, desc: "Complete ECS support with full-spectrum cannabinoid profile" },
+    { name: "Premium Pharmaceutical CBD-V Blend", strength: "3000mg CBD-V + 5000mg CBD", price: 499, desc: "Rare CBD-V cannabinoid blend for specialized therapeutic needs" },
+    { name: "Delta-9 + Delta-8 Synergy Capsules", strength: "2500mg + 2500mg", price: 369, desc: "Dual-THC formula for balanced psychoactive and therapeutic effects" },
   ];
 
   pharmaFormulas.forEach((formula, index) => {
     const sizes = ["60 count", "90 count", "120 count"];
     sizes.forEach((size, sizeIndex) => {
-      const countMultiplier = size.includes("120") ? 1.4 : size.includes("90") ? 1.2 : 1;
-      const price = Math.round(formula.price * countMultiplier);
-      const originalPrice = Math.round(price * 1.15);
+      const countMultiplier = size.includes("120") ? 1.3 : size.includes("90") ? 1.15 : 1;
+      const price = Math.min(750, Math.round(formula.price * countMultiplier));
+      const originalPrice = Math.min(750, Math.round(price * 1.15));
       
       products.push({
         id: `pharma-${productId}`,
@@ -291,7 +291,7 @@ const generateProducts = (): Product[] => {
     });
   });
 
-  // ANTI-ANXIETY & CALM PRODUCTS ($150-$550)
+  // ANTI-ANXIETY & CALM PRODUCTS ($150-$750)
   const anxietyProducts = [
     { name: "Delta-8 THC Professional Calm Gummies", type: "gummies", strength: "1500mg", price: 249, desc: "Clinical-strength Delta-8 gummies for profound anxiety relief" },
     { name: "Delta-8 THC Medical Vaporizer Kit", type: "vape", strength: "3000mg", price: 389, desc: "Complete medical-grade vaporizer system with premium distillate" },
@@ -309,7 +309,7 @@ const generateProducts = (): Product[] => {
     const variants = product.type === "flower" ? ["14g", "28g"] : ["Standard", "Professional", "Clinical"];
     variants.forEach((variant, vIndex) => {
       const priceMultiplier = vIndex === 2 ? 1.8 : vIndex === 1 ? 1.4 : 1;
-      const price = Math.round(product.price * priceMultiplier);
+      const price = Math.min(750, Math.max(150, Math.round(product.price * priceMultiplier)));
       
       products.push({
         id: `anxiety-${productId}`,
@@ -345,7 +345,7 @@ const generateProducts = (): Product[] => {
     });
   });
 
-  // MOOD & DEPRESSION SUPPORT ($180-$650)
+  // MOOD & DEPRESSION SUPPORT ($150-$750)
   const moodProducts = [
     { name: "Delta-9 THC Mood Elevation Gummies", type: "gummies", strength: "750mg D9", price: 279, desc: "Precise-dose Delta-9 gummies for mood enhancement and emotional balance" },
     { name: "Delta-9 THC Professional Tincture", type: "tincture", strength: "1500mg", price: 389, desc: "High-potency Delta-9 tincture for comprehensive mood support" },
@@ -363,7 +363,7 @@ const generateProducts = (): Product[] => {
     const variants = ["30-Day Supply", "60-Day Supply", "90-Day Supply"];
     variants.forEach((variant, vIndex) => {
       const priceMultiplier = vIndex === 2 ? 2.2 : vIndex === 1 ? 1.5 : 1;
-      const price = Math.round(product.price * priceMultiplier);
+      const price = Math.min(750, Math.max(150, Math.round(product.price * priceMultiplier)));
       
       products.push({
         id: `mood-${productId}`,
@@ -399,7 +399,7 @@ const generateProducts = (): Product[] => {
     });
   });
 
-  // ADHD & FOCUS SUPPORT ($175-$599)
+  // ADHD & FOCUS SUPPORT ($150-$750)
   const adhdProducts = [
     { name: "Focus Enhancement CBD Capsules", type: "capsules", strength: "5000mg CBD + 2500mg CBG", price: 389, desc: "Precision-formulated for sustained focus and attention support" },
     { name: "Delta-8 THC Clarity Gummies", type: "gummies", strength: "1500mg Delta-8", price: 279, desc: "Microdosed Delta-8 for calm focus without overstimulation" },
@@ -417,7 +417,7 @@ const generateProducts = (): Product[] => {
     const variants = ["Standard", "Professional", "Clinical"];
     variants.forEach((variant, vIndex) => {
       const priceMultiplier = vIndex === 2 ? 1.6 : vIndex === 1 ? 1.3 : 1;
-      const price = Math.round(product.price * priceMultiplier);
+      const price = Math.min(750, Math.max(150, Math.round(product.price * priceMultiplier)));
       
       products.push({
         id: `adhd-${productId}`,
@@ -503,7 +503,7 @@ const generateProducts = (): Product[] => {
     });
   });
 
-  // CBD GUMMIES ($150-$450)
+  // CBD GUMMIES ($150-$750)
   const gummyProducts = [
     { name: "Professional Strength Sleep Gummies", type: "Sleep", strength: "100mg CBD + 25mg CBN per gummy", price: 349, count: "30 count" },
     { name: "Clinical Calm CBD Gummies", type: "Calm", strength: "75mg per gummy", price: 299, count: "30 count" },
@@ -517,7 +517,7 @@ const generateProducts = (): Product[] => {
     const sizes = ["30 count", "60 count", "90 count"];
     sizes.forEach((size, sIndex) => {
       const priceMultiplier = sIndex === 2 ? 2.4 : sIndex === 1 ? 1.7 : 1;
-      const price = Math.round(product.price * priceMultiplier);
+      const price = Math.min(750, Math.max(150, Math.round(product.price * priceMultiplier)));
       
       products.push({
         id: `gummy-${productId}`,
@@ -559,7 +559,7 @@ const generateProducts = (): Product[] => {
     });
   });
 
-  // CBD TOPICALS ($175-$450)
+  // CBD TOPICALS ($150-$750)
   const topicalProducts = [
     { name: "Medical Grade Relief Cream", strength: "5000mg", price: 299, type: "cream" },
     { name: "Professional Muscle Recovery Balm", strength: "4000mg", price: 279, type: "balm" },
@@ -573,7 +573,7 @@ const generateProducts = (): Product[] => {
     const sizes = ["2 oz", "4 oz", "8 oz"];
     sizes.forEach((size, sIndex) => {
       const priceMultiplier = sIndex === 2 ? 2.2 : sIndex === 1 ? 1.5 : 1;
-      const price = Math.round(product.price * priceMultiplier);
+      const price = Math.min(750, Math.max(150, Math.round(product.price * priceMultiplier)));
       
       products.push({
         id: `topical-${productId}`,
@@ -609,7 +609,7 @@ const generateProducts = (): Product[] => {
     });
   });
 
-  // CBD CAPSULES (Standard line, not pharma) ($150-$400)
+  // CBD CAPSULES (Standard line, not pharma) ($150-$750)
   const capsuleProducts = [
     { name: "Daily Wellness CBD Softgels", formula: "Daily Wellness", strength: "75mg per capsule", price: 229 },
     { name: "Professional Sleep Support Capsules", formula: "Sleep Support", strength: "100mg + CBN per capsule", price: 279 },
@@ -622,7 +622,7 @@ const generateProducts = (): Product[] => {
     const counts = ["60 count", "90 count", "120 count"];
     counts.forEach((count, cIndex) => {
       const priceMultiplier = cIndex === 2 ? 1.8 : cIndex === 1 ? 1.4 : 1;
-      const price = Math.round(product.price * priceMultiplier);
+      const price = Math.min(750, Math.max(150, Math.round(product.price * priceMultiplier)));
       
       products.push({
         id: `capsule-${productId}`,
@@ -662,7 +662,7 @@ const generateProducts = (): Product[] => {
     });
   });
 
-  // SLEEP & RELAXATION ($175-$450)
+  // SLEEP & RELAXATION ($150-$750)
   const sleepProducts = [
     { name: "Maximum Strength Sleep Tincture", strength: "5000mg CBD + 1500mg CBN", price: 399 },
     { name: "Premium Nighttime Gummies", strength: "100mg CBD + 30mg CBN + 10mg Melatonin per gummy", price: 349 },
@@ -675,7 +675,7 @@ const generateProducts = (): Product[] => {
     const variants = ["Standard", "Professional", "Clinical"];
     variants.forEach((variant, vIndex) => {
       const priceMultiplier = vIndex === 2 ? 1.6 : vIndex === 1 ? 1.3 : 1;
-      const price = Math.round(product.price * priceMultiplier);
+      const price = Math.min(750, Math.max(150, Math.round(product.price * priceMultiplier)));
       
       products.push({
         id: `sleep-${productId}`,
@@ -711,7 +711,7 @@ const generateProducts = (): Product[] => {
     });
   });
 
-  // PET CBD ($150-$350)
+  // PET CBD ($150-$750)
   const petProducts = [
     { name: "Professional Grade Dog CBD Oil", pet: "Dog", strength: "3000mg", price: 249 },
     { name: "Calming Dog Treats Premium", pet: "Dog", strength: "50mg per treat", price: 199 },
@@ -724,7 +724,7 @@ const generateProducts = (): Product[] => {
     const sizes = ["Standard", "Large", "Family"];
     sizes.forEach((size, sIndex) => {
       const priceMultiplier = sIndex === 2 ? 1.8 : sIndex === 1 ? 1.4 : 1;
-      const price = Math.round(product.price * priceMultiplier);
+      const price = Math.min(750, Math.max(150, Math.round(product.price * priceMultiplier)));
       
       products.push({
         id: `pet-${productId}`,
@@ -760,7 +760,7 @@ const generateProducts = (): Product[] => {
     });
   });
 
-  // CBD SKINCARE ($175-$450)
+  // CBD SKINCARE ($150-$750)
   const skincareProducts = [
     { name: "Luxury Anti-Aging Face Serum", strength: "2500mg", price: 349 },
     { name: "Premium Hydrating Face Cream", strength: "3000mg", price: 299 },
@@ -804,16 +804,16 @@ const generateProducts = (): Product[] => {
     productId++;
   });
 
-  // VALUE BUNDLES ($450-$950)
+  // VALUE BUNDLES ($150-$750)
   const bundles = [
-    { name: "Complete Wellness System", items: "10000mg Oil + 100mg Gummies (60ct) + 5000mg Cream", price: 749 },
-    { name: "Ultimate Sleep & Relaxation Kit", items: "Sleep Tincture + CBN Gummies + Bath Bombs + Spray", price: 649 },
-    { name: "Professional Pain Relief Bundle", items: "15000mg Oil + Medical Cream + Recovery Capsules", price: 849 },
-    { name: "Anxiety & Mood Support System", items: "Delta-8 Tincture + Calm Gummies + Stress Capsules", price: 699 },
-    { name: "Premium Pet Parent Collection", items: "Dog Oil (3000mg) + Cat Oil + Treats + Joint Support", price: 549 },
-    { name: "Luxury Skincare Complete Set", items: "Serum + Eye Cream + Night Cream + Body Butter", price: 799 },
-    { name: "Ultimate Wellness Bundle", items: "Full Product Range - 10+ Premium Items", price: 949 },
-    { name: "Pharmaceutical Grade Starter", items: "Pharma Capsules + Tincture + Topical", price: 899 },
+    { name: "Complete Wellness System", items: "10000mg Oil + 100mg Gummies (60ct) + 5000mg Cream", price: 549 },
+    { name: "Ultimate Sleep & Relaxation Kit", items: "Sleep Tincture + CBN Gummies + Bath Bombs + Spray", price: 449 },
+    { name: "Professional Pain Relief Bundle", items: "15000mg Oil + Medical Cream + Recovery Capsules", price: 649 },
+    { name: "Anxiety & Mood Support System", items: "Delta-8 Tincture + Calm Gummies + Stress Capsules", price: 499 },
+    { name: "Premium Pet Parent Collection", items: "Dog Oil (3000mg) + Cat Oil + Treats + Joint Support", price: 349 },
+    { name: "Luxury Skincare Complete Set", items: "Serum + Eye Cream + Night Cream + Body Butter", price: 599 },
+    { name: "Ultimate Wellness Bundle", items: "Full Product Range - 10+ Premium Items", price: 749 },
+    { name: "Pharmaceutical Grade Starter", items: "Pharma Capsules + Tincture + Topical", price: 699 },
   ];
 
   bundles.forEach((bundle) => {
@@ -823,8 +823,8 @@ const generateProducts = (): Product[] => {
       slug: `premium-${bundle.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
       category: "bundles",
       subcategory: "value-bundles",
-      price: bundle.price,
-      originalPrice: Math.round(bundle.price * 1.4),
+      price: Math.min(750, bundle.price),
+      originalPrice: Math.min(750, Math.round(bundle.price * 1.4)),
       rating: 4.9,
       reviewCount: Math.floor(Math.random() * 150) + 100,
       description: `Our most comprehensive wellness package. The ${bundle.name} includes: ${bundle.items}. Save over 30% compared to individual purchases. Perfect for serious wellness enthusiasts or as an extraordinary gift.`,

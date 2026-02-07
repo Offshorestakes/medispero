@@ -28,6 +28,7 @@ import AccessibilityPage from "./pages/AccessibilityPage";
 import WholesalePage from "./pages/WholesalePage";
 import TrackOrderPage from "./pages/TrackOrderPage";
 import NotFound from "./pages/NotFound";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +41,7 @@ const App = () => (
             <Toaster />
             <Sonner />
             <BrowserRouter>
+              <ScrollToTop />
               <CartDrawer />
               <Routes>
                 <Route path="/" element={<Index />} />
