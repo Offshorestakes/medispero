@@ -72,7 +72,9 @@ const Footer = () => {
               <li><Link to="/category/cbd-oils" className="hover:text-white transition-colors">CBD Oils</Link></li>
               <li><Link to="/category/cbd-gummies" className="hover:text-white transition-colors">CBD Gummies</Link></li>
               <li><Link to="/category/cbd-topicals" className="hover:text-white transition-colors">CBD Topicals</Link></li>
-              <li><Link to="/products" className="hover:text-white transition-colors">Value Bundles</Link></li>
+              <li><Link to="/blog" className="hover:text-white transition-colors">Blog</Link></li>
+              <li><Link to="/education" className="hover:text-white transition-colors">CBD Education</Link></li>
+              <li><Link to="/testimonials" className="hover:text-white transition-colors">Customer Reviews</Link></li>
               <li><Link to="/lab-results" className="hover:text-white transition-colors">Lab Results</Link></li>
             </ul>
           </div>

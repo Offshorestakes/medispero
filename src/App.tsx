@@ -27,6 +27,8 @@ import TermsPage from "./pages/TermsPage";
 import AccessibilityPage from "./pages/AccessibilityPage";
 import WholesalePage from "./pages/WholesalePage";
 import TrackOrderPage from "./pages/TrackOrderPage";
+import TestimonialsPage from "./pages/TestimonialsPage";
+import EducationPage from "./pages/EducationPage";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -64,6 +66,8 @@ const App = () => (
                 <Route path="/accessibility" element={<AccessibilityPage />} />
                 <Route path="/wholesale" element={<WholesalePage />} />
                 <Route path="/track-order" element={<TrackOrderPage />} />
+                <Route path="/testimonials" element={<TestimonialsPage />} />
+                <Route path="/education" element={<EducationPage />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>

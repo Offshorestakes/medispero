@@ -468,7 +468,7 @@ const ProductPage = () => {
                       size="sm" 
                       className="gap-2 flex-1"
                       onClick={() => {
-                        window.open("https://portal.sclabs.com/", "_blank", "noopener,noreferrer");
+                        window.open(`https://client.sclabs.com/verify/${coaBatchNumber}`, "_blank", "noopener,noreferrer");
                       }}
                     >
                       <Download className="h-4 w-4" />
@@ -479,7 +479,7 @@ const ProductPage = () => {
                       size="sm" 
                       className="gap-2 flex-1"
                       onClick={() => {
-                        window.open("https://portal.sclabs.com/", "_blank", "noopener,noreferrer");
+                        window.open("https://client.sclabs.com/", "_blank", "noopener,noreferrer");
                       }}
                     >
                       <ExternalLink className="h-4 w-4" />
@@ -622,7 +622,27 @@ const ProductPage = () => {
                     <Heart className="h-5 w-5" />
                     Add to Wishlist
                   </Button>
-                  <Button variant="outline" className="gap-2">
+                  <Button 
+                    variant="outline" 
+                    className="gap-2"
+                    onClick={async () => {
+                      const shareData = {
+                        title: product.name,
+                        text: product.shortDescription,
+                        url: window.location.href,
+                      };
+                      try {
+                        if (navigator.share) {
+                          await navigator.share(shareData);
+                        } else {
+                          await navigator.clipboard.writeText(window.location.href);
+                          alert("Link copied to clipboard!");
+                        }
+                      } catch (err) {
+                        // User cancelled share or error
+                      }
+                    }}
+                  >
                     <Share2 className="h-5 w-5" />
                     Share
                   </Button>
