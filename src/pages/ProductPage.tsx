@@ -463,11 +463,25 @@ const ProductPage = () => {
                     </div>
                   </div>
                   <div className="flex flex-col sm:flex-row gap-2">
-                    <Button variant="outline" size="sm" className="gap-2 flex-1">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="gap-2 flex-1"
+                      onClick={() => {
+                        window.open("https://portal.sclabs.com/", "_blank", "noopener,noreferrer");
+                      }}
+                    >
                       <Download className="h-4 w-4" />
                       Download COA (PDF)
                     </Button>
-                    <Button variant="outline" size="sm" className="gap-2 flex-1">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="gap-2 flex-1"
+                      onClick={() => {
+                        window.open("https://portal.sclabs.com/", "_blank", "noopener,noreferrer");
+                      }}
+                    >
                       <ExternalLink className="h-4 w-4" />
                       Verify on Lab Website
                     </Button>
