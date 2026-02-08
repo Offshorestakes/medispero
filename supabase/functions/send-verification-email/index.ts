@@ -24,7 +24,7 @@ serve(async (req) => {
     console.log(`Sending verification email to ${email}`);
 
     const { data, error } = await resend.emails.send({
-      from: "Medi Spero <noreply@medispero.lovable.app>",
+      from: "Medi Spero <info@medispero.com>",
       to: [email],
       subject: "Verify your Medi Spero account",
       html: `
