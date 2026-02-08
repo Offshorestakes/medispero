@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import { Loader2, Mail, Lock, ArrowLeft } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const emailSchema = z.string().trim().email({ message: "Invalid email address" }).max(255);
 const passwordSchema = z.string().min(6, { message: "Password must be at least 6 characters" }).max(100);
@@ -105,6 +106,16 @@ const AuthPage = () => {
             });
           }
         } else {
+          // Send verification email via edge function
+          try {
+            const confirmationUrl = `${window.location.origin}/auth`;
+            await supabase.functions.invoke("send-verification-email", {
+              body: { email: email.trim(), confirmationUrl },
+            });
+          } catch (emailError) {
+            console.error("Failed to send verification email:", emailError);
+          }
+
           toast({
             title: "Account created!",
             description: "Please check your email to verify your account before signing in.",
