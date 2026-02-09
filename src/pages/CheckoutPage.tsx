@@ -12,6 +12,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import { ArrowLeft, Loader2, ShoppingBag, Truck, Shield, Check, Bitcoin, CreditCard } from "lucide-react";
+import { trackBeginCheckout, trackPurchase } from "@/lib/analytics";
 
 const addressSchema = z.object({
   fullName: z.string().trim().min(2, "Name is required").max(100),
@@ -165,10 +166,12 @@ const CheckoutPage = () => {
 
   const handleStandardPayment = async () => {
     setIsLoading(true);
+    trackBeginCheckout(items, total);
     try {
       const orderId = await createOrderAndGetId();
       if (!orderId) return;
       
+      trackPurchase(orderId, items, total, shipping, tax);
       await clearCart();
       toast({ title: "Order placed successfully!", description: "Thank you for your order. You will receive a confirmation email shortly." });
       navigate("/");
@@ -182,6 +185,7 @@ const CheckoutPage = () => {
 
   const handleCryptoPayment = async () => {
     setIsCryptoLoading(true);
+    trackBeginCheckout(items, total);
     try {
       const orderId = await createOrderAndGetId();
       if (!orderId) return;
