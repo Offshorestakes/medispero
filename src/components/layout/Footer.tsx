@@ -70,8 +70,8 @@ const Footer = () => {
             <ul className="space-y-2 text-sm text-white/70">
               <li><Link to="/products" className="hover:text-white transition-colors">All Products</Link></li>
               <li><Link to="/category/cbd-oils" className="hover:text-white transition-colors">CBD Oils</Link></li>
-              <li><Link to="/category/cbd-gummies" className="hover:text-white transition-colors">CBD Gummies</Link></li>
-              <li><Link to="/category/cbd-topicals" className="hover:text-white transition-colors">CBD Topicals</Link></li>
+              <li><Link to="/category/cbd-vape" className="hover:text-white transition-colors">CBD Vape</Link></li>
+              <li><Link to="/category/cbd-isolate-powder" className="hover:text-white transition-colors">CBD Isolate</Link></li>
               <li><Link to="/blog" className="hover:text-white transition-colors">Blog</Link></li>
               <li><Link to="/education" className="hover:text-white transition-colors">CBD Education</Link></li>
               <li><Link to="/testimonials" className="hover:text-white transition-colors">Customer Reviews</Link></li>

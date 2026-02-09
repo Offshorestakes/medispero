@@ -16,24 +16,23 @@ import cbdOilHighPotency from "@/assets/products/cbd-oil-high-potency-extract.jp
 import cbdIsolatePowderImage from "@/assets/products/cbd-isolate-powder.jpg";
 import cbdIsolateCrystalsImage from "@/assets/products/cbd-isolate-crystals.jpg";
 import cbdIsolatePureSpectrumImage from "@/assets/products/cbd-isolate-pure-spectrum.jpg";
-import thcVapeImage from "@/assets/products/thc-vape-cartridge.jpg";
 import cbdCapsulesImage from "@/assets/products/cbd-capsules.jpg";
-import thcGummiesImage from "@/assets/products/thc-gummies.jpg";
 import cbdSleepImage from "@/assets/products/cbd-sleep-tincture.jpg";
-import hhcFlowerImage from "@/assets/products/hhc-flower.jpg";
 import cbdBathBombsImage from "@/assets/products/cbd-bath-bombs.jpg";
 // Anti-Anxiety & Mood product images
-import delta8CalmGummiesImage from "@/assets/products/delta8-calm-gummies.jpg";
 import delta9MoodTinctureImage from "@/assets/products/delta9-mood-tincture.jpg";
 import cbdMoodSoftgelsImage from "@/assets/products/cbd-mood-softgels.jpg";
-import delta8AnxietyVapeImage from "@/assets/products/delta8-anxiety-vape.jpg";
 import cbdStressSprayImage from "@/assets/products/cbd-stress-spray.jpg";
-import thcHempFlowerImage from "@/assets/products/thc-hemp-flower.jpg";
+import delta8CalmGummiesImage from "@/assets/products/delta8-calm-gummies.jpg";
 import cbdCalmTeaImage from "@/assets/products/cbd-calm-tea.jpg";
 import delta10ChocolateImage from "@/assets/products/delta10-chocolate.jpg";
 // Pharmaceutical Capsules images (SEO-optimized)
 import pharmaCapsulesImage from "@/assets/products/pharmaceutical-grade-cbd-capsule.jpg";
 import adhdFocusCapsulesImage from "@/assets/products/adhd-focus-capsules.png";
+// CBD Vape images
+import cbdVapeCartridgeImage from "@/assets/products/cbd-vape-cartridge.jpg";
+import cbdVapeDisposableImage from "@/assets/products/cbd-vape-disposable.jpg";
+import cbdVapePodImage from "@/assets/products/cbd-vape-pod.jpg";
 
 // Image pools for each category to provide variety
 const imagePoolsByCategory: Record<string, string[]> = {
@@ -45,11 +44,11 @@ const imagePoolsByCategory: Record<string, string[]> = {
   "sleep-wellness": [cbdSleepImage, cbdBathBombsImage, cbdCalmTeaImage, delta8CalmGummiesImage],
   "cbd-skincare": [cbdBathBombsImage, cbdIsolatePureSpectrumImage],
   "bundles": [cbdOilPharmaGrade, cbdIsolatePowderImage, cbdCapsulesImage, cbdSleepImage],
-  "thc": [thcVapeImage, thcGummiesImage, hhcFlowerImage, thcHempFlowerImage, delta10ChocolateImage],
   "anti-anxiety": [cbdIsolatePowderImage, cbdIsolateCrystalsImage, cbdIsolatePureSpectrumImage, cbdMoodSoftgelsImage, cbdStressSprayImage],
   "mood-support": [delta9MoodTinctureImage, cbdMoodSoftgelsImage, delta10ChocolateImage, delta8CalmGummiesImage, cbdStressSprayImage],
   "pharma-capsules": [pharmaCapsulesImage, adhdFocusCapsulesImage, cbdCapsulesImage],
   "adhd-focus": [adhdFocusCapsulesImage, pharmaCapsulesImage, cbdMoodSoftgelsImage, cbdCapsulesImage],
+  "cbd-vape": [cbdVapeCartridgeImage, cbdVapeDisposableImage, cbdVapePodImage],
 };
 
 // Helper function to get images based on category with rotation for variety
@@ -79,6 +78,7 @@ const getCategoryImage = (categoryId: string): string => {
     case "mood-support": return delta9MoodTinctureImage;
     case "pharma-capsules": return pharmaCapsulesImage;
     case "adhd-focus": return cbdMoodSoftgelsImage;
+    case "cbd-vape": return cbdVapeCartridgeImage;
     default: return cbdOilPharmaGrade;
   }
 };
@@ -189,6 +189,14 @@ export const categories: Category[] = [
     description: "Premium pure spectrum CBD isolate products combining 99%+ CBD purity with targeted cannabinoid blends for enhanced therapeutic benefits",
     image: getCategoryImage("cbd-isolate-pure-spectrum"),
     productCount: 35
+  },
+  {
+    id: "cbd-vape",
+    name: "CBD Vape",
+    slug: "cbd-vape",
+    description: "Premium CBD vape cartridges, disposable pens, and pods with full-spectrum and broad-spectrum formulations for fast-acting relief",
+    image: getCategoryImage("cbd-vape"),
+    productCount: 24
   },
   {
     id: "cbd-capsules",
@@ -304,9 +312,6 @@ const generateProducts = (): Product[] => {
     { name: "CBD + CBG Isolate Blend - Clarity", strength: "5g (2,500mg each)", price: 279, desc: "Synergistic dual-isolate blend for optimal anxiety relief with enhanced focus. Zero THC, maximum clarity" },
     { name: "Nano CBD Isolate - Rapid Calm", strength: "3g (3,000mg)", price: 269, desc: "Water-soluble nano-emulsified CBD isolate for 4x faster absorption. Instant calm when you need it most" },
     { name: "CBD Isolate Powder - Professional Grade", strength: "28g (28,000mg/1oz)", price: 649, desc: "Professional-grade bulk CBD isolate for practitioners, formulators, and wellness brands. Full batch documentation included" },
-    { name: "CBD Isolate Powder - Clinical Strength", strength: "100g (100,000mg)", price: 1899, desc: "Clinical-grade CBD isolate powder for intensive therapeutic protocols. Highest purity available with comprehensive lab documentation" },
-    { name: "CBD Isolate Crystals - Mega Pack", strength: "56g (56,000mg/2oz)", price: 999, desc: "Premium CBD isolate crystals in the largest available quantity. Best value per gram for serious wellness enthusiasts" },
-    { name: "Pure Spectrum CBD - Clinical Drops", strength: "15,000mg", price: 599, desc: "Maximum concentration pure spectrum CBD for clinical-level anxiety management and sustained focus enhancement" },
   ];
 
   anxietyProducts.forEach((product) => {
@@ -607,6 +612,58 @@ const generateProducts = (): Product[] => {
         vegan: true,
         madeInUSA: true,
         tags: ["cbd crystals", "cbd isolate", "crystalline cbd", "thc-free", "dabbable", "sublingual"]
+      });
+      productId++;
+    });
+  });
+
+  // CBD VAPE ($95-$750) - Referenced from Extract Labs CBD Vape
+  const vapeProducts = [
+    { name: "Full Spectrum CBD Disposable Vape - Blue Dream", type: "disposable", strength: "1g (1,000mg)", price: 95, desc: "Smooth, flavorful Blue Dream CBD disposable vape with full-spectrum hemp extract and cannabis-derived terpenes. Ready to use, no charging required" },
+    { name: "Full Spectrum CBD Disposable Vape - OG Kush", type: "disposable", strength: "1g (1,000mg)", price: 95, desc: "Classic OG Kush strain profile in a convenient disposable vape. Full-spectrum CBD with earthy, pine, and citrus terpenes for deep relaxation" },
+    { name: "CBD + CBG Focus Vape Pod - Golden Goat", type: "pod", strength: "2g (2,000mg)", price: 149, desc: "Energizing CBD + CBG vape pod with Golden Goat sativa terpene profile. Designed for clarity, focus, and productive daytime use" },
+    { name: "CBD + CBN Calm Vape Pod - Granddaddy Purple", type: "pod", strength: "2g (2,000mg)", price: 159, desc: "Relaxing indica-profile vape pod combining CBD and CBN for evening calm. Rich grape and berry terpene blend for a soothing experience" },
+    { name: "Broad Spectrum CBD Vape Cartridge", type: "cartridge", strength: "1g (1,000mg)", price: 119, desc: "THC-free broad spectrum CBD vape cartridge compatible with standard 510 batteries. Clean, smooth vapor with natural hemp terpenes" },
+    { name: "Full Spectrum CBD Vape Cartridge - Sativa", type: "cartridge", strength: "1g (1,000mg)", price: 129, desc: "Uplifting sativa-profile CBD vape cartridge with full spectrum hemp extract. Cannabis-derived terpenes for authentic strain experience" },
+    { name: "Delta-8 THC Disposable Vape - Pineapple Express", type: "disposable", strength: "2g (2,000mg)", price: 179, desc: "Premium Delta-8 THC disposable vape with tropical Pineapple Express terpenes. Smooth, potent, and Farm Bill compliant" },
+    { name: "CBD + Delta-8 Balanced Vape Pod", type: "pod", strength: "2g (1,000mg each)", price: 169, desc: "Perfectly balanced CBD and Delta-8 THC vape pod for mild euphoria with functional clarity. Ideal for experienced users seeking balanced effects" },
+  ];
+
+  vapeProducts.forEach((product) => {
+    const variants = ["Single", "3-Pack", "6-Pack"];
+    variants.forEach((variant, vIndex) => {
+      const priceMultiplier = vIndex === 2 ? 4.5 : vIndex === 1 ? 2.5 : 1;
+      const price = Math.min(750, Math.max(95, Math.round(product.price * priceMultiplier)));
+      
+      products.push({
+        id: `vape-${productId}`,
+        name: `Medi Spero ${product.name} - ${variant}`,
+        slug: `${product.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${variant.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+        category: "cbd-vape",
+        subcategory: product.type,
+        price: price,
+        originalPrice: Math.round(price * 1.2),
+        rating: 4.7 + Math.random() * 0.3,
+        reviewCount: Math.floor(Math.random() * 300) + 80,
+        description: `${product.desc}. All Medi Spero vape products are manufactured with pharmaceutical-grade ingredients, free from vitamin E acetate, PG, VG, and artificial additives. Third-party tested for potency, purity, and safety. Farm Bill compliant with <0.3% Delta-9 THC.`,
+        shortDescription: `Premium ${product.name} - ${product.strength} fast-acting CBD vapor`,
+        images: getProductImages("cbd-vape", productId),
+        sku: `MS-VAP-${productId.toString().padStart(4, '0')}`,
+        gtin: `0850${String(productId).padStart(9, '0')}`,
+        brand: "Medi Spero",
+        inStock: true,
+        stockQuantity: Math.floor(Math.random() * 60) + 20,
+        strength: product.strength,
+        size: variant,
+        ingredients: ["Hemp-Derived Cannabinoid Extract", "Cannabis-Derived Terpenes", "No PG/VG", "No Vitamin E Acetate", "No Artificial Additives"],
+        benefits: ["Fast-Acting Relief", "No Harmful Additives", "Lab-Tested Purity", "Convenient & Portable", "Precise Dosing"],
+        usage: "Inhale gently for 2-3 seconds. Wait 5-10 minutes between puffs to assess effects. Store upright in a cool, dry place. Must be 21+ to purchase.",
+        thirdPartyTested: true,
+        organic: false,
+        glutenFree: true,
+        vegan: true,
+        madeInUSA: true,
+        tags: ["cbd vape", "disposable", "vape cartridge", "fast-acting", "hemp vape", product.type]
       });
       productId++;
     });

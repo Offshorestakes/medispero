@@ -11,6 +11,7 @@ const categoryImages: Record<string, string> = {
   "cbd-isolate-powder": "⚗️",
   "cbd-isolate-crystals": "💎",
   "cbd-isolate-pure-spectrum": "🔬",
+  "cbd-vape": "💨",
   "cbd-capsules": "💊",
   "sleep-wellness": "😴",
   "cbd-skincare": "✨",
