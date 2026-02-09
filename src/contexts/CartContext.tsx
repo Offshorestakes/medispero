@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect, ReactNode } from "react
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "./AuthContext";
 import { toast } from "@/hooks/use-toast";
+import { trackAddToCart, trackRemoveFromCart } from "@/lib/analytics";
 
 export interface CartItem {
   id: string;
@@ -124,6 +125,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         setItems([...items, data]);
       }
 
+      trackAddToCart({
+        product_id: item.product_id,
+        product_name: item.product_name,
+        price: item.price,
+        quantity: item.quantity,
+      });
+
       toast({
         title: "Added to cart",
         description: `${item.product_name} has been added to your cart.`,
@@ -176,6 +184,15 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         .eq("product_id", productId);
 
       if (error) throw error;
+      const removedItem = items.find(item => item.product_id === productId);
+      if (removedItem) {
+        trackRemoveFromCart({
+          product_id: removedItem.product_id,
+          product_name: removedItem.product_name,
+          price: removedItem.price,
+          quantity: removedItem.quantity,
+        });
+      }
       setItems(items.filter(item => item.product_id !== productId));
       
       toast({

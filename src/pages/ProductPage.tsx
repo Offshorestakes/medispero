@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { trackViewItem } from "@/lib/analytics";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -203,6 +204,17 @@ const ProductPage = () => {
 
   const relatedProducts = getFeaturedProducts(4);
   const dosingGuide = getDosingGuide(product);
+
+  useEffect(() => {
+    if (product) {
+      trackViewItem({
+        product_id: product.id,
+        product_name: product.name,
+        price: product.price,
+        category: product.category,
+      });
+    }
+  }, [product?.id]);
 
   const handleAddToCart = async () => {
     if (!product) return;
