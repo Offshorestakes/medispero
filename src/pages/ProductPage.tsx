@@ -48,10 +48,11 @@ const getDosingGuide = (product: ReturnType<typeof getProductBySlug>) => {
   const isAnxiety = category === "anti-anxiety";
   const isMood = category === "mood-support";
   const isOil = category === "cbd-oils";
-  const isGummy = category === "cbd-gummies";
+  const isGummy = false;
   const isCapsule = category === "cbd-capsules";
-  const isTopical = category === "cbd-topicals";
+  const isTopical = false;
   const isSleep = category === "sleep-wellness";
+  const isVape = category === "cbd-vape";
   
   if (isPharma) {
     return {
@@ -139,6 +140,24 @@ const getDosingGuide = (product: ReturnType<typeof getProductBySlug>) => {
         "Wash hands after application unless treating hands",
       ],
       interactions: "Topical application has minimal systemic absorption and low interaction potential.",
+    };
+  }
+  
+  if (isVape) {
+    return {
+      title: "CBD Vape Usage Guide",
+      guidelines: [
+        { level: "Beginner", dose: "1-2 short puffs", timing: "As needed", notes: "Wait 5-10 min to assess effects" },
+        { level: "Regular", dose: "2-4 puffs", timing: "2-3 times daily", notes: "Adjust based on individual response" },
+        { level: "Experienced", dose: "4-6 puffs", timing: "As needed throughout day", notes: "Do not exceed comfortable limits" },
+      ],
+      warnings: [
+        "Must be 21+ to purchase and use",
+        "Do not use if pregnant or nursing",
+        "Effects are felt within 1-5 minutes",
+        "Store upright in a cool, dry place away from direct sunlight",
+      ],
+      interactions: "Inhaled cannabinoids may enhance effects of sedatives. Use caution with CNS depressants.",
     };
   }
   
@@ -468,7 +487,7 @@ const ProductPage = () => {
                       size="sm" 
                       className="gap-2 flex-1"
                       onClick={() => {
-                        window.open("https://www.kaycha.com/coa-lookup/", "_blank", "noopener,noreferrer");
+                        window.open("https://client.sclabs.com/", "_blank", "noopener,noreferrer");
                       }}
                     >
                       <Download className="h-4 w-4" />
@@ -479,7 +498,7 @@ const ProductPage = () => {
                       size="sm" 
                       className="gap-2 flex-1"
                       onClick={() => {
-                        window.open("https://www.kaycha.com/about-us/", "_blank", "noopener,noreferrer");
+                        window.open("https://www.sclabs.com/hemp/", "_blank", "noopener,noreferrer");
                       }}
                     >
                       <ExternalLink className="h-4 w-4" />
@@ -487,7 +506,7 @@ const ProductPage = () => {
                     </Button>
                   </div>
                   <p className="text-xs text-muted-foreground mt-3">
-                    Tested by: Kaycha Labs (ISO/IEC 17025 Accredited, DEA Licensed) | Multiple US Locations
+                    Tested by: SC Laboratories (ISO/IEC 17025 Accredited, DEA Licensed) | Denver, CO
                   </p>
                 </div>
               </div>

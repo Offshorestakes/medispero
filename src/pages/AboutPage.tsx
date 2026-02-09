@@ -3,6 +3,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
 import { Award, Users, Leaf, Heart, Shield, Target } from "lucide-react";
+import aboutHeroImage from "@/assets/about-hero.jpg";
 
 const AboutPage = () => {
   return (
@@ -52,8 +53,12 @@ const AboutPage = () => {
                   every batch, so you know exactly what you're putting in your body.
                 </p>
               </div>
-              <div className="bg-muted rounded-2xl aspect-video flex items-center justify-center">
-                <img src="/placeholder.svg" alt="Our mission" className="w-full h-full object-cover rounded-2xl" />
+              <div className="rounded-2xl overflow-hidden aspect-video">
+                <img 
+                  src={aboutHeroImage} 
+                  alt="Medi Spero pharmaceutical laboratory and research team" 
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>
