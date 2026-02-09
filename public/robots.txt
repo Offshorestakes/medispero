@@ -23,9 +23,9 @@ Disallow: /*filter=*
 # Block age gate cookies/sessions
 Disallow: /*age-verification*
 
-# Sitemap locations
+# Sitemap locations (dynamic)
+Sitemap: https://ikabzlrajzshwumoemfu.supabase.co/functions/v1/sitemap
 Sitemap: https://medispero.com/sitemap.xml
-Sitemap: https://medispero.com/sitemap_index.xml
 
 # Crawl-delay (be respectful to server)
 Crawl-delay: 1
