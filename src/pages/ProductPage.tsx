@@ -365,6 +365,46 @@ const ProductPage = () => {
     ],
   };
 
+  // FAQ Schema for product page featured snippets
+  const productFaqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `What is ${product.name}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: product.description,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `How do I use ${product.name}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: product.usage || "Follow the dosing instructions on the product label. Start with the lowest recommended dose and adjust as needed. Consult your healthcare provider before use.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: `Is ${product.name} lab tested?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Every Medi Spero product undergoes rigorous third-party testing at ISO-certified laboratories for potency, purity, and safety. Certificates of Analysis (COAs) are available on each product page.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: `Will ${product.name} make me fail a drug test?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Full Spectrum products contain trace THC (under 0.3%) and may cause a positive result on sensitive drug tests. If you are subject to drug testing, consider our Broad Spectrum or CBD Isolate products which contain zero THC.",
+        },
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
@@ -374,7 +414,7 @@ const ProductPage = () => {
         <meta name="rating" content="adult" />
         <meta property="og:title" content={`${product.name} | Medi Spero`} />
         <meta property="og:description" content={product.shortDescription} />
-        <meta property="og:image" content={product.images[0]} />
+        <meta property="og:image" content={`https://medispero.com${product.images[0]}`} />
         <meta property="og:type" content="product" />
         <meta property="og:url" content={`https://medispero.com/product/${product.slug}`} />
         <meta property="product:price:amount" content={product.price.toFixed(2)} />
@@ -389,6 +429,9 @@ const ProductPage = () => {
         </script>
         <script type="application/ld+json">
           {JSON.stringify(breadcrumbSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(productFaqSchema)}
         </script>
       </Helmet>
       <Header />

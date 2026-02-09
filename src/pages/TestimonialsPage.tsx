@@ -10,6 +10,7 @@ const TestimonialsPage = () => {
       <Helmet>
         <title>Customer Reviews & Testimonials | Medi Spero</title>
         <meta name="description" content="Read real reviews from verified Medi Spero customers. See why thousands trust our pharmaceutical-grade CBD and hemp wellness products." />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <link rel="canonical" href="https://medispero.com/testimonials" />
       </Helmet>
       <div className="min-h-screen flex flex-col">

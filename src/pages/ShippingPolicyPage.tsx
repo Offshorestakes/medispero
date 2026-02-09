@@ -1,12 +1,21 @@
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
+import BreadcrumbNav from "@/components/BreadcrumbNav";
 import { Truck, Package, Clock, Globe, MapPin, Shield, AlertCircle } from "lucide-react";
 
 const ShippingPolicyPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>Shipping Policy | Fast & Discreet CBD Delivery | Medi Spero</title>
+        <meta name="description" content="Free discreet shipping on orders over $250. Standard 5-7 days, Express 2-3 days, Overnight available. All Medi Spero CBD orders ship in plain packaging." />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <link rel="canonical" href="https://medispero.com/shipping" />
+      </Helmet>
       <Header />
+      <BreadcrumbNav items={[{ name: "Home", href: "/" }, { name: "Shipping Policy" }]} />
       
       <main className="flex-grow">
         {/* Hero Section */}

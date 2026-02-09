@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Search, Home, ShoppingBag, FileText, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import Header from "@/components/layout/Header";
@@ -28,6 +29,11 @@ const NotFound = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>Page Not Found | Medi Spero</title>
+        <meta name="description" content="The page you're looking for doesn't exist. Browse our premium CBD products or search for what you need." />
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
       <Header />
       <main className="flex-1 flex items-center justify-center bg-muted/30 py-16">
         <div className="container-wide max-w-2xl text-center">
