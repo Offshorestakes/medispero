@@ -370,6 +370,8 @@ const ProductPage = () => {
       <Helmet>
         <title>{product.name} | ${product.price.toFixed(2)} | Medi Spero</title>
         <meta name="description" content={`${product.shortDescription} Free shipping on orders over $250. Lab-tested, pharmaceutical-grade ${product.category.replace("-", " ")} from Medi Spero.`} />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="rating" content="adult" />
         <meta property="og:title" content={`${product.name} | Medi Spero`} />
         <meta property="og:description" content={product.shortDescription} />
         <meta property="og:image" content={product.images[0]} />

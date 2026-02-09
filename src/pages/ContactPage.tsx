@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
+import BreadcrumbNav from "@/components/BreadcrumbNav";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,9 +14,12 @@ const ContactPage = () => {
       <Helmet>
         <title>Contact Us | Medi Spero CBD Support</title>
         <meta name="description" content="Contact Medi Spero for questions about CBD products, orders, or wholesale inquiries. Email info@medispero.com or WhatsApp +1 (334) 746-9312." />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <link rel="canonical" href="https://medispero.com/contact" />
       </Helmet>
       <Header />
-      <main className="flex-1">
+      <BreadcrumbNav items={[{ name: "Home", href: "/" }, { name: "Contact Us" }]} />
+      <main id="main-content" className="flex-1">
         {/* Hero */}
         <section className="py-16 bg-gradient-to-r from-primary/5 to-secondary/5">
           <div className="container-wide text-center">

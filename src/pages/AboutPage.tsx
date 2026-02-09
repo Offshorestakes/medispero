@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
+import BreadcrumbNav from "@/components/BreadcrumbNav";
 import { Award, Users, Leaf, Heart, Shield, Target } from "lucide-react";
 import aboutHeroImage from "@/assets/about-hero.jpg";
 
@@ -11,9 +12,12 @@ const AboutPage = () => {
       <Helmet>
         <title>About Medi Spero | Premium CBD & Hemp Wellness Company</title>
         <meta name="description" content="Learn about Medi Spero's mission to provide pharmaceutical-grade CBD and hemp wellness products. Family-owned, lab-tested, made in USA with organic hemp." />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <link rel="canonical" href="https://medispero.com/about" />
       </Helmet>
       <Header />
-      <main className="flex-1">
+      <BreadcrumbNav items={[{ name: "Home", href: "/" }, { name: "About Us" }]} />
+      <main id="main-content" className="flex-1">
         {/* Hero */}
         <section className="py-20 bg-gradient-to-br from-primary/10 to-secondary/10">
           <div className="container-wide">

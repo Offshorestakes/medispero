@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
+import BreadcrumbNav from "@/components/BreadcrumbNav";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, ArrowRight, User, Tag } from "lucide-react";
@@ -47,13 +48,15 @@ const BlogPage = () => {
         <title>Wellness Blog | CBD & THC for Anxiety, Depression & Mood Support | Medi Spero</title>
         <meta name="description" content="Expert articles on pharmaceutical-grade CBD, Delta-8, and Delta-9 THC for anxiety relief, depression support, and mood enhancement. Evidence-based wellness insights from Medi Spero." />
         <meta name="keywords" content="CBD blog, THC wellness, anxiety relief articles, depression support, mood enhancement, Delta-8 anxiety, Delta-9 mood, CBD education, hemp wellness blog, natural mental health" />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <link rel="canonical" href="https://medispero.com/blog" />
         <script type="application/ld+json">{JSON.stringify(blogSchema)}</script>
       </Helmet>
 
       <Header />
+      <BreadcrumbNav items={[{ name: "Home", href: "/" }, { name: "Blog" }]} />
 
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-primary/10 via-secondary/5 to-primary/10 py-16 md:py-24">
           <div className="container-wide text-center">

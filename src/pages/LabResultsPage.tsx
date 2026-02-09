@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
+import BreadcrumbNav from "@/components/BreadcrumbNav";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -37,11 +38,14 @@ const LabResultsPage = () => {
       <Helmet>
         <title>Lab Results & Certificates of Analysis | Medi Spero</title>
         <meta name="description" content="View third-party lab test results and Certificates of Analysis (COA) for all Medi Spero CBD and THC products. 100% transparency guaranteed." />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <link rel="canonical" href="https://medispero.com/lab-results" />
       </Helmet>
       
       <Header />
+      <BreadcrumbNav items={[{ name: "Home", href: "/" }, { name: "Lab Results" }]} />
       
-      <main className="flex-grow">
+      <main id="main-content" className="flex-grow">
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-primary/10 to-secondary/10 py-16">
           <div className="container-wide text-center">

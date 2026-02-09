@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <!-- Main Pages -->
   <url>
     <loc>https://medispero.com/</loc>
-    <lastmod>2026-02-05</lastmod>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://medispero.com/products</loc>
-    <lastmod>2026-02-05</lastmod>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
@@ -27,7 +28,7 @@
   </url>
   <url>
     <loc>https://medispero.com/blog</loc>
-    <lastmod>2026-02-05</lastmod>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -39,59 +40,83 @@
   </url>
   <url>
     <loc>https://medispero.com/lab-results</loc>
-    <lastmod>2026-02-05</lastmod>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://medispero.com/education</loc>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://medispero.com/testimonials</loc>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <!-- Category Pages -->
   <url>
     <loc>https://medispero.com/category/cbd-oils</loc>
-    <lastmod>2026-02-05</lastmod>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://medispero.com/category/cbd-gummies</loc>
-    <lastmod>2026-02-05</lastmod>
+    <loc>https://medispero.com/category/cbd-capsules</loc>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://medispero.com/category/cbd-topicals</loc>
-    <lastmod>2026-02-05</lastmod>
+    <loc>https://medispero.com/category/cbd-isolate-powder</loc>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://medispero.com/category/thc-products</loc>
-    <lastmod>2026-02-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://medispero.com/category/pharmaceutical-capsules</loc>
-    <lastmod>2026-02-05</lastmod>
+    <loc>https://medispero.com/category/cbd-vape</loc>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://medispero.com/category/anti-anxiety</loc>
-    <lastmod>2026-02-05</lastmod>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://medispero.com/category/mood-depression</loc>
-    <lastmod>2026-02-05</lastmod>
+    <loc>https://medispero.com/category/mood-support</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://medispero.com/category/pharma-capsules</loc>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://medispero.com/category/adhd-focus</loc>
-    <lastmod>2026-02-05</lastmod>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://medispero.com/category/sleep-wellness</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://medispero.com/category/bundles</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   
   <!-- Blog Posts -->

@@ -3,9 +3,9 @@ import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
+import BreadcrumbNav from "@/components/BreadcrumbNav";
 import ProductCard from "@/components/ProductCard";
 import { products, categories } from "@/data/products";
-import { ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -56,21 +56,12 @@ const ProductsPage = () => {
       <Helmet>
         <title>Shop CBD & THC Products | Pharmaceutical-Grade Hemp Wellness | Medi Spero</title>
         <meta name="description" content="Browse 600+ pharmaceutical-grade CBD and hemp-derived THC products. Anti-anxiety, mood support, ADHD focus, and wellness solutions. Lab-tested, free shipping $250+." />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <link rel="canonical" href="https://medispero.com/products" />
       </Helmet>
       <Header />
-      <main className="flex-1">
-        {/* Breadcrumb */}
-        <div className="bg-muted/30 py-4">
-          <div className="container-wide">
-            <nav className="flex items-center gap-2 text-sm">
-              <Link to="/" className="text-muted-foreground hover:text-foreground">
-                Home
-              </Link>
-              <ChevronRight className="h-4 w-4 text-muted-foreground" />
-              <span className="text-foreground font-medium">All Products</span>
-            </nav>
-          </div>
-        </div>
+      <BreadcrumbNav items={[{ name: "Home", href: "/" }, { name: "All Products" }]} />
+      <main id="main-content" className="flex-1">
 
         {/* Header */}
         <section className="py-12 bg-gradient-to-r from-primary/5 to-secondary/5">
