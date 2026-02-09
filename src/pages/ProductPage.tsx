@@ -468,26 +468,26 @@ const ProductPage = () => {
                       size="sm" 
                       className="gap-2 flex-1"
                       onClick={() => {
-                        window.open(`https://client.sclabs.com/verify/${coaBatchNumber}`, "_blank", "noopener,noreferrer");
+                        window.open("https://www.kaycha.com/coa-lookup/", "_blank", "noopener,noreferrer");
                       }}
                     >
                       <Download className="h-4 w-4" />
-                      Download COA (PDF)
+                      View COA Report
                     </Button>
                     <Button 
                       variant="outline" 
                       size="sm" 
                       className="gap-2 flex-1"
                       onClick={() => {
-                        window.open("https://client.sclabs.com/", "_blank", "noopener,noreferrer");
+                        window.open("https://www.kaycha.com/about-us/", "_blank", "noopener,noreferrer");
                       }}
                     >
                       <ExternalLink className="h-4 w-4" />
-                      Verify on Lab Website
+                      About Our Lab Partner
                     </Button>
                   </div>
                   <p className="text-xs text-muted-foreground mt-3">
-                    Tested by: SC Labs (ISO 17025 Accredited) | Santa Cruz, California
+                    Tested by: Kaycha Labs (ISO/IEC 17025 Accredited, DEA Licensed) | Multiple US Locations
                   </p>
                 </div>
               </div>
