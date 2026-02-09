@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
+import BreadcrumbNav from "@/components/BreadcrumbNav";
 import {
   Accordion,
   AccordionContent,
@@ -142,13 +143,16 @@ const FAQPage = () => {
       <Helmet>
         <title>FAQ | CBD & Hemp Product Questions | Medi Spero</title>
         <meta name="description" content="Find answers to common questions about CBD, THC products, dosing, shipping, returns, and more. Expert guidance from Medi Spero's wellness team." />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <link rel="canonical" href="https://medispero.com/faq" />
         <script type="application/ld+json">
           {JSON.stringify(faqSchema)}
         </script>
       </Helmet>
       <Header />
+      <BreadcrumbNav items={[{ name: "Home", href: "/" }, { name: "FAQ" }]} />
       
-      <main className="flex-grow">
+      <main id="main-content" className="flex-grow">
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-primary/10 to-secondary/10 py-16">
           <div className="container-wide text-center">

@@ -3,15 +3,38 @@
 
 User-agent: *
 Allow: /
+Allow: /assets/
+Allow: /images/
 
-# Sitemap location
+# Block sensitive pages (CRITICAL for CBD/THC sites)
+Disallow: /account
+Disallow: /checkout
+Disallow: /auth
+Disallow: /order-tracking/
+Disallow: /admin/
+
+# Block duplicate content & query parameters
+Disallow: /*?*
+Disallow: /*&*
+Disallow: /*add-to-cart=*
+Disallow: /*orderby=*
+Disallow: /*filter=*
+
+# Block age gate cookies/sessions
+Disallow: /*age-verification*
+
+# Sitemap locations
 Sitemap: https://medispero.com/sitemap.xml
+Sitemap: https://medispero.com/sitemap_index.xml
 
 # Crawl-delay (be respectful to server)
 Crawl-delay: 1
 
-# Allow all crawlers
+# Search engine crawlers
 User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
 Allow: /
 
 User-agent: Bingbot
@@ -23,7 +46,7 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-# AI Crawlers
+# AI Crawlers (IMPORTANT for 2026)
 User-agent: GPTBot
 Allow: /
 
@@ -39,6 +62,9 @@ Allow: /
 User-agent: anthropic-ai
 Allow: /
 
+User-agent: ClaudeBot
+Allow: /
+
 User-agent: Claude-Web
 Allow: /
 
@@ -48,7 +74,5 @@ Allow: /
 User-agent: Cohere-AI
 Allow: /
 
-# Disallow admin/private paths
-Disallow: /account
-Disallow: /checkout
-Disallow: /auth
+User-agent: Bard
+Allow: /
