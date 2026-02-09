@@ -31,6 +31,7 @@ import TestimonialsPage from "./pages/TestimonialsPage";
 import EducationPage from "./pages/EducationPage";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
+import CookieConsent from "./components/CookieConsent";
 
 const queryClient = new QueryClient();
 
@@ -45,6 +46,7 @@ const App = () => (
             <BrowserRouter>
               <ScrollToTop />
               <CartDrawer />
+              <CookieConsent />
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/products" element={<ProductsPage />} />
