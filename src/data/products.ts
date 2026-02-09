@@ -12,17 +12,16 @@ import cbdOilPureConcentrate from "@/assets/products/cbd-oil-pure-concentrate.jp
 import cbdOilTherapeutic from "@/assets/products/cbd-oil-therapeutic-grade.jpg";
 import cbdOilHighPotency from "@/assets/products/cbd-oil-high-potency-extract.jpg";
 // Legacy product images (for other categories)
-import cbdGummiesImage from "@/assets/products/cbd-gummies.jpg";
-import cbdTopicalImage from "@/assets/products/cbd-topical-cream.jpg";
+import cbdIsolatePowderImage from "@/assets/products/cbd-isolate-powder.jpg";
+import cbdIsolateCrystalsImage from "@/assets/products/cbd-isolate-crystals.jpg";
+import cbdIsolatePureSpectrumImage from "@/assets/products/cbd-isolate-pure-spectrum.jpg";
 import thcVapeImage from "@/assets/products/thc-vape-cartridge.jpg";
 import cbdCapsulesImage from "@/assets/products/cbd-capsules.jpg";
-import cbdRollOnImage from "@/assets/products/cbd-roll-on.jpg";
 import thcGummiesImage from "@/assets/products/thc-gummies.jpg";
 import cbdSleepImage from "@/assets/products/cbd-sleep-tincture.jpg";
 import hhcFlowerImage from "@/assets/products/hhc-flower.jpg";
-import cbdMassageOilImage from "@/assets/products/cbd-massage-oil.jpg";
-import cbdPetTreatsImage from "@/assets/products/cbd-pet-treats.jpg";
 import cbdBathBombsImage from "@/assets/products/cbd-bath-bombs.jpg";
+// (cbdBathBombsImage already imported above)
 // Anti-Anxiety & Mood product images
 import delta8CalmGummiesImage from "@/assets/products/delta8-calm-gummies.jpg";
 import delta9MoodTinctureImage from "@/assets/products/delta9-mood-tincture.jpg";
@@ -39,13 +38,13 @@ import adhdFocusCapsulesImage from "@/assets/products/adhd-focus-capsules.png";
 // Image pools for each category to provide variety
 const imagePoolsByCategory: Record<string, string[]> = {
   "cbd-oils": [cbdOilPharmaGrade, cbdOilFullSpectrum, cbdOilHempTincture, cbdOilGoldenExtract, cbdOilLabCollection, cbdOilScientific, cbdOilPureConcentrate, cbdOilTherapeutic, cbdOilHighPotency],
-  "cbd-gummies": [cbdGummiesImage, thcGummiesImage, delta8CalmGummiesImage],
-  "cbd-topicals": [cbdTopicalImage, cbdRollOnImage, cbdMassageOilImage],
+  "cbd-isolate-powder": [cbdIsolatePowderImage, cbdIsolateCrystalsImage, cbdIsolatePureSpectrumImage],
+  "cbd-isolate-crystals": [cbdIsolateCrystalsImage, cbdIsolatePowderImage, cbdIsolatePureSpectrumImage],
+  "cbd-isolate-pure-spectrum": [cbdIsolatePureSpectrumImage, cbdIsolatePowderImage, cbdIsolateCrystalsImage],
   "cbd-capsules": [cbdCapsulesImage, cbdMoodSoftgelsImage],
   "sleep-wellness": [cbdSleepImage, cbdBathBombsImage, cbdCalmTeaImage, delta8CalmGummiesImage],
-  "pet-cbd": [cbdPetTreatsImage],
-  "cbd-skincare": [cbdBathBombsImage, cbdTopicalImage, cbdMassageOilImage],
-  "bundles": [cbdOilPharmaGrade, cbdGummiesImage, cbdTopicalImage, cbdCapsulesImage, cbdSleepImage],
+  "cbd-skincare": [cbdBathBombsImage, cbdIsolatePureSpectrumImage],
+  "bundles": [cbdOilPharmaGrade, cbdIsolatePowderImage, cbdCapsulesImage, cbdSleepImage],
   "thc": [thcVapeImage, thcGummiesImage, hhcFlowerImage, thcHempFlowerImage, delta10ChocolateImage],
   "anti-anxiety": [delta8CalmGummiesImage, cbdCalmTeaImage, delta8AnxietyVapeImage, cbdStressSprayImage, cbdMoodSoftgelsImage],
   "mood-support": [delta9MoodTinctureImage, cbdMoodSoftgelsImage, delta10ChocolateImage, delta8CalmGummiesImage, cbdStressSprayImage],
@@ -55,7 +54,7 @@ const imagePoolsByCategory: Record<string, string[]> = {
 
 // Helper function to get images based on category with rotation for variety
 const getProductImages = (category: string, productIndex: number): string[] => {
-  const pool = imagePoolsByCategory[category] || [cbdOilPharmaGrade, cbdGummiesImage, cbdTopicalImage];
+  const pool = imagePoolsByCategory[category] || [cbdOilPharmaGrade, cbdIsolatePowderImage, cbdIsolateCrystalsImage];
   const primaryIndex = productIndex % pool.length;
   const primaryImage = pool[primaryIndex];
   const gallery = [primaryImage];
@@ -69,11 +68,11 @@ const getProductImages = (category: string, productIndex: number): string[] => {
 const getCategoryImage = (categoryId: string): string => {
   switch (categoryId) {
     case "cbd-oils": return cbdOilPharmaGrade;
-    case "cbd-gummies": return cbdGummiesImage;
-    case "cbd-topicals": return cbdTopicalImage;
+    case "cbd-isolate-powder": return cbdIsolatePowderImage;
+    case "cbd-isolate-crystals": return cbdIsolateCrystalsImage;
+    case "cbd-isolate-pure-spectrum": return cbdIsolatePureSpectrumImage;
     case "cbd-capsules": return cbdCapsulesImage;
     case "sleep-wellness": return cbdSleepImage;
-    case "pet-cbd": return cbdPetTreatsImage;
     case "cbd-skincare": return cbdBathBombsImage;
     case "bundles": return cbdOilFullSpectrum;
     case "anti-anxiety": return delta8CalmGummiesImage;
@@ -168,44 +167,28 @@ export const categories: Category[] = [
     productCount: 65
   },
   {
-    id: "cbd-gummies",
-    name: "CBD Gummies",
-    slug: "cbd-gummies",
-    description: "Delicious, easy-to-dose CBD gummies for stress relief and relaxation",
-    image: getCategoryImage("cbd-gummies"),
-    productCount: 50
-  },
-  {
-    id: "cbd-topicals",
-    name: "CBD Topicals",
-    slug: "cbd-topicals",
-    description: "Soothing CBD creams, balms, and lotions for targeted relief",
-    image: getCategoryImage("cbd-topicals"),
-    productCount: 45
-  },
-  {
-    id: "cbd-capsules",
-    name: "CBD Capsules",
-    slug: "cbd-capsules",
-    description: "Convenient, precisely-dosed CBD softgels and capsules",
-    image: getCategoryImage("cbd-capsules"),
+    id: "cbd-isolate-powder",
+    name: "CBD Isolate Powder",
+    slug: "cbd-isolate-powder",
+    description: "99%+ pure CBD isolate powder extracted from premium US-grown hemp. THC-free, lab-tested, perfect for custom formulations and precise dosing",
+    image: getCategoryImage("cbd-isolate-powder"),
     productCount: 40
   },
   {
-    id: "sleep-wellness",
-    name: "Sleep & Relaxation",
-    slug: "sleep-wellness",
-    description: "CBD products formulated specifically for better sleep and calm",
-    image: getCategoryImage("sleep-wellness"),
+    id: "cbd-isolate-crystals",
+    name: "CBD Isolate Crystals",
+    slug: "cbd-isolate-crystals",
+    description: "Pharmaceutical-grade CBD isolate crystals with 99.9% purity. Versatile, THC-free crystalline CBD for sublingual use, dabbing, or DIY formulations",
+    image: getCategoryImage("cbd-isolate-crystals"),
     productCount: 35
   },
   {
-    id: "pet-cbd",
-    name: "Pet CBD",
-    slug: "pet-cbd",
-    description: "Safe, veterinarian-formulated CBD products for your furry friends",
-    image: getCategoryImage("pet-cbd"),
-    productCount: 25
+    id: "cbd-isolate-pure-spectrum",
+    name: "CBD Isolate Pure Spectrum",
+    slug: "cbd-isolate-pure-spectrum",
+    description: "Premium pure spectrum CBD isolate products combining 99%+ CBD purity with targeted cannabinoid blends for enhanced therapeutic benefits",
+    image: getCategoryImage("cbd-isolate-pure-spectrum"),
+    productCount: 35
   },
   {
     id: "cbd-skincare",
@@ -503,107 +486,104 @@ const generateProducts = (): Product[] => {
     });
   });
 
-  // CBD GUMMIES ($150-$750)
-  const gummyProducts = [
-    { name: "Professional Strength Sleep Gummies", type: "Sleep", strength: "100mg CBD + 25mg CBN per gummy", price: 349, count: "30 count" },
-    { name: "Clinical Calm CBD Gummies", type: "Calm", strength: "75mg per gummy", price: 299, count: "30 count" },
-    { name: "High-Potency Recovery Gummies", type: "Recovery", strength: "100mg per gummy", price: 379, count: "30 count" },
-    { name: "Focus & Clarity Premium Gummies", type: "Focus", strength: "50mg CBD + 25mg CBG per gummy", price: 329, count: "30 count" },
-    { name: "Immune Support CBD Gummies", type: "Immunity", strength: "75mg per gummy", price: 289, count: "30 count" },
-    { name: "Daily Wellness Premium Gummies", type: "Wellness", strength: "100mg per gummy", price: 349, count: "30 count" },
+  // CBD ISOLATE POWDER ($150-$750) - Referenced from Extract Labs, Hemp Health Inc, Crescent Canna
+  const isolatePowderProducts = [
+    { name: "99%+ Pure CBD Isolate Powder", strength: "1,000mg (1g)", price: 150, desc: "Award-winning 99%+ pure CBD isolate powder extracted from premium US-grown hemp using supercritical CO2 extraction. THC non-detectable, perfect for sublingual use or adding to foods and beverages" },
+    { name: "Bulk CBD Isolate Powder", strength: "5,000mg (5g)", price: 249, desc: "Pharmaceutical-grade bulk CBD isolate powder for custom formulations, research, and high-volume personal use. Certified 99.7% purity with full panel COA" },
+    { name: "Nano CBD Isolate Powder", strength: "3,000mg (3g)", price: 329, desc: "Water-soluble nano-emulsified CBD isolate powder with 4x enhanced bioavailability. Dissolves instantly in any liquid for rapid absorption and maximum efficacy" },
+    { name: "CBG Isolate Powder", strength: "2,000mg (2g)", price: 279, desc: "Premium cannabigerol (CBG) isolate powder, the 'mother cannabinoid' known for its potent anti-inflammatory and neuroprotective properties. 99%+ purity verified" },
+    { name: "CBN Isolate Powder", strength: "1,000mg (1g)", price: 299, desc: "Ultra-pure cannabinol (CBN) isolate powder for sleep support and relaxation. Extracted from aged hemp using advanced chromatography for exceptional purity" },
+    { name: "CBD + CBG Isolate Powder Blend", strength: "5,000mg (2,500mg each)", price: 379, desc: "Synergistic dual-cannabinoid isolate blend combining CBD and CBG for enhanced entourage effects without THC. Ideal for focus, inflammation, and daily wellness" },
+    { name: "Wholesale CBD Isolate Powder", strength: "28,000mg (28g/1oz)", price: 549, desc: "Professional-grade wholesale CBD isolate for formulators, practitioners, and wellness brands. Comes with full batch documentation and third-party verification" },
+    { name: "Ultra-Fine Micronized CBD Powder", strength: "10,000mg (10g)", price: 449, desc: "Micronized to sub-10-micron particle size for maximum surface area and absorption. Pharmaceutical-grade processing for consistent, predictable results" },
   ];
 
-  gummyProducts.forEach((product) => {
-    const sizes = ["30 count", "60 count", "90 count"];
-    sizes.forEach((size, sIndex) => {
-      const priceMultiplier = sIndex === 2 ? 2.4 : sIndex === 1 ? 1.7 : 1;
-      const price = Math.min(750, Math.max(150, Math.round(product.price * priceMultiplier)));
-      
-      products.push({
-        id: `gummy-${productId}`,
-        name: `Medi Spero ${product.name} (${size})`,
-        slug: `${product.type.toLowerCase()}-premium-gummies-${size.replace(' ', '-')}`,
-        category: "cbd-gummies",
-        subcategory: product.type.toLowerCase(),
-        price: price,
-        originalPrice: Math.round(price * 1.2),
-        rating: 4.8 + Math.random() * 0.2,
-        reviewCount: Math.floor(Math.random() * 600) + 150,
-        description: `Our ${product.name} represent the pinnacle of edible CBD. Each gummy contains ${product.strength} of pharmaceutical-grade cannabinoids for maximum effectiveness. Made with organic fruit purees and natural flavors. Vegan, gluten-free, and delicious.`,
-        shortDescription: `Premium ${product.type} CBD Gummies with ${product.strength}`,
-        images: getProductImages("cbd-gummies", productId),
-        sku: `MS-GUM-${productId.toString().padStart(4, '0')}`,
-        gtin: `0850${String(productId).padStart(9, '0')}`,
-        brand: "Medi Spero",
-        inStock: true,
-        stockQuantity: Math.floor(Math.random() * 80) + 25,
-        strength: product.strength,
-        size: size,
-        servings: parseInt(size),
-        ingredients: ["Broad Spectrum Hemp Extract", "Organic Cane Sugar", "Organic Fruit Puree", "Pectin", "Natural Flavors", "Citric Acid"],
-        benefits: product.type === "Sleep" ? ["Deep, Restful Sleep", "Non-Habit Forming", "Wake Refreshed", "Natural Formula"] :
-                 product.type === "Calm" ? ["Anxiety Relief", "Stress Reduction", "Mental Clarity", "Daily Calm"] :
-                 product.type === "Recovery" ? ["Athletic Recovery", "Muscle Relief", "Joint Support", "Performance"] :
-                 product.type === "Focus" ? ["Enhanced Focus", "Mental Clarity", "Productivity", "Concentration"] :
-                 product.type === "Immunity" ? ["Immune Support", "Antioxidant Rich", "Daily Defense", "Wellness"] :
-                 ["Daily Wellness", "Balance", "Energy", "Vitality"],
-        usage: "Take 1-2 gummies daily or as needed. Best taken consistently for optimal results.",
-        thirdPartyTested: true,
-        organic: false,
-        glutenFree: true,
-        vegan: true,
-        madeInUSA: true,
-        tags: ["cbd gummies", "premium", product.type.toLowerCase(), "edibles"]
-      });
-      productId++;
-    });
-  });
-
-  // CBD TOPICALS ($150-$750)
-  const topicalProducts = [
-    { name: "Medical Grade Relief Cream", strength: "5000mg", price: 299, type: "cream" },
-    { name: "Professional Muscle Recovery Balm", strength: "4000mg", price: 279, type: "balm" },
-    { name: "Clinical Cooling Roll-On Gel", strength: "3000mg", price: 229, type: "roll-on" },
-    { name: "Premium Sports Recovery Lotion", strength: "5000mg", price: 319, type: "lotion" },
-    { name: "Therapeutic Massage Oil", strength: "6000mg", price: 349, type: "oil" },
-    { name: "Intensive Warming Salve", strength: "4500mg", price: 289, type: "salve" },
-  ];
-
-  topicalProducts.forEach((product) => {
-    const sizes = ["2 oz", "4 oz", "8 oz"];
+  isolatePowderProducts.forEach((product) => {
+    const sizes = ["Standard", "Professional", "Bulk"];
     sizes.forEach((size, sIndex) => {
       const priceMultiplier = sIndex === 2 ? 2.2 : sIndex === 1 ? 1.5 : 1;
       const price = Math.min(750, Math.max(150, Math.round(product.price * priceMultiplier)));
-      
+
       products.push({
-        id: `topical-${productId}`,
-        name: `Medi Spero ${product.name} - ${product.strength} (${size})`,
-        slug: `premium-${product.type}-${product.strength.toLowerCase()}-${size.replace(' ', '')}`,
-        category: "cbd-topicals",
-        subcategory: product.type,
+        id: `isolate-powder-${productId}`,
+        name: `Medi Spero ${product.name} - ${size}`,
+        slug: `${product.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${size.toLowerCase()}`,
+        category: "cbd-isolate-powder",
+        subcategory: "isolate-powder",
         price: price,
-        originalPrice: Math.round(price * 1.15),
-        rating: 4.6 + Math.random() * 0.4,
-        reviewCount: Math.floor(Math.random() * 300) + 80,
-        description: `Our ${product.name} delivers ${product.strength} of full-spectrum CBD directly to affected areas. Enhanced with premium botanicals and essential oils for maximum therapeutic benefit. Fast-absorbing, non-greasy formula perfect for targeted relief.`,
-        shortDescription: `Professional-grade ${product.name} with ${product.strength} CBD`,
-        images: getProductImages("cbd-topicals", productId),
-        sku: `MS-TOP-${productId.toString().padStart(4, '0')}`,
+        originalPrice: Math.round(price * 1.2),
+        rating: 4.8 + Math.random() * 0.2,
+        reviewCount: Math.floor(Math.random() * 400) + 120,
+        description: `${product.desc}. Manufactured in FDA-registered, cGMP-certified facilities with rigorous quality control at every stage. Each batch undergoes comprehensive third-party testing for potency, purity, heavy metals, pesticides, and residual solvents. Medi Spero CBD Isolate Powder is the gold standard for those seeking THC-free, pharmaceutical-grade cannabidiol.`,
+        shortDescription: `Premium ${product.strength} CBD Isolate Powder - 99%+ purity, THC-free`,
+        images: getProductImages("cbd-isolate-powder", productId),
+        sku: `MS-ISP-${productId.toString().padStart(4, '0')}`,
         gtin: `0850${String(productId).padStart(9, '0')}`,
         brand: "Medi Spero",
         inStock: true,
         stockQuantity: Math.floor(Math.random() * 50) + 15,
         strength: product.strength,
         size: size,
-        ingredients: ["Full Spectrum Hemp Extract", "Organic Aloe Vera", "Shea Butter", "Arnica", "Menthol", "Eucalyptus", "Vitamin E"],
-        benefits: ["Deep Penetrating Relief", "Fast Absorption", "Long-Lasting Effects", "Pharmaceutical Grade"],
-        usage: "Apply generously to affected areas and massage until absorbed. Reapply as needed throughout the day.",
+        ingredients: ["99%+ Pure CBD Isolate", "Supercritical CO2 Extracted", "US-Grown Industrial Hemp"],
+        benefits: ["99%+ Purity Guaranteed", "THC Non-Detectable", "cGMP Certified", "Full Panel Lab Tested", "Versatile Use"],
+        usage: "Place desired amount under tongue and hold for 60-90 seconds. Can also be added to foods, beverages, or used in DIY formulations. Start with 10-25mg and adjust as needed.",
         thirdPartyTested: true,
         organic: true,
         glutenFree: true,
         vegan: true,
         madeInUSA: true,
-        tags: ["cbd topical", "premium", product.type, "relief", "pain-management"]
+        tags: ["cbd isolate", "cbd powder", "thc-free", "99% pure", "bulk cbd", "isolate powder"]
+      });
+      productId++;
+    });
+  });
+
+  // CBD ISOLATE CRYSTALS ($150-$750) - Referenced from Extract Labs, Hemp Health Inc, Crescent Canna
+  const isolateCrystalsProducts = [
+    { name: "Premium CBD Isolate Crystals", strength: "1,000mg (1g)", price: 159, desc: "Sparkling, translucent CBD isolate crystals with verified 99.9% purity. Perfect for precise dosing, dabbing, or dissolving under the tongue for fast-acting relief" },
+    { name: "Therapeutic Grade CBD Crystals", strength: "3,500mg (3.5g)", price: 299, desc: "Medical-grade crystalline CBD with pharmaceutical purity standards. Large, well-formed crystals ideal for sublingual administration and custom tincture preparation" },
+    { name: "CBG Isolate Crystals", strength: "2,000mg (2g)", price: 319, desc: "Rare cannabigerol in pure crystalline form for targeted anti-inflammatory, antibacterial, and neuroprotective support. Lab-verified 99%+ purity" },
+    { name: "Bulk CBD Isolate Crystals", strength: "14,000mg (14g)", price: 449, desc: "Wholesale-grade CBD isolate crystals for high-volume users and formulators. Consistent crystal structure ensures even dosing and predictable dissolution rates" },
+    { name: "Delta-8 THC Isolate Crystals", strength: "1,000mg (1g)", price: 269, desc: "Premium Delta-8 THC in pure crystalline form for experienced users seeking precise, potent cannabinoid therapy. Farm Bill compliant with <0.3% Delta-9 THC" },
+    { name: "CBD + CBN Isolate Crystal Blend", strength: "3,000mg (1,500mg each)", price: 349, desc: "Dual-cannabinoid crystal blend optimized for evening use and sleep support. Combines the calming properties of CBD with the sedative benefits of CBN" },
+    { name: "Ultra-Pure Research Grade Crystals", strength: "5,000mg (5g)", price: 399, desc: "Research-grade CBD isolate crystals with comprehensive analytical certification. Suitable for clinical research, product development, and professional formulation" },
+  ];
+
+  isolateCrystalsProducts.forEach((product) => {
+    const sizes = ["Standard", "Professional", "Clinical"];
+    sizes.forEach((size, sIndex) => {
+      const priceMultiplier = sIndex === 2 ? 1.8 : sIndex === 1 ? 1.4 : 1;
+      const price = Math.min(750, Math.max(150, Math.round(product.price * priceMultiplier)));
+
+      products.push({
+        id: `isolate-crystal-${productId}`,
+        name: `Medi Spero ${product.name} - ${size}`,
+        slug: `${product.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${size.toLowerCase()}`,
+        category: "cbd-isolate-crystals",
+        subcategory: "isolate-crystals",
+        price: price,
+        originalPrice: Math.round(price * 1.15),
+        rating: 4.7 + Math.random() * 0.3,
+        reviewCount: Math.floor(Math.random() * 350) + 100,
+        description: `${product.desc}. Every Medi Spero isolate crystal undergoes triple-stage purification and independent third-party verification. Our proprietary crystallization process yields uniform, high-clarity crystals that dissolve consistently for predictable, reliable results every time.`,
+        shortDescription: `Pharmaceutical-grade ${product.strength} CBD Isolate Crystals - 99.9% purity`,
+        images: getProductImages("cbd-isolate-crystals", productId),
+        sku: `MS-ISC-${productId.toString().padStart(4, '0')}`,
+        gtin: `0850${String(productId).padStart(9, '0')}`,
+        brand: "Medi Spero",
+        inStock: true,
+        stockQuantity: Math.floor(Math.random() * 40) + 10,
+        strength: product.strength,
+        size: size,
+        ingredients: ["99.9% Pure CBD Isolate Crystals", "CO2 Extracted", "Premium US-Grown Hemp"],
+        benefits: ["99.9% Crystalline Purity", "Versatile Administration", "THC Non-Detectable", "Rapid Sublingual Absorption", "Lab Certified"],
+        usage: "Place crystals under tongue for 60-90 seconds for sublingual absorption. May also be used for dabbing, vaporizing, or dissolving into carrier oils. Start with 10-25mg.",
+        thirdPartyTested: true,
+        organic: true,
+        glutenFree: true,
+        vegan: true,
+        madeInUSA: true,
+        tags: ["cbd crystals", "cbd isolate", "crystalline cbd", "thc-free", "dabbable", "sublingual"]
       });
       productId++;
     });
@@ -711,50 +691,53 @@ const generateProducts = (): Product[] => {
     });
   });
 
-  // PET CBD ($150-$750)
-  const petProducts = [
-    { name: "Professional Grade Dog CBD Oil", pet: "Dog", strength: "3000mg", price: 249 },
-    { name: "Calming Dog Treats Premium", pet: "Dog", strength: "50mg per treat", price: 199 },
-    { name: "Dog Joint Support Formula", pet: "Dog", strength: "2500mg + Glucosamine", price: 279 },
-    { name: "Premium Cat CBD Oil", pet: "Cat", strength: "1500mg", price: 189 },
-    { name: "Calming Cat Treats", pet: "Cat", strength: "25mg per treat", price: 169 },
+  // CBD ISOLATE PURE SPECTRUM ($150-$750) - Referenced from Extract Labs, Hemp Health Inc, Crescent Canna
+  const isolatePureSpectrumProducts = [
+    { name: "Pure Spectrum CBD Isolate Tincture", strength: "5,000mg", price: 349, desc: "Premium CBD isolate dissolved in organic MCT oil for maximum bioavailability. THC-free pure spectrum formula delivers clean, consistent CBD without any psychoactive compounds" },
+    { name: "Pure Spectrum CBD + CBG Tincture", strength: "3,000mg CBD + 1,500mg CBG", price: 399, desc: "Advanced dual-isolate formula combining pure CBD and CBG for synergistic anti-inflammatory and focus-enhancing benefits without THC or other compounds" },
+    { name: "Pure Spectrum CBD Softgels", strength: "75mg per softgel (4,500mg total)", price: 329, desc: "Precision-dosed CBD isolate softgels in a pure spectrum formulation. Each capsule delivers exactly 75mg of 99%+ pure CBD for consistent, convenient daily wellness" },
+    { name: "Pure Spectrum CBD Isolate Oil", strength: "10,000mg", price: 499, desc: "Ultra-concentrated pure spectrum CBD isolate oil for those seeking maximum potency without THC. Supercritical CO2 extracted and triple-lab verified for pharmaceutical purity" },
+    { name: "Pure Spectrum Water-Soluble CBD", strength: "3,000mg", price: 379, desc: "Nano-emulsified pure spectrum CBD isolate in water-soluble format. Up to 5x greater absorption than standard oils, dissolves perfectly in any beverage" },
+    { name: "Pure Spectrum CBD + CBN Night Oil", strength: "2,500mg CBD + 1,000mg CBN", price: 369, desc: "Evening-optimized pure spectrum blend combining CBD and CBN isolates for deep, restorative sleep support. THC-free with no morning grogginess" },
+    { name: "Pure Spectrum Full Panel Isolate Kit", strength: "Multi-Cannabinoid 7,500mg", price: 549, desc: "Complete pure spectrum kit featuring CBD, CBG, and CBN isolates with mixing tools and dosing guide. Perfect for creating personalized cannabinoid formulations" },
+    { name: "Pure Spectrum Clinical CBD Drops", strength: "15,000mg", price: 649, desc: "Clinical-strength pure spectrum CBD drops designed for intensive therapeutic protocols. Highest concentration available with verified 99%+ purity and full analytical documentation" },
   ];
 
-  petProducts.forEach((product) => {
-    const sizes = ["Standard", "Large", "Family"];
-    sizes.forEach((size, sIndex) => {
-      const priceMultiplier = sIndex === 2 ? 1.8 : sIndex === 1 ? 1.4 : 1;
+  isolatePureSpectrumProducts.forEach((product) => {
+    const variants = ["30-Day Supply", "60-Day Supply", "90-Day Supply"];
+    variants.forEach((variant, vIndex) => {
+      const priceMultiplier = vIndex === 2 ? 1.8 : vIndex === 1 ? 1.4 : 1;
       const price = Math.min(750, Math.max(150, Math.round(product.price * priceMultiplier)));
-      
+
       products.push({
-        id: `pet-${productId}`,
-        name: `Medi Spero ${product.name} - ${size} Size`,
-        slug: `${product.pet.toLowerCase()}-${product.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${size.toLowerCase()}`,
-        category: "pet-cbd",
-        subcategory: product.pet.toLowerCase(),
+        id: `isolate-spectrum-${productId}`,
+        name: `Medi Spero ${product.name} - ${variant}`,
+        slug: `${product.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${variant.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+        category: "cbd-isolate-pure-spectrum",
+        subcategory: "pure-spectrum",
         price: price,
-        originalPrice: Math.round(price * 1.15),
-        rating: 4.9,
-        reviewCount: Math.floor(Math.random() * 200) + 80,
-        description: `Veterinarian-formulated premium CBD for your beloved ${product.pet.toLowerCase()}. Our ${product.name} contains ${product.strength} of THC-free broad-spectrum CBD, specifically designed for pet safety and wellness.`,
-        shortDescription: `Vet-formulated ${product.name} with ${product.strength} for ${product.pet.toLowerCase()}s`,
-        images: getProductImages("pet-cbd", productId),
-        sku: `MS-PET-${productId.toString().padStart(4, '0')}`,
+        originalPrice: Math.round(price * 1.25),
+        rating: 4.8 + Math.random() * 0.2,
+        reviewCount: Math.floor(Math.random() * 300) + 100,
+        description: `${product.desc}. Medi Spero Pure Spectrum products represent the pinnacle of isolate-based wellness—combining 99%+ purity with advanced delivery systems for unmatched bioavailability. Every product is manufactured in our FDA-registered, cGMP-certified facility and verified by independent laboratories.`,
+        shortDescription: `Premium Pure Spectrum ${product.strength} CBD Isolate - THC-free, lab-verified`,
+        images: getProductImages("cbd-isolate-pure-spectrum", productId),
+        sku: `MS-IPS-${productId.toString().padStart(4, '0')}`,
         gtin: `0850${String(productId).padStart(9, '0')}`,
         brand: "Medi Spero",
         inStock: true,
-        stockQuantity: Math.floor(Math.random() * 40) + 15,
+        stockQuantity: Math.floor(Math.random() * 45) + 12,
         strength: product.strength,
-        size: size,
-        ingredients: ["Broad Spectrum Hemp Extract (0% THC)", "Salmon Oil", "Natural Flavoring", "MCT Oil"],
-        benefits: ["Calming Effect", "Joint Support", "Anxiety Relief", "Overall Wellness"],
-        usage: "Administer based on pet weight. See dosing chart on package. Consult veterinarian before use.",
+        size: variant,
+        ingredients: ["99%+ CBD Isolate", "Organic MCT Oil", "Natural Terpene Blend", "Sunflower Lecithin"],
+        benefits: ["THC Non-Detectable", "Pure Spectrum Formulation", "Enhanced Bioavailability", "Pharmaceutical-Grade Purity", "Consistent Dosing"],
+        usage: "Take as directed on package. For tinctures: place under tongue and hold 60-90 seconds. For softgels: take with food. Consult healthcare provider before use.",
         thirdPartyTested: true,
         organic: true,
         glutenFree: true,
-        vegan: false,
+        vegan: true,
         madeInUSA: true,
-        tags: ["pet cbd", product.pet.toLowerCase(), "premium", "veterinarian-formulated"]
+        tags: ["pure spectrum", "cbd isolate", "thc-free", "premium", "pharmaceutical-grade", "bioavailable"]
       });
       productId++;
     });
@@ -806,14 +789,14 @@ const generateProducts = (): Product[] => {
 
   // VALUE BUNDLES ($150-$750)
   const bundles = [
-    { name: "Complete Wellness System", items: "10000mg Oil + 100mg Gummies (60ct) + 5000mg Cream", price: 549 },
-    { name: "Ultimate Sleep & Relaxation Kit", items: "Sleep Tincture + CBN Gummies + Bath Bombs + Spray", price: 449 },
-    { name: "Professional Pain Relief Bundle", items: "15000mg Oil + Medical Cream + Recovery Capsules", price: 649 },
-    { name: "Anxiety & Mood Support System", items: "Delta-8 Tincture + Calm Gummies + Stress Capsules", price: 499 },
-    { name: "Premium Pet Parent Collection", items: "Dog Oil (3000mg) + Cat Oil + Treats + Joint Support", price: 349 },
+    { name: "Complete Wellness System", items: "10000mg Oil + CBD Isolate Powder (5g) + Pure Spectrum Tincture", price: 549 },
+    { name: "Ultimate Sleep & Relaxation Kit", items: "Sleep Tincture + CBN Isolate Crystals + Pure Spectrum Night Oil", price: 449 },
+    { name: "Professional Pain Relief Bundle", items: "15000mg Oil + CBD Isolate Powder (10g) + Recovery Capsules", price: 649 },
+    { name: "Anxiety & Mood Support System", items: "Delta-8 Tincture + Pure Spectrum CBD Softgels + Stress Capsules", price: 499 },
+    { name: "CBD Isolate Starter Collection", items: "CBD Isolate Powder (1g) + CBD Crystals (1g) + Pure Spectrum Tincture", price: 349 },
     { name: "Luxury Skincare Complete Set", items: "Serum + Eye Cream + Night Cream + Body Butter", price: 599 },
     { name: "Ultimate Wellness Bundle", items: "Full Product Range - 10+ Premium Items", price: 749 },
-    { name: "Pharmaceutical Grade Starter", items: "Pharma Capsules + Tincture + Topical", price: 699 },
+    { name: "Pharmaceutical Grade Starter", items: "Pharma Capsules + Tincture + CBD Isolate Powder (5g)", price: 699 },
   ];
 
   bundles.forEach((bundle) => {

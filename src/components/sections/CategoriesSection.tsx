@@ -7,11 +7,11 @@ const categoryImages: Record<string, string> = {
   "anti-anxiety": "🧘",
   "mood-support": "😊",
   "cbd-oils": "🧴",
-  "cbd-gummies": "🍬",
-  "cbd-topicals": "🧴",
+  "cbd-isolate-powder": "⚗️",
+  "cbd-isolate-crystals": "💎",
+  "cbd-isolate-pure-spectrum": "🔬",
   "cbd-capsules": "💊",
   "sleep-wellness": "😴",
-  "pet-cbd": "🐕",
   "cbd-skincare": "✨",
   "bundles": "🎁"
 };
