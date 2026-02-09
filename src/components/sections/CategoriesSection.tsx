@@ -5,6 +5,7 @@ import { categories } from "@/data/products";
 const categoryImages: Record<string, string> = {
   "pharma-capsules": "💊",
   "anti-anxiety": "🧘",
+  "adhd-focus": "🧠",
   "mood-support": "😊",
   "cbd-oils": "🧴",
   "cbd-isolate-powder": "⚗️",
@@ -34,20 +35,20 @@ const CategoriesSection = () => {
         </div>
 
         {/* Categories Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
           {categories.map((category) => (
             <Link
               key={category.id}
               to={`/category/${category.slug}`}
-              className="category-card group p-6 text-center transition-all duration-300 hover:shadow-lg"
+              className="category-card group p-4 sm:p-6 text-center transition-all duration-300 hover:shadow-lg"
             >
               {/* Emoji/Icon */}
-              <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
+              <div className="text-4xl sm:text-5xl mb-3 sm:mb-4 transform group-hover:scale-110 transition-transform duration-300">
                 {categoryImages[category.slug] || "🌿"}
               </div>
 
               {/* Category Name */}
-              <h3 className="font-semibold text-lg mb-1 group-hover:text-primary transition-colors">
+              <h3 className="font-semibold text-sm sm:text-lg mb-1 group-hover:text-primary transition-colors line-clamp-2">
                 {category.name}
               </h3>
 
