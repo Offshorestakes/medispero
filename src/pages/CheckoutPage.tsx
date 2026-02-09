@@ -11,7 +11,7 @@ import { useCart } from "@/contexts/CartContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
-import { ArrowLeft, Loader2, ShoppingBag, Truck, Shield, Check } from "lucide-react";
+import { ArrowLeft, Loader2, ShoppingBag, Truck, Shield, Check, Bitcoin, CreditCard } from "lucide-react";
 
 const addressSchema = z.object({
   fullName: z.string().trim().min(2, "Name is required").max(100),
@@ -28,6 +28,8 @@ const CheckoutPage = () => {
   const { user } = useAuth();
   const { items, subtotal, clearCart } = useCart();
   const [isLoading, setIsLoading] = useState(false);
+  const [isCryptoLoading, setIsCryptoLoading] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState<'standard' | 'crypto'>('standard');
   const [formData, setFormData] = useState({
     fullName: "",
     email: user?.email || "",
@@ -63,34 +65,11 @@ const CheckoutPage = () => {
     return true;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const createOrderAndGetId = async (): Promise<string | null> => {
+    if (!user) return null;
     
-    if (!user) {
-      toast({
-        title: "Please sign in",
-        description: "You need to be signed in to complete checkout.",
-        variant: "destructive",
-      });
-      navigate("/auth");
-      return;
-    }
-
-    if (items.length === 0) {
-      toast({
-        title: "Cart is empty",
-        description: "Add some items to your cart before checkout.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    if (!validateForm()) return;
-
-    setIsLoading(true);
-
     try {
-      // Try the server-side checkout edge function for validation and processing
+      // Try edge function first
       const { data, error } = await supabase.functions.invoke('process-checkout', {
         body: {
           formData,
@@ -108,32 +87,18 @@ const CheckoutPage = () => {
         },
       });
 
-      // Check if edge function call succeeded
       if (!error && data?.success) {
-        await clearCart();
-        toast({
-          title: "Order placed successfully!",
-          description: "Thank you for your order. You will receive a confirmation email shortly.",
-        });
-        navigate("/");
-        return;
+        return data.orderId;
       }
 
-      // If edge function returned validation errors, show them
       if (!error && data?.details) {
         const errorMessage = data.details.map((d: { field: string; message: string }) => d.message).join(', ');
-        toast({
-          title: "Validation failed",
-          description: errorMessage,
-          variant: "destructive",
-        });
-        return;
+        toast({ title: "Validation failed", description: errorMessage, variant: "destructive" });
+        return null;
       }
 
-      // Fallback to client-side order creation if edge function not available (404)
-      // This maintains functionality while the edge function deploys
+      // Fallback client-side
       console.log("Edge function unavailable, using fallback order creation");
-      
       const shippingAddress = {
         fullName: formData.fullName.trim(),
         address: formData.address.trim(),
@@ -147,10 +112,7 @@ const CheckoutPage = () => {
         .from("orders")
         .insert({
           user_id: user.id,
-          subtotal: subtotal,
-          shipping: shipping,
-          tax: tax,
-          total: total,
+          subtotal, shipping, tax, total,
           shipping_address: shippingAddress,
           billing_address: shippingAddress,
         })
@@ -168,29 +130,86 @@ const CheckoutPage = () => {
         quantity: item.quantity,
       }));
 
-      const { error: itemsError } = await supabase
-        .from("order_items")
-        .insert(orderItems);
-
+      const { error: itemsError } = await supabase.from("order_items").insert(orderItems);
       if (itemsError) throw itemsError;
 
+      return order.id;
+    } catch (error) {
+      console.error("Order creation error:", error);
+      throw error;
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!user) {
+      toast({ title: "Please sign in", description: "You need to be signed in to complete checkout.", variant: "destructive" });
+      navigate("/auth");
+      return;
+    }
+
+    if (items.length === 0) {
+      toast({ title: "Cart is empty", description: "Add some items to your cart before checkout.", variant: "destructive" });
+      return;
+    }
+
+    if (!validateForm()) return;
+
+    if (paymentMethod === 'crypto') {
+      await handleCryptoPayment();
+    } else {
+      await handleStandardPayment();
+    }
+  };
+
+  const handleStandardPayment = async () => {
+    setIsLoading(true);
+    try {
+      const orderId = await createOrderAndGetId();
+      if (!orderId) return;
+      
       await clearCart();
-
-      toast({
-        title: "Order placed successfully!",
-        description: "Thank you for your order. You will receive a confirmation email shortly.",
-      });
-
+      toast({ title: "Order placed successfully!", description: "Thank you for your order. You will receive a confirmation email shortly." });
       navigate("/");
     } catch (error) {
       console.error("Checkout error:", error);
-      toast({
-        title: "Checkout failed",
-        description: "There was an error processing your order. Please try again.",
-        variant: "destructive",
-      });
+      toast({ title: "Checkout failed", description: "There was an error processing your order. Please try again.", variant: "destructive" });
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleCryptoPayment = async () => {
+    setIsCryptoLoading(true);
+    try {
+      const orderId = await createOrderAndGetId();
+      if (!orderId) return;
+
+      // Create crypto payment invoice
+      const { data, error } = await supabase.functions.invoke('create-crypto-payment', {
+        body: {
+          orderId,
+          amount: total,
+          currency: 'usd',
+          orderDescription: `Medi Spero Order - ${items.length} item(s)`,
+        },
+      });
+
+      if (error || !data?.success) {
+        toast({ title: "Crypto payment failed", description: "Could not create payment invoice. Please try again.", variant: "destructive" });
+        return;
+      }
+
+      await clearCart();
+      
+      // Redirect to NOWPayments hosted invoice page
+      window.location.href = data.invoice_url;
+    } catch (error) {
+      console.error("Crypto payment error:", error);
+      toast({ title: "Payment failed", description: "There was an error creating the crypto payment. Please try again.", variant: "destructive" });
+    } finally {
+      setIsCryptoLoading(false);
     }
   };
 
@@ -364,15 +383,58 @@ const CheckoutPage = () => {
                   </div>
                 </div>
 
+                {/* Payment Method Selection */}
+                <div className="bg-card rounded-2xl border border-border p-6">
+                  <h2 className="text-xl font-semibold mb-4">Payment Method</h2>
+                  <div className="grid grid-cols-2 gap-4">
+                    <button
+                      type="button"
+                      onClick={() => setPaymentMethod('standard')}
+                      className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all ${
+                        paymentMethod === 'standard'
+                          ? 'border-secondary bg-secondary/10'
+                          : 'border-border hover:border-muted-foreground/40'
+                      }`}
+                    >
+                      <CreditCard className={`h-8 w-8 ${paymentMethod === 'standard' ? 'text-secondary' : 'text-muted-foreground'}`} />
+                      <span className="text-sm font-medium">Standard</span>
+                      <span className="text-xs text-muted-foreground">Pay on delivery</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setPaymentMethod('crypto')}
+                      className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all ${
+                        paymentMethod === 'crypto'
+                          ? 'border-secondary bg-secondary/10'
+                          : 'border-border hover:border-muted-foreground/40'
+                      }`}
+                    >
+                      <Bitcoin className={`h-8 w-8 ${paymentMethod === 'crypto' ? 'text-secondary' : 'text-muted-foreground'}`} />
+                      <span className="text-sm font-medium">Crypto</span>
+                      <span className="text-xs text-muted-foreground">BTC, ETH, USDT & more</span>
+                    </button>
+                  </div>
+                  {paymentMethod === 'crypto' && (
+                    <p className="mt-3 text-xs text-muted-foreground">
+                      You'll be redirected to NOWPayments to complete your crypto payment securely. Supports 100+ cryptocurrencies.
+                    </p>
+                  )}
+                </div>
+
                 <Button 
                   type="submit" 
                   className="w-full btn-secondary text-lg py-6"
-                  disabled={isLoading}
+                  disabled={isLoading || isCryptoLoading}
                 >
-                  {isLoading ? (
+                  {(isLoading || isCryptoLoading) ? (
                     <>
                       <Loader2 className="mr-2 h-5 w-5 animate-spin" />
                       Processing...
+                    </>
+                  ) : paymentMethod === 'crypto' ? (
+                    <>
+                      <Bitcoin className="mr-2 h-5 w-5" />
+                      {`Pay with Crypto - $${total.toFixed(2)}`}
                     </>
                   ) : (
                     `Place Order - $${total.toFixed(2)}`
