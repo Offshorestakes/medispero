@@ -1,12 +1,21 @@
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
+import BreadcrumbNav from "@/components/BreadcrumbNav";
 import { RefreshCw, Clock, CheckCircle, XCircle, Package, CreditCard, Mail } from "lucide-react";
 
 const ReturnsPolicyPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>Returns & Refund Policy | 30-Day Guarantee | Medi Spero</title>
+        <meta name="description" content="Medi Spero offers a 30-day satisfaction guarantee on all CBD products. Easy returns, no questions asked. Learn about our hassle-free refund process." />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <link rel="canonical" href="https://medispero.com/returns" />
+      </Helmet>
       <Header />
+      <BreadcrumbNav items={[{ name: "Home", href: "/" }, { name: "Returns & Refunds" }]} />
       
       <main className="flex-grow">
         {/* Hero Section */}
