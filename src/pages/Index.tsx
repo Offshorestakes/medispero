@@ -206,9 +206,11 @@ const Index = () => {
         <meta property="og:url" content="https://medispero.com" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Medi Spero" />
+        <meta property="og:image" content="https://medispero.com/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Medi Spero | Premium CBD & Hemp Wellness" />
         <meta name="twitter:description" content="Pharmaceutical-grade CBD & hemp wellness products. Lab-tested, premium quality." />
+        <meta name="twitter:image" content="https://medispero.com/og-image.jpg" />
         <script type="application/ld+json">
           {JSON.stringify(organizationSchema)}
         </script>
