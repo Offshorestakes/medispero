@@ -39,6 +39,7 @@ const EducationPage = lazy(() => import("./pages/EducationPage"));
 const ResetPasswordPage = lazy(() => import("./pages/ResetPasswordPage"));
 const EmailVerifiedPage = lazy(() => import("./pages/EmailVerifiedPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const MarketingCopyPage = lazy(() => import("./pages/MarketingCopyPage"));
 
 const queryClient = new QueryClient();
 
@@ -86,6 +87,7 @@ const App = () => (
                   <Route path="/education" element={<EducationPage />} />
                   <Route path="/reset-password" element={<ResetPasswordPage />} />
                   <Route path="/email-verified" element={<EmailVerifiedPage />} />
+                  <Route path="/marketing-copy" element={<MarketingCopyPage />} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>

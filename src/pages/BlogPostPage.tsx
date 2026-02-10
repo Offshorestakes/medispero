@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Calendar, Clock, ArrowLeft, ArrowRight, User, Tag, Share2, BookOpen } from "lucide-react";
 import { getPostBySlug, getRelatedPosts, BlogPost } from "@/data/blogPosts";
+import DosageCalculator from "@/components/blog/DosageCalculator";
+import SymptomQuiz from "@/components/blog/SymptomQuiz";
 
 const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -240,6 +242,16 @@ const BlogPostPage = () => {
             ">
               <ReactMarkdown>{post.content}</ReactMarkdown>
             </div>
+
+            {/* Interactive Elements for new deep-dive posts */}
+            {(post.slug === "cbd-thc-adhd-focus-concentration" || 
+              post.slug === "cbd-delta8-anxiety-stress-relief" || 
+              post.slug === "cbd-thc-depression-mood-enhancement") && (
+              <div className="mt-12 space-y-0">
+                <DosageCalculator />
+                <SymptomQuiz />
+              </div>
+            )}
 
             {/* Tags */}
             <div className="mt-12 pt-8 border-t border-border">
