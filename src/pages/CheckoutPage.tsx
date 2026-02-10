@@ -11,8 +11,10 @@ import { useCart } from "@/contexts/CartContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
-import { ArrowLeft, Loader2, ShoppingBag, Truck, Shield, Check, Bitcoin, CreditCard } from "lucide-react";
+import { ArrowLeft, Loader2, ShoppingBag, Truck, Shield, Check, Bitcoin, Landmark, Mail } from "lucide-react";
 import { trackBeginCheckout, trackPurchase } from "@/lib/analytics";
+import cryptoPaymentImg from "@/assets/payments/crypto-payment.jpg";
+import wireTransferImg from "@/assets/payments/wire-transfer.jpg";
 
 const addressSchema = z.object({
   fullName: z.string().trim().min(2, "Name is required").max(100),
@@ -30,7 +32,7 @@ const CheckoutPage = () => {
   const { items, subtotal, clearCart } = useCart();
   const [isLoading, setIsLoading] = useState(false);
   const [isCryptoLoading, setIsCryptoLoading] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState<'standard' | 'crypto'>('standard');
+  const [paymentMethod, setPaymentMethod] = useState<'wire' | 'crypto'>('crypto');
   const [formData, setFormData] = useState({
     fullName: "",
     email: user?.email || "",
@@ -160,11 +162,11 @@ const CheckoutPage = () => {
     if (paymentMethod === 'crypto') {
       await handleCryptoPayment();
     } else {
-      await handleStandardPayment();
+      await handleWireTransferPayment();
     }
   };
 
-  const handleStandardPayment = async () => {
+  const handleWireTransferPayment = async () => {
     setIsLoading(true);
     trackBeginCheckout(items, total);
     try {
@@ -173,7 +175,7 @@ const CheckoutPage = () => {
       
       trackPurchase(orderId, items, total, shipping, tax);
       await clearCart();
-      toast({ title: "Order placed successfully!", description: "Thank you for your order. You will receive a confirmation email shortly." });
+      toast({ title: "Order placed successfully!", description: "We'll send you wire transfer / payment details via email shortly. Your order will be processed once payment is confirmed." });
       navigate("/");
     } catch (error) {
       console.error("Checkout error:", error);
@@ -393,19 +395,6 @@ const CheckoutPage = () => {
                   <div className="grid grid-cols-2 gap-4">
                     <button
                       type="button"
-                      onClick={() => setPaymentMethod('standard')}
-                      className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all ${
-                        paymentMethod === 'standard'
-                          ? 'border-secondary bg-secondary/10'
-                          : 'border-border hover:border-muted-foreground/40'
-                      }`}
-                    >
-                      <CreditCard className={`h-8 w-8 ${paymentMethod === 'standard' ? 'text-secondary' : 'text-muted-foreground'}`} />
-                      <span className="text-sm font-medium">Standard</span>
-                      <span className="text-xs text-muted-foreground">Pay on delivery</span>
-                    </button>
-                    <button
-                      type="button"
                       onClick={() => setPaymentMethod('crypto')}
                       className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all ${
                         paymentMethod === 'crypto'
@@ -413,15 +402,38 @@ const CheckoutPage = () => {
                           : 'border-border hover:border-muted-foreground/40'
                       }`}
                     >
-                      <Bitcoin className={`h-8 w-8 ${paymentMethod === 'crypto' ? 'text-secondary' : 'text-muted-foreground'}`} />
-                      <span className="text-sm font-medium">Crypto</span>
+                      <img src={cryptoPaymentImg} alt="Cryptocurrency payment" className="h-16 w-16 rounded-lg object-cover" />
+                      <span className="text-sm font-medium">Cryptocurrency</span>
                       <span className="text-xs text-muted-foreground">BTC, ETH, USDT & more</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setPaymentMethod('wire')}
+                      className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all ${
+                        paymentMethod === 'wire'
+                          ? 'border-secondary bg-secondary/10'
+                          : 'border-border hover:border-muted-foreground/40'
+                      }`}
+                    >
+                      <img src={wireTransferImg} alt="Wire transfer payment" className="h-16 w-16 rounded-lg object-cover" />
+                      <span className="text-sm font-medium">Wire Transfer</span>
+                      <span className="text-xs text-muted-foreground">Bank / Zelle / Gift Cards</span>
                     </button>
                   </div>
                   {paymentMethod === 'crypto' && (
                     <p className="mt-3 text-xs text-muted-foreground">
                       You'll be redirected to NOWPayments to complete your crypto payment securely. Supports 100+ cryptocurrencies.
                     </p>
+                  )}
+                  {paymentMethod === 'wire' && (
+                    <div className="mt-3 p-3 bg-primary/5 border border-primary/10 rounded-lg">
+                      <div className="flex items-start gap-2">
+                        <Mail className="h-4 w-4 text-primary mt-0.5 shrink-0" />
+                        <p className="text-xs text-muted-foreground">
+                          After placing your order, our team will email you the payment details for <strong>Bank Transfer</strong>, <strong>Zelle</strong>, or <strong>Gift Card</strong> options. Your order will be confirmed once payment is received.
+                        </p>
+                      </div>
+                    </div>
                   )}
                 </div>
 
@@ -441,7 +453,10 @@ const CheckoutPage = () => {
                       {`Pay with Crypto - $${total.toFixed(2)}`}
                     </>
                   ) : (
-                    `Place Order - $${total.toFixed(2)}`
+                    <>
+                      <Landmark className="mr-2 h-5 w-5" />
+                      {`Place Order - $${total.toFixed(2)}`}
+                    </>
                   )}
                 </Button>
               </form>
