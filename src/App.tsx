@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -7,35 +8,45 @@ import { HelmetProvider } from "react-helmet-async";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { CartProvider } from "@/contexts/CartContext";
 import CartDrawer from "@/components/cart/CartDrawer";
-import Index from "./pages/Index";
-import ProductsPage from "./pages/ProductsPage";
-import ProductPage from "./pages/ProductPage";
-import CategoryPage from "./pages/CategoryPage";
-import ContactPage from "./pages/ContactPage";
-import AboutPage from "./pages/AboutPage";
-import FAQPage from "./pages/FAQPage";
-import ShippingPolicyPage from "./pages/ShippingPolicyPage";
-import ReturnsPolicyPage from "./pages/ReturnsPolicyPage";
-import AuthPage from "./pages/AuthPage";
-import CheckoutPage from "./pages/CheckoutPage";
-import BlogPage from "./pages/BlogPage";
-import BlogPostPage from "./pages/BlogPostPage";
-import AccountDashboard from "./pages/AccountDashboard";
-import LabResultsPage from "./pages/LabResultsPage";
-import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
-import TermsPage from "./pages/TermsPage";
-import AccessibilityPage from "./pages/AccessibilityPage";
-import WholesalePage from "./pages/WholesalePage";
-import TrackOrderPage from "./pages/TrackOrderPage";
-import TestimonialsPage from "./pages/TestimonialsPage";
-import EducationPage from "./pages/EducationPage";
-import ResetPasswordPage from "./pages/ResetPasswordPage";
-import EmailVerifiedPage from "./pages/EmailVerifiedPage";
-import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 import CookieConsent from "./components/CookieConsent";
 
+// Eagerly load the homepage for fast LCP
+import Index from "./pages/Index";
+
+// Lazy load all other routes for smaller initial bundle
+const ProductsPage = lazy(() => import("./pages/ProductsPage"));
+const ProductPage = lazy(() => import("./pages/ProductPage"));
+const CategoryPage = lazy(() => import("./pages/CategoryPage"));
+const ContactPage = lazy(() => import("./pages/ContactPage"));
+const AboutPage = lazy(() => import("./pages/AboutPage"));
+const FAQPage = lazy(() => import("./pages/FAQPage"));
+const ShippingPolicyPage = lazy(() => import("./pages/ShippingPolicyPage"));
+const ReturnsPolicyPage = lazy(() => import("./pages/ReturnsPolicyPage"));
+const AuthPage = lazy(() => import("./pages/AuthPage"));
+const CheckoutPage = lazy(() => import("./pages/CheckoutPage"));
+const BlogPage = lazy(() => import("./pages/BlogPage"));
+const BlogPostPage = lazy(() => import("./pages/BlogPostPage"));
+const AccountDashboard = lazy(() => import("./pages/AccountDashboard"));
+const LabResultsPage = lazy(() => import("./pages/LabResultsPage"));
+const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
+const TermsPage = lazy(() => import("./pages/TermsPage"));
+const AccessibilityPage = lazy(() => import("./pages/AccessibilityPage"));
+const WholesalePage = lazy(() => import("./pages/WholesalePage"));
+const TrackOrderPage = lazy(() => import("./pages/TrackOrderPage"));
+const TestimonialsPage = lazy(() => import("./pages/TestimonialsPage"));
+const EducationPage = lazy(() => import("./pages/EducationPage"));
+const ResetPasswordPage = lazy(() => import("./pages/ResetPasswordPage"));
+const EmailVerifiedPage = lazy(() => import("./pages/EmailVerifiedPage"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+
 const queryClient = new QueryClient();
+
+const PageLoader = () => (
+  <div className="min-h-screen flex items-center justify-center">
+    <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+  </div>
+);
 
 const App = () => (
   <HelmetProvider>
@@ -49,34 +60,36 @@ const App = () => (
               <ScrollToTop />
               <CartDrawer />
               <CookieConsent />
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/products" element={<ProductsPage />} />
-                <Route path="/product/:slug" element={<ProductPage />} />
-                <Route path="/category/:slug" element={<CategoryPage />} />
-                <Route path="/contact" element={<ContactPage />} />
-                <Route path="/about" element={<AboutPage />} />
-                <Route path="/faq" element={<FAQPage />} />
-                <Route path="/blog" element={<BlogPage />} />
-                <Route path="/blog/:slug" element={<BlogPostPage />} />
-                <Route path="/shipping" element={<ShippingPolicyPage />} />
-                <Route path="/returns" element={<ReturnsPolicyPage />} />
-                <Route path="/auth" element={<AuthPage />} />
-                <Route path="/checkout" element={<CheckoutPage />} />
-                <Route path="/account" element={<AccountDashboard />} />
-                <Route path="/lab-results" element={<LabResultsPage />} />
-                <Route path="/privacy" element={<PrivacyPolicyPage />} />
-                <Route path="/terms" element={<TermsPage />} />
-                <Route path="/accessibility" element={<AccessibilityPage />} />
-                <Route path="/wholesale" element={<WholesalePage />} />
-                <Route path="/track-order" element={<TrackOrderPage />} />
-                <Route path="/testimonials" element={<TestimonialsPage />} />
-                <Route path="/education" element={<EducationPage />} />
-                <Route path="/reset-password" element={<ResetPasswordPage />} />
-                <Route path="/email-verified" element={<EmailVerifiedPage />} />
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
+              <Suspense fallback={<PageLoader />}>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/products" element={<ProductsPage />} />
+                  <Route path="/product/:slug" element={<ProductPage />} />
+                  <Route path="/category/:slug" element={<CategoryPage />} />
+                  <Route path="/contact" element={<ContactPage />} />
+                  <Route path="/about" element={<AboutPage />} />
+                  <Route path="/faq" element={<FAQPage />} />
+                  <Route path="/blog" element={<BlogPage />} />
+                  <Route path="/blog/:slug" element={<BlogPostPage />} />
+                  <Route path="/shipping" element={<ShippingPolicyPage />} />
+                  <Route path="/returns" element={<ReturnsPolicyPage />} />
+                  <Route path="/auth" element={<AuthPage />} />
+                  <Route path="/checkout" element={<CheckoutPage />} />
+                  <Route path="/account" element={<AccountDashboard />} />
+                  <Route path="/lab-results" element={<LabResultsPage />} />
+                  <Route path="/privacy" element={<PrivacyPolicyPage />} />
+                  <Route path="/terms" element={<TermsPage />} />
+                  <Route path="/accessibility" element={<AccessibilityPage />} />
+                  <Route path="/wholesale" element={<WholesalePage />} />
+                  <Route path="/track-order" element={<TrackOrderPage />} />
+                  <Route path="/testimonials" element={<TestimonialsPage />} />
+                  <Route path="/education" element={<EducationPage />} />
+                  <Route path="/reset-password" element={<ResetPasswordPage />} />
+                  <Route path="/email-verified" element={<EmailVerifiedPage />} />
+                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Suspense>
             </BrowserRouter>
           </CartProvider>
         </AuthProvider>

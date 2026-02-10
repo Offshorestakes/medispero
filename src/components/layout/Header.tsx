@@ -28,7 +28,7 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-border">
+    <header role="banner" className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-border">
       {/* Top bar */}
       <div className="bg-primary text-primary-foreground py-2">
         <div className="container-wide flex items-center justify-between text-sm">
@@ -62,13 +62,13 @@ const Header = () => {
               className="w-12 h-12 object-contain"
             />
             <div className="hidden sm:block">
-              <h1 className="text-xl font-bold text-foreground tracking-wide">Medi Spero</h1>
+              <span className="text-xl font-bold text-foreground tracking-wide">Medi Spero</span>
               <p className="text-xs text-muted-foreground -mt-1">Premium Wellness</p>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-6">
+          <nav aria-label="Main navigation" className="hidden lg:flex items-center gap-6">
             <Link to="/" className="text-sm font-medium hover:text-primary transition-colors">
               Home
             </Link>
@@ -191,7 +191,7 @@ const Header = () => {
 
         {/* Mobile menu */}
         {isMenuOpen && (
-          <nav className="lg:hidden mt-4 pb-4 border-t border-border pt-4 animate-fade-in">
+          <nav aria-label="Mobile navigation" className="lg:hidden mt-4 pb-4 border-t border-border pt-4 animate-fade-in">
             <div className="flex flex-col gap-3">
               <Link to="/" className="py-2 font-medium" onClick={() => setIsMenuOpen(false)}>
                 Home

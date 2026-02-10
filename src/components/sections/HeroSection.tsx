@@ -52,18 +52,18 @@ const HeroSection = () => {
   }, [shouldLoadVideo]);
 
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+    <section aria-label="Hero" className="relative min-h-[80vh] md:min-h-[90vh] flex items-center overflow-hidden">
       {/* Video Background with Poster Fallback */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/95 via-brand-navy/80 to-brand-navy/60 z-10" />
         
-        {/* Static gradient fallback (shown before video loads) */}
+        {/* Static gradient fallback — this IS the mobile background for fast LCP */}
         <div 
           className={`absolute inset-0 bg-gradient-to-br from-brand-navy via-primary/80 to-secondary/40 transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-0' : 'opacity-100'}`}
           aria-hidden="true"
         />
         
-        {/* Video (conditionally rendered for performance) */}
+        {/* Video (only on desktop, hidden on mobile for performance) */}
         {shouldLoadVideo && (
           <video
             ref={videoRef}
@@ -71,9 +71,9 @@ const HeroSection = () => {
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="none"
             onLoadedData={() => setIsVideoLoaded(true)}
-            className={`w-full h-full object-cover transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
+            className={`hidden md:block w-full h-full object-cover transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
           >
             <source src={heroVideo} type="video/mp4" />
           </video>

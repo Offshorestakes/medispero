@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 const NewsletterSection = () => {
   return (
-    <section className="py-16 bg-gradient-to-r from-primary to-secondary">
+    <section aria-label="Newsletter signup" className="py-16 bg-gradient-to-r from-primary to-secondary">
       <div className="container-wide">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
           {/* Text */}

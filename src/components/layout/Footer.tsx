@@ -6,7 +6,7 @@ import logoImage from "@/assets/logo.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-brand-navy text-white">
+    <footer role="contentinfo" className="bg-brand-navy text-white">
       {/* Newsletter Section */}
       <div className="border-b border-white/10">
         <div className="container-wide py-12">

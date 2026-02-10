@@ -20,7 +20,7 @@ const categoryImages: Record<string, string> = {
 
 const CategoriesSection = () => {
   return (
-    <section className="section-padding bg-background">
+    <section aria-label="Product categories" className="section-padding bg-background">
       <div className="container-wide">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">
