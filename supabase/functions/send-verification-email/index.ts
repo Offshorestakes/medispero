@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "npm:resend@4.0.0";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.49.1";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
@@ -15,13 +16,41 @@ serve(async (req) => {
   }
 
   try {
-    const { email, confirmationUrl } = await req.json();
+    const { email, redirectTo } = await req.json();
 
-    if (!email || !confirmationUrl) {
-      throw new Error("Missing required fields: email and confirmationUrl");
+    if (!email) {
+      throw new Error("Missing required field: email");
     }
 
-    console.log(`Sending verification email to ${email}`);
+    console.log(`Generating verification link for ${email}`);
+
+    // Use Supabase Admin to generate a proper signup confirmation link
+    const supabaseAdmin = createClient(
+      Deno.env.get("SUPABASE_URL") ?? "",
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
+    );
+
+    const { data: linkData, error: linkError } = await supabaseAdmin.auth.admin.generateLink({
+      type: "signup",
+      email: email,
+      options: {
+        redirectTo: redirectTo || "https://medispero.com/",
+      },
+    });
+
+    if (linkError) {
+      console.error("Error generating link:", linkError);
+      throw new Error(linkError.message);
+    }
+
+    // The generated link contains the proper token-based verification URL
+    const confirmationUrl = linkData.properties?.action_link;
+
+    if (!confirmationUrl) {
+      throw new Error("Failed to generate confirmation link");
+    }
+
+    console.log(`Sending branded verification email to ${email}`);
 
     const { data, error } = await resend.emails.send({
       from: "Medi Spero <info@medispero.com>",
