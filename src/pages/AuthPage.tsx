@@ -104,12 +104,17 @@ const AuthPage = () => {
           navigate("/");
         }
       } else {
-        const { error } = await signUp(email.trim(), password);
-        if (error) {
-          if (error.message.includes("already registered")) {
+        // Use custom edge function for signup — creates user + sends ONE branded email
+        const { data, error: fnError } = await supabase.functions.invoke("send-verification-email", {
+          body: { email: email.trim(), password, redirectTo: `${window.location.origin}/` },
+        });
+
+        if (fnError || data?.error) {
+          const errMsg = data?.error || fnError?.message || "Signup failed";
+          if (errMsg === "already_registered") {
             toast({ title: "Account exists", description: "This email is already registered. Try signing in instead.", variant: "destructive" });
           } else {
-            toast({ title: "Sign up failed", description: error.message, variant: "destructive" });
+            toast({ title: "Sign up failed", description: errMsg, variant: "destructive" });
           }
         } else {
           toast({ title: "Account created!", description: "Please check your email to verify your account before signing in." });
