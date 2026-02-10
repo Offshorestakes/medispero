@@ -9,7 +9,13 @@ declare global {
 
 export const trackEvent = (eventName: string, params?: Record<string, unknown>) => {
   if (typeof window.gtag === 'function') {
-    window.gtag('event', eventName, params);
+    // Attach stored UTM params to every event for attribution
+    let utmData: Record<string, string> = {};
+    try {
+      const stored = sessionStorage.getItem('medispero_utm_params');
+      if (stored) utmData = JSON.parse(stored);
+    } catch { /* ignore */ }
+    window.gtag('event', eventName, { ...utmData, ...params });
   }
 };
 
