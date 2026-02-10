@@ -1,6 +1,6 @@
 // Medi Spero - Premium Pharmaceutical CBD/Hemp Product Catalog
 // Legal, Farm Bill compliant products only
-// CBD Isolate categories: $95-$3,900 | All other categories: $95-$750
+// CBD Isolate categories: $175-$6,250 | All other categories: $95-$750
 
 // Import product images - CBD Oils (SEO-optimized authentic product images)
 import cbdOilPharmaGrade from "@/assets/products/cbd-oil-pharmaceutical-grade-1000ml.jpg";
@@ -168,25 +168,25 @@ export const categories: Category[] = [
   },
   {
     id: "cbd-isolate-powder",
-    name: "CBD Isolate Powder",
+    name: "99% Pure CBD Isolate Powder",
     slug: "cbd-isolate-powder",
-    description: "99%+ pure CBD isolate powder extracted from premium US-grown hemp. THC-free, lab-tested, perfect for custom formulations and precise dosing",
+    description: "99% pure CBD isolate powder extracted from premium US-grown hemp. THC-free, lab-tested, perfect for custom formulations and precise dosing",
     image: getCategoryImage("cbd-isolate-powder"),
     productCount: 40
   },
   {
     id: "cbd-isolate-crystals",
-    name: "CBD Isolate Crystals",
+    name: "99% Pure CBD Isolate Crystals",
     slug: "cbd-isolate-crystals",
-    description: "Pharmaceutical-grade CBD isolate crystals with 99.9% purity. Versatile, THC-free crystalline CBD for sublingual use, dabbing, or DIY formulations",
+    description: "Pharmaceutical-grade 99% pure CBD isolate crystals. Versatile, THC-free crystalline CBD for sublingual use, dabbing, or DIY formulations",
     image: getCategoryImage("cbd-isolate-crystals"),
     productCount: 35
   },
   {
     id: "cbd-isolate-pure-spectrum",
-    name: "CBD Isolate Pure Spectrum",
+    name: "99% Pure CBD Isolate Pure Spectrum",
     slug: "cbd-isolate-pure-spectrum",
-    description: "Premium pure spectrum CBD isolate products combining 99%+ CBD purity with targeted cannabinoid blends for enhanced therapeutic benefits",
+    description: "Premium 99% pure spectrum CBD isolate products combining 99% CBD purity with targeted cannabinoid blends for enhanced therapeutic benefits",
     image: getCategoryImage("cbd-isolate-pure-spectrum"),
     productCount: 35
   },
@@ -512,24 +512,24 @@ const generateProducts = (): Product[] => {
     });
   });
 
-  // CBD ISOLATE POWDER ($95-$3,900) - Referenced from Extract Labs, Hemp Health Inc, Crescent Canna
+  // CBD ISOLATE POWDER ($175-$6,250) - Referenced from Extract Labs, Hemp Health Inc, Crescent Canna
   const isolatePowderProducts = [
-    { name: "99%+ Pure CBD Isolate Powder", strength: "1g (1,000mg)", price: 95, desc: "Award-winning 99%+ pure CBD isolate powder extracted from premium US-grown hemp using supercritical CO2 extraction. THC non-detectable, perfect for sublingual use or adding to foods and beverages" },
-    { name: "Bulk CBD Isolate Powder", strength: "5g (5,000mg)", price: 195, desc: "Pharmaceutical-grade bulk CBD isolate powder for custom formulations, research, and high-volume personal use. Certified 99.7% purity with full panel COA" },
-    { name: "Nano CBD Isolate Powder", strength: "10g (10,000mg)", price: 349, desc: "Water-soluble nano-emulsified CBD isolate powder with 4x enhanced bioavailability. Dissolves instantly in any liquid for rapid absorption and maximum efficacy" },
-    { name: "CBG Isolate Powder", strength: "5g (5,000mg)", price: 279, desc: "Premium cannabigerol (CBG) isolate powder, the 'mother cannabinoid' known for its potent anti-inflammatory and neuroprotective properties. 99%+ purity verified" },
-    { name: "CBN Isolate Powder", strength: "1g (1,000mg)", price: 149, desc: "Ultra-pure cannabinol (CBN) isolate powder for sleep support and relaxation. Extracted from aged hemp using advanced chromatography for exceptional purity" },
-    { name: "CBD + CBG Isolate Powder Blend", strength: "10g (5,000mg each)", price: 379, desc: "Synergistic dual-cannabinoid isolate blend combining CBD and CBG for enhanced entourage effects without THC. Ideal for focus, inflammation, and daily wellness" },
-    { name: "Wholesale CBD Isolate Powder", strength: "28g (28,000mg/1oz)", price: 549, desc: "Professional-grade wholesale CBD isolate for formulators, practitioners, and wellness brands. Comes with full batch documentation and third-party verification" },
-    { name: "Ultra-Fine Micronized CBD Powder", strength: "100g (100,000mg)", price: 1499, desc: "Micronized to sub-10-micron particle size for maximum surface area and absorption. Pharmaceutical-grade processing for consistent, predictable results" },
-    { name: "Kilogram CBD Isolate Powder", strength: "1kg (1,000,000mg)", price: 3900, desc: "Bulk kilogram CBD isolate powder for commercial formulation, white-label manufacturing, and large-scale wellness operations. Includes full batch COA and compliance documentation" },
+    { name: "99% Pure CBD Isolate Powder", strength: "1g (1,000mg)", price: 175, desc: "Award-winning 99% pure CBD isolate powder extracted from premium US-grown hemp using supercritical CO2 extraction. THC non-detectable, perfect for sublingual use or adding to foods and beverages" },
+    { name: "99% Pure Bulk CBD Isolate Powder", strength: "5g (5,000mg)", price: 395, desc: "Pharmaceutical-grade 99% pure bulk CBD isolate powder for custom formulations, research, and high-volume personal use. Certified 99% purity with full panel COA" },
+    { name: "99% Pure Nano CBD Isolate Powder", strength: "10g (10,000mg)", price: 649, desc: "Water-soluble nano-emulsified 99% pure CBD isolate powder with 4x enhanced bioavailability. Dissolves instantly in any liquid for rapid absorption and maximum efficacy" },
+    { name: "99% Pure CBG Isolate Powder", strength: "5g (5,000mg)", price: 479, desc: "Premium 99% pure cannabigerol (CBG) isolate powder, the 'mother cannabinoid' known for its potent anti-inflammatory and neuroprotective properties" },
+    { name: "99% Pure CBN Isolate Powder", strength: "1g (1,000mg)", price: 249, desc: "Ultra-pure 99% cannabinol (CBN) isolate powder for sleep support and relaxation. Extracted from aged hemp using advanced chromatography for exceptional purity" },
+    { name: "99% Pure CBD + CBG Isolate Powder Blend", strength: "10g (5,000mg each)", price: 749, desc: "Synergistic dual-cannabinoid 99% pure isolate blend combining CBD and CBG for enhanced entourage effects without THC. Ideal for focus, inflammation, and daily wellness" },
+    { name: "99% Pure Wholesale CBD Isolate Powder", strength: "28g (28,000mg/1oz)", price: 1175, desc: "Professional-grade 99% pure wholesale CBD isolate for formulators, practitioners, and wellness brands. Comes with full batch documentation and third-party verification" },
+    { name: "99% Pure Ultra-Fine Micronized CBD Powder", strength: "100g (100,000mg)", price: 2899, desc: "99% pure micronized to sub-10-micron particle size for maximum surface area and absorption. Pharmaceutical-grade processing for consistent, predictable results" },
+    { name: "99% Pure Kilogram CBD Isolate Powder", strength: "1kg (1,000,000mg)", price: 6250, desc: "Bulk kilogram 99% pure CBD isolate powder for commercial formulation, white-label manufacturing, and large-scale wellness operations. Includes full batch COA and compliance documentation" },
   ];
 
   isolatePowderProducts.forEach((product) => {
     const sizes = ["Standard", "Professional", "Bulk"];
     sizes.forEach((size, sIndex) => {
       const priceMultiplier = sIndex === 2 ? 1.6 : sIndex === 1 ? 1.3 : 1;
-      const price = Math.min(3900, Math.max(95, Math.round(product.price * priceMultiplier)));
+      const price = Math.min(6250, Math.max(175, Math.round(product.price * priceMultiplier)));
 
       products.push({
         id: `isolate-powder-${productId}`,
@@ -541,8 +541,8 @@ const generateProducts = (): Product[] => {
         originalPrice: Math.round(price * 1.2),
         rating: 4.8 + Math.random() * 0.2,
         reviewCount: Math.floor(Math.random() * 400) + 120,
-        description: `${product.desc}. Manufactured in FDA-registered, cGMP-certified facilities with rigorous quality control at every stage. Each batch undergoes comprehensive third-party testing for potency, purity, heavy metals, pesticides, and residual solvents. Medi Spero CBD Isolate Powder is the gold standard for those seeking THC-free, pharmaceutical-grade cannabidiol.`,
-        shortDescription: `Premium ${product.strength} CBD Isolate Powder - 99%+ purity, THC-free`,
+        description: `${product.desc}. Manufactured in FDA-registered, cGMP-certified facilities with rigorous quality control at every stage. Each batch undergoes comprehensive third-party testing for potency, purity, heavy metals, pesticides, and residual solvents. Medi Spero 99% Pure CBD Isolate Powder is the gold standard for those seeking THC-free, pharmaceutical-grade cannabidiol.`,
+        shortDescription: `Premium ${product.strength} 99% Pure CBD Isolate Powder - THC-free, lab-verified`,
         images: getProductImages("cbd-isolate-powder", productId),
         sku: `MS-ISP-${productId.toString().padStart(4, '0')}`,
         gtin: `0850${String(productId).padStart(9, '0')}`,
@@ -551,8 +551,8 @@ const generateProducts = (): Product[] => {
         stockQuantity: Math.floor(Math.random() * 50) + 15,
         strength: product.strength,
         size: size,
-        ingredients: ["99%+ Pure CBD Isolate", "Supercritical CO2 Extracted", "US-Grown Industrial Hemp"],
-        benefits: ["99%+ Purity Guaranteed", "THC Non-Detectable", "cGMP Certified", "Full Panel Lab Tested", "Versatile Use"],
+        ingredients: ["99% Pure CBD Isolate", "Supercritical CO2 Extracted", "US-Grown Industrial Hemp"],
+        benefits: ["99% Purity Guaranteed", "THC Non-Detectable", "cGMP Certified", "Full Panel Lab Tested", "Versatile Use"],
         usage: "Place desired amount under tongue and hold for 60-90 seconds. Can also be added to foods, beverages, or used in DIY formulations. Start with 10-25mg and adjust as needed.",
         thirdPartyTested: true,
         organic: true,
@@ -565,23 +565,23 @@ const generateProducts = (): Product[] => {
     });
   });
 
-  // CBD ISOLATE CRYSTALS ($95-$3,900) - Referenced from Extract Labs, Hemp Health Inc, Crescent Canna
+  // CBD ISOLATE CRYSTALS ($175-$6,250) - Referenced from Extract Labs, Hemp Health Inc, Crescent Canna
   const isolateCrystalsProducts = [
-    { name: "Premium CBD Isolate Crystals", strength: "1g (1,000mg)", price: 99, desc: "Sparkling, translucent CBD isolate crystals with verified 99.9% purity. Perfect for precise dosing, dabbing, or dissolving under the tongue for fast-acting relief" },
-    { name: "Therapeutic Grade CBD Crystals", strength: "3.5g (3,500mg)", price: 199, desc: "Medical-grade crystalline CBD with pharmaceutical purity standards. Large, well-formed crystals ideal for sublingual administration and custom tincture preparation" },
-    { name: "CBG Isolate Crystals", strength: "5g (5,000mg)", price: 319, desc: "Rare cannabigerol in pure crystalline form for targeted anti-inflammatory, antibacterial, and neuroprotective support. Lab-verified 99%+ purity" },
-    { name: "Bulk CBD Isolate Crystals", strength: "14g (14,000mg)", price: 349, desc: "Wholesale-grade CBD isolate crystals for high-volume users and formulators. Consistent crystal structure ensures even dosing and predictable dissolution rates" },
-    { name: "Delta-8 THC Isolate Crystals", strength: "5g (5,000mg)", price: 269, desc: "Premium Delta-8 THC in pure crystalline form for experienced users seeking precise, potent cannabinoid therapy. Farm Bill compliant with <0.3% Delta-9 THC" },
-    { name: "CBD + CBN Isolate Crystal Blend", strength: "10g (5,000mg each)", price: 449, desc: "Dual-cannabinoid crystal blend optimized for evening use and sleep support. Combines the calming properties of CBD with the sedative benefits of CBN" },
-    { name: "Ultra-Pure Research Grade Crystals", strength: "28g (28,000mg/1oz)", price: 599, desc: "Research-grade CBD isolate crystals with comprehensive analytical certification. Suitable for clinical research, product development, and professional formulation" },
-    { name: "Kilogram CBD Isolate Crystals", strength: "1kg (1,000,000mg)", price: 3900, desc: "Bulk kilogram CBD isolate crystals for commercial manufacturing. Premium-grade crystalline structure with full batch documentation and compliance certification" },
+    { name: "99% Pure Premium CBD Isolate Crystals", strength: "1g (1,000mg)", price: 185, desc: "Sparkling, translucent 99% pure CBD isolate crystals. Perfect for precise dosing, dabbing, or dissolving under the tongue for fast-acting relief" },
+    { name: "99% Pure Therapeutic Grade CBD Crystals", strength: "3.5g (3,500mg)", price: 399, desc: "Medical-grade 99% pure crystalline CBD with pharmaceutical purity standards. Large, well-formed crystals ideal for sublingual administration and custom tincture preparation" },
+    { name: "99% Pure CBG Isolate Crystals", strength: "5g (5,000mg)", price: 549, desc: "Rare 99% pure cannabigerol in crystalline form for targeted anti-inflammatory, antibacterial, and neuroprotective support" },
+    { name: "99% Pure Bulk CBD Isolate Crystals", strength: "14g (14,000mg)", price: 849, desc: "Wholesale-grade 99% pure CBD isolate crystals for high-volume users and formulators. Consistent crystal structure ensures even dosing and predictable dissolution rates" },
+    { name: "99% Pure Delta-8 THC Isolate Crystals", strength: "5g (5,000mg)", price: 469, desc: "Premium 99% pure Delta-8 THC in crystalline form for experienced users seeking precise, potent cannabinoid therapy. Farm Bill compliant with <0.3% Delta-9 THC" },
+    { name: "99% Pure CBD + CBN Isolate Crystal Blend", strength: "10g (5,000mg each)", price: 949, desc: "99% pure dual-cannabinoid crystal blend optimized for evening use and sleep support. Combines the calming properties of CBD with the sedative benefits of CBN" },
+    { name: "99% Pure Ultra-Pure Research Grade Crystals", strength: "28g (28,000mg/1oz)", price: 1275, desc: "99% pure research-grade CBD isolate crystals with comprehensive analytical certification. Suitable for clinical research, product development, and professional formulation" },
+    { name: "99% Pure Kilogram CBD Isolate Crystals", strength: "1kg (1,000,000mg)", price: 6250, desc: "Bulk kilogram 99% pure CBD isolate crystals for commercial manufacturing. Premium-grade crystalline structure with full batch documentation and compliance certification" },
   ];
 
   isolateCrystalsProducts.forEach((product) => {
     const sizes = ["Standard", "Professional", "Clinical"];
     sizes.forEach((size, sIndex) => {
       const priceMultiplier = sIndex === 2 ? 1.5 : sIndex === 1 ? 1.25 : 1;
-      const price = Math.min(3900, Math.max(95, Math.round(product.price * priceMultiplier)));
+      const price = Math.min(6250, Math.max(175, Math.round(product.price * priceMultiplier)));
 
       products.push({
         id: `isolate-crystal-${productId}`,
@@ -593,8 +593,8 @@ const generateProducts = (): Product[] => {
         originalPrice: Math.round(price * 1.15),
         rating: 4.7 + Math.random() * 0.3,
         reviewCount: Math.floor(Math.random() * 350) + 100,
-        description: `${product.desc}. Every Medi Spero isolate crystal undergoes triple-stage purification and independent third-party verification. Our proprietary crystallization process yields uniform, high-clarity crystals that dissolve consistently for predictable, reliable results every time.`,
-        shortDescription: `Pharmaceutical-grade ${product.strength} CBD Isolate Crystals - 99.9% purity`,
+        description: `${product.desc}. Every Medi Spero 99% pure isolate crystal undergoes triple-stage purification and independent third-party verification. Our proprietary crystallization process yields uniform, high-clarity crystals that dissolve consistently for predictable, reliable results every time.`,
+        shortDescription: `Pharmaceutical-grade ${product.strength} 99% Pure CBD Isolate Crystals`,
         images: getProductImages("cbd-isolate-crystals", productId),
         sku: `MS-ISC-${productId.toString().padStart(4, '0')}`,
         gtin: `0850${String(productId).padStart(9, '0')}`,
@@ -603,8 +603,8 @@ const generateProducts = (): Product[] => {
         stockQuantity: Math.floor(Math.random() * 40) + 10,
         strength: product.strength,
         size: size,
-        ingredients: ["99.9% Pure CBD Isolate Crystals", "CO2 Extracted", "Premium US-Grown Hemp"],
-        benefits: ["99.9% Crystalline Purity", "Versatile Administration", "THC Non-Detectable", "Rapid Sublingual Absorption", "Lab Certified"],
+        ingredients: ["99% Pure CBD Isolate Crystals", "CO2 Extracted", "Premium US-Grown Hemp"],
+        benefits: ["99% Crystalline Purity", "Versatile Administration", "THC Non-Detectable", "Rapid Sublingual Absorption", "Lab Certified"],
         usage: "Place crystals under tongue for 60-90 seconds for sublingual absorption. May also be used for dabbing, vaporizing, or dissolving into carrier oils. Start with 10-25mg.",
         thirdPartyTested: true,
         organic: true,
@@ -771,24 +771,24 @@ const generateProducts = (): Product[] => {
     });
   });
 
-  // CBD ISOLATE PURE SPECTRUM ($95-$3,900) - Referenced from Extract Labs, Hemp Health Inc, Crescent Canna
+  // CBD ISOLATE PURE SPECTRUM ($175-$6,250) - Referenced from Extract Labs, Hemp Health Inc, Crescent Canna
   const isolatePureSpectrumProducts = [
-    { name: "Pure Spectrum CBD Isolate Tincture", strength: "1,500mg", price: 149, desc: "Premium CBD isolate dissolved in organic MCT oil for maximum bioavailability. THC-free pure spectrum formula delivers clean, consistent CBD without any psychoactive compounds" },
-    { name: "Pure Spectrum CBD + CBG Tincture", strength: "3,000mg CBD + 1,500mg CBG", price: 299, desc: "Advanced dual-isolate formula combining pure CBD and CBG for synergistic anti-inflammatory and focus-enhancing benefits without THC or other compounds" },
-    { name: "Pure Spectrum CBD Softgels", strength: "75mg per softgel (4,500mg total)", price: 229, desc: "Precision-dosed CBD isolate softgels in a pure spectrum formulation. Each capsule delivers exactly 75mg of 99%+ pure CBD for consistent, convenient daily wellness" },
-    { name: "Pure Spectrum CBD Isolate Oil", strength: "10,000mg", price: 399, desc: "Ultra-concentrated pure spectrum CBD isolate oil for those seeking maximum potency without THC. Supercritical CO2 extracted and triple-lab verified for pharmaceutical purity" },
-    { name: "Pure Spectrum Water-Soluble CBD", strength: "3,000mg", price: 279, desc: "Nano-emulsified pure spectrum CBD isolate in water-soluble format. Up to 5x greater absorption than standard oils, dissolves perfectly in any beverage" },
-    { name: "Pure Spectrum CBD + CBN Night Oil", strength: "2,500mg CBD + 1,000mg CBN", price: 269, desc: "Evening-optimized pure spectrum blend combining CBD and CBN isolates for deep, restorative sleep support. THC-free with no morning grogginess" },
-    { name: "Pure Spectrum Full Panel Isolate Kit", strength: "Multi-Cannabinoid 7,500mg", price: 449, desc: "Complete pure spectrum kit featuring CBD, CBG, and CBN isolates with mixing tools and dosing guide. Perfect for creating personalized cannabinoid formulations" },
-    { name: "Pure Spectrum Clinical CBD Drops", strength: "15,000mg", price: 549, desc: "Clinical-strength pure spectrum CBD drops designed for intensive therapeutic protocols. Highest concentration available with verified 99%+ purity and full analytical documentation" },
-    { name: "Pure Spectrum Bulk Isolate Oil", strength: "100,000mg (100g)", price: 2499, desc: "Bulk pure spectrum CBD isolate oil for commercial manufacturing and wholesale operations. Full compliance documentation and batch-specific COA included" },
+    { name: "99% Pure Spectrum CBD Isolate Tincture", strength: "1,500mg", price: 249, desc: "Premium 99% pure CBD isolate dissolved in organic MCT oil for maximum bioavailability. THC-free pure spectrum formula delivers clean, consistent CBD without any psychoactive compounds" },
+    { name: "99% Pure Spectrum CBD + CBG Tincture", strength: "3,000mg CBD + 1,500mg CBG", price: 499, desc: "Advanced 99% pure dual-isolate formula combining pure CBD and CBG for synergistic anti-inflammatory and focus-enhancing benefits without THC or other compounds" },
+    { name: "99% Pure Spectrum CBD Softgels", strength: "75mg per softgel (4,500mg total)", price: 429, desc: "Precision-dosed 99% pure CBD isolate softgels in a pure spectrum formulation. Each capsule delivers exactly 75mg of 99% pure CBD for consistent, convenient daily wellness" },
+    { name: "99% Pure Spectrum CBD Isolate Oil", strength: "10,000mg", price: 749, desc: "Ultra-concentrated 99% pure spectrum CBD isolate oil for those seeking maximum potency without THC. Supercritical CO2 extracted and triple-lab verified for pharmaceutical purity" },
+    { name: "99% Pure Spectrum Water-Soluble CBD", strength: "3,000mg", price: 479, desc: "Nano-emulsified 99% pure spectrum CBD isolate in water-soluble format. Up to 5x greater absorption than standard oils, dissolves perfectly in any beverage" },
+    { name: "99% Pure Spectrum CBD + CBN Night Oil", strength: "2,500mg CBD + 1,000mg CBN", price: 449, desc: "Evening-optimized 99% pure spectrum blend combining CBD and CBN isolates for deep, restorative sleep support. THC-free with no morning grogginess" },
+    { name: "99% Pure Spectrum Full Panel Isolate Kit", strength: "Multi-Cannabinoid 7,500mg", price: 849, desc: "Complete 99% pure spectrum kit featuring CBD, CBG, and CBN isolates with mixing tools and dosing guide. Perfect for creating personalized cannabinoid formulations" },
+    { name: "99% Pure Spectrum Clinical CBD Drops", strength: "15,000mg", price: 1149, desc: "Clinical-strength 99% pure spectrum CBD drops designed for intensive therapeutic protocols. Highest concentration available with verified 99% purity and full analytical documentation" },
+    { name: "99% Pure Spectrum Bulk Isolate Oil", strength: "100,000mg (100g)", price: 4499, desc: "Bulk 99% pure spectrum CBD isolate oil for commercial manufacturing and wholesale operations. Full compliance documentation and batch-specific COA included" },
   ];
 
   isolatePureSpectrumProducts.forEach((product) => {
     const variants = ["30-Day Supply", "60-Day Supply", "90-Day Supply"];
     variants.forEach((variant, vIndex) => {
       const priceMultiplier = vIndex === 2 ? 1.5 : vIndex === 1 ? 1.25 : 1;
-      const price = Math.min(3900, Math.max(95, Math.round(product.price * priceMultiplier)));
+      const price = Math.min(6250, Math.max(175, Math.round(product.price * priceMultiplier)));
 
       products.push({
         id: `isolate-spectrum-${productId}`,
@@ -800,8 +800,8 @@ const generateProducts = (): Product[] => {
         originalPrice: Math.round(price * 1.25),
         rating: 4.8 + Math.random() * 0.2,
         reviewCount: Math.floor(Math.random() * 300) + 100,
-        description: `${product.desc}. Medi Spero Pure Spectrum products represent the pinnacle of isolate-based wellness—combining 99%+ purity with advanced delivery systems for unmatched bioavailability. Every product is manufactured in our FDA-registered, cGMP-certified facility and verified by independent laboratories.`,
-        shortDescription: `Premium Pure Spectrum ${product.strength} CBD Isolate - THC-free, lab-verified`,
+        description: `${product.desc}. Medi Spero 99% Pure Spectrum products represent the pinnacle of isolate-based wellness—combining 99% purity with advanced delivery systems for unmatched bioavailability. Every product is manufactured in our FDA-registered, cGMP-certified facility and verified by independent laboratories.`,
+        shortDescription: `Premium 99% Pure Spectrum ${product.strength} CBD Isolate - THC-free, lab-verified`,
         images: getProductImages("cbd-isolate-pure-spectrum", productId),
         sku: `MS-IPS-${productId.toString().padStart(4, '0')}`,
         gtin: `0850${String(productId).padStart(9, '0')}`,
@@ -810,8 +810,8 @@ const generateProducts = (): Product[] => {
         stockQuantity: Math.floor(Math.random() * 45) + 12,
         strength: product.strength,
         size: variant,
-        ingredients: ["99%+ CBD Isolate", "Organic MCT Oil", "Natural Terpene Blend", "Sunflower Lecithin"],
-        benefits: ["THC Non-Detectable", "Pure Spectrum Formulation", "Enhanced Bioavailability", "Pharmaceutical-Grade Purity", "Consistent Dosing"],
+        ingredients: ["99% CBD Isolate", "Organic MCT Oil", "Natural Terpene Blend", "Sunflower Lecithin"],
+        benefits: ["THC Non-Detectable", "99% Pure Spectrum Formulation", "Enhanced Bioavailability", "Pharmaceutical-Grade Purity", "Consistent Dosing"],
         usage: "Take as directed on package. For tinctures: place under tongue and hold 60-90 seconds. For softgels: take with food. Consult healthcare provider before use.",
         thirdPartyTested: true,
         organic: true,

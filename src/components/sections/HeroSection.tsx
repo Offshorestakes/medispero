@@ -52,7 +52,7 @@ const HeroSection = () => {
   }, [shouldLoadVideo]);
 
   return (
-    <section aria-label="Hero" className="relative min-h-[70vh] md:min-h-[90vh] flex items-center overflow-hidden">
+    <section aria-label="Hero" className="relative min-h-[60vh] md:min-h-[90vh] flex items-center overflow-hidden">
       {/* Video Background with Poster Fallback */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/95 via-brand-navy/80 to-brand-navy/60 z-10" />
@@ -81,35 +81,35 @@ const HeroSection = () => {
       </div>
 
       {/* Content */}
-      <div className="container-wide relative z-20 py-20">
+      <div className="container-wide relative z-20 py-12 md:py-20">
         <div className="max-w-2xl">
           {/* Trust Badge */}
-          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-6">
+          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-4 md:mb-6">
             <Shield className="h-4 w-4 text-secondary" />
             <span className="text-sm text-white/90">Third-Party Lab Tested | Farm Bill Compliant</span>
           </div>
 
           {/* Headline */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 leading-tight">
             Premium Hemp Wellness for
             <span className="block text-secondary">Mind, Mood & Body</span>
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg md:text-xl text-white/80 mb-8 leading-relaxed">
+          <p className="text-base md:text-xl text-white/80 mb-6 md:mb-8 leading-relaxed">
             Discover pharmaceutical-grade CBD, Delta-8, Delta-9 THC, and specialty formulas for ADHD, anxiety, 
             depression, and sleep. Lab-tested, Farm Bill compliant, and crafted by Medi Spero for your complete wellbeing.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-12">
-            <Button asChild className="btn-secondary text-lg px-8 py-6">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-8 md:mb-12">
+            <Button asChild className="btn-secondary text-base md:text-lg px-6 md:px-8 py-5 md:py-6">
               <Link to="/products">
                 Shop All Products
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <Button asChild variant="outline" className="text-lg px-8 py-6 border-white/30 text-white hover:bg-white/10">
+            <Button asChild variant="outline" className="text-base md:text-lg px-6 md:px-8 py-5 md:py-6 border-white/30 text-white hover:bg-white/10">
               <Link to="/about">
                 <Play className="mr-2 h-5 w-5" />
                 Learn More
@@ -118,41 +118,41 @@ const HeroSection = () => {
           </div>
 
           {/* Trust Icons */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
-                <Award className="h-6 w-6 text-secondary" />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+                <Award className="h-5 w-5 md:h-6 md:w-6 text-secondary" />
               </div>
               <div>
-                <p className="text-white font-semibold">Lab Tested</p>
-                <p className="text-white/60 text-sm">100% Pure</p>
+                <p className="text-white font-semibold text-sm md:text-base">Lab Tested</p>
+                <p className="text-white/60 text-xs md:text-sm">100% Pure</p>
               </div>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
-                <Leaf className="h-6 w-6 text-secondary" />
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+                <Leaf className="h-5 w-5 md:h-6 md:w-6 text-secondary" />
               </div>
               <div>
-                <p className="text-white font-semibold">Organic Hemp</p>
-                <p className="text-white/60 text-sm">USA Grown</p>
+                <p className="text-white font-semibold text-sm md:text-base">Organic Hemp</p>
+                <p className="text-white/60 text-xs md:text-sm">USA Grown</p>
               </div>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
-                <Truck className="h-6 w-6 text-secondary" />
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+                <Truck className="h-5 w-5 md:h-6 md:w-6 text-secondary" />
               </div>
               <div>
-                <p className="text-white font-semibold">Free Shipping</p>
-                <p className="text-white/60 text-sm">Orders $250+</p>
+                <p className="text-white font-semibold text-sm md:text-base">Free Shipping</p>
+                <p className="text-white/60 text-xs md:text-sm">Orders $250+</p>
               </div>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
-                <Shield className="h-6 w-6 text-secondary" />
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+                <Shield className="h-5 w-5 md:h-6 md:w-6 text-secondary" />
               </div>
               <div>
-                <p className="text-white font-semibold">30-Day</p>
-                <p className="text-white/60 text-sm">Money Back</p>
+                <p className="text-white font-semibold text-sm md:text-base">30-Day</p>
+                <p className="text-white/60 text-xs md:text-sm">Money Back</p>
               </div>
             </div>
           </div>
