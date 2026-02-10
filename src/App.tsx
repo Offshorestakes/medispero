@@ -29,6 +29,7 @@ import WholesalePage from "./pages/WholesalePage";
 import TrackOrderPage from "./pages/TrackOrderPage";
 import TestimonialsPage from "./pages/TestimonialsPage";
 import EducationPage from "./pages/EducationPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 import CookieConsent from "./components/CookieConsent";
@@ -70,6 +71,7 @@ const App = () => (
                 <Route path="/track-order" element={<TrackOrderPage />} />
                 <Route path="/testimonials" element={<TestimonialsPage />} />
                 <Route path="/education" element={<EducationPage />} />
+                <Route path="/reset-password" element={<ResetPasswordPage />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
