@@ -52,13 +52,19 @@
 
     <link rel="icon" type="image/png" href="/favicon.png" />
 
-    <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-24V7Q2W1H3"></script>
+    <!-- Google Analytics 4 - deferred for performance -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-24V7Q2W1H3');
+      // Load GA script after page is interactive
+      window.addEventListener('load', function() {
+        var s = document.createElement('script');
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-24V7Q2W1H3';
+        s.async = true;
+        document.head.appendChild(s);
+      });
     </script>
   </head>
 
