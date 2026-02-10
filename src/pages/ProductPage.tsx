@@ -377,45 +377,6 @@ const ProductPage = () => {
     ],
   };
 
-  // FAQ Schema for product page featured snippets
-  const productFaqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: `What is ${product.name}?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: product.description,
-        },
-      },
-      {
-        "@type": "Question",
-        name: `How do I use ${product.name}?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: product.usage || "Follow the dosing instructions on the product label. Start with the lowest recommended dose and adjust as needed. Consult your healthcare provider before use.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: `Is ${product.name} lab tested?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. Every Medi Spero product undergoes rigorous third-party testing at ISO-certified laboratories for potency, purity, and safety. Certificates of Analysis (COAs) are available on each product page.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: `Will ${product.name} make me fail a drug test?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Full Spectrum products contain trace THC (under 0.3%) and may cause a positive result on sensitive drug tests. If you are subject to drug testing, consider our Broad Spectrum or CBD Isolate products which contain zero THC.",
-        },
-      },
-    ],
-  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -441,9 +402,6 @@ const ProductPage = () => {
         </script>
         <script type="application/ld+json">
           {JSON.stringify(breadcrumbSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(productFaqSchema)}
         </script>
       </Helmet>
       <Header />

@@ -10,10 +10,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
-    <!-- Preload critical font -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" as="style" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" /></noscript>
+    <!-- Fonts loaded async to avoid render-blocking -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&display=optional" as="style" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&display=optional" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&display=optional" /></noscript>
     
     <!-- Primary SEO Meta Tags -->
     <title>Medi Spero | Pharmaceutical-Grade CBD & THC Products | Anti-Anxiety & Mood Support</title>
@@ -48,68 +48,7 @@
     <meta name="twitter:description" content="Shop premium, lab-tested CBD products. Organic hemp, made in USA. Free shipping over $250." />
     <meta name="twitter:image" content="https://medispero.com/og-image.jpg" />
     
-    <!-- Structured Data - Organization -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Medi Spero",
-      "url": "https://medispero.com",
-      "logo": "https://medispero.com/logo.png",
-      "contactPoint": [
-        {
-          "@type": "ContactPoint",
-          "contactType": "customer service",
-          "email": "info@medispero.com"
-        },
-        {
-          "@type": "ContactPoint",
-          "contactType": "WhatsApp",
-          "url": "https://wa.me/13347469312"
-        }
-      ],
-      "sameAs": [
-        "https://facebook.com/medispero",
-        "https://instagram.com/medispero",
-        "https://twitter.com/medispero"
-      ]
-    }
-    </script>
-    
-    <!-- Structured Data - WebSite -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Medi Spero",
-      "url": "https://medispero.com",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://medispero.com/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-    </script>
-    
-    <!-- Structured Data - Store -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Store",
-      "name": "Medi Spero CBD Store",
-      "url": "https://medispero.com",
-      "email": "info@medispero.com",
-      "priceRange": "$$",
-      "paymentAccepted": "Credit Card, Debit Card, PayPal",
-      "currenciesAccepted": "USD",
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-        "opens": "00:00",
-        "closes": "23:59"
-      }
-    }
-    </script>
+    <!-- Structured data rendered dynamically per-page via react-helmet-async -->
 
     <link rel="icon" type="image/png" href="/favicon.png" />
 
