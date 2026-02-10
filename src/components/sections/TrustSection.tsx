@@ -35,7 +35,7 @@ const trustSignals = [
 
 const TrustSection = () => {
   return (
-    <section className="section-padding bg-gradient-to-br from-primary/5 to-secondary/5">
+    <section aria-label="Trust and quality" className="section-padding bg-gradient-to-br from-primary/5 to-secondary/5">
       <div className="container-wide">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">

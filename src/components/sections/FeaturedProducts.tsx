@@ -8,7 +8,7 @@ const FeaturedProducts = () => {
   const featuredProducts = getFeaturedProducts(8);
 
   return (
-    <section className="section-padding bg-muted/30">
+    <section aria-label="Featured products" className="section-padding bg-muted/30">
       <div className="container-wide">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
