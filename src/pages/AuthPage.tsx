@@ -112,13 +112,6 @@ const AuthPage = () => {
             toast({ title: "Sign up failed", description: error.message, variant: "destructive" });
           }
         } else {
-          try {
-            await supabase.functions.invoke("send-verification-email", {
-              body: { email: email.trim(), redirectTo: `${window.location.origin}/` },
-            });
-          } catch (emailError) {
-            console.error("Failed to send branded verification email:", emailError);
-          }
           toast({ title: "Account created!", description: "Please check your email to verify your account before signing in." });
           setMode("login");
         }
