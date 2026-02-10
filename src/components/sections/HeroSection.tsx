@@ -52,7 +52,7 @@ const HeroSection = () => {
   }, [shouldLoadVideo]);
 
   return (
-    <section aria-label="Hero" className="relative min-h-[80vh] md:min-h-[90vh] flex items-center overflow-hidden">
+    <section aria-label="Hero" className="relative min-h-[70vh] md:min-h-[90vh] flex items-center overflow-hidden">
       {/* Video Background with Poster Fallback */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/95 via-brand-navy/80 to-brand-navy/60 z-10" />
@@ -84,25 +84,25 @@ const HeroSection = () => {
       <div className="container-wide relative z-20 py-20">
         <div className="max-w-2xl">
           {/* Trust Badge */}
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-6 animate-fade-up">
+          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-6">
             <Shield className="h-4 w-4 text-secondary" />
             <span className="text-sm text-white/90">Third-Party Lab Tested | Farm Bill Compliant</span>
           </div>
 
           {/* Headline */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight animate-fade-up" style={{ animationDelay: "0.1s" }}>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
             Premium Hemp Wellness for
             <span className="block text-secondary">Mind, Mood & Body</span>
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg md:text-xl text-white/80 mb-8 leading-relaxed animate-fade-up" style={{ animationDelay: "0.2s" }}>
+          <p className="text-lg md:text-xl text-white/80 mb-8 leading-relaxed">
             Discover pharmaceutical-grade CBD, Delta-8, Delta-9 THC, and specialty formulas for ADHD, anxiety, 
             depression, and sleep. Lab-tested, Farm Bill compliant, and crafted by Medi Spero for your complete wellbeing.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-12 animate-fade-up" style={{ animationDelay: "0.3s" }}>
+          <div className="flex flex-col sm:flex-row gap-4 mb-12">
             <Button asChild className="btn-secondary text-lg px-8 py-6">
               <Link to="/products">
                 Shop All Products
@@ -118,7 +118,7 @@ const HeroSection = () => {
           </div>
 
           {/* Trust Icons */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 animate-fade-up" style={{ animationDelay: "0.4s" }}>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
                 <Award className="h-6 w-6 text-secondary" />
@@ -159,10 +159,10 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
+      {/* Scroll Indicator - hidden on mobile for performance */}
+      <div className="hidden md:block absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
         <div className="w-8 h-12 rounded-full border-2 border-white/30 flex justify-center pt-2">
-          <div className="w-1.5 h-3 bg-white/50 rounded-full animate-pulse"></div>
+          <div className="w-1.5 h-3 bg-white/50 rounded-full"></div>
         </div>
       </div>
     </section>

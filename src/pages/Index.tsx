@@ -30,6 +30,7 @@ const Index = () => {
     foundingDate: "2020",
     slogan: "Premium Hemp Wellness for Mind, Mood & Body",
     email: "info@medispero.com",
+    telephone: "+1-334-746-9312",
     address: {
       "@type": "PostalAddress",
       addressCountry: "US",
@@ -37,14 +38,9 @@ const Index = () => {
     contactPoint: [
       {
         "@type": "ContactPoint",
+        telephone: "+1-334-746-9312",
         email: "info@medispero.com",
-        contactType: "customer support",
-        availableLanguage: ["English"],
-      },
-      {
-        "@type": "ContactPoint",
-        url: "https://wa.me/13347469312",
-        contactType: "WhatsApp",
+        contactType: "customer service",
         availableLanguage: ["English"],
         areaServed: "US",
       },
@@ -54,120 +50,38 @@ const Index = () => {
       "https://www.instagram.com/medispero",
       "https://twitter.com/medispero",
     ],
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.8",
-      reviewCount: "2847",
-      bestRating: "5",
-      worstRating: "1",
-    },
   };
 
   // LocalBusiness Schema for local search visibility
   const localBusinessSchema = {
     "@context": "https://schema.org",
-    "@type": "HealthAndBeautyBusiness",
-    "@id": "https://medispero.com/#localbusiness",
+    "@type": "Store",
+    "@id": "https://medispero.com/#store",
     name: "Medi Spero",
     url: "https://medispero.com",
     logo: "https://medispero.com/logo.png",
     image: "https://medispero.com/logo.png",
     description: "Premium pharmaceutical-grade CBD and hemp wellness products. Specializing in lab-tested cannabinoid formulations for mental wellness, focus, anxiety relief, and holistic health.",
     email: "info@medispero.com",
+    telephone: "+1-334-746-9312",
     priceRange: "$$$",
     currenciesAccepted: "USD",
-    paymentAccepted: "Credit Card, Debit Card, PayPal",
+    paymentAccepted: "Credit Card, Debit Card, Cryptocurrency",
     address: {
       "@type": "PostalAddress",
       addressCountry: "US",
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: "32.3792",
-      longitude: "-86.3077",
     },
     areaServed: {
       "@type": "Country",
       name: "United States",
     },
-    hasOfferCatalog: {
-      "@type": "OfferCatalog",
-      name: "Medi Spero Product Catalog",
-      itemListElement: [
-        {
-          "@type": "OfferCatalog",
-          name: "CBD Oils & Tinctures",
-          itemListElement: [
-            {
-              "@type": "Offer",
-              itemOffered: {
-                "@type": "Product",
-                name: "Premium CBD Oil Tinctures",
-              },
-            },
-          ],
-        },
-        {
-          "@type": "OfferCatalog",
-          name: "Pharmaceutical Grade Capsules",
-          itemListElement: [
-            {
-              "@type": "Offer",
-              itemOffered: {
-                "@type": "Product",
-                name: "Clinical-Strength CBD Capsules",
-              },
-            },
-          ],
-        },
-        {
-          "@type": "OfferCatalog",
-          name: "ADHD & Focus Support",
-          itemListElement: [
-            {
-              "@type": "Offer",
-              itemOffered: {
-                "@type": "Product",
-                name: "Focus & Concentration Formulas",
-              },
-            },
-          ],
-        },
-        {
-          "@type": "OfferCatalog",
-          name: "Mood & Anxiety Support",
-          itemListElement: [
-            {
-              "@type": "Offer",
-              itemOffered: {
-                "@type": "Product",
-                name: "Anxiety & Mood Support Products",
-              },
-            },
-          ],
-        },
-      ],
-    },
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday",
+        "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday",
       ],
       opens: "00:00",
       closes: "23:59",
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.8",
-      reviewCount: "2847",
-      bestRating: "5",
-      worstRating: "1",
     },
   };
 
@@ -184,10 +98,7 @@ const Index = () => {
     },
     potentialAction: {
       "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: "https://medispero.com/products?search={search_term_string}",
-      },
+      target: "https://medispero.com/products?search={search_term_string}",
       "query-input": "required name=search_term_string",
     },
   };
