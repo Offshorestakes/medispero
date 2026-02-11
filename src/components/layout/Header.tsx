@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Menu, X, Search, ShoppingCart, User, ChevronDown, LogOut } from "lucide-react";
+import { Menu, X, Search, ShoppingCart, User, ChevronDown, ChevronRight, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -14,6 +14,96 @@ import { categories } from "@/data/products";
 import { useAuth } from "@/contexts/AuthContext";
 import { useCart } from "@/contexts/CartContext";
 import logoImage from "@/assets/logo.png";
+import type { User as SupaUser } from "@supabase/supabase-js";
+
+// Group categories for mobile nav
+const categoryGroups = [
+  {
+    label: "🧠 Mental Wellness",
+    slugs: ["pharma-capsules", "adhd-focus", "anti-anxiety", "mood-support"],
+  },
+  {
+    label: "🌿 CBD Products",
+    slugs: ["cbd-oils", "cbd-capsules", "cbd-vape", "cbd-skincare"],
+  },
+  {
+    label: "⚗️ CBD Isolates",
+    slugs: ["cbd-isolate-powder", "cbd-isolate-crystals", "cbd-isolate-pure-spectrum"],
+  },
+  {
+    label: "🎁 More",
+    slugs: ["sleep-wellness", "bundles"],
+  },
+];
+
+const MobileNav = ({ onClose, user }: { onClose: () => void; user: SupaUser | null }) => {
+  const [openGroup, setOpenGroup] = useState<string | null>(null);
+
+  const toggleGroup = (label: string) => {
+    setOpenGroup((prev) => (prev === label ? null : label));
+  };
+
+  return (
+    <nav aria-label="Mobile navigation" className="lg:hidden mt-4 pb-4 border-t border-border pt-4 animate-fade-in">
+      <div className="flex flex-col gap-1">
+        <Link to="/" className="py-2.5 font-medium" onClick={onClose}>
+          Home
+        </Link>
+        <Link to="/products" className="py-2.5 font-medium" onClick={onClose}>
+          All Products
+        </Link>
+
+        {/* Collapsible category groups */}
+        {categoryGroups.map((group) => {
+          const isOpen = openGroup === group.label;
+          const groupCategories = categories.filter((c) => group.slugs.includes(c.slug));
+          return (
+            <div key={group.label}>
+              <button
+                onClick={() => toggleGroup(group.label)}
+                className="flex items-center justify-between w-full py-2.5 font-medium text-left"
+              >
+                <span>{group.label}</span>
+                <ChevronRight
+                  className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${isOpen ? "rotate-90" : ""}`}
+                />
+              </button>
+              {isOpen && (
+                <div className="flex flex-col gap-0.5 ml-2 border-l-2 border-border pl-3 mb-1 animate-fade-in">
+                  {groupCategories.map((category) => (
+                    <Link
+                      key={category.id}
+                      to={`/category/${category.slug}`}
+                      className="py-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                      onClick={onClose}
+                    >
+                      {category.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          );
+        })}
+
+        <Link to="/about" className="py-2.5 font-medium" onClick={onClose}>
+          About Us
+        </Link>
+        <Link to="/blog" className="py-2.5 font-medium" onClick={onClose}>
+          Blog
+        </Link>
+        <Link to="/contact" className="py-2.5 font-medium" onClick={onClose}>
+          Contact
+        </Link>
+        {!user && (
+          <Link to="/auth" className="py-2.5 font-medium text-primary" onClick={onClose}>
+            Sign In / Register
+          </Link>
+        )}
+      </div>
+    </nav>
+  );
+};
 
 const Header = () => {
   const navigate = useNavigate();
@@ -191,40 +281,7 @@ const Header = () => {
 
         {/* Mobile menu */}
         {isMenuOpen && (
-          <nav aria-label="Mobile navigation" className="lg:hidden mt-4 pb-4 border-t border-border pt-4 animate-fade-in">
-            <div className="flex flex-col gap-3">
-              <Link to="/" className="py-2 font-medium" onClick={() => setIsMenuOpen(false)}>
-                Home
-              </Link>
-              <Link to="/products" className="py-2 font-medium" onClick={() => setIsMenuOpen(false)}>
-                All Products
-              </Link>
-              {categories.map((category) => (
-                <Link
-                  key={category.id}
-                  to={`/category/${category.slug}`}
-                  className="py-2 pl-4 text-muted-foreground"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {category.name}
-                </Link>
-              ))}
-              <Link to="/about" className="py-2 font-medium" onClick={() => setIsMenuOpen(false)}>
-                About Us
-              </Link>
-              <Link to="/blog" className="py-2 font-medium" onClick={() => setIsMenuOpen(false)}>
-                Blog
-              </Link>
-              <Link to="/contact" className="py-2 font-medium" onClick={() => setIsMenuOpen(false)}>
-                Contact
-              </Link>
-              {!user && (
-                <Link to="/auth" className="py-2 font-medium text-primary" onClick={() => setIsMenuOpen(false)}>
-                  Sign In / Register
-                </Link>
-              )}
-            </div>
-          </nav>
+          <MobileNav onClose={() => setIsMenuOpen(false)} user={user} />
         )}
       </div>
     </header>
