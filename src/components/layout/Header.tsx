@@ -199,7 +199,7 @@ const Header = () => {
               <Link to="/products" className="py-2 font-medium" onClick={() => setIsMenuOpen(false)}>
                 All Products
               </Link>
-              {categories.slice(0, 4).map((category) => (
+              {categories.map((category) => (
                 <Link
                   key={category.id}
                   to={`/category/${category.slug}`}
