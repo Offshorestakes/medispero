@@ -13,6 +13,7 @@ import {
 import { categories } from "@/data/products";
 import { useAuth } from "@/contexts/AuthContext";
 import { useCart } from "@/contexts/CartContext";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import logoImage from "@/assets/logo.png";
 import type { User as SupaUser } from "@supabase/supabase-js";
 
@@ -58,18 +59,19 @@ const MobileNav = ({ onClose, user }: { onClose: () => void; user: SupaUser | nu
           const isOpen = openGroup === group.label;
           const groupCategories = categories.filter((c) => group.slugs.includes(c.slug));
           return (
-            <div key={group.label}>
-              <button
-                onClick={() => toggleGroup(group.label)}
-                className="flex items-center justify-between w-full py-2.5 font-medium text-left"
-              >
+            <Collapsible
+              key={group.label}
+              open={isOpen}
+              onOpenChange={() => toggleGroup(group.label)}
+            >
+              <CollapsibleTrigger className="flex items-center justify-between w-full py-2.5 font-medium text-left">
                 <span>{group.label}</span>
                 <ChevronRight
                   className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${isOpen ? "rotate-90" : ""}`}
                 />
-              </button>
-              {isOpen && (
-                <div className="flex flex-col gap-0.5 ml-2 border-l-2 border-border pl-3 mb-1 animate-fade-in">
+              </CollapsibleTrigger>
+              <CollapsibleContent className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
+                <div className="flex flex-col gap-0.5 ml-2 border-l-2 border-border pl-3 mb-1">
                   {groupCategories.map((category) => (
                     <Link
                       key={category.id}
@@ -81,8 +83,8 @@ const MobileNav = ({ onClose, user }: { onClose: () => void; user: SupaUser | nu
                     </Link>
                   ))}
                 </div>
-              )}
-            </div>
+              </CollapsibleContent>
+            </Collapsible>
           );
         })}
 
