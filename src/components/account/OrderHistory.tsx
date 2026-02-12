@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import { Package, ChevronDown, ChevronUp, ExternalLink, Bitcoin, Clock, CheckCircle2, XCircle, AlertTriangle, RefreshCw } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -233,7 +234,7 @@ const OrderHistory = () => {
               When you place an order, it will appear here.
             </p>
             <Button asChild>
-              <a href="/products">Start Shopping</a>
+              <Link to="/products">Start Shopping</Link>
             </Button>
           </div>
         </CardContent>
