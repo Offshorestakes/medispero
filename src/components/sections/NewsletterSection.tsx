@@ -1,8 +1,22 @@
+import { useState } from "react";
 import { Mail } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { trackSubscribe } from "@/lib/analytics";
+import { toast } from "sonner";
 
 const NewsletterSection = () => {
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email) {
+      trackSubscribe(email);
+      toast.success("Thanks for subscribing! Check your inbox for your 15% off code.");
+      setEmail("");
+    }
+  };
+
   return (
     <section aria-label="Newsletter signup" className="py-16 bg-gradient-to-r from-primary to-secondary">
       <div className="container-wide">
@@ -22,10 +36,12 @@ const NewsletterSection = () => {
           </div>
 
           {/* Form */}
-          <form className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
             <Input
               type="email"
               placeholder="Enter your email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="bg-white/10 border-white/20 text-white placeholder:text-white/60 min-w-[280px]"
               required
             />
