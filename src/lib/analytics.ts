@@ -33,6 +33,9 @@ const ttqTrack = (event: string, params?: Record<string, unknown>) => {
   }
 };
 
+const BRAND = 'Medi Spero';
+const DEFAULT_CATEGORY = 'CBD & Hemp Products';
+
 // Server-side Events API call (fire-and-forget, non-blocking)
 const ttqServerTrack = (event: string, properties: Record<string, unknown>, user?: Record<string, unknown>) => {
   supabase.functions.invoke('tiktok-events', {
@@ -62,24 +65,20 @@ export const trackAddToCart = (item: {
       item_category: item.category || 'CBD',
     }],
   });
-  ttqTrack('AddToCart', {
+  const ttqParams = {
     content_id: item.product_id,
     content_name: item.product_name,
     content_type: 'product',
+    content_category: item.category || DEFAULT_CATEGORY,
+    brand: BRAND,
+    description: `${item.product_name} - ${item.category || 'CBD'}`,
     quantity: item.quantity,
     price: item.price,
     value: item.price * item.quantity,
     currency: 'USD',
-  });
-  ttqServerTrack('AddToCart', {
-    content_id: item.product_id,
-    content_name: item.product_name,
-    content_type: 'product',
-    quantity: item.quantity,
-    price: item.price,
-    value: item.price * item.quantity,
-    currency: 'USD',
-  });
+  };
+  ttqTrack('AddToCart', ttqParams);
+  ttqServerTrack('AddToCart', ttqParams);
 };
 
 export const trackRemoveFromCart = (item: {
@@ -116,26 +115,23 @@ export const trackBeginCheckout = (items: {
       quantity: item.quantity,
     })),
   });
-  ttqTrack('InitiateCheckout', {
+  const ttqParams = {
     contents: items.map(item => ({
       content_id: item.product_id,
       content_name: item.product_name,
+      content_type: 'product',
+      brand: BRAND,
       quantity: item.quantity,
       price: item.price,
     })),
+    content_category: DEFAULT_CATEGORY,
+    brand: BRAND,
+    description: `Checkout with ${items.length} item(s)`,
     value: total,
     currency: 'USD',
-  });
-  ttqServerTrack('InitiateCheckout', {
-    contents: items.map(item => ({
-      content_id: item.product_id,
-      content_name: item.product_name,
-      quantity: item.quantity,
-      price: item.price,
-    })),
-    value: total,
-    currency: 'USD',
-  });
+  };
+  ttqTrack('InitiateCheckout', ttqParams);
+  ttqServerTrack('InitiateCheckout', ttqParams);
 };
 
 export const trackPurchase = (orderId: string, items: {
@@ -157,26 +153,23 @@ export const trackPurchase = (orderId: string, items: {
       quantity: item.quantity,
     })),
   });
-  ttqTrack('CompletePayment', {
+  const ttqParams = {
     contents: items.map(item => ({
       content_id: item.product_id,
       content_name: item.product_name,
+      content_type: 'product',
+      brand: BRAND,
       quantity: item.quantity,
       price: item.price,
     })),
+    content_category: DEFAULT_CATEGORY,
+    brand: BRAND,
+    description: `Order ${orderId}`,
     value: total,
     currency: 'USD',
-  });
-  ttqServerTrack('CompletePayment', {
-    contents: items.map(item => ({
-      content_id: item.product_id,
-      content_name: item.product_name,
-      quantity: item.quantity,
-      price: item.price,
-    })),
-    value: total,
-    currency: 'USD',
-  });
+  };
+  ttqTrack('CompletePayment', ttqParams);
+  ttqServerTrack('CompletePayment', ttqParams);
 };
 
 export const trackViewItem = (item: {
@@ -195,20 +188,17 @@ export const trackViewItem = (item: {
       item_category: item.category || 'CBD',
     }],
   });
-  ttqTrack('ViewContent', {
+  const ttqParams = {
     content_id: item.product_id,
     content_name: item.product_name,
     content_type: 'product',
+    content_category: item.category || DEFAULT_CATEGORY,
+    brand: BRAND,
+    description: `${item.product_name} - Premium ${item.category || 'CBD'} Product`,
     price: item.price,
     value: item.price,
     currency: 'USD',
-  });
-  ttqServerTrack('ViewContent', {
-    content_id: item.product_id,
-    content_name: item.product_name,
-    content_type: 'product',
-    price: item.price,
-    value: item.price,
-    currency: 'USD',
-  });
+  };
+  ttqTrack('ViewContent', ttqParams);
+  ttqServerTrack('ViewContent', ttqParams);
 };
