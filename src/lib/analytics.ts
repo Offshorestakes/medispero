@@ -1,9 +1,14 @@
-// GA4 Analytics utility with ecommerce event tracking
+// GA4 + TikTok Analytics utility with ecommerce event tracking
 
 declare global {
   interface Window {
     gtag: (...args: unknown[]) => void;
     dataLayer: unknown[];
+    ttq: {
+      track: (event: string, params?: Record<string, unknown>) => void;
+      page: () => void;
+      identify: (params: Record<string, unknown>) => void;
+    };
   }
 }
 
@@ -16,6 +21,12 @@ export const trackEvent = (eventName: string, params?: Record<string, unknown>) 
       if (stored) utmData = JSON.parse(stored);
     } catch { /* ignore */ }
     window.gtag('event', eventName, { ...utmData, ...params });
+  }
+};
+
+const ttqTrack = (event: string, params?: Record<string, unknown>) => {
+  if (typeof window.ttq?.track === 'function') {
+    window.ttq.track(event, params);
   }
 };
 
@@ -36,6 +47,15 @@ export const trackAddToCart = (item: {
       quantity: item.quantity,
       item_category: item.category || 'CBD',
     }],
+  });
+  ttqTrack('AddToCart', {
+    content_id: item.product_id,
+    content_name: item.product_name,
+    content_type: 'product',
+    quantity: item.quantity,
+    price: item.price,
+    value: item.price * item.quantity,
+    currency: 'USD',
   });
 };
 
@@ -73,6 +93,16 @@ export const trackBeginCheckout = (items: {
       quantity: item.quantity,
     })),
   });
+  ttqTrack('InitiateCheckout', {
+    contents: items.map(item => ({
+      content_id: item.product_id,
+      content_name: item.product_name,
+      quantity: item.quantity,
+      price: item.price,
+    })),
+    value: total,
+    currency: 'USD',
+  });
 };
 
 export const trackPurchase = (orderId: string, items: {
@@ -94,6 +124,16 @@ export const trackPurchase = (orderId: string, items: {
       quantity: item.quantity,
     })),
   });
+  ttqTrack('CompletePayment', {
+    contents: items.map(item => ({
+      content_id: item.product_id,
+      content_name: item.product_name,
+      quantity: item.quantity,
+      price: item.price,
+    })),
+    value: total,
+    currency: 'USD',
+  });
 };
 
 export const trackViewItem = (item: {
@@ -111,5 +151,13 @@ export const trackViewItem = (item: {
       price: item.price,
       item_category: item.category || 'CBD',
     }],
+  });
+  ttqTrack('ViewContent', {
+    content_id: item.product_id,
+    content_name: item.product_name,
+    content_type: 'product',
+    price: item.price,
+    value: item.price,
+    currency: 'USD',
   });
 };
