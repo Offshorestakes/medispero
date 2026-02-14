@@ -25,18 +25,32 @@ serve(async (req) => {
     const { event, properties, user } = await req.json();
 
     const eventId = crypto.randomUUID();
+    const props = properties || {};
 
     // Build TikTok Events API v1.3 payload
+    // content_id, contents, etc. must be at the top level of properties
     const eventData = {
       event: event,
       event_id: eventId,
       event_time: Math.floor(Date.now() / 1000),
-      properties: { ...properties, event_id: eventId },
+      properties: {
+        ...props,
+        event_id: eventId,
+        // Ensure content_id is a string (TikTok requirement)
+        ...(props.content_id ? { content_id: String(props.content_id) } : {}),
+        // Ensure contents array content_ids are strings
+        ...(props.contents ? {
+          contents: (props.contents as Array<Record<string, unknown>>).map((c: Record<string, unknown>) => ({
+            ...c,
+            content_id: String(c.content_id || ''),
+          })),
+        } : {}),
+      },
       context: {
         user_agent: req.headers.get('user-agent') || '',
         ip: req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || '',
         page: {
-          url: properties?.page_url || '',
+          url: props.page_url || '',
         },
         user: user || {},
       },
