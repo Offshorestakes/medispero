@@ -1,4 +1,7 @@
 // GA4 + TikTok Analytics utility with ecommerce event tracking
+// Includes both browser pixel (ttq) and server-side Events API
+
+import { supabase } from "@/integrations/supabase/client";
 
 declare global {
   interface Window {
@@ -30,6 +33,17 @@ const ttqTrack = (event: string, params?: Record<string, unknown>) => {
   }
 };
 
+// Server-side Events API call (fire-and-forget, non-blocking)
+const ttqServerTrack = (event: string, properties: Record<string, unknown>, user?: Record<string, unknown>) => {
+  supabase.functions.invoke('tiktok-events', {
+    body: {
+      event,
+      properties: { ...properties, page_url: window.location.href },
+      user,
+    },
+  }).catch((err) => console.warn('TikTok Events API error:', err));
+};
+
 export const trackAddToCart = (item: {
   product_id: string;
   product_name: string;
@@ -49,6 +63,15 @@ export const trackAddToCart = (item: {
     }],
   });
   ttqTrack('AddToCart', {
+    content_id: item.product_id,
+    content_name: item.product_name,
+    content_type: 'product',
+    quantity: item.quantity,
+    price: item.price,
+    value: item.price * item.quantity,
+    currency: 'USD',
+  });
+  ttqServerTrack('AddToCart', {
     content_id: item.product_id,
     content_name: item.product_name,
     content_type: 'product',
@@ -103,6 +126,16 @@ export const trackBeginCheckout = (items: {
     value: total,
     currency: 'USD',
   });
+  ttqServerTrack('InitiateCheckout', {
+    contents: items.map(item => ({
+      content_id: item.product_id,
+      content_name: item.product_name,
+      quantity: item.quantity,
+      price: item.price,
+    })),
+    value: total,
+    currency: 'USD',
+  });
 };
 
 export const trackPurchase = (orderId: string, items: {
@@ -134,6 +167,16 @@ export const trackPurchase = (orderId: string, items: {
     value: total,
     currency: 'USD',
   });
+  ttqServerTrack('CompletePayment', {
+    contents: items.map(item => ({
+      content_id: item.product_id,
+      content_name: item.product_name,
+      quantity: item.quantity,
+      price: item.price,
+    })),
+    value: total,
+    currency: 'USD',
+  });
 };
 
 export const trackViewItem = (item: {
@@ -153,6 +196,14 @@ export const trackViewItem = (item: {
     }],
   });
   ttqTrack('ViewContent', {
+    content_id: item.product_id,
+    content_name: item.product_name,
+    content_type: 'product',
+    price: item.price,
+    value: item.price,
+    currency: 'USD',
+  });
+  ttqServerTrack('ViewContent', {
     content_id: item.product_id,
     content_name: item.product_name,
     content_type: 'product',
