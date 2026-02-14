@@ -24,12 +24,14 @@ serve(async (req) => {
   try {
     const { event, properties, user } = await req.json();
 
+    const eventId = crypto.randomUUID();
+
     // Build TikTok Events API v1.3 payload
     const eventData = {
       event: event,
-      event_id: crypto.randomUUID(),
+      event_id: eventId,
       event_time: Math.floor(Date.now() / 1000),
-      properties: properties || {},
+      properties: { ...properties, event_id: eventId },
       context: {
         user_agent: req.headers.get('user-agent') || '',
         ip: req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || '',
