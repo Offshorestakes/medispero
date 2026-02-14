@@ -116,6 +116,9 @@ export const trackBeginCheckout = (items: {
     })),
   });
   const ttqParams = {
+    content_id: items[0]?.product_id || '',
+    content_name: items[0]?.product_name || '',
+    content_type: 'product',
     contents: items.map(item => ({
       content_id: item.product_id,
       content_name: item.product_name,
@@ -154,6 +157,9 @@ export const trackPurchase = (orderId: string, items: {
     })),
   });
   const ttqParams = {
+    content_id: items[0]?.product_id || '',
+    content_name: items[0]?.product_name || '',
+    content_type: 'product',
     contents: items.map(item => ({
       content_id: item.product_id,
       content_name: item.product_name,
@@ -168,6 +174,9 @@ export const trackPurchase = (orderId: string, items: {
     value: total,
     currency: 'USD',
   };
+  // Fire both PlaceAnOrder and Purchase for TikTok funnel
+  ttqTrack('PlaceAnOrder', ttqParams);
+  ttqServerTrack('PlaceAnOrder', ttqParams);
   ttqTrack('CompletePayment', ttqParams);
   ttqServerTrack('CompletePayment', ttqParams);
 };
@@ -201,4 +210,19 @@ export const trackViewItem = (item: {
   };
   ttqTrack('ViewContent', ttqParams);
   ttqServerTrack('ViewContent', ttqParams);
+};
+
+export const trackSubscribe = (email?: string) => {
+  trackEvent('newsletter_signup');
+  const ttqParams = {
+    content_id: 'newsletter',
+    content_name: 'Newsletter Subscription',
+    content_type: 'product',
+    content_category: DEFAULT_CATEGORY,
+    brand: BRAND,
+    description: 'Newsletter subscription signup',
+    currency: 'USD',
+  };
+  ttqTrack('Subscribe', ttqParams);
+  ttqServerTrack('Subscribe', ttqParams, email ? { email } : undefined);
 };
