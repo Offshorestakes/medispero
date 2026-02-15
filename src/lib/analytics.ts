@@ -29,8 +29,12 @@ export const trackEvent = (eventName: string, params?: Record<string, unknown>) 
 
 const ttqTrack = (event: string, params?: Record<string, unknown>) => {
   if (typeof window.ttq?.track === 'function') {
-    window.ttq.track(event, params);
+    // Generate event_id for deduplication (TikTok requires this)
+    const eventId = crypto.randomUUID();
+    window.ttq.track(event, { ...params, event_id: eventId });
+    return eventId;
   }
+  return crypto.randomUUID();
 };
 
 const BRAND = 'Medi Spero';
@@ -77,8 +81,8 @@ export const trackAddToCart = (item: {
     value: item.price * item.quantity,
     currency: 'USD',
   };
-  ttqTrack('AddToCart', ttqParams);
-  ttqServerTrack('AddToCart', ttqParams);
+  const eventId = ttqTrack('AddToCart', ttqParams);
+  ttqServerTrack('AddToCart', { ...ttqParams, event_id: eventId });
 };
 
 export const trackRemoveFromCart = (item: {
@@ -133,8 +137,8 @@ export const trackBeginCheckout = (items: {
     value: total,
     currency: 'USD',
   };
-  ttqTrack('InitiateCheckout', ttqParams);
-  ttqServerTrack('InitiateCheckout', ttqParams);
+  const eventId = ttqTrack('InitiateCheckout', ttqParams);
+  ttqServerTrack('InitiateCheckout', { ...ttqParams, event_id: eventId });
 };
 
 export const trackPurchase = (orderId: string, items: {
@@ -175,10 +179,10 @@ export const trackPurchase = (orderId: string, items: {
     currency: 'USD',
   };
   // Fire both PlaceAnOrder and Purchase for TikTok funnel
-  ttqTrack('PlaceAnOrder', ttqParams);
-  ttqServerTrack('PlaceAnOrder', ttqParams);
-  ttqTrack('CompletePayment', ttqParams);
-  ttqServerTrack('CompletePayment', ttqParams);
+  const eventId1 = ttqTrack('PlaceAnOrder', ttqParams);
+  ttqServerTrack('PlaceAnOrder', { ...ttqParams, event_id: eventId1 });
+  const eventId2 = ttqTrack('CompletePayment', ttqParams);
+  ttqServerTrack('CompletePayment', { ...ttqParams, event_id: eventId2 });
 };
 
 export const trackViewItem = (item: {
@@ -208,8 +212,8 @@ export const trackViewItem = (item: {
     value: item.price,
     currency: 'USD',
   };
-  ttqTrack('ViewContent', ttqParams);
-  ttqServerTrack('ViewContent', ttqParams);
+  const eventId = ttqTrack('ViewContent', ttqParams);
+  ttqServerTrack('ViewContent', { ...ttqParams, event_id: eventId });
 };
 
 export const trackSubscribe = (email?: string) => {
@@ -223,6 +227,6 @@ export const trackSubscribe = (email?: string) => {
     description: 'Newsletter subscription signup',
     currency: 'USD',
   };
-  ttqTrack('Subscribe', ttqParams);
-  ttqServerTrack('Subscribe', ttqParams, email ? { email } : undefined);
+  const eventId = ttqTrack('Subscribe', ttqParams);
+  ttqServerTrack('Subscribe', { ...ttqParams, event_id: eventId }, email ? { email } : undefined);
 };
