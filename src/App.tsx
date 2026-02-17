@@ -42,6 +42,7 @@ const EmailVerifiedPage = lazy(() => import("./pages/EmailVerifiedPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const MarketingCopyPage = lazy(() => import("./pages/MarketingCopyPage"));
 const PinterestFeedPage = lazy(() => import("./pages/PinterestFeedPage"));
+const GoogleFeedPage = lazy(() => import("./pages/GoogleFeedPage"));
 
 const queryClient = new QueryClient();
 
@@ -96,6 +97,7 @@ const App = () => {
                   <Route path="/email-verified" element={<EmailVerifiedPage />} />
                   <Route path="/marketing-copy" element={<MarketingCopyPage />} />
                   <Route path="/pinterest-feed" element={<PinterestFeedPage />} />
+                  <Route path="/google-feed" element={<GoogleFeedPage />} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
