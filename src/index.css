@@ -149,8 +149,14 @@
   }
 
   .glass-card {
-    @apply bg-white/80 backdrop-blur-md border border-white/20 rounded-2xl;
+    @apply bg-white/90 border border-white/20 rounded-2xl;
     box-shadow: var(--shadow-card);
+  }
+
+  @media (min-width: 768px) {
+    .glass-card {
+      @apply bg-white/80 backdrop-blur-md;
+    }
   }
 
   .gradient-text {
@@ -207,7 +213,13 @@
   }
 
   .age-overlay {
-    @apply fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center;
+    @apply fixed inset-0 z-[100] bg-black/80 flex items-center justify-center;
+  }
+
+  @media (min-width: 768px) {
+    .age-overlay {
+      @apply backdrop-blur-sm;
+    }
   }
 
   .product-image {

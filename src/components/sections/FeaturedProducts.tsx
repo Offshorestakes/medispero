@@ -3,9 +3,12 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ProductCard from "@/components/ProductCard";
 import { getFeaturedProducts } from "@/data/products";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const FeaturedProducts = () => {
-  const featuredProducts = getFeaturedProducts(8);
+  const isMobile = useIsMobile();
+  // Show 4 products on mobile, 8 on desktop to reduce initial render work
+  const featuredProducts = getFeaturedProducts(isMobile ? 4 : 8);
 
   return (
     <section aria-label="Featured products" className="section-padding bg-muted/30">
@@ -37,7 +40,7 @@ const FeaturedProducts = () => {
             <ProductCard 
               key={product.id} 
               product={product} 
-              priority={index < 4} // First row loads eagerly for LCP
+              priority={index < 2} // Only first 2 load eagerly
             />
           ))}
         </div>

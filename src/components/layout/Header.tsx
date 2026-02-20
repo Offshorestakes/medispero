@@ -120,7 +120,7 @@ const Header = () => {
   };
 
   return (
-    <header role="banner" className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-border">
+    <header role="banner" className="sticky top-0 z-50 w-full bg-white/95 md:backdrop-blur-md border-b border-border">
       {/* Top bar */}
       <div className="bg-primary text-primary-foreground py-2">
         <div className="container-wide flex items-center justify-between text-sm">
