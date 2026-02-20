@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -6,10 +7,10 @@ import AgeVerification from "@/components/AgeVerification";
 import HeroSection from "@/components/sections/HeroSection";
 import CategoriesSection from "@/components/sections/CategoriesSection";
 import FeaturedProducts from "@/components/sections/FeaturedProducts";
-import TrustSection from "@/components/sections/TrustSection";
-import TestimonialsSection from "@/components/sections/TestimonialsSection";
-import NewsletterSection from "@/components/sections/NewsletterSection";
-import logoImage from "@/assets/logo.png";
+
+// Lazy load below-fold sections
+const TrustSection = lazy(() => import("@/components/sections/TrustSection"));
+const NewsletterSection = lazy(() => import("@/components/sections/NewsletterSection"));
 
 const Index = () => {
   // Organization Schema for brand visibility
@@ -139,8 +140,12 @@ const Index = () => {
           <HeroSection />
           <CategoriesSection />
           <FeaturedProducts />
-          <TrustSection />
-          <NewsletterSection />
+          <Suspense fallback={<div className="h-32" />}>
+            <TrustSection />
+          </Suspense>
+          <Suspense fallback={<div className="h-20" />}>
+            <NewsletterSection />
+          </Suspense>
         </main>
         <Footer />
         <WhatsAppButton />

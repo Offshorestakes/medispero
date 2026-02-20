@@ -8,12 +8,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { CartProvider } from "@/contexts/CartContext";
-import CartDrawer from "@/components/cart/CartDrawer";
 import ScrollToTop from "./components/ScrollToTop";
-import CookieConsent from "./components/CookieConsent";
 
 // Eagerly load the homepage for fast LCP
 import Index from "./pages/Index";
+
+// Lazy load non-critical global components
+const CartDrawer = lazy(() => import("./components/cart/CartDrawer"));
+const CookieConsent = lazy(() => import("./components/CookieConsent"));
 
 // Lazy load all other routes for smaller initial bundle
 const ProductsPage = lazy(() => import("./pages/ProductsPage"));
@@ -67,8 +69,12 @@ const App = () => {
             <Sonner />
             <BrowserRouter>
               <ScrollToTop />
-              <CartDrawer />
-              <CookieConsent />
+              <Suspense fallback={null}>
+                <CartDrawer />
+              </Suspense>
+              <Suspense fallback={null}>
+                <CookieConsent />
+              </Suspense>
               <Suspense fallback={<PageLoader />}>
                 <Routes>
                   <Route path="/" element={<Index />} />
