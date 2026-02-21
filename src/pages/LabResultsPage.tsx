@@ -117,9 +117,9 @@ const LabResultsPage = () => {
                       </div>
                     ))}
                   </div>
-                  <Button className="w-full" variant="outline">
+                  <Button className="w-full" variant="outline" onClick={() => window.open("https://www.sclabs.com/hemp/", "_blank", "noopener,noreferrer")}>
                     <Download className="h-4 w-4 mr-2" />
-                    Download Full COA (PDF)
+                    View COA Report
                   </Button>
                 </CardContent>
               </Card>

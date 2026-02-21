@@ -502,7 +502,7 @@ const ProductPage = () => {
                       size="sm" 
                       className="gap-2 flex-1"
                       onClick={() => {
-                        window.open("https://client.sclabs.com/", "_blank", "noopener,noreferrer");
+                        window.open("https://www.sclabs.com/hemp/", "_blank", "noopener,noreferrer");
                       }}
                     >
                       <Download className="h-4 w-4" />
