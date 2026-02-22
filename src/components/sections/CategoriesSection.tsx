@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import { categories } from "@/data/products";
+import { categories } from "@/data/categories";
 
 const categoryImages: Record<string, string> = {
   "pharma-capsules": "💊",
