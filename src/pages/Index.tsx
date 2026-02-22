@@ -6,7 +6,9 @@ import WhatsAppButton from "@/components/layout/WhatsAppButton";
 import AgeVerification from "@/components/AgeVerification";
 import HeroSection from "@/components/sections/HeroSection";
 import CategoriesSection from "@/components/sections/CategoriesSection";
-import FeaturedProducts from "@/components/sections/FeaturedProducts";
+
+// Lazy load FeaturedProducts — it pulls in the heavy products.ts with 30+ image imports
+const FeaturedProducts = lazy(() => import("@/components/sections/FeaturedProducts"));
 
 // Lazy load below-fold sections
 const TrustSection = lazy(() => import("@/components/sections/TrustSection"));
@@ -139,7 +141,9 @@ const Index = () => {
         <main id="main-content" role="main" className="flex-1">
           <HeroSection />
           <CategoriesSection />
-          <FeaturedProducts />
+          <Suspense fallback={<div className="h-96 bg-muted/30" />}>
+            <FeaturedProducts />
+          </Suspense>
           <Suspense fallback={<div className="h-32" />}>
             <TrustSection />
           </Suspense>
