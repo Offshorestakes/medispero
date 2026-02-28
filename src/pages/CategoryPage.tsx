@@ -47,6 +47,26 @@ const CategoryPage = () => {
         <meta name="twitter:title" content={`${category.name} | Medi Spero`} />
         <meta name="twitter:description" content={`Shop ${category.name}. Lab-tested, pharmaceutical-grade CBD products.`} />
         <meta name="twitter:image" content="https://medispero.com/og-homepage.jpg" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: `${category.name} — Lab-Tested CBD Products`,
+            description: category.description,
+            url: `https://medispero.com/category/${slug}`,
+            mainEntity: {
+              "@type": "ItemList",
+              numberOfItems: products.length,
+              itemListElement: products.map((p, i) => ({
+                "@type": "ListItem",
+                position: i + 1,
+                url: `https://medispero.com/product/${p.slug}`,
+                name: p.name,
+                image: p.images?.[0],
+              })),
+            },
+          })}
+        </script>
       </Helmet>
       <Header />
       <BreadcrumbNav items={[
