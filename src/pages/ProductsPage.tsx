@@ -58,6 +58,16 @@ const ProductsPage = () => {
         <meta name="description" content="Explore Medi Spero's full catalog of premium CBD products: oils, tinctures, capsules, isolates, vapes, and wellness bundles. 3rd-party lab tested." />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <link rel="canonical" href="https://medispero.com/products" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Shop CBD Products — Oils, Capsules, Tinctures & More | Medi Spero" />
+        <meta property="og:description" content="Explore Medi Spero's full catalog of premium CBD products: oils, tinctures, capsules, isolates, vapes, and wellness bundles." />
+        <meta property="og:url" content="https://medispero.com/products" />
+        <meta property="og:image" content="https://medispero.com/og-homepage.jpg" />
+        <meta property="og:site_name" content="Medi Spero" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Shop CBD Products | Medi Spero" />
+        <meta name="twitter:description" content="Premium CBD oils, capsules, tinctures, isolates & bundles. 3rd-party lab tested." />
+        <meta name="twitter:image" content="https://medispero.com/og-homepage.jpg" />
       </Helmet>
       <Header />
       <BreadcrumbNav items={[{ name: "Home", href: "/" }, { name: "All Products" }]} />

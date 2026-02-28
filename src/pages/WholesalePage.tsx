@@ -41,8 +41,19 @@ const WholesalePage = () => {
       <Helmet>
         <title>Wholesale CBD & THC Products | Medi Spero</title>
         <meta name="description" content="Partner with Medi Spero for wholesale CBD and hemp-derived THC products. Competitive pricing, low minimums, and white label options available." />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <link rel="canonical" href="https://medispero.com/wholesale" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Wholesale CBD & THC Products | Medi Spero" />
+        <meta property="og:description" content="Partner with Medi Spero for wholesale CBD and hemp products. Competitive pricing & white label options." />
+        <meta property="og:url" content="https://medispero.com/wholesale" />
+        <meta property="og:image" content="https://medispero.com/og-homepage.jpg" />
+        <meta property="og:site_name" content="Medi Spero" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Wholesale CBD Products | Medi Spero" />
+        <meta name="twitter:description" content="Wholesale CBD and hemp-derived THC products. Competitive pricing, low minimums." />
+        <meta name="twitter:image" content="https://medispero.com/og-homepage.jpg" />
       </Helmet>
-      
       <Header />
       
       <main className="flex-grow">

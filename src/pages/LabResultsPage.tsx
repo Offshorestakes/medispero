@@ -40,6 +40,16 @@ const LabResultsPage = () => {
         <meta name="description" content="View third-party lab test results and Certificates of Analysis (COA) for all Medi Spero CBD and THC products. 100% transparency guaranteed." />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <link rel="canonical" href="https://medispero.com/lab-results" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Lab Results & Certificates of Analysis | Medi Spero" />
+        <meta property="og:description" content="View third-party lab test results and COAs for all Medi Spero CBD products. 100% transparency." />
+        <meta property="og:url" content="https://medispero.com/lab-results" />
+        <meta property="og:image" content="https://medispero.com/og-homepage.jpg" />
+        <meta property="og:site_name" content="Medi Spero" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Lab Results & COAs | Medi Spero" />
+        <meta name="twitter:description" content="Third-party lab test results for all Medi Spero CBD and THC products." />
+        <meta name="twitter:image" content="https://medispero.com/og-homepage.jpg" />
       </Helmet>
       
       <Header />

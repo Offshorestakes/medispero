@@ -12,6 +12,16 @@ const TestimonialsPage = () => {
         <meta name="description" content="Read real reviews from verified Medi Spero customers. See why thousands trust our pharmaceutical-grade CBD and hemp wellness products." />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <link rel="canonical" href="https://medispero.com/testimonials" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Customer Reviews & Testimonials | Medi Spero" />
+        <meta property="og:description" content="Real reviews from verified Medi Spero customers. See why thousands trust our CBD products." />
+        <meta property="og:url" content="https://medispero.com/testimonials" />
+        <meta property="og:image" content="https://medispero.com/og-homepage.jpg" />
+        <meta property="og:site_name" content="Medi Spero" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Customer Reviews | Medi Spero" />
+        <meta name="twitter:description" content="Real reviews from verified Medi Spero CBD customers." />
+        <meta name="twitter:image" content="https://medispero.com/og-homepage.jpg" />
       </Helmet>
       <div className="min-h-screen flex flex-col">
         <Header />

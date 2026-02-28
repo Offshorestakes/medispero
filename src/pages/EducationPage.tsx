@@ -13,6 +13,16 @@ const EducationPage = () => {
         <meta name="description" content="Learn about the science behind CBD, the endocannabinoid system, and how pharmaceutical-grade hemp products support your wellness." />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <link rel="canonical" href="https://medispero.com/education" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="CBD Education & Science | Medi Spero" />
+        <meta property="og:description" content="Learn about the endocannabinoid system and how pharmaceutical-grade CBD supports wellness." />
+        <meta property="og:url" content="https://medispero.com/education" />
+        <meta property="og:image" content="https://medispero.com/og-homepage.jpg" />
+        <meta property="og:site_name" content="Medi Spero" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="CBD Education & Science | Medi Spero" />
+        <meta name="twitter:description" content="The science behind CBD and how pharmaceutical-grade hemp products support your wellness." />
+        <meta name="twitter:image" content="https://medispero.com/og-homepage.jpg" />
       </Helmet>
       <div className="min-h-screen flex flex-col">
         <Header />

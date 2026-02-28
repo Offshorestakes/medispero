@@ -147,16 +147,16 @@ const Index = () => {
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <meta name="rating" content="adult" />
         <link rel="canonical" href="https://medispero.com/" />
-        <meta property="og:title" content="Medi Spero | Premium Pharmaceutical-Grade CBD & Hemp Wellness" />
-        <meta property="og:description" content="Shop premium pharmaceutical-grade CBD oils, capsules, and hemp wellness products. Lab-tested formulations for mental wellness and holistic health." />
-        <meta property="og:url" content="https://medispero.com" />
         <meta property="og:type" content="website" />
+        <meta property="og:title" content="Premium Pharmaceutical-Grade CBD & Hemp Wellness | Medi Spero" />
+        <meta property="og:description" content="Shop lab-tested CBD oils, capsules, tinctures & isolates for ADHD, anxiety, sleep and mood. Farm Bill compliant. Medi Spero." />
+        <meta property="og:url" content="https://medispero.com/" />
+        <meta property="og:image" content="https://medispero.com/og-homepage.jpg" />
         <meta property="og:site_name" content="Medi Spero" />
-        <meta property="og:image" content="https://medispero.com/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Medi Spero | Premium CBD & Hemp Wellness" />
-        <meta name="twitter:description" content="Pharmaceutical-grade CBD & hemp wellness products. Lab-tested, premium quality." />
-        <meta name="twitter:image" content="https://medispero.com/og-image.jpg" />
+        <meta name="twitter:title" content="Premium Pharmaceutical-Grade CBD & Hemp Wellness | Medi Spero" />
+        <meta name="twitter:description" content="Lab-tested, Farm Bill compliant CBD for ADHD, anxiety, sleep & mood. Shop Medi Spero." />
+        <meta name="twitter:image" content="https://medispero.com/og-homepage.jpg" />
         <script type="application/ld+json">
           {JSON.stringify(organizationSchema)}
         </script>

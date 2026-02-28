@@ -36,6 +36,16 @@ const CategoryPage = () => {
         <meta name="description" content={`Shop ${category.name} from Medi Spero. ${category.description} Lab-tested, pharmaceutical-grade. Free shipping on orders over $250.`} />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <link rel="canonical" href={`https://medispero.com/category/${slug}`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={`${category.name} | Medi Spero`} />
+        <meta property="og:description" content={`Shop ${category.name} from Medi Spero. Lab-tested, pharmaceutical-grade. Free shipping $250+.`} />
+        <meta property="og:url" content={`https://medispero.com/category/${slug}`} />
+        <meta property="og:image" content="https://medispero.com/og-homepage.jpg" />
+        <meta property="og:site_name" content="Medi Spero" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${category.name} | Medi Spero`} />
+        <meta name="twitter:description" content={`Shop ${category.name}. Lab-tested, pharmaceutical-grade CBD products.`} />
+        <meta name="twitter:image" content="https://medispero.com/og-homepage.jpg" />
       </Helmet>
       <Header />
       <BreadcrumbNav items={[
