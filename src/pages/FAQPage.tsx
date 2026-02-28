@@ -145,6 +145,16 @@ const FAQPage = () => {
         <meta name="description" content="Find answers to common questions about CBD, THC products, dosing, shipping, returns, and more. Expert guidance from Medi Spero's wellness team." />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <link rel="canonical" href="https://medispero.com/faq" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="FAQ — CBD & Hemp Product Questions | Medi Spero" />
+        <meta property="og:description" content="Answers to common CBD questions: dosing, shipping, legality, and more." />
+        <meta property="og:url" content="https://medispero.com/faq" />
+        <meta property="og:image" content="https://medispero.com/og-homepage.jpg" />
+        <meta property="og:site_name" content="Medi Spero" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="FAQ | Medi Spero CBD" />
+        <meta name="twitter:description" content="Find answers about CBD products, dosing, shipping, returns & more." />
+        <meta name="twitter:image" content="https://medispero.com/og-homepage.jpg" />
         <script type="application/ld+json">
           {JSON.stringify(faqSchema)}
         </script>

@@ -45,6 +45,16 @@ const AboutPage = () => {
         <meta name="description" content="Learn about Medi Spero's mission to deliver pharmaceutical-grade CBD wellness products. Farm Bill compliant, lab-tested, and formulated for results." />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <link rel="canonical" href="https://medispero.com/about" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="About Medi Spero — Pharmaceutical-Grade CBD Wellness Brand" />
+        <meta property="og:description" content="Learn about Medi Spero's mission to deliver pharmaceutical-grade CBD wellness products. Farm Bill compliant, lab-tested." />
+        <meta property="og:url" content="https://medispero.com/about" />
+        <meta property="og:image" content="https://medispero.com/og-homepage.jpg" />
+        <meta property="og:site_name" content="Medi Spero" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="About Medi Spero — CBD Wellness Brand" />
+        <meta name="twitter:description" content="Pharmaceutical-grade CBD wellness. Farm Bill compliant, lab-tested, formulated for results." />
+        <meta name="twitter:image" content="https://medispero.com/og-homepage.jpg" />
         <script type="application/ld+json">
           {JSON.stringify(faqSchema)}
         </script>

@@ -16,6 +16,16 @@ const ContactPage = () => {
         <meta name="description" content="Contact Medi Spero for questions about CBD products, orders, or wholesale inquiries. Email info@medispero.com or WhatsApp +1 (334) 746-9312." />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <link rel="canonical" href="https://medispero.com/contact" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Contact Medi Spero — CBD Product Support" />
+        <meta property="og:description" content="Questions about CBD products, orders, or wholesale? Contact Medi Spero's support team." />
+        <meta property="og:url" content="https://medispero.com/contact" />
+        <meta property="og:image" content="https://medispero.com/og-homepage.jpg" />
+        <meta property="og:site_name" content="Medi Spero" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contact Medi Spero" />
+        <meta name="twitter:description" content="Get in touch with Medi Spero for CBD product questions, orders, or wholesale inquiries." />
+        <meta name="twitter:image" content="https://medispero.com/og-homepage.jpg" />
       </Helmet>
       <Header />
       <BreadcrumbNav items={[{ name: "Home", href: "/" }, { name: "Contact Us" }]} />

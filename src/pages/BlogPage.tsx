@@ -50,6 +50,16 @@ const BlogPage = () => {
         <meta name="keywords" content="CBD blog, THC wellness, anxiety relief articles, depression support, mood enhancement, Delta-8 anxiety, Delta-9 mood, CBD education, hemp wellness blog, natural mental health" />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <link rel="canonical" href="https://medispero.com/blog" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="CBD Wellness Blog — Research, Guides & Education | Medi Spero" />
+        <meta property="og:description" content="Expert articles on CBD for ADHD, anxiety, sleep, and mood. Science-backed wellness insights." />
+        <meta property="og:url" content="https://medispero.com/blog" />
+        <meta property="og:image" content="https://medispero.com/og-homepage.jpg" />
+        <meta property="og:site_name" content="Medi Spero" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="CBD Wellness Blog | Medi Spero" />
+        <meta name="twitter:description" content="Expert CBD research, guides & education for ADHD, anxiety, sleep & mood." />
+        <meta name="twitter:image" content="https://medispero.com/og-homepage.jpg" />
         <script type="application/ld+json">{JSON.stringify(blogSchema)}</script>
       </Helmet>
 
