@@ -1,8 +1,11 @@
+import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
+
+const RelatedContent = lazy(() => import("@/components/sections/RelatedContent"));
 
 const TestimonialsPage = () => {
   return (
@@ -33,6 +36,9 @@ const TestimonialsPage = () => {
             </div>
           </div>
           <TestimonialsSection />
+          <Suspense fallback={<div className="h-32" />}>
+            <RelatedContent tags={["reviews", "anxiety", "mood"]} maxProducts={4} maxPosts={3} />
+          </Suspense>
         </main>
         <Footer />
         <WhatsAppButton />

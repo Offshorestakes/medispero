@@ -1,9 +1,12 @@
+import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
 import BreadcrumbNav from "@/components/BreadcrumbNav";
 import EducationSection from "@/components/sections/EducationSection";
+
+const RelatedContent = lazy(() => import("@/components/sections/RelatedContent"));
 
 const EducationPage = () => {
   return (
@@ -35,6 +38,9 @@ const EducationPage = () => {
             </div>
           </div>
           <EducationSection />
+          <Suspense fallback={<div className="h-32" />}>
+            <RelatedContent tags={["endocannabinoid", "cbd", "science"]} maxProducts={4} maxPosts={3} />
+          </Suspense>
         </main>
         <Footer />
         <WhatsAppButton />
