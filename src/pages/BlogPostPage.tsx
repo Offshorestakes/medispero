@@ -1,4 +1,5 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
+import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import ReactMarkdown from "react-markdown";
 import Header from "@/components/layout/Header";
@@ -11,6 +12,8 @@ import { Calendar, Clock, ArrowLeft, ArrowRight, User, Tag, Share2, BookOpen } f
 import { getPostBySlug, getRelatedPosts, BlogPost } from "@/data/blogPosts";
 import DosageCalculator from "@/components/blog/DosageCalculator";
 import SymptomQuiz from "@/components/blog/SymptomQuiz";
+
+const RelatedContent = lazy(() => import("@/components/sections/RelatedContent"));
 
 const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -363,6 +366,15 @@ const BlogPostPage = () => {
             </div>
           </div>
         </section>
+        <Suspense fallback={<div className="h-32" />}>
+          <RelatedContent
+            category={post.category === "Anxiety & Stress" ? "anti-anxiety" : post.category === "Mood & Depression" ? "mood-support" : post.category === "Sleep" ? "sleep-wellness" : undefined}
+            tags={post.tags}
+            excludeBlogSlug={post.slug}
+            maxProducts={4}
+            maxPosts={3}
+          />
+        </Suspense>
       </main>
 
       <Footer />

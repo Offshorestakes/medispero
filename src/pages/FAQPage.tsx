@@ -1,8 +1,11 @@
+import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
 import BreadcrumbNav from "@/components/BreadcrumbNav";
+
+const RelatedContent = lazy(() => import("@/components/sections/RelatedContent"));
 import {
   Accordion,
   AccordionContent,
@@ -222,6 +225,9 @@ const FAQPage = () => {
             </div>
           </div>
         </section>
+        <Suspense fallback={<div className="h-32" />}>
+          <RelatedContent tags={["cbd", "anxiety", "sleep", "dosing"]} maxProducts={4} maxPosts={3} />
+        </Suspense>
       </main>
 
       <Footer />
