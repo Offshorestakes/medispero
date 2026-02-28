@@ -1,36 +1,39 @@
+import { Link } from "react-router-dom";
 import { Shield, Leaf, FlaskConical, Award, Truck, HeartHandshake } from "lucide-react";
 
 const trustSignals = [
   {
     icon: FlaskConical,
-    title: "Third-Party Lab Tested",
-    description: "Every batch is tested by independent labs for purity, potency, and safety. View our certificates of analysis."
+    title: "3rd-Party Lab Tested",
+    description: "Every batch is tested by ISO-certified independent labs for purity, potency, and safety.",
+    link: "/lab-results",
+    linkText: "View Certificates of Analysis →",
   },
   {
     icon: Leaf,
     title: "100% Organic Hemp",
-    description: "Sourced from USDA-certified organic farms in Colorado, grown without pesticides or harmful chemicals."
+    description: "Sourced from USDA-certified organic farms in Colorado, grown without pesticides or harmful chemicals.",
   },
   {
     icon: Award,
-    title: "Farm Bill Compliant",
-    description: "All products contain less than 0.3% THC and are fully compliant with the 2018 Farm Bill."
+    title: "2018 Farm Bill Compliant",
+    description: "All products contain less than 0.3% THC and are fully compliant with the Agriculture Improvement Act of 2018.",
   },
   {
     icon: Shield,
-    title: "Made in the USA",
-    description: "Manufactured in GMP-certified facilities with strict quality control at every step."
+    title: "Pharmaceutical-Grade Standards",
+    description: "Manufactured in GMP-certified facilities with the same quality control protocols used in pharmaceutical drug production.",
   },
   {
     icon: Truck,
     title: "Free Shipping Over $250",
-    description: "Fast, discreet shipping on all orders. Free standard shipping when you spend $250 or more."
+    description: "Fast, discreet shipping on all orders. Free standard shipping when you spend $250 or more.",
   },
   {
     icon: HeartHandshake,
     title: "30-Day Money Back",
-    description: "Not satisfied? Return any product within 30 days for a full refund. No questions asked."
-  }
+    description: "Not satisfied? Return any product within 30 days for a full refund. No questions asked.",
+  },
 ];
 
 const TrustSection = () => {
@@ -64,6 +67,14 @@ const TrustSection = () => {
               <p className="text-muted-foreground text-sm leading-relaxed">
                 {signal.description}
               </p>
+              {signal.link && (
+                <Link
+                  to={signal.link}
+                  className="inline-block mt-3 text-sm font-medium text-primary hover:underline"
+                >
+                  {signal.linkText}
+                </Link>
+              )}
             </div>
           ))}
         </div>
