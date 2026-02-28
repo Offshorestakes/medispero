@@ -45,8 +45,8 @@ const BlogPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Wellness Blog | CBD & THC for Anxiety, Depression & Mood Support | Medi Spero</title>
-        <meta name="description" content="Expert articles on pharmaceutical-grade CBD, Delta-8, and Delta-9 THC for anxiety relief, depression support, and mood enhancement. Evidence-based wellness insights from Medi Spero." />
+        <title>CBD Wellness Blog — Research, Guides & Education | Medi Spero</title>
+        <meta name="description" content="Explore expert articles on CBD for ADHD, anxiety, sleep, and mood. Backed by science and formulated for real wellness results." />
         <meta name="keywords" content="CBD blog, THC wellness, anxiety relief articles, depression support, mood enhancement, Delta-8 anxiety, Delta-9 mood, CBD education, hemp wellness blog, natural mental health" />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <link rel="canonical" href="https://medispero.com/blog" />

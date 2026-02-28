@@ -109,12 +109,12 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>Medi Spero | Premium Pharmaceutical-Grade CBD & Hemp Wellness</title>
-        <meta name="description" content="Shop premium pharmaceutical-grade CBD oils, capsules, and hemp wellness products. Lab-tested formulations for ADHD, anxiety, mood support & focus. Free shipping on orders over $250." />
+        <title>Premium Pharmaceutical-Grade CBD & Hemp Wellness | Medi Spero</title>
+        <meta name="description" content="Shop lab-tested, Farm Bill compliant CBD oils, capsules, tinctures, and isolates for ADHD, anxiety, sleep & more. Pharmaceutical-grade hemp wellness by Medi Spero." />
         <meta name="keywords" content="CBD oil, hemp wellness, pharmaceutical CBD, ADHD supplements, anxiety relief, mood support, focus supplements, lab-tested CBD, premium hemp products" />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <meta name="rating" content="adult" />
-        <link rel="canonical" href="https://medispero.com" />
+        <link rel="canonical" href="https://medispero.com/" />
         <meta property="og:title" content="Medi Spero | Premium Pharmaceutical-Grade CBD & Hemp Wellness" />
         <meta property="og:description" content="Shop premium pharmaceutical-grade CBD oils, capsules, and hemp wellness products. Lab-tested formulations for mental wellness and holistic health." />
         <meta property="og:url" content="https://medispero.com" />

@@ -10,8 +10,8 @@ const AboutPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>About Medi Spero | Premium CBD & Hemp Wellness Company</title>
-        <meta name="description" content="Learn about Medi Spero's mission to provide pharmaceutical-grade CBD and hemp wellness products. Family-owned, lab-tested, made in USA with organic hemp." />
+        <title>About Medi Spero — Pharmaceutical-Grade CBD Wellness Brand</title>
+        <meta name="description" content="Learn about Medi Spero's mission to deliver pharmaceutical-grade CBD wellness products. Farm Bill compliant, lab-tested, and formulated for results." />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <link rel="canonical" href="https://medispero.com/about" />
       </Helmet>
