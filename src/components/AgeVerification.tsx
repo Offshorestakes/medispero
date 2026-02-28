@@ -1,9 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Shield, AlertCircle } from "lucide-react";
 
+const BOT_REGEX = /googlebot|bingbot|gptbot|perplexitybot|anthropic-ai|claudebot|facebookexternalhit|twitterbot|linkedinbot|applebot|chatgpt-user|cohere-ai|bard|duckduckbot|slurp|yandexbot|baiduspider/i;
+
 const AgeVerification = () => {
   const [showDenied, setShowDenied] = useState(false);
+  const [isBotOrVerified, setIsBotOrVerified] = useState(false);
+
+  useEffect(() => {
+    // Skip age gate entirely for search engine and AI crawlers
+    const ua = navigator.userAgent || '';
+    if (BOT_REGEX.test(ua)) {
+      setIsBotOrVerified(true);
+      document.documentElement.classList.add("age-verified");
+    }
+  }, []);
 
   const handleVerify = (isOver21: boolean) => {
     if (isOver21) {
@@ -17,6 +29,9 @@ const AgeVerification = () => {
       setShowDenied(true);
     }
   };
+
+  // Bots bypass the gate entirely
+  if (isBotOrVerified) return null;
 
   if (showDenied) {
     return (
