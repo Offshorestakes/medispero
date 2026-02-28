@@ -441,7 +441,11 @@ const ProductPage = () => {
                 <div className="aspect-square bg-muted rounded-2xl overflow-hidden relative">
                   <img
                     src={product.images[selectedImage]}
-                    alt={product.name}
+                    alt={`${product.name} — Medi Spero pharmaceutical-grade CBD product`}
+                    width={600}
+                    height={600}
+                    loading="eager"
+                    fetchPriority="high"
                     className="w-full h-full object-cover"
                   />
                   {discount > 0 && (

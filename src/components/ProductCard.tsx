@@ -155,7 +155,7 @@ const ProductCard = ({ product, priority = false }: ProductCardProps) => {
           <div className="flex items-center border border-border rounded-lg">
             <button
               onClick={() => setQuantity(Math.max(1, quantity - 1))}
-              className="p-2 hover:bg-muted transition-colors"
+              className="min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-muted transition-colors"
               aria-label="Decrease quantity"
             >
               <Minus className="h-4 w-4" />
@@ -163,13 +163,13 @@ const ProductCard = ({ product, priority = false }: ProductCardProps) => {
             <span className="px-3 text-sm font-medium">{quantity}</span>
             <button
               onClick={() => setQuantity(quantity + 1)}
-              className="p-2 hover:bg-muted transition-colors"
+              className="min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-muted transition-colors"
               aria-label="Increase quantity"
             >
               <Plus className="h-4 w-4" />
             </button>
           </div>
-          <Button className="flex-1 btn-primary gap-2" onClick={handleAddToCart}>
+          <Button className="flex-1 btn-primary gap-2 min-h-[44px]" onClick={handleAddToCart}>
             <ShoppingCart className="h-4 w-4" />
             Add
           </Button>
