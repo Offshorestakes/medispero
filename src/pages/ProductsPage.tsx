@@ -54,8 +54,8 @@ const ProductsPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Shop CBD & THC Products | Pharmaceutical-Grade Hemp Wellness | Medi Spero</title>
-        <meta name="description" content="Browse 600+ pharmaceutical-grade CBD and hemp-derived THC products. Anti-anxiety, mood support, ADHD focus, and wellness solutions. Lab-tested, free shipping $250+." />
+        <title>Shop CBD Products — Oils, Capsules, Tinctures & More | Medi Spero</title>
+        <meta name="description" content="Explore Medi Spero's full catalog of premium CBD products: oils, tinctures, capsules, isolates, vapes, and wellness bundles. 3rd-party lab tested." />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <link rel="canonical" href="https://medispero.com/products" />
       </Helmet>
