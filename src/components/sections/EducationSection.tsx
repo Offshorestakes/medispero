@@ -96,6 +96,8 @@ const EducationSection = () => {
                 alt={image.alt}
                 loading="lazy"
                 decoding="async"
+                width={640}
+                height={256}
                 onLoad={() => handleImageLoad(index)}
                 className={`w-full h-64 object-cover transition-all duration-500 group-hover:scale-105 ${loadedImages[index] ? 'opacity-100' : 'opacity-0'}`}
               />

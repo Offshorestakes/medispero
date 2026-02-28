@@ -91,6 +91,8 @@ const BlogSection = () => {
                   alt={post.title}
                   loading="lazy"
                   decoding="async"
+                  width={640}
+                  height={360}
                   onLoad={() => handleImageLoad(post.id)}
                   className={`w-full h-full object-cover group-hover:scale-105 transition-all duration-500 ${loadedImages[post.id] ? 'opacity-100' : 'opacity-0'}`}
                 />
