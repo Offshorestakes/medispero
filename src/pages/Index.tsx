@@ -170,8 +170,8 @@ const Index = () => {
           {JSON.stringify(faqSchema)}
         </script>
       </Helmet>
-      <AgeVerification />
       <div className="min-h-screen flex flex-col">
+        <AgeVerification />
         <Header />
         <main id="main-content" role="main" className="flex-1">
           <HeroSection />

@@ -212,14 +212,22 @@
     transform: scale(1.1);
   }
 
-  .age-overlay {
-    @apply fixed inset-0 z-[100] bg-black/80 flex items-center justify-center;
+  /* CSS-only age gate: always rendered in DOM, hidden via cookie class */
+  .age-gate-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 
-  @media (min-width: 768px) {
-    .age-overlay {
-      @apply backdrop-blur-sm;
-    }
+  /* When verified (class added to <html>), hide the overlay */
+  .age-verified .age-gate-overlay {
+    display: none !important;
   }
 
   .product-image {
