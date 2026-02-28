@@ -22,14 +22,9 @@ const Index = () => {
     "@id": "https://medispero.com/#organization",
     name: "Medi Spero",
     url: "https://medispero.com",
-    logo: {
-      "@type": "ImageObject",
-      url: "https://medispero.com/logo.png",
-      width: 512,
-      height: 512,
-    },
+    logo: "https://medispero.com/logo.png",
     image: "https://medispero.com/logo.png",
-    description: "Premium pharmaceutical-grade CBD & hemp wellness products. Lab-tested cannabinoid formulations for ADHD, anxiety, mood support, and overall wellness.",
+    description: "Pharmaceutical-grade CBD and hemp wellness products including oils, tinctures, capsules, and isolates for ADHD, anxiety, sleep, and mood support.",
     foundingDate: "2020",
     slogan: "Premium Hemp Wellness for Mind, Mood & Body",
     email: "info@medispero.com",
@@ -38,20 +33,57 @@ const Index = () => {
       "@type": "PostalAddress",
       addressCountry: "US",
     },
-    contactPoint: [
-      {
-        "@type": "ContactPoint",
-        telephone: "+1-334-746-9312",
-        email: "info@medispero.com",
-        contactType: "customer service",
-        availableLanguage: ["English"],
-        areaServed: "US",
-      },
-    ],
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      url: "https://medispero.com/contact",
+      telephone: "+1-334-746-9312",
+      email: "info@medispero.com",
+      availableLanguage: ["English"],
+      areaServed: "US",
+    },
     sameAs: [
-      "https://www.facebook.com/medispero",
       "https://www.instagram.com/medispero",
-      "https://twitter.com/medispero",
+      "https://www.facebook.com/medispero",
+    ],
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What is pharmaceutical-grade CBD?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Pharmaceutical-grade CBD refers to cannabidiol that meets rigorous purity and potency standards, similar to pharmaceutical drug manufacturing. Medi Spero products are third-party lab tested and contain less than 0.3% THC, compliant with the 2018 Farm Bill.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Does Medi Spero CBD help with ADHD?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Medi Spero offers a dedicated ADHD & Focus Support product line featuring hemp-derived cannabinoids formulated to support concentration and calm. All products are lab-tested and Farm Bill compliant.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Are Medi Spero products Farm Bill compliant?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. All Medi Spero products contain less than 0.3% THC and are fully compliant with the 2018 Farm Bill. Each product batch is verified by third-party lab testing.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What CBD products does Medi Spero sell?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Medi Spero offers pharmaceutical-grade CBD oils and tinctures, CBD capsules, CBD vapes, 99% pure CBD isolate powder and crystals, CBD skincare, sleep and wellness formulas, and value bundles for ADHD, anxiety, mood, and depression support.",
+        },
+      },
     ],
   };
 
@@ -133,6 +165,9 @@ const Index = () => {
         </script>
         <script type="application/ld+json">
           {JSON.stringify(websiteSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
         </script>
       </Helmet>
       <AgeVerification />

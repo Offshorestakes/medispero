@@ -6,6 +6,37 @@ import BreadcrumbNav from "@/components/BreadcrumbNav";
 import { Award, Users, Leaf, Heart, Shield, Target } from "lucide-react";
 import aboutHeroImage from "@/assets/about-hero.jpg";
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What is pharmaceutical-grade CBD?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Pharmaceutical-grade CBD refers to cannabidiol that meets rigorous purity and potency standards, similar to pharmaceutical drug manufacturing. Medi Spero products are third-party lab tested and contain less than 0.3% THC, compliant with the 2018 Farm Bill.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Are Medi Spero products Farm Bill compliant?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. All Medi Spero products contain less than 0.3% THC and are fully compliant with the 2018 Farm Bill. Each product batch is verified by third-party lab testing.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What CBD products does Medi Spero sell?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Medi Spero offers pharmaceutical-grade CBD oils and tinctures, CBD capsules, CBD vapes, 99% pure CBD isolate powder and crystals, CBD skincare, sleep and wellness formulas, and value bundles for ADHD, anxiety, mood, and depression support.",
+      },
+    },
+  ],
+};
+
 const AboutPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
@@ -14,6 +45,9 @@ const AboutPage = () => {
         <meta name="description" content="Learn about Medi Spero's mission to deliver pharmaceutical-grade CBD wellness products. Farm Bill compliant, lab-tested, and formulated for results." />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <link rel="canonical" href="https://medispero.com/about" />
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
       </Helmet>
       <Header />
       <BreadcrumbNav items={[{ name: "Home", href: "/" }, { name: "About Us" }]} />
