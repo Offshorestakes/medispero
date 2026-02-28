@@ -7,12 +7,28 @@ const AgeVerification = () => {
   const [showDenied, setShowDenied] = useState(false);
 
   useEffect(() => {
-    const verified = localStorage.getItem("ageVerified");
-    if (verified === "true") {
+    // Allow known crawlers/bots to bypass the age gate entirely
+    const ua = navigator.userAgent.toLowerCase();
+    const crawlerPatterns = [
+      'googlebot', 'bingbot', 'slurp', 'duckduckbot', 'baiduspider',
+      'yandexbot', 'sogou', 'facebookexternalhit', 'twitterbot',
+      'rogerbot', 'linkedinbot', 'embedly', 'quora link preview',
+      'showyoubot', 'outbrain', 'pinterest', 'applebot', 'semrushbot',
+      'ahrefsbot', 'mj12bot', 'petalbot', 'screaming frog',
+      // AI crawlers
+      'gptbot', 'chatgpt-user', 'google-extended', 'ccbot',
+      'anthropic-ai', 'claudebot', 'claude-web', 'perplexitybot',
+      'cohere-ai', 'bard', 'bytespider',
+    ];
+    const isCrawler = crawlerPatterns.some(bot => ua.includes(bot));
+
+    if (isCrawler) {
       setIsVerified(true);
-    } else {
-      setIsVerified(false);
+      return;
     }
+
+    const verified = localStorage.getItem("ageVerified");
+    setIsVerified(verified === "true");
   }, []);
 
   const handleVerify = (isOver21: boolean) => {
@@ -34,7 +50,7 @@ const AgeVerification = () => {
 
   if (showDenied) {
     return (
-      <div className="age-overlay">
+      <div className="age-overlay" data-nosnippet>
         <div className="bg-white rounded-2xl p-8 max-w-md mx-4 text-center shadow-2xl animate-fade-up">
           <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-destructive/10 flex items-center justify-center">
             <AlertCircle className="h-8 w-8 text-destructive" />
@@ -56,7 +72,7 @@ const AgeVerification = () => {
   }
 
   return (
-    <div className="age-overlay">
+    <div className="age-overlay" data-nosnippet>
       <div className="bg-white rounded-2xl p-8 max-w-md mx-4 text-center shadow-2xl animate-fade-up">
         {/* Logo */}
         <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
