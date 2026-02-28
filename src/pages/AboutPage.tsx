@@ -70,7 +70,7 @@ const AboutPage = () => {
                 Our Story
               </span>
               <h1 className="text-4xl md:text-5xl font-bold mt-2 mb-6">
-                About Medi Spero
+                About Medi Spero — Our Mission in CBD Wellness
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Founded with a mission to bring premium, transparent CBD wellness products to everyone. 

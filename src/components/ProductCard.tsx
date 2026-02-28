@@ -60,7 +60,7 @@ const ProductCard = ({ product, priority = false }: ProductCardProps) => {
   };
 
   return (
-    <div 
+    <article 
       className="group bg-card rounded-2xl border border-border overflow-hidden card-hover"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -74,9 +74,11 @@ const ProductCard = ({ product, priority = false }: ProductCardProps) => {
         
         <img
           src={product.images[0]}
-          alt={product.name}
+          alt={`${product.name} — Medi Spero pharmaceutical-grade ${product.category.replace(/-/g, ' ')} product`}
           loading={priority ? "eager" : "lazy"}
           decoding="async"
+          width={400}
+          height={400}
           onLoad={() => setImageLoaded(true)}
           className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-110 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
         />
@@ -187,7 +189,7 @@ const ProductCard = ({ product, priority = false }: ProductCardProps) => {
           )}
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 

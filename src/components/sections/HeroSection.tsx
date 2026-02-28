@@ -91,8 +91,8 @@ const HeroSection = () => {
 
           {/* Headline */}
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 leading-tight">
-            Premium Hemp Wellness for
-            <span className="block text-secondary">Mind, Mood & Body</span>
+            Premium Pharmaceutical-Grade CBD &amp; Hemp Wellness
+            <span className="block text-secondary text-2xl md:text-4xl lg:text-5xl mt-2">for Mind, Mood &amp; Body</span>
           </h1>
 
           {/* Subheadline */}
