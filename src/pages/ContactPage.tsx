@@ -12,7 +12,7 @@ const ContactPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Contact Us | Medi Spero CBD Support</title>
+        <title>Contact Medi Spero — CBD Product Support & Wholesale | Medi Spero</title>
         <meta name="description" content="Contact Medi Spero for questions about CBD products, orders, or wholesale inquiries. Email info@medispero.com or WhatsApp +1 (334) 746-9312." />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <link rel="canonical" href="https://medispero.com/contact" />
@@ -26,6 +26,23 @@ const ContactPage = () => {
         <meta name="twitter:title" content="Contact Medi Spero" />
         <meta name="twitter:description" content="Get in touch with Medi Spero for CBD product questions, orders, or wholesale inquiries." />
         <meta name="twitter:image" content="https://medispero.com/og-homepage.jpg" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            name: "Contact Medi Spero",
+            description: "Contact Medi Spero for CBD product questions, order support, or wholesale inquiries.",
+            url: "https://medispero.com/contact",
+            mainEntity: {
+              "@type": "Organization",
+              name: "Medi Spero",
+              email: "info@medispero.com",
+              telephone: "+1-334-746-9312",
+              url: "https://medispero.com",
+              areaServed: { "@type": "Country", name: "United States" },
+            },
+          })}
+        </script>
       </Helmet>
       <Header />
       <BreadcrumbNav items={[{ name: "Home", href: "/" }, { name: "Contact Us" }]} />
@@ -158,6 +175,26 @@ const ContactPage = () => {
                       </p>
                     </div>
                   </div>
+                </div>
+
+                {/* Google Maps Embed */}
+                <div className="mt-8">
+                  <h3 className="font-semibold mb-3">Service Area</h3>
+                  <div className="rounded-xl overflow-hidden border border-border">
+                    <iframe
+                      title="Medi Spero service area — United States"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12587725.048583!2d-104.65!3d37.275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited%20States!5e0!3m2!1sen!2sus!4v1700000000000"
+                      width="100%"
+                      height="250"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                    />
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    Medi Spero ships premium CBD products nationwide across all 50 states.
+                  </p>
                 </div>
               </div>
             </div>
