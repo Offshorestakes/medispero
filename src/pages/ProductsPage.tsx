@@ -68,6 +68,25 @@ const ProductsPage = () => {
         <meta name="twitter:title" content="Shop CBD Products | Medi Spero" />
         <meta name="twitter:description" content="Premium CBD oils, capsules, tinctures, isolates & bundles. 3rd-party lab tested." />
         <meta name="twitter:image" content="https://medispero.com/og-homepage.jpg" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: "Shop Premium CBD Products",
+            description: "Explore Medi Spero's full catalog of premium CBD products: oils, tinctures, capsules, isolates, vapes, and wellness bundles.",
+            url: "https://medispero.com/products",
+            mainEntity: {
+              "@type": "ItemList",
+              itemListElement: products.slice(0, 50).map((product, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                url: `https://medispero.com/product/${product.slug}`,
+                name: product.name,
+                image: product.images?.[0],
+              })),
+            },
+          })}
+        </script>
       </Helmet>
       <Header />
       <BreadcrumbNav items={[{ name: "Home", href: "/" }, { name: "All Products" }]} />
