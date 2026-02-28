@@ -1,9 +1,12 @@
+import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
 import BreadcrumbNav from "@/components/BreadcrumbNav";
 import { RefreshCw, Clock, CheckCircle, XCircle, Package, CreditCard, Mail } from "lucide-react";
+
+const RelatedContent = lazy(() => import("@/components/sections/RelatedContent"));
 
 const ReturnsPolicyPage = () => {
   return (
@@ -296,6 +299,9 @@ const ReturnsPolicyPage = () => {
             </div>
           </div>
         </section>
+        <Suspense fallback={<div className="h-32" />}>
+          <RelatedContent maxProducts={4} maxPosts={2} />
+        </Suspense>
       </main>
 
       <Footer />

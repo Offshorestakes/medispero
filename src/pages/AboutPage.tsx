@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -6,6 +7,8 @@ import BreadcrumbNav from "@/components/BreadcrumbNav";
 import { Award, Users, Leaf, Heart, Shield, Target, FlaskConical, FileText, CheckCircle, Building2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import aboutHeroImage from "@/assets/about-hero.jpg";
+
+const RelatedContent = lazy(() => import("@/components/sections/RelatedContent"));
 
 const faqSchema = {
   "@context": "https://schema.org",
@@ -389,6 +392,9 @@ const AboutPage = () => {
             </div>
           </div>
         </section>
+        <Suspense fallback={<div className="h-32" />}>
+          <RelatedContent tags={["pharmaceutical", "lab-tested", "quality"]} maxProducts={4} maxPosts={3} />
+        </Suspense>
       </main>
       <Footer />
       <WhatsAppButton />
