@@ -1,56 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Shield, AlertCircle } from "lucide-react";
 
 const AgeVerification = () => {
-  const [isVerified, setIsVerified] = useState<boolean | null>(null);
   const [showDenied, setShowDenied] = useState(false);
-
-  useEffect(() => {
-    // Allow known crawlers/bots to bypass the age gate entirely
-    const ua = navigator.userAgent.toLowerCase();
-    const crawlerPatterns = [
-      'googlebot', 'bingbot', 'slurp', 'duckduckbot', 'baiduspider',
-      'yandexbot', 'sogou', 'facebookexternalhit', 'twitterbot',
-      'rogerbot', 'linkedinbot', 'embedly', 'quora link preview',
-      'showyoubot', 'outbrain', 'pinterest', 'applebot', 'semrushbot',
-      'ahrefsbot', 'mj12bot', 'petalbot', 'screaming frog',
-      // AI crawlers
-      'gptbot', 'chatgpt-user', 'google-extended', 'ccbot',
-      'anthropic-ai', 'claudebot', 'claude-web', 'perplexitybot',
-      'cohere-ai', 'bard', 'bytespider',
-    ];
-    const isCrawler = crawlerPatterns.some(bot => ua.includes(bot));
-
-    if (isCrawler) {
-      setIsVerified(true);
-      return;
-    }
-
-    const verified = localStorage.getItem("ageVerified");
-    setIsVerified(verified === "true");
-  }, []);
 
   const handleVerify = (isOver21: boolean) => {
     if (isOver21) {
+      // Set cookie for persistence (1 year)
+      document.cookie = "age_verified=true; max-age=31536000; path=/; SameSite=Lax";
+      // Also keep localStorage for backward compat
       localStorage.setItem("ageVerified", "true");
-      setIsVerified(true);
+      // Toggle visibility via CSS class — no React re-render needed
+      document.documentElement.classList.add("age-verified");
     } else {
       setShowDenied(true);
     }
   };
 
-  if (isVerified === null) {
-    return null; // Loading state
-  }
-
-  if (isVerified) {
-    return null;
-  }
-
   if (showDenied) {
     return (
-      <div className="age-overlay" data-nosnippet>
+      <div className="age-gate-overlay" data-nosnippet>
         <div className="bg-white rounded-2xl p-8 max-w-md mx-4 text-center shadow-2xl animate-fade-up">
           <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-destructive/10 flex items-center justify-center">
             <AlertCircle className="h-8 w-8 text-destructive" />
@@ -72,14 +42,14 @@ const AgeVerification = () => {
   }
 
   return (
-    <div className="age-overlay" data-nosnippet>
+    <div className="age-gate-overlay" data-nosnippet>
       <div className="bg-white rounded-2xl p-8 max-w-md mx-4 text-center shadow-2xl animate-fade-up">
         {/* Logo */}
         <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
           <span className="text-white font-bold text-3xl">M</span>
         </div>
         
-        <h1 className="text-2xl font-bold mb-1">Welcome to Medi Spero</h1>
+        <h2 className="text-2xl font-bold mb-1">Welcome to Medi Spero</h2>
         <p className="text-muted-foreground text-sm mb-6">Premium CBD Wellness</p>
 
         {/* Verification Card */}

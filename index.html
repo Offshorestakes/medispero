@@ -23,6 +23,17 @@
     <!-- Replace PASTE_YOUR_GSC_CODE_HERE with your actual verification code if you need a second property -->
     <!-- <meta name="google-site-verification" content="PASTE_YOUR_GSC_CODE_HERE" /> -->
 
+    <!-- Age gate cookie check — runs before React to prevent flash -->
+    <script>
+      if(document.cookie.includes('age_verified=true') || localStorage.getItem('ageVerified')==='true'){
+        document.documentElement.classList.add('age-verified');
+      }
+    </script>
+
+    <!-- Crawler / bot meta directives -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+
     <!-- Primary SEO Meta Tags -->
     <title>Medi Spero | Pharmaceutical-Grade CBD & THC Products | Anti-Anxiety & Mood Support</title>
     <meta name="description" content="Shop Medi Spero's pharmaceutical-grade CBD and hemp-derived THC products for anxiety relief, mood support, and depression. Lab-tested Delta-8, Delta-9, and premium CBD oils, gummies, and topicals. Free discreet shipping on orders over $250." />
