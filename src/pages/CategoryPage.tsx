@@ -1,4 +1,5 @@
 import { useParams, Link } from "react-router-dom";
+import { categories as allCategories } from "@/data/categories";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -58,7 +59,7 @@ const CategoryPage = () => {
         {/* Category Header */}
         <section className="py-12 bg-gradient-to-r from-primary/5 to-secondary/5">
           <div className="container-wide text-center">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">{category.name}</h1>
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">{category.name} — Lab-Tested CBD Products</h1>
             <p className="text-muted-foreground max-w-2xl mx-auto">{category.description}</p>
             <p className="text-sm text-secondary font-medium mt-4">
               {products.length} Products
@@ -73,6 +74,35 @@ const CategoryPage = () => {
               {products.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Related Categories — Internal Linking */}
+        <section className="py-12 bg-muted/30">
+          <div className="container-wide">
+            <h2 className="text-2xl font-bold mb-6">Explore Related Categories</h2>
+            <div className="flex flex-wrap gap-3">
+              {allCategories
+                .filter(c => c.slug !== slug)
+                .slice(0, 5)
+                .map(c => (
+                  <Link
+                    key={c.id}
+                    to={`/category/${c.slug}`}
+                    className="px-4 py-2 bg-card border border-border rounded-full text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-colors"
+                  >
+                    {c.name}
+                  </Link>
+                ))}
+            </div>
+            <div className="mt-6 text-sm text-muted-foreground">
+              <p>
+                Looking for something specific? Browse our{" "}
+                <Link to="/products" className="text-primary hover:underline font-medium">complete CBD product catalog</Link>
+                {" "}or learn more about{" "}
+                <Link to="/education" className="text-primary hover:underline font-medium">how CBD works</Link>.
+              </p>
             </div>
           </div>
         </section>

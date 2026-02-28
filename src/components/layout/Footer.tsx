@@ -31,14 +31,16 @@ const Footer = () => {
 
       {/* Main Footer Content */}
       <div className="container-wide py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-8">
           {/* Company Info */}
           <div>
             <div className="flex items-center gap-3 mb-4">
               <img 
                 src={logoImage} 
-                alt="Medi Spero" 
+                alt="Medi Spero — Premium pharmaceutical-grade CBD wellness brand"
                 className="w-12 h-12 object-contain"
+                width={48}
+                height={48}
               />
               <div>
                 <h4 className="font-bold text-lg">Medi Spero</h4>
@@ -55,18 +57,30 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Shop Categories */}
           <div>
-            <h4 className="font-semibold mb-4">Quick Links</h4>
+            <h4 className="font-semibold mb-4">Shop Categories</h4>
             <ul className="space-y-2 text-sm text-white/70">
-              <li><Link to="/products" className="hover:text-white transition-colors">All Products</Link></li>
-              <li><Link to="/category/cbd-oils" className="hover:text-white transition-colors">CBD Oils</Link></li>
-              <li><Link to="/category/cbd-vape" className="hover:text-white transition-colors">CBD Vape</Link></li>
-              <li><Link to="/category/cbd-isolate-powder" className="hover:text-white transition-colors">CBD Isolate</Link></li>
-              <li><Link to="/blog" className="hover:text-white transition-colors">Blog</Link></li>
-              <li><Link to="/education" className="hover:text-white transition-colors">CBD Education</Link></li>
+              <li><Link to="/products" className="hover:text-white transition-colors">All CBD Products</Link></li>
+              <li><Link to="/category/cbd-oils" className="hover:text-white transition-colors">CBD Oils & Tinctures</Link></li>
+              <li><Link to="/category/adhd-focus" className="hover:text-white transition-colors">ADHD & Focus Support</Link></li>
+              <li><Link to="/category/anti-anxiety" className="hover:text-white transition-colors">Anxiety & Focus CBD</Link></li>
+              <li><Link to="/category/mood-support" className="hover:text-white transition-colors">Mood & Depression Support</Link></li>
+              <li><Link to="/category/pharma-capsules" className="hover:text-white transition-colors">Pharmaceutical Capsules</Link></li>
+              <li><Link to="/category/cbd-isolate-powder" className="hover:text-white transition-colors">99% Pure CBD Isolate</Link></li>
+              <li><Link to="/category/cbd-vape" className="hover:text-white transition-colors">CBD Vape Products</Link></li>
+            </ul>
+          </div>
+
+          {/* Resources */}
+          <div>
+            <h4 className="font-semibold mb-4">Resources</h4>
+            <ul className="space-y-2 text-sm text-white/70">
+              <li><Link to="/blog" className="hover:text-white transition-colors">Wellness Blog</Link></li>
+              <li><Link to="/education" className="hover:text-white transition-colors">CBD Education & Science</Link></li>
+              <li><Link to="/lab-results" className="hover:text-white transition-colors">Lab Results & COAs</Link></li>
               <li><Link to="/testimonials" className="hover:text-white transition-colors">Customer Reviews</Link></li>
-              <li><Link to="/lab-results" className="hover:text-white transition-colors">Lab Results</Link></li>
+              <li><Link to="/faq" className="hover:text-white transition-colors">FAQ</Link></li>
             </ul>
           </div>
 

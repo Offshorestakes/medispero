@@ -150,8 +150,10 @@ const Header = () => {
           <Link to="/" className="flex items-center gap-3">
             <img 
               src={logoImage} 
-              alt="Medi Spero" 
+              alt="Medi Spero — Premium pharmaceutical-grade CBD wellness products"
               className="w-12 h-12 object-contain"
+              width={48}
+              height={48}
             />
             <div className="hidden sm:block">
               <span className="text-xl font-bold text-foreground tracking-wide">Medi Spero</span>
