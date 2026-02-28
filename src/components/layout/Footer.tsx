@@ -153,6 +153,10 @@ const Footer = () => {
               All Medi Spero products contain less than 0.3% THC and are derived from industrial hemp in compliance with the 2018 Farm Bill. 
               Must be 21+ to purchase. Consult with a physician before use if you have a medical condition or are taking medications.
             </p>
+            <p className="mt-2">
+              Medi Spero proudly ships pharmaceutical-grade CBD and hemp wellness products nationwide across the United States, 
+              serving customers in New York, Los Angeles, Chicago, Houston, Phoenix, Philadelphia, San Antonio, Dallas, Austin, and all 50 states.
+            </p>
           </div>
         </div>
       </div>
