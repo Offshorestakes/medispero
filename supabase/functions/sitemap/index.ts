@@ -13,7 +13,10 @@ const categorySlugs = [
   "cbd-isolate-crystals",
   "cbd-isolate-pure-spectrum",
   "cbd-vape",
+  "cbd-capsules",
   "sleep-wellness",
+  "cbd-skincare",
+  "bundles",
 ];
 
 const productSlugs = [

@@ -38,6 +38,36 @@ const EducationPage = () => {
             </div>
           </div>
           <EducationSection />
+
+          {/* Contextual Links Section */}
+          <section className="section-padding bg-muted/30">
+            <div className="container-wide max-w-4xl">
+              <h2 className="text-2xl font-bold mb-6 text-center">Continue Learning</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                  <h3 className="text-lg font-semibold mb-4">From Our Blog</h3>
+                  <ul className="space-y-2 text-sm">
+                    <li><a href="/blog/cbd-for-anxiety-complete-guide" className="text-primary hover:underline">CBD for Anxiety: A Complete Guide</a></li>
+                    <li><a href="/blog/cbd-thc-for-sleep-disorders" className="text-primary hover:underline">CBD & THC for Sleep Disorders</a></li>
+                    <li><a href="/blog/understanding-cannabinoids-mental-health" className="text-primary hover:underline">Cannabinoids & Mental Health Explained</a></li>
+                    <li><a href="/blog/pharmaceutical-grade-cbd-explained" className="text-primary hover:underline">What Is Pharmaceutical-Grade CBD?</a></li>
+                    <li><a href="/blog/hemp-derived-delta-9-mood-support" className="text-primary hover:underline">Hemp-Derived Delta-9 THC for Mood</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold mb-4">Shop by Wellness Goal</h3>
+                  <ul className="space-y-2 text-sm">
+                    <li><a href="/category/anti-anxiety" className="text-primary hover:underline">CBD Products for Anxiety Relief</a></li>
+                    <li><a href="/category/sleep-wellness" className="text-primary hover:underline">CBD & CBN Sleep Formulas</a></li>
+                    <li><a href="/category/adhd-focus" className="text-primary hover:underline">CBD for ADHD & Focus Support</a></li>
+                    <li><a href="/category/mood-support" className="text-primary hover:underline">CBD for Mood & Depression Support</a></li>
+                    <li><a href="/category/cbd-oils" className="text-primary hover:underline">Premium CBD Oils & Tinctures</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <Suspense fallback={<div className="h-32" />}>
             <RelatedContent tags={["endocannabinoid", "cbd", "science"]} maxProducts={4} maxPosts={3} />
           </Suspense>

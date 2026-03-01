@@ -44,16 +44,19 @@ const faqSchema = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": "https://medispero.com/#organization",
   name: "Medi Spero",
   url: "https://medispero.com",
   logo: "https://medispero.com/favicon.png",
-  description: "Medi Spero is a premium hemp wellness brand specializing in pharmaceutical-grade CBD products formulated for ADHD, anxiety, focus, mood, depression, and sleep support.",
+  description: "Medi Spero is a US-based pharmaceutical-grade CBD wellness brand offering lab-tested hemp products for ADHD, anxiety, focus, mood, depression, and sleep support. All products are derived from USA-grown organic hemp, contain less than 0.3% Delta-9 THC, and are third-party lab tested.",
   foundingDate: "2023",
   founder: {
     "@type": "Person",
     name: "The Medi Spero Team",
   },
-  sameAs: ["https://www.tiktok.com/@medispero"],
+  sameAs: [
+    "https://www.tiktok.com/@medispero",
+  ],
   address: {
     "@type": "PostalAddress",
     addressCountry: "US",
@@ -61,8 +64,18 @@ const organizationSchema = {
   contactPoint: {
     "@type": "ContactPoint",
     email: "info@medispero.com",
+    telephone: "+1-334-746-9312",
     contactType: "customer service",
+    availableLanguage: ["English"],
+    areaServed: "US",
   },
+  areaServed: [
+    { "@type": "Country", name: "United States" },
+  ],
+  knowsAbout: [
+    "CBD oil", "cannabidiol", "hemp wellness", "ADHD support",
+    "anxiety relief", "sleep wellness", "mood support", "CBD isolate",
+  ],
 };
 
 const AboutPage = () => {
@@ -265,6 +278,38 @@ const AboutPage = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Mission Statement */}
+        <section className="section-padding bg-secondary/5">
+          <div className="container-wide max-w-4xl">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
+              <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+                Medi Spero's mission is to make pharmaceutical-grade, scientifically formulated CBD wellness products accessible to every American seeking natural alternatives for anxiety, ADHD, sleep, and mood support — with full transparency, rigorous lab testing, and uncompromising quality.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Global Reach & Service Areas */}
+        <section className="section-padding">
+          <div className="container-wide max-w-4xl">
+            <h2 className="text-3xl font-bold mb-6 text-center">Nationwide Reach & Service Areas</h2>
+            <p className="text-muted-foreground leading-relaxed mb-6 text-center max-w-3xl mx-auto">
+              Medi Spero ships pharmaceutical-grade CBD products to all 50 US states with free discreet shipping on orders over $250. We serve customers in every major metropolitan area including:
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mb-8">
+              {["New York", "Los Angeles", "Chicago", "Houston", "Phoenix", "Philadelphia", "San Antonio", "San Diego", "Dallas", "Austin", "Denver", "Seattle", "Boston", "Miami", "Atlanta", "Portland"].map(city => (
+                <div key={city} className="bg-muted/50 rounded-lg px-4 py-2 text-center text-sm font-medium text-foreground">
+                  {city}
+                </div>
+              ))}
+            </div>
+            <p className="text-sm text-muted-foreground text-center">
+              All orders are shipped from the United States using USPS, UPS, and FedEx. International shipping is available to select destinations.
+            </p>
           </div>
         </section>
 
