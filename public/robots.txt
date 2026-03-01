@@ -1,23 +1,35 @@
 # Robots.txt for Medi Spero
 # https://medispero.com
 
-User-agent: *
+# --- AI Crawlers (GEO visibility) ---
+User-agent: ChatGPT-User
 Allow: /
-Allow: /assets/
-Disallow: /account
-Disallow: /checkout
-Disallow: /auth
-Disallow: /reset-password
-Disallow: /email-verified
-Disallow: /track-order
-Disallow: /marketing-copy
-Disallow: /pinterest-feed
-Disallow: /google-feed
 
-# Sitemap
-Sitemap: https://medispero.com/sitemap.xml
+User-agent: PerplexityBot
+Allow: /
 
-# --- Search Engine Crawlers ---
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Cohere-AI
+Allow: /
+
+User-agent: Bard
+Allow: /
+
+# --- Search Engine Crawlers (SEO) ---
 User-agent: Googlebot
 Allow: /
 
@@ -25,6 +37,9 @@ User-agent: Googlebot-Image
 Allow: /
 
 User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
 Allow: /
 
 User-agent: Slurp
@@ -39,33 +54,19 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: Applebot
+# --- General rules for all other bots ---
+User-agent: *
 Allow: /
-
-# --- AI Crawlers (GEO visibility) ---
-User-agent: GPTBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: anthropic-ai
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: Claude-Web
-Allow: /
-
-User-agent: Cohere-AI
-Allow: /
-
-User-agent: Bard
-Allow: /
+Disallow: /admin/
+Disallow: /account
+Disallow: /checkout
+Disallow: /auth
+Disallow: /reset-password
+Disallow: /email-verified
+Disallow: /track-order
+Disallow: /marketing-copy
+Disallow: /pinterest-feed
+Disallow: /google-feed
 
 # --- Blocked Crawlers ---
 User-agent: CCBot
@@ -73,3 +74,6 @@ Disallow: /
 
 User-agent: Google-Extended
 Disallow: /
+
+# Sitemap
+Sitemap: https://medispero.com/sitemap.xml
