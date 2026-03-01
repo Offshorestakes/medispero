@@ -54,8 +54,8 @@ const ProductsPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Shop CBD Products — Oils, Capsules, Tinctures & More | Medi Spero</title>
-        <meta name="description" content="Explore Medi Spero's full catalog of premium CBD products: oils, tinctures, capsules, isolates, vapes, and wellness bundles. 3rd-party lab tested." />
+        <title>Premium CBD & Hemp Wellness Products — Lab-Tested Oils, Capsules & More | Medi Spero</title>
+        <meta name="description" content="Shop Medi Spero's pharmaceutical-grade CBD products: oils, tinctures, capsules, isolates, and vapes for ADHD, anxiety, mood, and sleep. Third-party lab tested, Farm Bill compliant. Free shipping $250+." />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <link rel="canonical" href="https://medispero.com/products" />
         <meta property="og:type" content="website" />
@@ -95,13 +95,47 @@ const ProductsPage = () => {
         {/* Header */}
         <section className="py-12 bg-gradient-to-r from-primary/5 to-secondary/5">
           <div className="container-wide text-center">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">Shop Premium CBD Products</h1>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Browse our complete collection of premium CBD products. Third-party lab tested, organic hemp, made in USA.
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">Premium CBD & Hemp Wellness Products</h1>
+            <p className="text-muted-foreground max-w-3xl mx-auto">
+              Explore Medi Spero's complete catalog of pharmaceutical-grade CBD and hemp-derived wellness products. 
+              Every item is third-party lab tested at ISO-certified laboratories, made from USDA organic hemp grown in the USA, 
+              and fully compliant with the 2018 Farm Bill (less than 0.3% THC).
             </p>
             <p className="text-sm text-secondary font-medium mt-4">
-              {filteredProducts.length} Products
+              {filteredProducts.length} Products Available
             </p>
+          </div>
+        </section>
+
+        {/* SEO Content Section */}
+        <section className="py-8 border-b border-border">
+          <div className="container-wide max-w-5xl">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-muted-foreground">
+              <div>
+                <h2 className="text-base font-semibold text-foreground mb-2">Pharmaceutical-Grade Quality</h2>
+                <p>
+                  Medi Spero products are manufactured in GMP-certified facilities using supercritical CO₂ extraction. 
+                  Each batch undergoes five-stage purification and full-panel testing for potency, pesticides, heavy metals, 
+                  and residual solvents — the same standards used in pharmaceutical drug manufacturing.
+                </p>
+              </div>
+              <div>
+                <h2 className="text-base font-semibold text-foreground mb-2">Formulated for Wellness</h2>
+                <p>
+                  Our product line is purpose-built for specific wellness goals: ADHD and focus support, anxiety and stress relief, 
+                  mood and depression support, and sleep optimization. From CBD oils and capsules to 99% pure CBD isolate, 
+                  every formula is developed by cannabinoid science experts.
+                </p>
+              </div>
+              <div>
+                <h2 className="text-base font-semibold text-foreground mb-2">Transparent & Trusted</h2>
+                <p>
+                  Every product ships with a scannable Certificate of Analysis (COA) from ISO 17025-accredited labs. 
+                  We publish all lab results on our <Link to="/lab-results" className="text-primary hover:underline">Lab Results page</Link>. 
+                  Over 50,000 customers trust Medi Spero for their daily CBD wellness routine.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
