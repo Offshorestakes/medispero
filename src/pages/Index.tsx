@@ -22,10 +22,10 @@ const Index = () => {
     "@id": "https://medispero.com/#organization",
     name: "Medi Spero",
     url: "https://medispero.com",
-    logo: "https://medispero.com/logo.png",
-    image: "https://medispero.com/logo.png",
+    logo: "https://medispero.com/favicon.png",
+    image: "https://medispero.com/favicon.png",
     description: "Pharmaceutical-grade CBD and hemp wellness products including oils, tinctures, capsules, and isolates for ADHD, anxiety, sleep, and mood support.",
-    foundingDate: "2020",
+    foundingDate: "2023",
     slogan: "Premium Hemp Wellness for Mind, Mood & Body",
     email: "info@medispero.com",
     telephone: "+1-334-746-9312",
@@ -43,8 +43,7 @@ const Index = () => {
       areaServed: "US",
     },
     sameAs: [
-      "https://www.instagram.com/medispero",
-      "https://www.facebook.com/medispero",
+      "https://www.tiktok.com/@medispero",
     ],
   };
 
