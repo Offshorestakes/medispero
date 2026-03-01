@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Shield, AlertCircle } from "lucide-react";
 
-const BOT_REGEX = /googlebot|bingbot|gptbot|perplexitybot|anthropic-ai|claudebot|facebookexternalhit|twitterbot|linkedinbot|applebot|chatgpt-user|cohere-ai|bard|duckduckbot|slurp|yandexbot|baiduspider/i;
+const BOT_REGEX = /googlebot|bingbot|gptbot|perplexitybot|anthropic-ai|claudebot|facebookexternalhit|facebot|twitterbot|linkedinbot|applebot|chatgpt-user|cohere-ai|bard|duckduckbot|slurp|yandexbot|baiduspider|ia_archiver|sogou|bytespider|semrushbot|ahrefsbot|mj12bot|dotbot/i;
 
 const AgeVerification = () => {
   const [showDenied, setShowDenied] = useState(false);
