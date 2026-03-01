@@ -23,11 +23,14 @@
     <!-- Replace PASTE_YOUR_GSC_CODE_HERE with your actual verification code if you need a second property -->
     <!-- <meta name="google-site-verification" content="PASTE_YOUR_GSC_CODE_HERE" /> -->
 
-    <!-- Age gate cookie check — runs before React to prevent flash -->
+    <!-- Age gate: bypass for crawlers OR verified humans — runs before React to prevent flash -->
     <script>
-      if(document.cookie.includes('age_verified=true') || localStorage.getItem('ageVerified')==='true'){
-        document.documentElement.classList.add('age-verified');
-      }
+      (function(){
+        var ua=navigator.userAgent||'';
+        if(/googlebot|bingbot|gptbot|perplexitybot|anthropic-ai|claudebot|facebookexternalhit|facebot|twitterbot|linkedinbot|applebot|chatgpt-user|cohere-ai|bard|duckduckbot|slurp|yandexbot|baiduspider|ia_archiver|sogou|bytespider|semrushbot|ahrefsbot|mj12bot|dotbot|oai-searchbot/i.test(ua)||document.cookie.includes('age_verified=true')||localStorage.getItem('ageVerified')==='true'){
+          document.documentElement.classList.add('age-verified');
+        }
+      })();
     </script>
 
     <!-- Crawler / bot meta directives -->
