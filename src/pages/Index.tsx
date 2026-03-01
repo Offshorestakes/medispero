@@ -179,6 +179,40 @@ const Index = () => {
           <Suspense fallback={<div className="h-96 bg-muted/30" />}>
             <FeaturedProducts />
           </Suspense>
+
+          {/* Key Facts — visible HTML for GEO citability */}
+          <section className="py-16 bg-muted/30">
+            <div className="container-wide max-w-4xl">
+              <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">Key Facts About Medi Spero</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="bg-card border border-border rounded-xl p-6">
+                  <p className="text-sm font-semibold text-primary mb-1">Products</p>
+                  <p className="text-foreground">200+ pharmaceutical-grade CBD and hemp wellness items</p>
+                </div>
+                <div className="bg-card border border-border rounded-xl p-6">
+                  <p className="text-sm font-semibold text-primary mb-1">Compliance</p>
+                  <p className="text-foreground">Farm Bill 2018 compliant — all products contain less than 0.3% THC</p>
+                </div>
+                <div className="bg-card border border-border rounded-xl p-6">
+                  <p className="text-sm font-semibold text-primary mb-1">Testing</p>
+                  <p className="text-foreground">Every batch is third-party lab tested at ISO-certified laboratories (<a href="/lab-results" className="text-primary hover:underline">view COAs</a>)</p>
+                </div>
+                <div className="bg-card border border-border rounded-xl p-6">
+                  <p className="text-sm font-semibold text-primary mb-1">Hemp Source</p>
+                  <p className="text-foreground">Organic hemp grown in the USA — Colorado, Oregon, and Kentucky</p>
+                </div>
+                <div className="bg-card border border-border rounded-xl p-6">
+                  <p className="text-sm font-semibold text-primary mb-1">Shipping</p>
+                  <p className="text-foreground">Free discreet shipping on orders over $250 — ships to all 50 US states</p>
+                </div>
+                <div className="bg-card border border-border rounded-xl p-6">
+                  <p className="text-sm font-semibold text-primary mb-1">Guarantee</p>
+                  <p className="text-foreground">30-day satisfaction guarantee — return any unused product for a full refund</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <Suspense fallback={<div className="h-32" />}>
             <TrustSection />
           </Suspense>

@@ -31,7 +31,7 @@ const Footer = () => {
 
       {/* Main Footer Content */}
       <div className="container-wide py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-6">
           {/* Company Info */}
           <div>
             <div className="flex items-center gap-3 mb-4">
@@ -63,12 +63,25 @@ const Footer = () => {
             <ul className="space-y-2 text-sm text-white/70">
               <li><Link to="/products" className="hover:text-white transition-colors">All CBD Products</Link></li>
               <li><Link to="/category/cbd-oils" className="hover:text-white transition-colors">CBD Oils & Tinctures</Link></li>
-              <li><Link to="/category/adhd-focus" className="hover:text-white transition-colors">ADHD & Focus Support</Link></li>
-              <li><Link to="/category/anti-anxiety" className="hover:text-white transition-colors">Anxiety & Focus CBD</Link></li>
-              <li><Link to="/category/mood-support" className="hover:text-white transition-colors">Mood & Depression Support</Link></li>
-              <li><Link to="/category/pharma-capsules" className="hover:text-white transition-colors">Pharmaceutical Capsules</Link></li>
-              <li><Link to="/category/cbd-isolate-powder" className="hover:text-white transition-colors">99% Pure CBD Isolate</Link></li>
+              <li><Link to="/category/pharma-capsules" className="hover:text-white transition-colors">Pharmaceutical CBD Capsules</Link></li>
+              <li><Link to="/category/cbd-isolate-powder" className="hover:text-white transition-colors">99% Pure CBD Isolate Powder</Link></li>
+              <li><Link to="/category/cbd-isolate-crystals" className="hover:text-white transition-colors">CBD Isolate Crystals</Link></li>
               <li><Link to="/category/cbd-vape" className="hover:text-white transition-colors">CBD Vape Products</Link></li>
+              <li><Link to="/category/cbd-skincare" className="hover:text-white transition-colors">CBD Skincare</Link></li>
+              <li><Link to="/category/bundles" className="hover:text-white transition-colors">Value Bundles</Link></li>
+            </ul>
+          </div>
+
+          {/* Shop by Condition */}
+          <div>
+            <h4 className="font-semibold mb-4">Shop by Condition</h4>
+            <ul className="space-y-2 text-sm text-white/70">
+              <li><Link to="/category/anti-anxiety" className="hover:text-white transition-colors">CBD for Anxiety Relief</Link></li>
+              <li><Link to="/category/sleep-wellness" className="hover:text-white transition-colors">CBD for Better Sleep</Link></li>
+              <li><Link to="/category/adhd-focus" className="hover:text-white transition-colors">CBD for ADHD & Focus</Link></li>
+              <li><Link to="/category/mood-support" className="hover:text-white transition-colors">CBD for Mood & Depression</Link></li>
+              <li><Link to="/category/pharma-capsules" className="hover:text-white transition-colors">Pharmaceutical CBD Capsules</Link></li>
+              <li><Link to="/category/cbd-capsules" className="hover:text-white transition-colors">Daily CBD Capsules</Link></li>
             </ul>
           </div>
 
