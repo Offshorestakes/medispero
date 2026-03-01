@@ -9,6 +9,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { CartProvider } from "@/contexts/CartContext";
 import ScrollToTop from "./components/ScrollToTop";
+import { useSEO } from "@/hooks/useSEO";
 
 // Eagerly load the homepage for fast LCP
 import Index from "./pages/Index";
@@ -54,6 +55,11 @@ const PageLoader = () => (
   </div>
 );
 
+const SEOManager = () => {
+  useSEO();
+  return null;
+};
+
 const App = () => {
   useEffect(() => {
     captureUtmParams();
@@ -68,6 +74,7 @@ const App = () => {
             <Toaster />
             <Sonner />
             <BrowserRouter>
+              <SEOManager />
               <ScrollToTop />
               <Suspense fallback={null}>
                 <CartDrawer />
