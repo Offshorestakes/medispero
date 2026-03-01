@@ -105,14 +105,19 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-8 md:mb-12">
             <Button asChild className="btn-secondary text-base md:text-lg px-6 md:px-8 py-5 md:py-6">
               <Link to="/products">
-                Shop All Products
+                Browse Our Product Catalog
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
             <Button asChild variant="outline" className="text-base md:text-lg px-6 md:px-8 py-5 md:py-6 border-white/30 text-white hover:bg-white/10">
+              <Link to="/category/adhd-focus">
+                ADHD &amp; Focus Support
+              </Link>
+            </Button>
+            <Button asChild variant="outline" className="hidden sm:inline-flex text-base md:text-lg px-6 md:px-8 py-5 md:py-6 border-white/30 text-white hover:bg-white/10">
               <Link to="/about">
                 <Play className="mr-2 h-5 w-5" />
-                Learn More
+                Our Story
               </Link>
             </Button>
           </div>
