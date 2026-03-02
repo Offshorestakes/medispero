@@ -31,6 +31,10 @@ const Index = () => {
     telephone: "+1-334-746-9312",
     address: {
       "@type": "PostalAddress",
+      streetAddress: "120 Court St",
+      addressLocality: "Woodland",
+      addressRegion: "CA",
+      postalCode: "95695",
       addressCountry: "US",
     },
     contactPoint: {
@@ -103,6 +107,10 @@ const Index = () => {
     paymentAccepted: "Credit Card, Debit Card, Cryptocurrency",
     address: {
       "@type": "PostalAddress",
+      streetAddress: "120 Court St",
+      addressLocality: "Woodland",
+      addressRegion: "CA",
+      postalCode: "95695",
       addressCountry: "US",
     },
     areaServed: {
