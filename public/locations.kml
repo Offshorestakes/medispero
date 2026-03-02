@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Medispero - CBD Isolate Powder USA</name>
+    <description>Leading supplier of high-quality CBD Isolate Powder in the United States.</description>
+    <Placemark>
+      <name>Medispero</name>
+      <description>Premium CBD Isolate Powder and Hemp Extracts. Bulk and retail available across the USA.</description>
+      <address>United States</address>
+      <PhoneNumber>+1-334-746-9312</PhoneNumber>
+      <Point>
+        <coordinates>-86.3,32.4,0</coordinates>
+      </Point>
+    </Placemark>
+  </Document>
+</kml>

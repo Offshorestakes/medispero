@@ -117,6 +117,7 @@ const Index = () => {
       opens: "00:00",
       closes: "23:59",
     },
+    hasMap: "https://medispero.com/locations.kml",
   };
 
   // WebSite Schema for sitelinks search box
